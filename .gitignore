@@ -1,0 +1,17 @@
+.DS_Store
+.Trashes
+*.vbw
+*.csi
+*.exp
+*.lib
+*.lvw
+*.dca
+*.scc
+*.tmp
+*.log
+*.sf2
+*.exe
+/resources/
+/setup/
+/support/
+/projects/
