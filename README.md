@@ -2,16 +2,16 @@
 
 # Audiostation
 
-Audiostation is an old school media player that can be installed on Windows systems. The program can play all common audio files like (*.mp3, *.wav, etc). It has a record function and has all the elements to play all the music you want to play.
+Audiostation is an old school media player that can be installed on Windows systems. The program can play all common audio files like (*.mp3, *.wav, etc). It has a record function, and all the elements to play your favorite music files.
 
 #### Contribute to the project
 
 Your contributions are greatly welcome
 
-- [Translate Audiostation](/docs/translations.md)
-- [Contribute fixes](/docs/contribution.md)
-- [Report errors and suggest improvements](/docs/report-bugs.md)
-- [Donate](/docs/donations.md)
+- [Translate Audiostation](/Docs/translations.md)
+- [Contribute fixes](/Docs/contribution.md)
+- [Report errors and suggest improvements](/Docs/report-bugs.md)
+- [Donate](/Docs/donations.md)
 
 #### Application File Support
 
@@ -52,7 +52,7 @@ Your contributions are greatly welcome
 | APL  | Audiostation Playlist File         |               |
 | M3U  | Playlist File                      |               |
 
-** De convertion column tells you if a file must be converted before it can be played by Audiostation.
+** The convertion column tells you if a file must be converted before it can be played by Audiostation.
 
 #### Installation & Packages
 
@@ -66,7 +66,7 @@ The Audiostation installation package is available at the following recources
 You can choose one of these packages to download and install Audiostation.  
 Approximate package size: **160 MB**
 
-Use our: [Installation Guide](/docs/how-to-install.md) to see how to install Audiostation
+Use our: [Installation Guide](/Docs/how-to-install.md) to see how to install Audiostation
 
 #### Development
 

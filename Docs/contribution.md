@@ -33,7 +33,7 @@ Below you will find a exmaple of a running and working Visual Basic 6 with the p
 
 ![](C:\Users\Alex%20van%20den%20Berg\AppData\Roaming\marktext\images\2020-08-11-22-16-27-image.png)
 
-We use [CodeSmart](https://www.axtools.com/products-codesmart-vb6.php) to make programming in VB6 even more better
+I use [CodeSmart](https://www.axtools.com/products-codesmart-vb6.php) to make programming in VB6 even better.
 
 ### Step 3: Do some work
 
