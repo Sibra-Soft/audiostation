@@ -6,7 +6,7 @@ This is a guide to contributing to the Audiostation open source project on Githu
 
 Firstly you need a local fork of the the project, so go ahead and press the “fork” button in GitHub. This will create a copy of the repository in your own GitHub account and you’ll see a note that it’s been forked underneath the project name:
 
-![](C:\Users\Alex%20van%20den%20Berg\AppData\Roaming\marktext\images\2020-08-11-22-05-14-image.png)
+![](https://www.audiostation.org/images/iVXpcfrOGh.png)
 
 Now you need a copy locally, so find the “SSH clone URL” in the right hand column and use that to clone locally using a terminal:
 
@@ -27,11 +27,11 @@ $ git remote add upstream git@github.com: Sibra-Soft/Audiostation.git
 
 Now that you have the source code, get it working on your computer.
 
-You must have a running version of Microsoft Visual Basic 6 to make changes to the project. Please use our [dependency installer](https://www.audiostation.org/downloads/dependency-installer.zip) to install all the needed dependencies
+You must have a running version of Microsoft Visual Basic 6 to make changes to the project. Please use our [dependency installer](/Resources/audiostation-dependency-setup-20.zip) to install all the needed dependencies
 
 Below you will find a exmaple of a running and working Visual Basic 6 with the project
 
-![](C:\Users\Alex%20van%20den%20Berg\AppData\Roaming\marktext\images\2020-08-11-22-16-27-image.png)
+![](https://www.audiostation.org/images/sSfBQv9.png)
 
 I use [CodeSmart](https://www.axtools.com/products-codesmart-vb6.php) to make programming in VB6 even better.
 
