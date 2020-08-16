@@ -85,3 +85,6 @@ Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
 DebugStartupOption=0
+
+[CodeSMART]
+Task_UID=11_08_20_22_33_04

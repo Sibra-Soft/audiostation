@@ -378,6 +378,10 @@ vbErrorHandler:
     MsgBox err.Number & " " & err.Description
 End Sub
 
+Private Sub AlphaImgCtl1_Click()
+
+End Sub
+
 Private Sub Form_Load()
 Me.Move (Screen.Width - Me.Width) \ 2, (Screen.Height - Me.Height) \ 2
     

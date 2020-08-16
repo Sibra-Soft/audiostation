@@ -75,9 +75,9 @@ Begin VB.Form Form_Playlist
    Begin VB.FileListBox DirToPlaylist 
       Appearance      =   0  'Flat
       Height          =   1200
-      Left            =   10200
+      Left            =   4200
       TabIndex        =   17
-      Top             =   5280
+      Top             =   3600
       Visible         =   0   'False
       Width           =   1575
    End
@@ -251,6 +251,7 @@ Begin VB.Form Form_Playlist
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
+         Caption         =   "Delete"
       End
       Begin Audiostation.ButtonBig cmdClear 
          Height          =   390
@@ -263,7 +264,7 @@ Begin VB.Form Form_Playlist
          _ExtentY        =   688
          Caption         =   "Clear All"
       End
-      Begin Audiostation.ButtonBig isButton6 
+      Begin Audiostation.ButtonBig cmdOpenPlaylist 
          Height          =   390
          Left            =   120
          TabIndex        =   13
@@ -272,8 +273,9 @@ Begin VB.Form Form_Playlist
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
+         Caption         =   "Open Playlist"
       End
-      Begin Audiostation.ButtonBig isButton5 
+      Begin Audiostation.ButtonBig cmdSavePlaylist 
          Height          =   390
          Left            =   120
          TabIndex        =   14
@@ -282,6 +284,7 @@ Begin VB.Form Form_Playlist
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
+         Caption         =   "Save Playlist"
       End
       Begin Audiostation.ButtonBig cmdPlaylistOptions 
          Height          =   390
@@ -292,6 +295,7 @@ Begin VB.Form Form_Playlist
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
+         Caption         =   "Playlist Options"
       End
    End
    Begin VB.Label Label2 
@@ -683,6 +687,30 @@ Private Sub cmdDelete_Click()
 lstPlaylist.ListItems.Remove (lstPlaylist.SelectedItem.Index)
 End Sub
 
+Private Sub cmdSavePlaylist_Click()
+On Error GoTo ErrorHandler
+With CommonDialog
+    .CancelError = True
+    .FileName = App.path
+    .DialogTitle = GetLanguage(1017)
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .ShowSave
+
+    If Right(LCase(.FileName), 3) = "apl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Audiostation Playlist])
+    If Right(LCase(.FileName), 3) = "m3u" Then: Call SavePlaylist(.FileName, lstPlaylist, [Common Playlist])
+    If Right(LCase(.FileName), 3) = "pls" Then: Call SavePlaylist(.FileName, lstPlaylist, [ShoutCast Playlist])
+    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player])
+End With
+
+Exit Sub
+
+ErrorHandler:
+Select Case err.Number
+    Case 0
+    Case Else: Debug.Print err.Description
+End Select
+End Sub
+
 Private Sub cmdPlaylistOptions_Click()
 PopupMenu mnupopup
 End Sub
@@ -724,31 +752,8 @@ Select Case CurrentFormType
 End Select
 End Sub
 
-Private Sub isButton5_Click()
-On Error GoTo ErrorHandler
-With CommonDialog
-    .CancelError = True
-    .FileName = App.path
-    .DialogTitle = GetLanguage(1017)
-    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
-    .ShowSave
 
-    If Right(LCase(.FileName), 3) = "apl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Audiostation Playlist])
-    If Right(LCase(.FileName), 3) = "m3u" Then: Call SavePlaylist(.FileName, lstPlaylist, [Common Playlist])
-    If Right(LCase(.FileName), 3) = "pls" Then: Call SavePlaylist(.FileName, lstPlaylist, [ShoutCast Playlist])
-    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player])
-End With
-
-Exit Sub
-
-ErrorHandler:
-Select Case err.Number
-    Case 0
-    Case Else: Debug.Print err.Description
-End Select
-End Sub
-
-Private Sub isButton6_Click()
+Private Sub cmdOpenPlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True

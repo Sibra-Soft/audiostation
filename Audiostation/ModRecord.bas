@@ -30,14 +30,20 @@ If Extensions.INIRead("wav", "WavOutputLocation", App.path & "\settings.ini") = 
     With Form_Main
         .CommonDialog1.CancelError = True
         .CommonDialog1.DialogTitle = GetLanguage(1026)
-        .CommonDialog1.Filter = "Microsoft WaveForm Audio (*.wav)|*.wav"
+        
+        If Settings.ReadSetting("Sibra-Soft", "Audiostation", "RecordingFileType", 0) = 0 Then
+            .CommonDialog1.Filter = "Microsoft WaveForm Audio (*.wav)|*.wav"
+        Else
+            .CommonDialog1.Filter = "MPEG-1 Layer 3 (*.mp3)|*.mp3"
+        End If
+        
         .CommonDialog1.ShowSave
                     
         fso.CopyFile RecordFilename, .CommonDialog1.FileName, True
         
-        Extensions.Pause 200
+        Extensions.Pause 200 ' Wait for the system to copy the file
         
-        Kill RecordFilename
+        Kill RecordFilename ' Delete the record output file
     End With
 End If
 

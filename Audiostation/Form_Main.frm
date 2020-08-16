@@ -35,7 +35,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":088B
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   153
+      TabIndex        =   126
       Top             =   2340
       Width           =   9615
    End
@@ -48,7 +48,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":106CD
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   152
+      TabIndex        =   125
       Top             =   840
       Width           =   9615
    End
@@ -61,7 +61,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":2050F
       ScaleHeight     =   3060
       ScaleWidth      =   9615
-      TabIndex        =   155
+      TabIndex        =   128
       Top             =   5330
       Width           =   9615
    End
@@ -74,7 +74,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":409D1
       ScaleHeight     =   780
       ScaleWidth      =   9615
-      TabIndex        =   156
+      TabIndex        =   129
       Top             =   8400
       Width           =   9615
    End
@@ -87,7 +87,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":48393
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   154
+      TabIndex        =   127
       Top             =   3840
       Width           =   9615
    End
@@ -261,16 +261,56 @@ Begin VB.Form Form_Main
       Top             =   5330
       Visible         =   0   'False
       Width           =   9735
-      Begin isAnalogLibrary.iLabelX iLabelX3 
-         Height          =   210
-         Left            =   4320
-         TabIndex        =   138
-         Top             =   1155
-         Width           =   855
+      Begin isAnalogLibrary.iLabelX ILaMaster 
+         Height          =   195
+         Left            =   120
+         TabIndex        =   142
+         Top             =   1192
+         Width           =   1215
          AutoSize        =   0   'False
          Alignment       =   0
          BorderStyle     =   0
-         Caption         =   "CD"
+         Caption         =   "Master"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         OuterMarginLeft =   0
+         OuterMarginTop  =   0
+         OuterMarginRight=   0
+         OuterMarginBottom=   0
+         ShadowShow      =   -1  'True
+         ShadowXOffset   =   -1
+         ShadowYOffset   =   -1
+         ShadowColor     =   16777215
+         BackGroundColor =   12632256
+         UpdateFrameRate =   60
+         Object.Visible         =   -1  'True
+         FontColor       =   -16777208
+         Transparent     =   -1  'True
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Enabled         =   -1  'True
+         Object.Width           =   81
+         Object.Height          =   13
+         WordWrap        =   0   'False
+         OPCItemCount    =   0
+      End
+      Begin isAnalogLibrary.iLabelX iLabelX2 
+         Height          =   210
+         Left            =   3210
+         TabIndex        =   116
+         Top             =   1185
+         Width           =   900
+         AutoSize        =   0   'False
+         Alignment       =   0
+         BorderStyle     =   0
+         Caption         =   "REC"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Tahoma"
             Size            =   8.25
@@ -296,7 +336,7 @@ Begin VB.Form Form_Main
          OptionSaveAllProperties=   0   'False
          AutoFrameRate   =   0   'False
          Enabled         =   -1  'True
-         Object.Width           =   57
+         Object.Width           =   60
          Object.Height          =   14
          WordWrap        =   0   'False
          OPCItemCount    =   0
@@ -304,8 +344,8 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX5 
          Height          =   210
          Left            =   6480
-         TabIndex        =   144
-         Top             =   1155
+         TabIndex        =   119
+         Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
          Alignment       =   0
@@ -344,8 +384,8 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX4 
          Height          =   210
          Left            =   5400
-         TabIndex        =   141
-         Top             =   1155
+         TabIndex        =   118
+         Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
          Alignment       =   0
@@ -381,16 +421,16 @@ Begin VB.Form Form_Main
          WordWrap        =   0   'False
          OPCItemCount    =   0
       End
-      Begin isAnalogLibrary.iLabelX iLabelX2 
+      Begin isAnalogLibrary.iLabelX iLabelX3 
          Height          =   210
-         Left            =   3240
-         TabIndex        =   135
-         Top             =   1155
-         Width           =   915
+         Left            =   4320
+         TabIndex        =   117
+         Top             =   1192
+         Width           =   855
          AutoSize        =   0   'False
          Alignment       =   0
          BorderStyle     =   0
-         Caption         =   "REC"
+         Caption         =   "CD"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Tahoma"
             Size            =   8.25
@@ -416,23 +456,32 @@ Begin VB.Form Form_Main
          OptionSaveAllProperties=   0   'False
          AutoFrameRate   =   0   'False
          Enabled         =   -1  'True
-         Object.Width           =   61
+         Object.Width           =   57
          Object.Height          =   14
          WordWrap        =   0   'False
          OPCItemCount    =   0
+      End
+      Begin Audiostation.MixSlider Slider_Master_Left 
+         Height          =   1335
+         Left            =   150
+         TabIndex        =   140
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
       End
       Begin VB.PictureBox Picture1 
          Height          =   1215
          Left            =   9160
          ScaleHeight     =   1155
          ScaleWidth      =   195
-         TabIndex        =   130
+         TabIndex        =   111
          Top             =   120
          Width           =   255
          Begin isAnalogLibrary.iLedBarX VU_Master_Peak 
             Height          =   1215
             Left            =   0
-            TabIndex        =   131
+            TabIndex        =   112
             Top             =   0
             Width           =   255
             SegmentDirection=   0
@@ -473,50 +522,10 @@ Begin VB.Form Form_Main
             OPCItemCount    =   0
          End
       End
-      Begin isAnalogLibrary.iLabelX iLabelX1 
-         Height          =   210
-         Left            =   120
-         TabIndex        =   127
-         Top             =   1150
-         Width           =   1095
-         AutoSize        =   -1  'True
-         Alignment       =   0
-         BorderStyle     =   0
-         Caption         =   "Master"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   -1  'True
-         ShadowXOffset   =   -1
-         ShadowYOffset   =   -1
-         ShadowColor     =   16777215
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
-         Object.Visible         =   -1  'True
-         FontColor       =   -16777208
-         Transparent     =   -1  'True
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Enabled         =   -1  'True
-         Object.Width           =   73
-         Object.Height          =   14
-         WordWrap        =   0   'False
-         OPCItemCount    =   0
-      End
       Begin isDigitalLibrary.iSwitchLedX Switch_Master 
          Height          =   270
          Left            =   7560
-         TabIndex        =   87
+         TabIndex        =   74
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -563,28 +572,10 @@ Begin VB.Form Form_Main
          CaptionFontStrikeOut=   0   'False
          OPCItemCount    =   0
       End
-      Begin VB.PictureBox Slider_Master_Left 
-         Height          =   1335
-         Left            =   150
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   125
-         Top             =   0
-         Width           =   615
-      End
-      Begin VB.PictureBox Slider_Master_Right 
-         Height          =   1335
-         Left            =   580
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   126
-         Top             =   0
-         Width           =   615
-      End
       Begin isDigitalLibrary.iSwitchLedX Switch_Dat 
          Height          =   270
          Left            =   7560
-         TabIndex        =   128
+         TabIndex        =   109
          Top             =   600
          Width           =   975
          Active          =   -1  'True
@@ -634,7 +625,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Midi 
          Height          =   270
          Left            =   7560
-         TabIndex        =   129
+         TabIndex        =   110
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -684,7 +675,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Rec 
          Height          =   270
          Left            =   1680
-         TabIndex        =   132
+         TabIndex        =   113
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -734,7 +725,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Line 
          Height          =   270
          Left            =   1680
-         TabIndex        =   133
+         TabIndex        =   114
          Top             =   600
          Width           =   975
          Active          =   0   'False
@@ -784,7 +775,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_CD 
          Height          =   270
          Left            =   1680
-         TabIndex        =   134
+         TabIndex        =   115
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -831,77 +822,88 @@ Begin VB.Form Form_Main
          CaptionFontStrikeOut=   0   'False
          OPCItemCount    =   0
       End
-      Begin VB.PictureBox Slider_Record_Left 
+      Begin Audiostation.MixSlider Slider_Master_Right 
          Height          =   1335
-         Left            =   3150
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   136
+         Left            =   592
+         TabIndex        =   141
          Top             =   0
          Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
       End
-      Begin VB.PictureBox Slider_Record_Right 
+      Begin Audiostation.MixSlider Slider_Record_Left 
          Height          =   1335
-         Left            =   3585
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   137
-         Top             =   0
-         Width           =   615
-      End
-      Begin VB.PictureBox Slider_CD_Left 
-         Height          =   1335
-         Left            =   4230
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   139
-         Top             =   0
-         Width           =   615
-      End
-      Begin VB.PictureBox Slider_CD_Right 
-         Height          =   1335
-         Left            =   4665
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   140
-         Top             =   0
-         Width           =   615
-      End
-      Begin VB.PictureBox Slider_Dat_Left 
-         Height          =   1335
-         Left            =   5310
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
-         TabIndex        =   142
-         Top             =   0
-         Width           =   615
-      End
-      Begin VB.PictureBox Slider_Dat_Right 
-         Height          =   1335
-         Left            =   5745
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
+         Left            =   3120
          TabIndex        =   143
          Top             =   0
          Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
       End
-      Begin VB.PictureBox Slider_Midi_Left 
+      Begin Audiostation.MixSlider Slider_Record_Right 
+         Height          =   1215
+         Left            =   3555
+         TabIndex        =   144
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
+      End
+      Begin Audiostation.MixSlider Slider_CD_Left 
          Height          =   1335
-         Left            =   6360
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
+         Left            =   4200
          TabIndex        =   145
          Top             =   0
          Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+         Value           =   50
       End
-      Begin VB.PictureBox Slider_Midi_Right 
-         Height          =   1335
-         Left            =   6795
-         ScaleHeight     =   1275
-         ScaleWidth      =   555
+      Begin Audiostation.MixSlider Slider_CD_Right 
+         Height          =   1215
+         Left            =   4635
          TabIndex        =   146
          Top             =   0
          Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
+         Value           =   50
+      End
+      Begin Audiostation.MixSlider Slider_Dat_Left 
+         Height          =   1335
+         Left            =   5280
+         TabIndex        =   147
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+      End
+      Begin Audiostation.MixSlider Slider_Dat_Right 
+         Height          =   1215
+         Left            =   5715
+         TabIndex        =   148
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
+      End
+      Begin Audiostation.MixSlider Slider_Midi_Left 
+         Height          =   1335
+         Left            =   6360
+         TabIndex        =   149
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+      End
+      Begin Audiostation.MixSlider Slider_Midi_Right 
+         Height          =   1215
+         Left            =   6795
+         TabIndex        =   150
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
       End
       Begin VB.Image Image1 
          Height          =   960
@@ -1133,7 +1135,7 @@ Begin VB.Form Form_Main
          Picture         =   "Form_Main.frx":14464B
          ScaleHeight     =   1215
          ScaleWidth      =   5340
-         TabIndex        =   89
+         TabIndex        =   75
          Top             =   50
          Width           =   5340
       End
@@ -1153,26 +1155,30 @@ Begin VB.Form Form_Main
          Left            =   1500
          ScaleHeight     =   495
          ScaleWidth      =   2415
-         TabIndex        =   74
+         TabIndex        =   72
          Top             =   840
          Width           =   2415
-         Begin VB.PictureBox ButtonBig6 
+         Begin Audiostation.ButtonBig cmdCDRandom 
             Height          =   390
             Left            =   40
-            ScaleHeight     =   330
-            ScaleWidth      =   1035
-            TabIndex        =   83
-            Top             =   45
+            TabIndex        =   152
+            Top             =   50
             Width           =   1095
+            _ExtentX        =   1931
+            _ExtentY        =   688
+            Caption         =   "Random"
+            ShowLed         =   -1  'True
          End
-         Begin VB.PictureBox ButtonBig7 
+         Begin Audiostation.ButtonBig cmdCDLoop 
             Height          =   390
             Left            =   1200
-            ScaleHeight     =   330
-            ScaleWidth      =   1035
-            TabIndex        =   84
-            Top             =   45
+            TabIndex        =   153
+            Top             =   50
             Width           =   1095
+            _ExtentX        =   1931
+            _ExtentY        =   688
+            Caption         =   "Loop"
+            ShowLed         =   -1  'True
          End
       End
       Begin VB.PictureBox Light_Panel_CD 
@@ -1436,15 +1442,15 @@ Begin VB.Form Form_Main
          TabIndex        =   6
          Top             =   100
          Width           =   1410
-         Begin VB.PictureBox cmdOpenCD 
+         Begin Audiostation.ButtonBig cmdOpenCD 
             Height          =   390
-            Left            =   10
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   90
-            Tag             =   "1030"
-            Top             =   45
+            Left            =   50
+            TabIndex        =   139
+            Top             =   50
             Width           =   1215
+            _ExtentX        =   2143
+            _ExtentY        =   688
+            Caption         =   "Eject CD"
          End
       End
       Begin VB.Image Light_CD_Play_On 
@@ -1489,14 +1495,14 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":14FC0F
       ScaleHeight     =   1575
       ScaleWidth      =   9735
-      TabIndex        =   93
+      TabIndex        =   77
       Top             =   6900
       Visible         =   0   'False
       Width           =   9735
       Begin isAnalogLibrary.iLedBarX VU_Split_Left 
          Height          =   135
          Left            =   4200
-         TabIndex        =   148
+         TabIndex        =   121
          Top             =   960
          Width           =   2655
          SegmentDirection=   3
@@ -1539,7 +1545,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLedBarX VU_Split_Right 
          Height          =   135
          Left            =   6600
-         TabIndex        =   147
+         TabIndex        =   120
          Top             =   960
          Width           =   2655
          SegmentDirection=   2
@@ -1582,7 +1588,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX6 
          Height          =   195
          Left            =   4200
-         TabIndex        =   149
+         TabIndex        =   122
          Top             =   760
          Width           =   5025
          AutoSize        =   0   'False
@@ -1625,13 +1631,13 @@ Begin VB.Form Form_Main
          Left            =   4080
          ScaleHeight     =   1020
          ScaleWidth      =   5235
-         TabIndex        =   150
+         TabIndex        =   123
          Top             =   170
          Width           =   5295
          Begin isDigitalLibrary.iSwitchLedX Switch_SpectrumAnalyzer 
             Height          =   270
             Left            =   120
-            TabIndex        =   151
+            TabIndex        =   124
             Top             =   100
             Width           =   1815
             Active          =   -1  'True
@@ -1694,14 +1700,14 @@ Begin VB.Form Form_Main
          Left            =   130
          ScaleHeight     =   1020
          ScaleWidth      =   3780
-         TabIndex        =   95
+         TabIndex        =   79
          Top             =   170
          Width           =   3840
          Begin isAnalogLibrary.iLedBarX VU_Spectrum 
             Height          =   795
             Index           =   0
             Left            =   120
-            TabIndex        =   96
+            TabIndex        =   80
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1745,7 +1751,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   1
             Left            =   240
-            TabIndex        =   97
+            TabIndex        =   81
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1789,7 +1795,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   2
             Left            =   360
-            TabIndex        =   98
+            TabIndex        =   82
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1833,7 +1839,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   3
             Left            =   480
-            TabIndex        =   99
+            TabIndex        =   83
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1877,7 +1883,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   4
             Left            =   600
-            TabIndex        =   100
+            TabIndex        =   84
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1921,7 +1927,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   5
             Left            =   720
-            TabIndex        =   101
+            TabIndex        =   85
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1965,7 +1971,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   6
             Left            =   840
-            TabIndex        =   102
+            TabIndex        =   86
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2009,7 +2015,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   7
             Left            =   960
-            TabIndex        =   103
+            TabIndex        =   87
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2053,7 +2059,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   8
             Left            =   1080
-            TabIndex        =   104
+            TabIndex        =   88
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2097,7 +2103,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   9
             Left            =   1200
-            TabIndex        =   105
+            TabIndex        =   89
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2141,7 +2147,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   10
             Left            =   1320
-            TabIndex        =   106
+            TabIndex        =   90
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2185,7 +2191,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   11
             Left            =   1440
-            TabIndex        =   107
+            TabIndex        =   91
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2229,7 +2235,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   12
             Left            =   1560
-            TabIndex        =   108
+            TabIndex        =   92
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2273,7 +2279,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   13
             Left            =   1680
-            TabIndex        =   109
+            TabIndex        =   93
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2317,7 +2323,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   14
             Left            =   1800
-            TabIndex        =   110
+            TabIndex        =   94
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2361,7 +2367,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   15
             Left            =   1920
-            TabIndex        =   111
+            TabIndex        =   95
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2405,7 +2411,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   16
             Left            =   2040
-            TabIndex        =   112
+            TabIndex        =   96
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2449,7 +2455,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   17
             Left            =   2160
-            TabIndex        =   113
+            TabIndex        =   97
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2493,7 +2499,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   18
             Left            =   2280
-            TabIndex        =   114
+            TabIndex        =   98
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2537,7 +2543,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   19
             Left            =   2400
-            TabIndex        =   115
+            TabIndex        =   99
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2581,7 +2587,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   20
             Left            =   2520
-            TabIndex        =   116
+            TabIndex        =   100
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2625,7 +2631,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   21
             Left            =   2640
-            TabIndex        =   117
+            TabIndex        =   101
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2669,7 +2675,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   22
             Left            =   2760
-            TabIndex        =   118
+            TabIndex        =   102
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2713,7 +2719,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   23
             Left            =   2880
-            TabIndex        =   119
+            TabIndex        =   103
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2757,7 +2763,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   24
             Left            =   3000
-            TabIndex        =   120
+            TabIndex        =   104
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2801,7 +2807,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   25
             Left            =   3120
-            TabIndex        =   121
+            TabIndex        =   105
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2845,7 +2851,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   26
             Left            =   3240
-            TabIndex        =   122
+            TabIndex        =   106
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2889,7 +2895,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   27
             Left            =   3360
-            TabIndex        =   123
+            TabIndex        =   107
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2933,7 +2939,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   28
             Left            =   3480
-            TabIndex        =   124
+            TabIndex        =   108
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2990,7 +2996,7 @@ Begin VB.Form Form_Main
          Left            =   1350
          ScaleHeight     =   975
          ScaleWidth      =   1095
-         TabIndex        =   94
+         TabIndex        =   78
          Top             =   50
          Width           =   1095
       End
@@ -3232,7 +3238,7 @@ Begin VB.Form Form_Main
             Left            =   0
             Picture         =   "Form_Main.frx":1B8D43
             Style           =   1  'Graphical
-            TabIndex        =   92
+            TabIndex        =   76
             Top             =   50
             Width           =   495
          End
@@ -3393,7 +3399,7 @@ Begin VB.Form Form_Main
             Left            =   1080
             Picture         =   "Form_Main.frx":1BBA93
             Style           =   1  'Graphical
-            TabIndex        =   85
+            TabIndex        =   73
             Top             =   50
             Width           =   495
          End
@@ -3415,36 +3421,27 @@ Begin VB.Form Form_Main
          ScaleHeight     =   1215
          ScaleWidth      =   1455
          TabIndex        =   18
-         Top             =   120
+         Top             =   100
          Width           =   1455
-         Begin VB.PictureBox cmdSettingsDat 
+         Begin Audiostation.ButtonBig cmdPlaylistDat 
             Height          =   390
-            Left            =   0
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   82
-            Tag             =   "1002"
+            Left            =   50
+            TabIndex        =   137
+            Top             =   10
+            Width           =   1215
+            _ExtentX        =   2143
+            _ExtentY        =   688
+            Caption         =   "Playlist (0)"
+         End
+         Begin Audiostation.ButtonBig cmdSettingsDat 
+            Height          =   390
+            Left            =   50
+            TabIndex        =   138
             Top             =   810
             Width           =   1215
-         End
-         Begin VB.PictureBox cmdPlaylistDat 
-            Height          =   390
-            Left            =   0
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   81
-            Top             =   0
-            Width           =   1215
-         End
-         Begin VB.PictureBox cmdEditDat 
-            Height          =   390
-            Left            =   0
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   91
-            Top             =   400
-            Visible         =   0   'False
-            Width           =   1215
+            _ExtentX        =   2143
+            _ExtentY        =   688
+            Caption         =   "Settings"
          End
       End
       Begin isAnalogLibrary.iLedBarX VU_Left 
@@ -4541,34 +4538,25 @@ Begin VB.Form Form_Main
          TabIndex        =   32
          Top             =   100
          Width           =   1335
-         Begin VB.PictureBox cmdPlaylistMidi 
+         Begin Audiostation.ButtonBig cmdPlaylistMidi 
             Height          =   390
-            Left            =   20
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   79
-            Top             =   0
+            Left            =   50
+            TabIndex        =   135
+            Top             =   20
             Width           =   1215
+            _ExtentX        =   2143
+            _ExtentY        =   688
+            Caption         =   "Playlist (0)"
          End
-         Begin VB.PictureBox cmdSettingsMidi 
+         Begin Audiostation.ButtonBig cmdSettingsMidi 
             Height          =   390
-            Left            =   20
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   80
-            Tag             =   "1002"
-            Top             =   815
+            Left            =   50
+            TabIndex        =   136
+            Top             =   800
             Width           =   1215
-         End
-         Begin VB.PictureBox cmdEditMidi 
-            Height          =   390
-            Left            =   20
-            ScaleHeight     =   330
-            ScaleWidth      =   1155
-            TabIndex        =   88
-            Top             =   412
-            Visible         =   0   'False
-            Width           =   1215
+            _ExtentX        =   2143
+            _ExtentY        =   688
+            Caption         =   "Settings"
          End
       End
       Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_Midi 
@@ -4727,47 +4715,17 @@ Begin VB.Form Form_Main
       TabIndex        =   0
       Top             =   120
       Width           =   9615
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   450
-         Index           =   0
-         Left            =   8600
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   73
-         Top             =   100
-         Width           =   855
-      End
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   450
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
          Index           =   1
          Left            =   7680
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   75
+         TabIndex        =   130
          Top             =   100
-         Width           =   855
-      End
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
             Weight          =   400
@@ -4775,18 +4733,21 @@ Begin VB.Form Form_Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Caption         =   " MIDI"
+         ShowLed         =   -1  'True
+         Active          =   -1  'True
+      End
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
          Index           =   2
-         Left            =   6840
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   76
+         Left            =   6820
+         TabIndex        =   131
          Top             =   100
-         Width           =   855
-      End
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
             Weight          =   400
@@ -4794,18 +4755,21 @@ Begin VB.Form Form_Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Caption         =   " DAT"
+         ShowLed         =   -1  'True
+         Active          =   -1  'True
+      End
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
          Index           =   3
-         Left            =   6000
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   77
+         Left            =   5970
+         TabIndex        =   132
          Top             =   100
-         Width           =   855
-      End
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
             Weight          =   400
@@ -4813,18 +4777,21 @@ Begin VB.Form Form_Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Caption         =   " CD"
+         ShowLed         =   -1  'True
+         Active          =   -1  'True
+      End
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
          Index           =   4
-         Left            =   5160
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   78
+         Left            =   5120
+         TabIndex        =   133
          Top             =   100
-         Width           =   855
-      End
-      Begin VB.PictureBox Button 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
             Weight          =   400
@@ -4832,14 +4799,52 @@ Begin VB.Form Form_Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Caption         =   "Mixer"
+         ShowLed         =   -1  'True
+         Active          =   -1  'True
+      End
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
          Index           =   5
-         Left            =   4320
-         ScaleHeight     =   390
-         ScaleWidth      =   795
-         TabIndex        =   86
-         Top             =   110
-         Width           =   855
+         Left            =   4260
+         TabIndex        =   134
+         Top             =   100
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   " Clock"
+         ShowLed         =   -1  'True
+         Active          =   -1  'True
+      End
+      Begin Audiostation.Button cmdButton 
+         Height          =   420
+         Index           =   0
+         Left            =   8610
+         TabIndex        =   151
+         Top             =   100
+         Width           =   825
+         _ExtentX        =   1455
+         _ExtentY        =   741
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "   Power  "
+         Alignment       =   2
       End
       Begin VB.Image OptionsMenuButton 
          Height          =   405
@@ -4847,23 +4852,6 @@ Begin VB.Form Form_Main
          Picture         =   "Form_Main.frx":20CA47
          Top             =   100
          Width           =   375
-      End
-      Begin VB.Label Label3 
-         BackStyle       =   0  'Transparent
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   8760
-         TabIndex        =   72
-         Top             =   120
-         Width           =   735
       End
       Begin VB.Image Image5 
          Height          =   450
@@ -4960,28 +4948,28 @@ Dim lightId As Integer
 Private Sub AniCD_Click()
 Trm_CD_Animation.Enabled = True
 End Sub
-Private Sub Button_Click(Index As Integer)
+Private Sub cmdButton_Click(Index As Integer)
 Select Case Index
     Case 0
         CloseApplication = True
         Unload Me
     
     Case Else
-        If Button(Index).Active Then
+        If cmdButton(Index).Active Then
             'Turn off element
-            Button(Index).Active = False
+            cmdButton(Index).Active = False
             Element(Index).Tag = "DELETE"
             
             Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "Element-" & Index, "OFF")
         Else
             'Turn on element
-            Button(Index).Active = True
+            cmdButton(Index).Active = True
             Element(Index).Tag = "ADD"
             
             Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "Element-" & Index, "ON")
         End If
         
-        If Index = 3 And Button(Index).Active = True Then
+        If Index = 3 And cmdButton(Index).Active = True Then
             AniCD.Picture = ImageList5.ListImages(1).Picture
             AniCD.Visible = True
             
@@ -4990,28 +4978,6 @@ Select Case Index
         End If
 End Select
 End Sub
-Private Sub ButtonBig6_Click()
-If ButtonBig6.Active = False Then
-    ButtonBig6.Active = True
-    Light_Panel_CD.Picture = ImageList3.ListImages(4).Picture
-    ButtonBig7.Active = False
-Else
-    ButtonBig6.Active = False
-    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
-End If
-End Sub
-
-Private Sub ButtonBig7_Click()
-If ButtonBig7.Active = False Then
-    ButtonBig7.Active = True
-    Light_Panel_CD.Picture = ImageList3.ListImages(3).Picture
-    ButtonBig6.Active = False
-Else
-    ButtonBig7.Active = False
-    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
-End If
-End Sub
-
 Private Sub cmdAudioPlayer_Click(Index As Integer)
 Select Case Index
     Case 0: PopupMenu mnupopup_player
@@ -5021,7 +4987,12 @@ Select Case Index
             AudiostationRecorder.StopRecorder
             Trm_VU.Enabled = False
         Else
-            AudiostationRecorder.RecordFilename = Environ("UserProfile") & "\output.wav"
+            If Settings.ReadSetting("Sibra-Soft", "Audiostation", "RecordingFileType", 0) = 0 Then
+                AudiostationRecorder.RecordFilename = Environ("UserProfile") & "\output.wav"
+            Else
+                AudiostationRecorder.RecordFilename = Environ("UserProfile") & "\output.mp3"
+            End If
+            
             AudiostationRecorder.StartRecorder
             Trm_VU.Enabled = True
         End If
@@ -5043,6 +5014,28 @@ Select Case Index
     Case 7: AudiostationMP3Player.Rewind
     Case 8: AudiostationMP3Player.nextTrack
 End Select
+End Sub
+
+Private Sub cmdCDLoop_Click()
+If cmdCDLoop.Active = False Then
+    cmdCDLoop.Active = True
+    Light_Panel_CD.Picture = ImageList3.ListImages(3).Picture
+    cmdCDRandom.Active = False
+Else
+    cmdCDLoop.Active = False
+    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
+End If
+End Sub
+
+Private Sub cmdCDRandom_Click()
+If cmdCDRandom.Active = False Then
+    cmdCDRandom.Active = True
+    Light_Panel_CD.Picture = ImageList3.ListImages(4).Picture
+    cmdCDLoop.Active = False
+Else
+    cmdCDRandom.Active = False
+    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
+End If
 End Sub
 
 Private Sub cmdOpenCD_Click()
@@ -5067,21 +5060,21 @@ If Extensions.FileExists(App.path & "\devices.txt") Then: Form_Settings_Record.S
 End Sub
 
 Private Sub cmdSettingsMidi_Click()
-If Form_Plugin_MID.OutputDevCombo.ListCount = 0 Then
+If Form_Settings_Midi.OutputDevCombo.ListCount = 0 Then
     MsgBox GetLanguage(1051), vbExclamation
 Else
-    Form_Plugin_MID.Show
+    Form_Settings_Midi.Show
 End If
 End Sub
 
 Private Sub Command10_Click()
-Form_Plugin_MID.MIDIOutput1.Pause
+Form_Settings_Midi.MIDIOutput1.Pause
 Trm_Lights_Midi.Tag = 3
 MidiPause = True
 End Sub
 
 Private Sub Command12_Click()
-Form_Plugin_MID.MIDIOutput1.PlaybackRate = Form_Plugin_MID.MIDIOutput1.PlaybackRate + 10
+Form_Settings_Midi.MIDIOutput1.PlaybackRate = Form_Settings_Midi.MIDIOutput1.PlaybackRate + 10
 End Sub
 
 Private Sub Command13_Click()
@@ -5100,7 +5093,7 @@ AudiostationMidiPlayer.StopMidiPlayBack
 End Sub
 
 Private Sub Command15_Click()
-Form_Plugin_MID.MIDIOutput1.PlaybackRate = Form_Plugin_MID.MIDIOutput1.PlaybackRate - 10
+Form_Settings_Midi.MIDIOutput1.PlaybackRate = Form_Settings_Midi.MIDIOutput1.PlaybackRate - 10
 End Sub
 
 Private Sub Command16_Click()
@@ -5630,17 +5623,17 @@ cmdPlaylistDat.Caption = "Playlist (" & Mp3Playlist.StorageContainer.Count & ")"
 
 ' Enable the activated rack
 Dim I As Integer
-For I = 1 To Button.Count - 1
+For I = 1 To cmdButton.Count - 1
     Dim mustBeOff As String
     
     mustBeOff = Settings.ReadSetting("Sibra-Soft", "Audiostation", "Element-" & I, "OFF")
         
     If Not mustBeOff = "OFF" Then
         ElementOff(I).Visible = False
-        Button(I).Active = True
+        cmdButton(I).Active = True
     Else
         ElementOff(I).Visible = True
-        Button(I).Active = False
+        cmdButton(I).Active = False
     End If
 Next
 
@@ -5648,7 +5641,7 @@ Next
 If Trm_Main.Tag = 6 Then
     Trm_Main.Interval = 1
 Else
-    Button(Trm_Main.Tag).Active = True
+    cmdButton(Trm_Main.Tag).Active = True
     Trm_Main.Tag = Trm_Main.Tag + 1
 End If
 

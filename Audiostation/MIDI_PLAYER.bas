@@ -8,13 +8,13 @@ Public CurrentPlayerProcessToken As String
 Public CurrentMidiTrackNumber As Integer
 Public CurrentMidiFile As String
 Public Function StartMidiPlayback()
-If Form_Plugin_MID.OutputDevCombo.ListCount = 0 Then
+If Form_Settings_Midi.OutputDevCombo.ListCount = 0 Then
     MsgBox "Can't play midi files without midi device driver", vbCritical
 Else
     If CurrentMidiTrackNumber = 0 Then: CurrentMidiTrackNumber = 1
     
     AudiostationMP3Player.StopPlay
-    Form_Plugin_MID.StopPlay
+    Form_Settings_Midi.StopPlay
     
     CurrentMidiFile = MidiPlaylist.GetItemByIndex(CurrentMidiTrackNumber, 1)
     CurrentPlayerProcessToken = "WDfgQ8Ds0uidpobuk7l55xzM3"
@@ -24,7 +24,7 @@ Else
     Select Case LCase(Right(CurrentMidiFile, 3))
         Case "mid", "kar"
             Form_Main.lbl_Midi_Filename.Caption = Extensions.GetFileNameFromFilePath(CurrentMidiFile, False)
-            Call Form_Plugin_MID.StartPlay(CurrentMidiFile)
+            Call Form_Settings_Midi.StartPlay(CurrentMidiFile)
         
         Case "sid"
             Call Extensions.TerminateProcessByPid(CurrentPlayerProcess)
@@ -43,7 +43,7 @@ Else
 End If
 End Function
 Public Function StopMidiPlayBack()
-Form_Plugin_MID.StopPlay
+Form_Settings_Midi.StopPlay
 
 Call Extensions.TerminateProcessByPid(CurrentPlayerProcess)
 

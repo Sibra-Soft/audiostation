@@ -1,4 +1,14 @@
 Attribute VB_Name = "ModLibZPlay"
+'<CSCC>
+'--------------------------------------------------------------------------------
+'    Component  : ModLibZPlay
+'    Project    : Audiostation
+'
+'    Description: [type_description_here]
+'
+'    Modified   :
+'--------------------------------------------------------------------------------
+'</CSCC>
 Option Explicit
 
 Public Enum TSettingID
@@ -800,6 +810,8 @@ Public Function TCallbackFunc(ByVal objptr As Long, ByVal user_data As Long, ByV
     TCallbackFunc = 0
 End Function
 
+'#Region fsdf
+
 Public Sub Initialize()
 oPlayer = 0
 oPlayer = zplay_CreateZPlay
@@ -818,6 +830,8 @@ Else
     End If
 End If
 End Sub
+'#End Region
+
 
 Public Sub Terminate()
 
@@ -979,13 +993,11 @@ End Function
 
 '#Region "Position and Seek"
 Public Sub GetPosition(ByRef time As TStreamTime)
-
     If oPlayer <> 0 Then
 
         Call zplay_GetPosition(oPlayer, time)
 
     End If
-
 End Sub
 
 Public Function SeekPosition(ByVal TimeFormat As TTimeFormat, ByRef Position As _

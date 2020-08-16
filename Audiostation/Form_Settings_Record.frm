@@ -4,7 +4,7 @@ Begin VB.Form Form_Settings_Record
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Audio Record Settings"
-   ClientHeight    =   1830
+   ClientHeight    =   2085
    ClientLeft      =   2565
    ClientTop       =   1500
    ClientWidth     =   6495
@@ -22,11 +22,19 @@ Begin VB.Form Form_Settings_Record
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1830
+   ScaleHeight     =   2085
    ScaleWidth      =   6495
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Tag             =   "1042"
+   Begin VB.ComboBox cboSaveAs 
+      Height          =   315
+      Left            =   2520
+      Style           =   2  'Dropdown List
+      TabIndex        =   11
+      Top             =   900
+      Width           =   3735
+   End
    Begin VB.ComboBox cboAudioDevices 
       Height          =   315
       ItemData        =   "Form_Settings_Record.frx":000C
@@ -39,13 +47,14 @@ Begin VB.Form Form_Settings_Record
    End
    Begin Audiostation.ButtonBig cmdCancel 
       Height          =   390
-      Left            =   3360
+      Left            =   3000
       TabIndex        =   6
       Tag             =   "1001"
-      Top             =   1200
+      Top             =   1560
       Width           =   1095
       _ExtentX        =   1931
       _ExtentY        =   688
+      Caption         =   "Cancel"
    End
    Begin VB.PictureBox picOptions 
       BorderStyle     =   0  'None
@@ -163,13 +172,14 @@ Begin VB.Form Form_Settings_Record
    End
    Begin Audiostation.ButtonBig cmdSave 
       Height          =   390
-      Left            =   1920
+      Left            =   1800
       TabIndex        =   7
       Tag             =   "1029"
-      Top             =   1200
-      Width           =   1335
-      _ExtentX        =   2355
+      Top             =   1560
+      Width           =   1095
+      _ExtentX        =   1931
       _ExtentY        =   688
+      Caption         =   "Save"
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
       Left            =   240
@@ -177,6 +187,16 @@ Begin VB.Form Form_Settings_Record
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
+   End
+   Begin VB.Label lblSaveAudio 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Save audio file as:"
+      Height          =   195
+      Left            =   720
+      TabIndex        =   10
+      Top             =   960
+      Width           =   1605
    End
    Begin VB.Label Label1 
       AutoSize        =   -1  'True
@@ -227,6 +247,7 @@ End Sub
 
 Private Sub cmdSave_Click()
 Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "RecordingDevice", cboAudioDevices.Text)
+Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "RecordingFileType", cboSaveAs.ListIndex)
 
 Unload Me
 End Sub
@@ -236,12 +257,19 @@ Dim SavedRecordingDevice As String
 Call SetLanguage(Me)
 
 cboAudioDevices.Clear
+cboSaveAs.Clear
 
 Call GetRecordDevices
 
+' Add the audio types to the dropdown
+cboSaveAs.AddItem "Microsoft WaveForm Audio (*.wav)"
+cboSaveAs.AddItem "MPEG-1 Layer 3 (*.mp3)"
+
 SavedRecordingDevice = Settings.ReadSetting("Sibra-Soft", "Audiostation", "RecordingDevice")
-If Not SavedRecordingDevice = vbNullString Then
+If Not SavedRecordingDevice = vbNullString And cboAudioDevices.ListCount > 0 Then
     cboAudioDevices.Text = Settings.ReadSetting("Sibra-Soft", "Audiostation", "RecordingDevice", vbNullString)
 End If
+
+cboSaveAs.ListIndex = Settings.ReadSetting("Sibra-Soft", "Audiostation", "RecordingFileType", 0)
 End Sub
 

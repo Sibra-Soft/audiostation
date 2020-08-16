@@ -56,7 +56,7 @@ Begin VB.Form Form_Settings_Midi
       Begin MBProgressBar.ProgressBar ProgressBar1 
          Height          =   255
          Left            =   120
-         TabIndex        =   16
+         TabIndex        =   15
          Top             =   3960
          Width           =   4335
          _ExtentX        =   7646
@@ -89,7 +89,7 @@ Begin VB.Form Form_Settings_Midi
          Caption         =   "Allow playing Midi files (*.mid, *.kar)"
          Height          =   255
          Left            =   120
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   600
          Width           =   3615
       End
@@ -98,7 +98,7 @@ Begin VB.Form Form_Settings_Midi
          Caption         =   "Allow playing Beep Sympony files (*.mus)"
          Height          =   255
          Left            =   120
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   120
          Width           =   3975
       End
@@ -107,14 +107,14 @@ Begin VB.Form Form_Settings_Midi
          Caption         =   "Allow playing Commodore64 sound files (*.sid)"
          Height          =   255
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   360
          Width           =   4455
       End
       Begin Audiostation.ButtonBig cmdSave 
          Height          =   390
          Left            =   2040
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   3240
          Width           =   1095
          _ExtentX        =   1931
@@ -163,20 +163,12 @@ Begin VB.Form Form_Settings_Midi
       Begin Audiostation.ButtonBig cmdClose 
          Height          =   390
          Left            =   3240
-         TabIndex        =   15
+         TabIndex        =   14
          Top             =   3240
          Width           =   1095
          _ExtentX        =   1931
          _ExtentY        =   688
          Caption         =   "Close"
-      End
-      Begin VB.Label Label12 
-         BackStyle       =   0  'Transparent
-         Height          =   795
-         Left            =   1320
-         TabIndex        =   10
-         Top             =   2205
-         Width           =   5220
       End
       Begin VB.Label Label11 
          AutoSize        =   -1  'True
@@ -192,9 +184,9 @@ Begin VB.Form Form_Settings_Midi
             Strikethrough   =   0   'False
          EndProperty
          Height          =   195
-         Left            =   2880
+         Left            =   1680
          TabIndex        =   9
-         Top             =   1965
+         Top             =   1845
          Width           =   2025
       End
       Begin VB.Label Label10 
@@ -202,9 +194,9 @@ Begin VB.Form Form_Settings_Midi
          BackStyle       =   0  'Transparent
          Caption         =   "Midi Powered By: "
          Height          =   195
-         Left            =   1320
+         Left            =   120
          TabIndex        =   8
-         Top             =   1965
+         Top             =   1845
          Width           =   1545
       End
       Begin VB.Label Label9 
@@ -680,7 +672,6 @@ MIDIOutput1.Action = MIDIOUT_STOP
 MidiReset
 CloseOutputDevice
 End Sub
-
 Private Sub Timer1_Timer()
 Dim n As Integer
 

@@ -82,14 +82,28 @@ Begin VB.Form Form_About
       TabIndex        =   8
       Top             =   2640
       Width           =   6135
-      Begin Audiostation.Hyperlink Hyperlink1 
+      Begin Audiostation.Hyperlink lnkWebsite 
          Height          =   195
          Left            =   1680
          TabIndex        =   20
          Top             =   1680
-         Width           =   1845
-         _ExtentX        =   1164
+         Width           =   1380
+         _ExtentX        =   2434
          _ExtentY        =   344
+         Caption         =   "audiostation.org"
+         URL             =   "https://www.audiostation.org"
+         BackColor       =   16777215
+         ColorNormal     =   16711680
+         ColorHot        =   16711680
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
       End
       Begin VB.Label Label10 
          AutoSize        =   -1  'True
@@ -113,12 +127,12 @@ Begin VB.Form Form_About
       Begin VB.Label Label9 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Copyright © Sibra-Soft Software Production 2009 - 2020"
+         Caption         =   "Copyright © Sibra-Soft 2009 - 2020"
          Height          =   195
          Left            =   120
          TabIndex        =   13
          Top             =   1260
-         Width           =   4875
+         Width           =   3090
       End
       Begin VB.Label Label8 
          AutoSize        =   -1  'True
@@ -179,7 +193,7 @@ Begin VB.Form Form_About
          Width           =   1425
       End
    End
-   Begin Audiostation.ButtonBig ButtonBig1 
+   Begin Audiostation.ButtonBig cmdClose 
       Height          =   390
       Left            =   3000
       TabIndex        =   5
@@ -187,6 +201,7 @@ Begin VB.Form Form_About
       Width           =   975
       _ExtentX        =   1720
       _ExtentY        =   688
+      Caption         =   "Close"
    End
    Begin VB.PictureBox picOptions 
       BorderStyle     =   0  'None
@@ -285,7 +300,7 @@ Begin VB.Form Form_About
       Top             =   480
       Width           =   5685
    End
-   Begin Audiostation.ButtonBig ButtonBig2 
+   Begin Audiostation.ButtonBig cmdThanks 
       Height          =   390
       Left            =   1920
       TabIndex        =   14
@@ -293,6 +308,7 @@ Begin VB.Form Form_About
       Width           =   975
       _ExtentX        =   1720
       _ExtentY        =   688
+      Caption         =   "Thanks"
    End
    Begin VB.Label Label4 
       BackStyle       =   0  'Transparent
@@ -318,11 +334,11 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub ButtonBig1_Click()
+Private Sub cmdClose_Click()
 Unload Me
 End Sub
 
-Private Sub ButtonBig2_Click()
+Private Sub cmdThanks_Click()
 MsgBox "Thanks to:" & vbNewLine & _
 "- Pieter van den Broek" & vbNewLine & _
 "- N.Heine (Creative Bug Finder)" & vbNewLine & vbNewLine & _

@@ -11,7 +11,10 @@
 *.log
 *.sf2
 *.exe
-/resources/
+desktop.ini
+/resources/icons/
+/resources/material/
 /setup/
 /support/
 /projects/
+/docs/images/

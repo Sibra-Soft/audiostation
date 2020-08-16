@@ -12,14 +12,6 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
-'
-'SPBuffer
-'========
-'
-'A buffer class for use with stream data that arrives in chunks,
-'where the data is to be extracted in "lines" delimited by vbCr
-'sequences or in entirety.
-'
 
 #Const SPB_DEBUG = False
 
