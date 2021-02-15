@@ -7,7 +7,7 @@ Begin VB.Form Form_Main
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Audiostation"
-   ClientHeight    =   9135
+   ClientHeight    =   9105
    ClientLeft      =   4560
    ClientTop       =   1500
    ClientWidth     =   12750
@@ -24,18 +24,123 @@ Begin VB.Form Form_Main
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    OLEDropMode     =   1  'Manual
-   ScaleHeight     =   9135
+   ScaleHeight     =   9105
    ScaleWidth      =   12750
+   Begin VB.PictureBox ElementOff 
+      BackColor       =   &H00000000&
+      BorderStyle     =   0  'None
+      Height          =   780
+      Index           =   5
+      Left            =   120
+      Picture         =   "Form_Main.frx":088B
+      ScaleHeight     =   780
+      ScaleWidth      =   9615
+      TabIndex        =   118
+      Top             =   8400
+      Width           =   9615
+   End
+   Begin VB.PictureBox Element 
+      BackColor       =   &H00000000&
+      BorderStyle     =   0  'None
+      Height          =   855
+      Index           =   6
+      Left            =   120
+      Picture         =   "Form_Main.frx":824D
+      ScaleHeight     =   855
+      ScaleWidth      =   9615
+      TabIndex        =   143
+      Top             =   8400
+      Visible         =   0   'False
+      Width           =   9615
+      Begin VB.PictureBox Picture4 
+         BackColor       =   &H00000000&
+         Height          =   495
+         Left            =   2880
+         ScaleHeight     =   435
+         ScaleWidth      =   6555
+         TabIndex        =   144
+         Top             =   55
+         Width           =   6615
+         Begin VB.Label Label1 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Copyright © 2009 - 2021 Sibra-Soft Software Production"
+            ForeColor       =   &H00FFFFFF&
+            Height          =   195
+            Left            =   45
+            TabIndex        =   146
+            Top             =   210
+            Width           =   4875
+         End
+         Begin VB.Label lbl_version 
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "--"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FFFFFF&
+            Height          =   195
+            Left            =   45
+            TabIndex        =   145
+            Top             =   20
+            Width           =   180
+         End
+      End
+      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Clock 
+         Height          =   495
+         Left            =   80
+         TabIndex        =   147
+         Top             =   55
+         Width           =   2775
+         Time            =   0
+         ShowSeconds     =   -1  'True
+         ShowHours       =   -1  'True
+         HourStyle       =   0
+         AutoSize        =   -1  'True
+         DigitSpacing    =   6
+         SegmentMargin   =   5
+         SegmentColor    =   16777215
+         SegmentSeperation=   1
+         SegmentSize     =   1
+         ShowOffSegments =   -1  'True
+         PowerOff        =   0   'False
+         BackGroundColor =   0
+         BorderStyle     =   2
+         Object.Visible         =   -1  'True
+         Enabled         =   -1  'True
+         Hours           =   0
+         Minutes         =   0
+         Seconds         =   0
+         CountDirection  =   0
+         CountTimerEnabled=   0   'False
+         SegmentOffColor =   8421504
+         AutoSegmentOffColor=   -1  'True
+         Transparent     =   0   'False
+         UpdateFrameRate =   60
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Object.Width           =   185
+         Object.Height          =   33
+         OPCItemCount    =   0
+      End
+   End
    Begin VB.PictureBox ElementOff 
       BackColor       =   &H00000000&
       BorderStyle     =   0  'None
       Height          =   1500
       Index           =   2
       Left            =   120
-      Picture         =   "Form_Main.frx":088B
+      Picture         =   "Form_Main.frx":1F14B
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   126
+      TabIndex        =   115
       Top             =   2340
       Width           =   9615
    End
@@ -45,10 +150,10 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   1
       Left            =   120
-      Picture         =   "Form_Main.frx":106CD
+      Picture         =   "Form_Main.frx":2EF8D
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   125
+      TabIndex        =   114
       Top             =   840
       Width           =   9615
    End
@@ -58,24 +163,11 @@ Begin VB.Form Form_Main
       Height          =   3060
       Index           =   4
       Left            =   120
-      Picture         =   "Form_Main.frx":2050F
+      Picture         =   "Form_Main.frx":3EDCF
       ScaleHeight     =   3060
       ScaleWidth      =   9615
-      TabIndex        =   128
-      Top             =   5330
-      Width           =   9615
-   End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   780
-      Index           =   5
-      Left            =   120
-      Picture         =   "Form_Main.frx":409D1
-      ScaleHeight     =   780
-      ScaleWidth      =   9615
-      TabIndex        =   129
-      Top             =   8400
+      TabIndex        =   117
+      Top             =   5335
       Width           =   9615
    End
    Begin VB.PictureBox ElementOff 
@@ -84,10 +176,10 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   3
       Left            =   120
-      Picture         =   "Form_Main.frx":48393
+      Picture         =   "Form_Main.frx":5F291
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   127
+      TabIndex        =   116
       Top             =   3840
       Width           =   9615
    End
@@ -122,23 +214,23 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":57F55
+            Picture         =   "Form_Main.frx":6EE53
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":599E7
+            Picture         =   "Form_Main.frx":708E5
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":5B479
+            Picture         =   "Form_Main.frx":72377
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":5CF0B
+            Picture         =   "Form_Main.frx":73E09
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":5E99D
+            Picture         =   "Form_Main.frx":7589B
             Key             =   ""
          EndProperty
       EndProperty
@@ -156,31 +248,31 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   7
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":6042F
+            Picture         =   "Form_Main.frx":7732D
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":68879
+            Picture         =   "Form_Main.frx":7F777
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":788BD
+            Picture         =   "Form_Main.frx":8F7BB
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":88901
+            Picture         =   "Form_Main.frx":9F7FF
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":98945
+            Picture         =   "Form_Main.frx":AF843
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":A8989
+            Picture         =   "Form_Main.frx":BF887
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":B89CD
+            Picture         =   "Form_Main.frx":CF8CB
             Key             =   ""
          EndProperty
       EndProperty
@@ -234,7 +326,7 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":C8A11
+            Picture         =   "Form_Main.frx":DF90F
             Key             =   ""
          EndProperty
       EndProperty
@@ -254,17 +346,17 @@ Begin VB.Form Form_Main
       Height          =   1575
       Index           =   4
       Left            =   120
-      Picture         =   "Form_Main.frx":C8FAB
+      Picture         =   "Form_Main.frx":DFEA9
       ScaleHeight     =   1575
       ScaleWidth      =   9735
-      TabIndex        =   4
+      TabIndex        =   1
       Top             =   5330
       Visible         =   0   'False
       Width           =   9735
       Begin isAnalogLibrary.iLabelX ILaMaster 
          Height          =   195
          Left            =   120
-         TabIndex        =   142
+         TabIndex        =   131
          Top             =   1192
          Width           =   1215
          AutoSize        =   0   'False
@@ -304,7 +396,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX2 
          Height          =   210
          Left            =   3210
-         TabIndex        =   116
+         TabIndex        =   110
          Top             =   1185
          Width           =   900
          AutoSize        =   0   'False
@@ -344,7 +436,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX5 
          Height          =   210
          Left            =   6480
-         TabIndex        =   119
+         TabIndex        =   113
          Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
@@ -384,7 +476,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX4 
          Height          =   210
          Left            =   5400
-         TabIndex        =   118
+         TabIndex        =   112
          Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
@@ -424,7 +516,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX3 
          Height          =   210
          Left            =   4320
-         TabIndex        =   117
+         TabIndex        =   111
          Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
@@ -464,7 +556,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Master_Left 
          Height          =   1335
          Left            =   150
-         TabIndex        =   140
+         TabIndex        =   129
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -475,13 +567,13 @@ Begin VB.Form Form_Main
          Left            =   9160
          ScaleHeight     =   1155
          ScaleWidth      =   195
-         TabIndex        =   111
+         TabIndex        =   105
          Top             =   120
          Width           =   255
          Begin isAnalogLibrary.iLedBarX VU_Master_Peak 
             Height          =   1215
             Left            =   0
-            TabIndex        =   112
+            TabIndex        =   106
             Top             =   0
             Width           =   255
             SegmentDirection=   0
@@ -525,7 +617,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Master 
          Height          =   270
          Left            =   7560
-         TabIndex        =   74
+         TabIndex        =   68
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -554,7 +646,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FA945
+         Glyph           =   "Form_Main.frx":111843
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -575,7 +667,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Dat 
          Height          =   270
          Left            =   7560
-         TabIndex        =   109
+         TabIndex        =   103
          Top             =   600
          Width           =   975
          Active          =   -1  'True
@@ -604,7 +696,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FA99B
+         Glyph           =   "Form_Main.frx":111899
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -625,7 +717,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Midi 
          Height          =   270
          Left            =   7560
-         TabIndex        =   110
+         TabIndex        =   104
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -654,7 +746,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FA9F1
+         Glyph           =   "Form_Main.frx":1118EF
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -675,7 +767,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Rec 
          Height          =   270
          Left            =   1680
-         TabIndex        =   113
+         TabIndex        =   107
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -704,7 +796,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FAA47
+         Glyph           =   "Form_Main.frx":111945
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -725,7 +817,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Line 
          Height          =   270
          Left            =   1680
-         TabIndex        =   114
+         TabIndex        =   108
          Top             =   600
          Width           =   975
          Active          =   0   'False
@@ -754,7 +846,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FAA9D
+         Glyph           =   "Form_Main.frx":11199B
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -775,7 +867,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_CD 
          Height          =   270
          Left            =   1680
-         TabIndex        =   115
+         TabIndex        =   109
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -804,7 +896,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":FAAF3
+         Glyph           =   "Form_Main.frx":1119F1
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -825,7 +917,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Master_Right 
          Height          =   1335
          Left            =   592
-         TabIndex        =   141
+         TabIndex        =   130
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -834,7 +926,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Record_Left 
          Height          =   1335
          Left            =   3120
-         TabIndex        =   143
+         TabIndex        =   132
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -843,7 +935,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Record_Right 
          Height          =   1215
          Left            =   3555
-         TabIndex        =   144
+         TabIndex        =   133
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -852,7 +944,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_CD_Left 
          Height          =   1335
          Left            =   4200
-         TabIndex        =   145
+         TabIndex        =   134
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -862,7 +954,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_CD_Right 
          Height          =   1215
          Left            =   4635
-         TabIndex        =   146
+         TabIndex        =   135
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -872,7 +964,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Dat_Left 
          Height          =   1335
          Left            =   5280
-         TabIndex        =   147
+         TabIndex        =   136
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -881,7 +973,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Dat_Right 
          Height          =   1215
          Left            =   5715
-         TabIndex        =   148
+         TabIndex        =   137
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -890,7 +982,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Midi_Left 
          Height          =   1335
          Left            =   6360
-         TabIndex        =   149
+         TabIndex        =   138
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -899,7 +991,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Midi_Right 
          Height          =   1215
          Left            =   6795
-         TabIndex        =   150
+         TabIndex        =   139
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -908,146 +1000,16 @@ Begin VB.Form Form_Main
       Begin VB.Image Image1 
          Height          =   960
          Left            =   8640
-         Picture         =   "Form_Main.frx":FAB49
+         Picture         =   "Form_Main.frx":111A47
          Top             =   240
          Width           =   420
       End
       Begin VB.Image Image3 
          Height          =   1005
          Left            =   2750
-         Picture         =   "Form_Main.frx":FC08B
+         Picture         =   "Form_Main.frx":112F89
          Top             =   240
          Width           =   345
-      End
-   End
-   Begin VB.PictureBox Element 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   855
-      Index           =   6
-      Left            =   120
-      Picture         =   "Form_Main.frx":FD3A5
-      ScaleHeight     =   855
-      ScaleWidth      =   9615
-      TabIndex        =   1
-      Top             =   8400
-      Visible         =   0   'False
-      Width           =   9615
-      Begin VB.PictureBox Picture4 
-         BackColor       =   &H00000000&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   2880
-         ScaleHeight     =   435
-         ScaleWidth      =   6555
-         TabIndex        =   62
-         Top             =   55
-         Width           =   6615
-         Begin VB.Label lbl_version 
-            AutoSize        =   -1  'True
-            BackStyle       =   0  'Transparent
-            Caption         =   "--"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00FFFFFF&
-            Height          =   195
-            Left            =   45
-            TabIndex        =   64
-            Top             =   20
-            Width           =   180
-         End
-         Begin VB.Label lblInfo 
-            AutoSize        =   -1  'True
-            BackStyle       =   0  'Transparent
-            Caption         =   "Copyright © 2009 - 2020 Sibra-Soft Software Production"
-            ForeColor       =   &H00FFFFFF&
-            Height          =   195
-            Left            =   45
-            TabIndex        =   63
-            Top             =   210
-            Width           =   4875
-         End
-      End
-      Begin VB.PictureBox Picture26 
-         BackColor       =   &H00C0C0C0&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   8655
-         ScaleHeight     =   495
-         ScaleWidth      =   855
-         TabIndex        =   3
-         Top             =   50
-         Width           =   855
-      End
-      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Clock 
-         Height          =   495
-         Left            =   80
-         TabIndex        =   2
-         Top             =   55
-         Width           =   2775
-         Time            =   0
-         ShowSeconds     =   -1  'True
-         ShowHours       =   -1  'True
-         HourStyle       =   0
-         AutoSize        =   -1  'True
-         DigitSpacing    =   6
-         SegmentMargin   =   5
-         SegmentColor    =   16777215
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   2
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         Hours           =   0
-         Minutes         =   0
-         Seconds         =   0
-         CountDirection  =   0
-         CountTimerEnabled=   0   'False
-         SegmentOffColor =   8421504
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   185
-         Object.Height          =   33
-         OPCItemCount    =   0
       End
    End
    Begin MSComctlLib.ImageList ImageList1 
@@ -1114,7 +1076,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":11521D
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   5
+      TabIndex        =   2
       Top             =   3840
       Visible         =   0   'False
       Width           =   9615
@@ -1135,7 +1097,7 @@ Begin VB.Form Form_Main
          Picture         =   "Form_Main.frx":14464B
          ScaleHeight     =   1215
          ScaleWidth      =   5340
-         TabIndex        =   75
+         TabIndex        =   69
          Top             =   50
          Width           =   5340
       End
@@ -1155,13 +1117,13 @@ Begin VB.Form Form_Main
          Left            =   1500
          ScaleHeight     =   495
          ScaleWidth      =   2415
-         TabIndex        =   72
+         TabIndex        =   66
          Top             =   840
          Width           =   2415
          Begin Audiostation.ButtonBig cmdCDRandom 
             Height          =   390
             Left            =   40
-            TabIndex        =   152
+            TabIndex        =   141
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
@@ -1172,7 +1134,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdCDLoop 
             Height          =   390
             Left            =   1200
-            TabIndex        =   153
+            TabIndex        =   142
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
@@ -1197,7 +1159,7 @@ Begin VB.Form Form_Main
          Left            =   8540
          ScaleHeight     =   615
          ScaleWidth      =   825
-         TabIndex        =   61
+         TabIndex        =   58
          TabStop         =   0   'False
          Top             =   155
          Width           =   830
@@ -1218,7 +1180,7 @@ Begin VB.Form Form_Main
          Left            =   4420
          ScaleHeight     =   435
          ScaleWidth      =   5055
-         TabIndex        =   7
+         TabIndex        =   4
          Top             =   840
          Width           =   5055
          Begin VB.CommandButton Command20 
@@ -1236,7 +1198,7 @@ Begin VB.Form Form_Main
             Left            =   3960
             Picture         =   "Form_Main.frx":14CA85
             Style           =   1  'Graphical
-            TabIndex        =   8
+            TabIndex        =   5
             Top             =   50
             Width           =   495
          End
@@ -1255,7 +1217,7 @@ Begin VB.Form Form_Main
             Left            =   3480
             Picture         =   "Form_Main.frx":14D04F
             Style           =   1  'Graphical
-            TabIndex        =   10
+            TabIndex        =   7
             Top             =   50
             Width           =   495
          End
@@ -1274,7 +1236,7 @@ Begin VB.Form Form_Main
             Left            =   3000
             Picture         =   "Form_Main.frx":14D5D9
             Style           =   1  'Graphical
-            TabIndex        =   11
+            TabIndex        =   8
             Top             =   50
             Width           =   495
          End
@@ -1293,7 +1255,7 @@ Begin VB.Form Form_Main
             Left            =   2520
             Picture         =   "Form_Main.frx":14DB63
             Style           =   1  'Graphical
-            TabIndex        =   12
+            TabIndex        =   9
             Top             =   50
             Width           =   495
          End
@@ -1312,7 +1274,7 @@ Begin VB.Form Form_Main
             Left            =   2040
             Picture         =   "Form_Main.frx":14E0ED
             Style           =   1  'Graphical
-            TabIndex        =   14
+            TabIndex        =   11
             Top             =   50
             Width           =   495
          End
@@ -1331,7 +1293,7 @@ Begin VB.Form Form_Main
             Left            =   1495
             Picture         =   "Form_Main.frx":14E6B7
             Style           =   1  'Graphical
-            TabIndex        =   13
+            TabIndex        =   10
             Top             =   50
             Width           =   495
          End
@@ -1350,7 +1312,7 @@ Begin VB.Form Form_Main
             Left            =   4500
             Picture         =   "Form_Main.frx":14EC81
             Style           =   1  'Graphical
-            TabIndex        =   9
+            TabIndex        =   6
             Top             =   50
             Width           =   495
          End
@@ -1358,7 +1320,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_CD 
          Height          =   420
          Left            =   5800
-         TabIndex        =   15
+         TabIndex        =   12
          Top             =   180
          Width           =   705
          Value           =   "0"
@@ -1389,7 +1351,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_CD 
          Height          =   420
          Left            =   7190
-         TabIndex        =   16
+         TabIndex        =   13
          Top             =   180
          Width           =   1380
          Time            =   0
@@ -1439,13 +1401,13 @@ Begin VB.Form Form_Main
          Left            =   80
          ScaleHeight     =   1215
          ScaleWidth      =   1410
-         TabIndex        =   6
+         TabIndex        =   3
          Top             =   100
          Width           =   1410
          Begin Audiostation.ButtonBig cmdOpenCD 
             Height          =   390
             Left            =   50
-            TabIndex        =   139
+            TabIndex        =   128
             Top             =   50
             Width           =   1215
             _ExtentX        =   2143
@@ -1495,150 +1457,67 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":14FC0F
       ScaleHeight     =   1575
       ScaleWidth      =   9735
-      TabIndex        =   77
+      TabIndex        =   71
       Top             =   6900
       Visible         =   0   'False
       Width           =   9735
-      Begin isAnalogLibrary.iLedBarX VU_Split_Left 
-         Height          =   135
-         Left            =   4200
-         TabIndex        =   121
-         Top             =   960
-         Width           =   2655
-         SegmentDirection=   3
-         SegmentMargin   =   2
-         SegmentSize     =   5
-         SegmentSpacing  =   2
-         SegmentStyle    =   0
-         BackGroundColor =   0
-         BorderStyle     =   0
-         SectionColor1   =   65280
-         SectionColor2   =   65535
-         SectionColor3   =   255
-         SectionEnd1     =   50
-         SectionEnd2     =   75
-         SectionCount    =   1
-         ShowOffSegments =   -1  'True
-         CurrentMax      =   0
-         CurrentMin      =   0
-         PositionPercent =   0
-         Position        =   0
-         PositionMax     =   100
-         PositionMin     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         MinMaxFixed     =   0   'False
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   177
-         Object.Height          =   9
-         FillReferenceValue=   0
-         FillReferenceEnabled=   0   'False
-         SectionColor4   =   65535
-         SectionColor5   =   65535
-         SectionEnd3     =   0
-         SectionEnd4     =   0
-         OPCItemCount    =   0
-      End
-      Begin isAnalogLibrary.iLedBarX VU_Split_Right 
-         Height          =   135
-         Left            =   6600
-         TabIndex        =   120
-         Top             =   960
-         Width           =   2655
-         SegmentDirection=   2
-         SegmentMargin   =   2
-         SegmentSize     =   5
-         SegmentSpacing  =   2
-         SegmentStyle    =   0
-         BackGroundColor =   0
-         BorderStyle     =   0
-         SectionColor1   =   65280
-         SectionColor2   =   65280
-         SectionColor3   =   65535
-         SectionEnd1     =   50
-         SectionEnd2     =   75
-         SectionCount    =   4
-         ShowOffSegments =   -1  'True
-         CurrentMax      =   0
-         CurrentMin      =   0
-         PositionPercent =   0
-         Position        =   0
-         PositionMax     =   100
-         PositionMin     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         MinMaxFixed     =   0   'False
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   177
-         Object.Height          =   9
-         FillReferenceValue=   0
-         FillReferenceEnabled=   0   'False
-         SectionColor4   =   65280
-         SectionColor5   =   255
-         SectionEnd3     =   0
-         SectionEnd4     =   0
-         OPCItemCount    =   0
-      End
-      Begin isAnalogLibrary.iLabelX iLabelX6 
-         Height          =   195
-         Left            =   4200
-         TabIndex        =   122
-         Top             =   760
-         Width           =   5025
-         AutoSize        =   0   'False
-         Alignment       =   0
-         BorderStyle     =   0
-         Caption         =   "Audio output level"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Verdana"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   0   'False
-         ShadowXOffset   =   1
-         ShadowYOffset   =   1
-         ShadowColor     =   8421504
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
-         Object.Visible         =   -1  'True
-         FontColor       =   16777215
-         Transparent     =   -1  'True
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Enabled         =   -1  'True
-         Object.Width           =   335
-         Object.Height          =   13
-         WordWrap        =   0   'False
-         OPCItemCount    =   0
-      End
       Begin VB.PictureBox Picture6 
          BackColor       =   &H00000000&
-         Height          =   1085
+         Height          =   1095
          Left            =   4080
-         ScaleHeight     =   1020
-         ScaleWidth      =   5235
-         TabIndex        =   123
-         Top             =   170
-         Width           =   5295
+         ScaleHeight     =   1035
+         ScaleWidth      =   5295
+         TabIndex        =   148
+         Top             =   150
+         Width           =   5350
+         Begin isAnalogLibrary.iLedBarX VU_Right_Output 
+            Height          =   135
+            Left            =   2670
+            TabIndex        =   150
+            Top             =   840
+            Width           =   2630
+            SegmentDirection=   2
+            SegmentMargin   =   2
+            SegmentSize     =   5
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   175
+            Object.Height          =   9
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
          Begin isDigitalLibrary.iSwitchLedX Switch_SpectrumAnalyzer 
             Height          =   270
             Left            =   120
-            TabIndex        =   124
-            Top             =   100
+            TabIndex        =   149
+            Top             =   120
             Width           =   1815
             Active          =   -1  'True
             ActiveColor     =   65280
@@ -1684,6 +1563,70 @@ Begin VB.Form Form_Main
             CaptionFontStrikeOut=   0   'False
             OPCItemCount    =   0
          End
+         Begin isAnalogLibrary.iLedBarX VU_Left_Output 
+            Height          =   135
+            Left            =   20
+            TabIndex        =   151
+            Top             =   840
+            Width           =   2630
+            SegmentDirection=   3
+            SegmentMargin   =   2
+            SegmentSize     =   5
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   176
+            Object.Height          =   9
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin VB.Label Label2 
+            Alignment       =   2  'Center
+            AutoSize        =   -1  'True
+            BackStyle       =   0  'Transparent
+            Caption         =   "Audio output level"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   6.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FFFFFF&
+            Height          =   180
+            Left            =   120
+            TabIndex        =   152
+            Top             =   650
+            Width           =   5115
+         End
       End
       Begin VB.PictureBox Picture2 
          BackColor       =   &H00000000&
@@ -1700,14 +1643,14 @@ Begin VB.Form Form_Main
          Left            =   130
          ScaleHeight     =   1020
          ScaleWidth      =   3780
-         TabIndex        =   79
+         TabIndex        =   73
          Top             =   170
          Width           =   3840
          Begin isAnalogLibrary.iLedBarX VU_Spectrum 
             Height          =   795
             Index           =   0
             Left            =   120
-            TabIndex        =   80
+            TabIndex        =   74
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1751,7 +1694,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   1
             Left            =   240
-            TabIndex        =   81
+            TabIndex        =   75
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1795,7 +1738,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   2
             Left            =   360
-            TabIndex        =   82
+            TabIndex        =   76
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1839,7 +1782,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   3
             Left            =   480
-            TabIndex        =   83
+            TabIndex        =   77
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1883,7 +1826,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   4
             Left            =   600
-            TabIndex        =   84
+            TabIndex        =   78
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1927,7 +1870,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   5
             Left            =   720
-            TabIndex        =   85
+            TabIndex        =   79
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -1971,7 +1914,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   6
             Left            =   840
-            TabIndex        =   86
+            TabIndex        =   80
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2015,7 +1958,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   7
             Left            =   960
-            TabIndex        =   87
+            TabIndex        =   81
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2059,7 +2002,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   8
             Left            =   1080
-            TabIndex        =   88
+            TabIndex        =   82
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2103,7 +2046,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   9
             Left            =   1200
-            TabIndex        =   89
+            TabIndex        =   83
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2147,7 +2090,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   10
             Left            =   1320
-            TabIndex        =   90
+            TabIndex        =   84
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2191,7 +2134,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   11
             Left            =   1440
-            TabIndex        =   91
+            TabIndex        =   85
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2235,7 +2178,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   12
             Left            =   1560
-            TabIndex        =   92
+            TabIndex        =   86
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2279,7 +2222,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   13
             Left            =   1680
-            TabIndex        =   93
+            TabIndex        =   87
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2323,7 +2266,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   14
             Left            =   1800
-            TabIndex        =   94
+            TabIndex        =   88
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2367,7 +2310,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   15
             Left            =   1920
-            TabIndex        =   95
+            TabIndex        =   89
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2411,7 +2354,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   16
             Left            =   2040
-            TabIndex        =   96
+            TabIndex        =   90
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2455,7 +2398,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   17
             Left            =   2160
-            TabIndex        =   97
+            TabIndex        =   91
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2499,7 +2442,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   18
             Left            =   2280
-            TabIndex        =   98
+            TabIndex        =   92
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2543,7 +2486,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   19
             Left            =   2400
-            TabIndex        =   99
+            TabIndex        =   93
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2587,7 +2530,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   20
             Left            =   2520
-            TabIndex        =   100
+            TabIndex        =   94
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2631,7 +2574,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   21
             Left            =   2640
-            TabIndex        =   101
+            TabIndex        =   95
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2675,7 +2618,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   22
             Left            =   2760
-            TabIndex        =   102
+            TabIndex        =   96
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2719,7 +2662,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   23
             Left            =   2880
-            TabIndex        =   103
+            TabIndex        =   97
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2763,7 +2706,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   24
             Left            =   3000
-            TabIndex        =   104
+            TabIndex        =   98
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2807,7 +2750,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   25
             Left            =   3120
-            TabIndex        =   105
+            TabIndex        =   99
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2851,7 +2794,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   26
             Left            =   3240
-            TabIndex        =   106
+            TabIndex        =   100
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2895,7 +2838,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   27
             Left            =   3360
-            TabIndex        =   107
+            TabIndex        =   101
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2939,7 +2882,7 @@ Begin VB.Form Form_Main
             Height          =   795
             Index           =   28
             Left            =   3480
-            TabIndex        =   108
+            TabIndex        =   102
             Top             =   100
             Width           =   150
             SegmentDirection=   0
@@ -2996,7 +2939,7 @@ Begin VB.Form Form_Main
          Left            =   1350
          ScaleHeight     =   975
          ScaleWidth      =   1095
-         TabIndex        =   78
+         TabIndex        =   72
          Top             =   50
          Width           =   1095
       End
@@ -3019,7 +2962,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":17F093
       ScaleHeight     =   1500
       ScaleWidth      =   9735
-      TabIndex        =   17
+      TabIndex        =   14
       Top             =   2340
       Visible         =   0   'False
       Width           =   9735
@@ -3039,7 +2982,7 @@ Begin VB.Form Form_Main
          Left            =   6510
          ScaleHeight     =   555
          ScaleWidth      =   255
-         TabIndex        =   71
+         TabIndex        =   65
          Top             =   200
          Visible         =   0   'False
          Width           =   255
@@ -3074,7 +3017,7 @@ Begin VB.Form Form_Main
          Picture         =   "Form_Main.frx":1AEFD5
          ScaleHeight     =   1305
          ScaleWidth      =   2055
-         TabIndex        =   65
+         TabIndex        =   59
          Top             =   40
          Width           =   2055
          Begin VB.PictureBox Picture32 
@@ -3093,7 +3036,7 @@ Begin VB.Form Form_Main
             Left            =   960
             ScaleHeight     =   375
             ScaleWidth      =   1035
-            TabIndex        =   69
+            TabIndex        =   63
             Top             =   830
             Width           =   1035
             Begin VB.Label Label5 
@@ -3112,7 +3055,7 @@ Begin VB.Form Form_Main
                ForeColor       =   &H00808080&
                Height          =   375
                Left            =   0
-               TabIndex        =   70
+               TabIndex        =   64
                Top             =   50
                Width           =   1005
             End
@@ -3133,7 +3076,7 @@ Begin VB.Form Form_Main
             Left            =   210
             ScaleHeight     =   525
             ScaleWidth      =   1695
-            TabIndex        =   66
+            TabIndex        =   60
             Top             =   240
             Width           =   1695
             Begin VB.PictureBox Picture11 
@@ -3154,7 +3097,7 @@ Begin VB.Form Form_Main
                Picture         =   "Form_Main.frx":1B802F
                ScaleHeight     =   360
                ScaleWidth      =   1560
-               TabIndex        =   67
+               TabIndex        =   61
                Top             =   170
                Width           =   1560
             End
@@ -3174,7 +3117,7 @@ Begin VB.Form Form_Main
                ForeColor       =   &H00808080&
                Height          =   195
                Left            =   90
-               TabIndex        =   68
+               TabIndex        =   62
                Tag             =   "1013"
                Top             =   0
                Width           =   1485
@@ -3219,7 +3162,7 @@ Begin VB.Form Form_Main
          Left            =   3705
          ScaleHeight     =   495
          ScaleWidth      =   5775
-         TabIndex        =   19
+         TabIndex        =   16
          Top             =   840
          Width           =   5775
          Begin VB.CommandButton cmdAudioPlayer 
@@ -3238,7 +3181,7 @@ Begin VB.Form Form_Main
             Left            =   0
             Picture         =   "Form_Main.frx":1B8D43
             Style           =   1  'Graphical
-            TabIndex        =   76
+            TabIndex        =   70
             Top             =   50
             Width           =   495
          End
@@ -3258,7 +3201,7 @@ Begin VB.Form Form_Main
             Left            =   5220
             Picture         =   "Form_Main.frx":1B92CD
             Style           =   1  'Graphical
-            TabIndex        =   21
+            TabIndex        =   18
             Top             =   50
             Width           =   495
          End
@@ -3278,7 +3221,7 @@ Begin VB.Form Form_Main
             Left            =   4680
             Picture         =   "Form_Main.frx":1B9897
             Style           =   1  'Graphical
-            TabIndex        =   20
+            TabIndex        =   17
             Top             =   50
             Width           =   495
          End
@@ -3298,7 +3241,7 @@ Begin VB.Form Form_Main
             Left            =   4200
             Picture         =   "Form_Main.frx":1B9E61
             Style           =   1  'Graphical
-            TabIndex        =   22
+            TabIndex        =   19
             Top             =   50
             Width           =   495
          End
@@ -3319,7 +3262,7 @@ Begin VB.Form Form_Main
             Left            =   3720
             Picture         =   "Form_Main.frx":1BA3EB
             Style           =   1  'Graphical
-            TabIndex        =   23
+            TabIndex        =   20
             Top             =   50
             Width           =   495
          End
@@ -3339,7 +3282,7 @@ Begin VB.Form Form_Main
             Left            =   3240
             Picture         =   "Form_Main.frx":1BA975
             Style           =   1  'Graphical
-            TabIndex        =   24
+            TabIndex        =   21
             Top             =   50
             Width           =   495
          End
@@ -3359,7 +3302,7 @@ Begin VB.Form Form_Main
             Left            =   2220
             Picture         =   "Form_Main.frx":1BAEFF
             Style           =   1  'Graphical
-            TabIndex        =   26
+            TabIndex        =   23
             Top             =   50
             Width           =   495
          End
@@ -3379,7 +3322,7 @@ Begin VB.Form Form_Main
             Left            =   2760
             Picture         =   "Form_Main.frx":1BB4C9
             Style           =   1  'Graphical
-            TabIndex        =   25
+            TabIndex        =   22
             Top             =   50
             Width           =   495
          End
@@ -3399,7 +3342,7 @@ Begin VB.Form Form_Main
             Left            =   1080
             Picture         =   "Form_Main.frx":1BBA93
             Style           =   1  'Graphical
-            TabIndex        =   73
+            TabIndex        =   67
             Top             =   50
             Width           =   495
          End
@@ -3420,13 +3363,13 @@ Begin VB.Form Form_Main
          Left            =   80
          ScaleHeight     =   1215
          ScaleWidth      =   1455
-         TabIndex        =   18
+         TabIndex        =   15
          Top             =   100
          Width           =   1455
          Begin Audiostation.ButtonBig cmdPlaylistDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   137
+            TabIndex        =   126
             Top             =   10
             Width           =   1215
             _ExtentX        =   2143
@@ -3436,7 +3379,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdSettingsDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   138
+            TabIndex        =   127
             Top             =   810
             Width           =   1215
             _ExtentX        =   2143
@@ -3447,7 +3390,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLedBarX VU_Left 
          Height          =   135
          Left            =   7310
-         TabIndex        =   27
+         TabIndex        =   24
          Top             =   240
          Width           =   1935
          SegmentDirection=   2
@@ -3490,7 +3433,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLedBarX VU_Right 
          Height          =   135
          Left            =   7310
-         TabIndex        =   28
+         TabIndex        =   25
          Top             =   420
          Width           =   1935
          SegmentDirection=   2
@@ -3533,7 +3476,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_Dat 
          Height          =   420
          Left            =   3780
-         TabIndex        =   29
+         TabIndex        =   26
          Top             =   180
          Width           =   705
          Value           =   "0"
@@ -3564,7 +3507,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_Dat 
          Height          =   420
          Left            =   4800
-         TabIndex        =   30
+         TabIndex        =   27
          Top             =   180
          Width           =   1380
          Time            =   0
@@ -3638,7 +3581,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":1BC9E1
       ScaleHeight     =   1500
       ScaleWidth      =   9735
-      TabIndex        =   31
+      TabIndex        =   28
       Top             =   840
       Visible         =   0   'False
       Width           =   9735
@@ -3658,14 +3601,14 @@ Begin VB.Form Form_Main
          Left            =   6310
          ScaleHeight     =   405
          ScaleWidth      =   1935
-         TabIndex        =   41
+         TabIndex        =   38
          Top             =   200
          Width           =   1935
          Begin isAnalogLibrary.iLedBarX VU_Midi 
             Height          =   400
             Index           =   0
             Left            =   0
-            TabIndex        =   42
+            TabIndex        =   39
             Top             =   0
             Width           =   100
             SegmentDirection=   0
@@ -3709,7 +3652,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   1
             Left            =   120
-            TabIndex        =   43
+            TabIndex        =   40
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3753,7 +3696,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   2
             Left            =   240
-            TabIndex        =   44
+            TabIndex        =   41
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3797,7 +3740,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   3
             Left            =   360
-            TabIndex        =   45
+            TabIndex        =   42
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3841,7 +3784,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   4
             Left            =   480
-            TabIndex        =   46
+            TabIndex        =   43
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3885,7 +3828,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   5
             Left            =   600
-            TabIndex        =   47
+            TabIndex        =   44
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3929,7 +3872,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   6
             Left            =   720
-            TabIndex        =   48
+            TabIndex        =   45
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3973,7 +3916,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   7
             Left            =   840
-            TabIndex        =   49
+            TabIndex        =   46
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4017,7 +3960,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   8
             Left            =   960
-            TabIndex        =   50
+            TabIndex        =   47
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4061,7 +4004,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   9
             Left            =   1080
-            TabIndex        =   51
+            TabIndex        =   48
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4105,7 +4048,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   10
             Left            =   1200
-            TabIndex        =   52
+            TabIndex        =   49
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4149,7 +4092,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   11
             Left            =   1320
-            TabIndex        =   53
+            TabIndex        =   50
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4193,7 +4136,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   12
             Left            =   1440
-            TabIndex        =   54
+            TabIndex        =   51
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4237,7 +4180,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   13
             Left            =   1560
-            TabIndex        =   55
+            TabIndex        =   52
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4281,7 +4224,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   14
             Left            =   1680
-            TabIndex        =   56
+            TabIndex        =   53
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4325,7 +4268,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   15
             Left            =   1800
-            TabIndex        =   57
+            TabIndex        =   54
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -4382,7 +4325,7 @@ Begin VB.Form Form_Main
          Left            =   4420
          ScaleHeight     =   495
          ScaleWidth      =   5055
-         TabIndex        =   33
+         TabIndex        =   30
          Top             =   840
          Width           =   5055
          Begin VB.CommandButton Command12 
@@ -4400,7 +4343,7 @@ Begin VB.Form Form_Main
             Left            =   3960
             Picture         =   "Form_Main.frx":1EC58B
             Style           =   1  'Graphical
-            TabIndex        =   34
+            TabIndex        =   31
             Top             =   50
             Width           =   495
          End
@@ -4419,7 +4362,7 @@ Begin VB.Form Form_Main
             Left            =   3480
             Picture         =   "Form_Main.frx":1ECB55
             Style           =   1  'Graphical
-            TabIndex        =   36
+            TabIndex        =   33
             Top             =   50
             Width           =   495
          End
@@ -4438,7 +4381,7 @@ Begin VB.Form Form_Main
             Left            =   3000
             Picture         =   "Form_Main.frx":1ED0DF
             Style           =   1  'Graphical
-            TabIndex        =   37
+            TabIndex        =   34
             Top             =   50
             Width           =   495
          End
@@ -4457,7 +4400,7 @@ Begin VB.Form Form_Main
             Left            =   2520
             Picture         =   "Form_Main.frx":1ED669
             Style           =   1  'Graphical
-            TabIndex        =   38
+            TabIndex        =   35
             Top             =   50
             Width           =   495
          End
@@ -4476,7 +4419,7 @@ Begin VB.Form Form_Main
             Left            =   2040
             Picture         =   "Form_Main.frx":1EDBF3
             Style           =   1  'Graphical
-            TabIndex        =   40
+            TabIndex        =   37
             Top             =   50
             Width           =   495
          End
@@ -4495,7 +4438,7 @@ Begin VB.Form Form_Main
             Left            =   1495
             Picture         =   "Form_Main.frx":1EE1BD
             Style           =   1  'Graphical
-            TabIndex        =   39
+            TabIndex        =   36
             Top             =   50
             Width           =   495
          End
@@ -4514,7 +4457,7 @@ Begin VB.Form Form_Main
             Left            =   4500
             Picture         =   "Form_Main.frx":1EE787
             Style           =   1  'Graphical
-            TabIndex        =   35
+            TabIndex        =   32
             Top             =   50
             Width           =   495
          End
@@ -4535,13 +4478,13 @@ Begin VB.Form Form_Main
          Left            =   80
          ScaleHeight     =   1215
          ScaleWidth      =   1335
-         TabIndex        =   32
+         TabIndex        =   29
          Top             =   100
          Width           =   1335
          Begin Audiostation.ButtonBig cmdPlaylistMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   135
+            TabIndex        =   124
             Top             =   20
             Width           =   1215
             _ExtentX        =   2143
@@ -4551,7 +4494,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdSettingsMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   136
+            TabIndex        =   125
             Top             =   800
             Width           =   1215
             _ExtentX        =   2143
@@ -4562,7 +4505,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_Midi 
          Height          =   420
          Left            =   5040
-         TabIndex        =   59
+         TabIndex        =   56
          Top             =   180
          Width           =   705
          Value           =   "0"
@@ -4593,7 +4536,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_Midi 
          Height          =   420
          Left            =   8250
-         TabIndex        =   60
+         TabIndex        =   57
          Top             =   180
          Width           =   1140
          Time            =   0
@@ -4672,7 +4615,7 @@ Begin VB.Form Form_Main
          ForeColor       =   &H0000FF00&
          Height          =   240
          Left            =   2210
-         TabIndex        =   58
+         TabIndex        =   55
          Tag             =   "1013"
          Top             =   1013
          Width           =   2055
@@ -4719,7 +4662,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   1
          Left            =   7680
-         TabIndex        =   130
+         TabIndex        =   119
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -4741,7 +4684,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   2
          Left            =   6820
-         TabIndex        =   131
+         TabIndex        =   120
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -4763,7 +4706,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   3
          Left            =   5970
-         TabIndex        =   132
+         TabIndex        =   121
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -4785,7 +4728,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   4
          Left            =   5120
-         TabIndex        =   133
+         TabIndex        =   122
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -4807,7 +4750,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   5
          Left            =   4260
-         TabIndex        =   134
+         TabIndex        =   123
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -4829,7 +4772,7 @@ Begin VB.Form Form_Main
          Height          =   420
          Index           =   0
          Left            =   8610
-         TabIndex        =   151
+         TabIndex        =   140
          Top             =   100
          Width           =   825
          _ExtentX        =   1455
@@ -5750,11 +5693,11 @@ End Sub
 Private Sub Trm_VU_Timer()
 VU_Master_Peak.Position = AudioPeakMeter.GetPeak * 100
 
-VU_Split_Left.Position = AudioPeakMeter.GetChannelPeak(0) * 100
-VU_Split_Right.Position = AudioPeakMeter.GetChannelPeak(1) * 100
-
 VU_Left.Position = AudioPeakMeter.GetChannelPeak(0) * 100
 VU_Right.Position = AudioPeakMeter.GetChannelPeak(1) * 100
+
+VU_Left_Output.Position = AudioPeakMeter.GetChannelPeak(0) * 100
+VU_Right_Output.Position = AudioPeakMeter.GetChannelPeak(1) * 100
 
 If loopbackInit And Switch_SpectrumAnalyzer.Active Then UpdateSpectrum
 End Sub

@@ -9,8 +9,8 @@ ffmpeg version N-44080-gdfb4757 Copyright (c) 2000-2012 the FFmpeg developers
   libswscale      2.  1.101 /  2.  1.101
   libswresample   0. 15.100 /  0. 15.100
   libpostproc    52.  0.100 / 52.  0.100
-[dshow @ 0288bb40] DirectShow video devices
-[dshow @ 0288bb40]  "Integrated Webcam"
-[dshow @ 0288bb40] DirectShow audio devices
-[dshow @ 0288bb40]  "virtual-audio-capturer"
+[dshow @ 028fbcc0] DirectShow video devices
+[dshow @ 028fbcc0]  "Integrated Webcam"
+[dshow @ 028fbcc0] DirectShow audio devices
+[dshow @ 028fbcc0]  "virtual-audio-capturer"
 dummy: Immediate exit requested
