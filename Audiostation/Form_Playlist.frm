@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Playlist 
    BackColor       =   &H00C0C0C0&
@@ -83,8 +83,8 @@ Begin VB.Form Form_Playlist
    End
    Begin VB.Timer Trm_Count 
       Interval        =   200
-      Left            =   10680
-      Top             =   3480
+      Left            =   11040
+      Top             =   4560
    End
    Begin VB.ComboBox cboFileTypes 
       Height          =   315
@@ -107,8 +107,8 @@ Begin VB.Form Form_Playlist
    End
    Begin VB.Timer Trm_Enable 
       Interval        =   1
-      Left            =   10200
-      Top             =   3480
+      Left            =   10440
+      Top             =   4680
    End
    Begin MSComDlg.CommonDialog CommonDialog 
       Left            =   10200
@@ -346,6 +346,9 @@ Begin VB.Form Form_Playlist
       Begin VB.Menu space01 
          Caption         =   "-"
       End
+      Begin VB.Menu mnushuffleplaylist 
+         Caption         =   "&Shuffle Playlist"
+      End
       Begin VB.Menu mnuhtmlplaylist_popup 
          Caption         =   "&Generate HTML playlist"
       End
@@ -378,7 +381,7 @@ Private Sub FitListviewToSize(Optional Force As Boolean)
 If DoneFitToSize = True Then: Exit Sub
 
 'Check if the scrollbar is visible
-If lstPlaylist.ListItems.Count > 32 Or Force = True Then
+If lstPlaylist.ListItems.Count > 31 Or Force = True Then
     Form_Playlist.lstPlaylist.ColumnHeaders(1).Width = Form_Playlist.lstPlaylist.ColumnHeaders(1).Width - 250
     DoneFitToSize = True
 End If
@@ -751,8 +754,6 @@ Select Case CurrentFormType
     Case enumFormTypes.Mp3Player: Call PopulatePlaylist(Mp3Playlist)
 End Select
 End Sub
-
-
 Private Sub cmdOpenPlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
@@ -766,7 +767,7 @@ With CommonDialog
     If .FilterIndex = 2 Then: Call ModPlaylist.OpenM3uPlaylist(.FileName)
     If .FilterIndex = 3 Then: Call ModPlaylist.OpenPlsPlaylist(.FileName)
     If .FilterIndex = 4 Then: Call ModPlaylist.OpenWplPlaylist(.FileName)
-    
+
     Call FitListviewToSize
 End With
 
@@ -883,6 +884,24 @@ Select Case err.Number
     Case cdlCancel
 End Select
 End Sub
+
+Private Sub mnushuffleplaylist_Click()
+Dim I As Integer
+Dim lstItem As ListItem
+Dim newListItem As ListItem
+    
+If lstPlaylist.ListItems.Count = 0 Then: Exit Sub
+For I = 1 To Extensions.RandomNumber(1, lstPlaylist.ListItems.Count)
+    Set lstItem = lstPlaylist.ListItems(I)
+        
+    Set newListItem = lstPlaylist.ListItems.Add(, , lstItem.Text)
+    newListItem.SubItems(1) = lstItem.SubItems(1)
+    newListItem.SubItems(2) = lstItem.SubItems(2)
+    
+    lstPlaylist.ListItems.Remove (I)
+Next
+End Sub
+
 Private Sub Trm_Count_Timer()
 Dim Minutes As Long
 Dim seconds As Long

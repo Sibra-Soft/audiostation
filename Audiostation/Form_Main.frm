@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
@@ -5064,7 +5064,6 @@ MM_CD_Control.playCD
 End Sub
 
 Private Sub Command22_Click()
-Trm_Lights_CD.Tag = 2
 MM_CD_Control.stopCD
 End Sub
 
