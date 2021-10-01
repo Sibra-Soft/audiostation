@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.UserControl ButtonBig 
    BackColor       =   &H00C0C0C0&
    ClientHeight    =   3390
@@ -76,7 +76,7 @@ Begin VB.UserControl ButtonBig
          BorderStyle     =   0
          Caption         =   "CommandButton"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
+            Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
             Weight          =   400

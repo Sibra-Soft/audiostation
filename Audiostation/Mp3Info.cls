@@ -108,7 +108,7 @@ Public Property Get SongLength() As Long
 End Property
 
 Public Property Get FormattedTime() As String 'Format track time into HH:MM:SS (Or MM:SS)
- FormattedTime = Format$(CDate(m_SongLength / 86400), "nn:ss")
+ FormattedTime = format$(CDate(m_SongLength / 86400), "nn:ss")
 End Property
 
 Public Property Get NumFrames() As Long
@@ -446,31 +446,3 @@ Public Sub RemoveV1Tag()
  Call CloseHandle(hFile)
  ReadMp3Binary
 End Sub
-'Public Function BitRateAtPos(Pos As Long) As Long
-' Dim ReadPos As Long
-' Dim GetHeader(3) As Byte
-' Dim VBRHeader(11) As Byte
-' Dim HV0 As Byte
-' Dim i As Long, a(3) As Byte
-' If IsHeader(B(Pos)) = False Then Exit Function
-' If ValidHeader(GetHeader(), Pos) Then
-'  If Pos < (m_FileSize - 16) Then
-'   CopyMemory VBRHeader(0), B(Pos + 36), 12
-'  End If
-'  HV0 = (GetHeader(1) \ &H8) And &H3 'MPEG version (B)
-'  m_VBR = (ChrW$(VBRHeader(0)) & ChrW$(VBRHeader(1)) & _
-   '           ChrW$(VBRHeader(2)) & ChrW$(VBRHeader(3))) = "Xing"
-'  If m_VBR Then
-'   If (VBRHeader(7) And &H1) = &H1 Then 'FRAMES_FLAG
-'    For i = 3 To 0 Step -1
-'     a(3 - i) = VBRHeader(i + 8)
-'    Next
-'    CopyMemory m_NumFrames, a(0), 4
-'    m_NumFrames = m_NumFrames - 1
-'    BitRateAtPos = (((m_FileSize / m_NumFrames) * m_Frequency) / (1000 * IIf(HV0 = &H3, 12, 144))) \ 12
-'   End If
-'  End If 'vbr
-'  BitRateAtPos = m_BitRate
-' End If 'validheader
-'End Function
-

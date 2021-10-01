@@ -167,7 +167,7 @@ Begin VB.Form Form_Main
       ScaleHeight     =   3060
       ScaleWidth      =   9615
       TabIndex        =   117
-      Top             =   5335
+      Top             =   5330
       Width           =   9615
    End
    Begin VB.PictureBox ElementOff 
@@ -304,7 +304,7 @@ Begin VB.Form Form_Main
       Top             =   2520
    End
    Begin VB.Timer Trm_VU 
-      Interval        =   20
+      Interval        =   25
       Left            =   10920
       Top             =   600
    End
@@ -950,6 +950,7 @@ Begin VB.Form Form_Main
          _ExtentX        =   1085
          _ExtentY        =   2355
          Value           =   50
+         Max             =   1000
       End
       Begin Audiostation.MixSlider Slider_CD_Right 
          Height          =   1215
@@ -960,6 +961,7 @@ Begin VB.Form Form_Main
          _ExtentX        =   1085
          _ExtentY        =   2143
          Value           =   50
+         Max             =   1000
       End
       Begin Audiostation.MixSlider Slider_Dat_Left 
          Height          =   1335
@@ -969,6 +971,7 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2355
+         Max             =   1000
       End
       Begin Audiostation.MixSlider Slider_Dat_Right 
          Height          =   1215
@@ -978,6 +981,7 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2143
+         Max             =   1000
       End
       Begin Audiostation.MixSlider Slider_Midi_Left 
          Height          =   1335
@@ -1096,10 +1100,10 @@ Begin VB.Form Form_Main
          Left            =   1030
          Picture         =   "Form_Main.frx":14464B
          ScaleHeight     =   1215
-         ScaleWidth      =   5340
+         ScaleWidth      =   5220
          TabIndex        =   69
          Top             =   50
-         Width           =   5340
+         Width           =   5220
       End
       Begin VB.PictureBox Picture8 
          BackColor       =   &H00C0C0C0&
@@ -1309,7 +1313,7 @@ Begin VB.Form Form_Main
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
-            Left            =   4500
+            Left            =   4560
             Picture         =   "Form_Main.frx":14EC81
             Style           =   1  'Graphical
             TabIndex        =   6
@@ -1419,7 +1423,7 @@ Begin VB.Form Form_Main
          Height          =   135
          Left            =   6900
          Picture         =   "Form_Main.frx":14F24B
-         Top             =   260
+         Top             =   240
          Visible         =   0   'False
          Width           =   135
       End
@@ -3013,7 +3017,7 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1300
-         Left            =   1470
+         Left            =   1480
          Picture         =   "Form_Main.frx":1AEFD5
          ScaleHeight     =   1305
          ScaleWidth      =   2055
@@ -3093,12 +3097,12 @@ Begin VB.Form Form_Main
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   360
-               Left            =   40
+               Left            =   50
                Picture         =   "Form_Main.frx":1B802F
                ScaleHeight     =   360
                ScaleWidth      =   1560
                TabIndex        =   61
-               Top             =   170
+               Top             =   160
                Width           =   1560
             End
             Begin VB.Label lbl_Filename 
@@ -3120,6 +3124,7 @@ Begin VB.Form Form_Main
                TabIndex        =   62
                Tag             =   "1013"
                Top             =   0
+               UseMnemonic     =   0   'False
                Width           =   1485
             End
          End
@@ -3374,7 +3379,7 @@ Begin VB.Form Form_Main
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Playlist (0)"
+            Caption         =   "Playlist"
          End
          Begin Audiostation.ButtonBig cmdSettingsDat 
             Height          =   390
@@ -3540,11 +3545,6 @@ Begin VB.Form Form_Main
          Object.Width           =   92
          Object.Height          =   28
          OPCItemCount    =   0
-      End
-      Begin VB.Timer Trm_AudioPlayer 
-         Interval        =   1
-         Left            =   1560
-         Top             =   840
       End
       Begin VB.Image Light_Dat_Play_On 
          Height          =   135
@@ -4489,7 +4489,7 @@ Begin VB.Form Form_Main
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Playlist (0)"
+            Caption         =   "Playlist"
          End
          Begin Audiostation.ButtonBig cmdSettingsMidi 
             Height          =   390
@@ -4876,18 +4876,13 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 Private AudioPeakMeter As New AudioMeter
 Private AudioMaster As New AudioVolume
 
-Dim MM_CD_Control As New CDClass
-
 Dim CDRomDriveFound As Boolean
-Dim doorClose As Boolean
-Dim loopbackInit As Boolean
-Dim appInit As Boolean
-
-Dim lightId As Integer
+Dim DoorClose As Boolean
+Dim LoopbackInit As Boolean
+Dim AppInit As Boolean
 Private Sub AniCD_Click()
 Trm_CD_Animation.Enabled = True
 End Sub
@@ -4955,7 +4950,7 @@ Select Case Index
     
     Case 6: AudiostationMP3Player.Pause
     Case 7: AudiostationMP3Player.Rewind
-    Case 8: AudiostationMP3Player.nextTrack
+    Case 8: AudiostationMP3Player.NextTrack 0, True
 End Select
 End Sub
 
@@ -4983,7 +4978,7 @@ End Sub
 
 Private Sub cmdOpenCD_Click()
 Trm_CD_Animation.Enabled = True
-MM_CD_Control.setDoorOpen
+MediaPlayerForCD.setDoorOpen
 End Sub
 
 Private Sub cmdPlaylistDat_Click()
@@ -5009,7 +5004,6 @@ Else
     Form_Settings_Midi.Show
 End If
 End Sub
-
 Private Sub Command10_Click()
 Form_Settings_Midi.MIDIOutput1.Pause
 Trm_Lights_Midi.Tag = 3
@@ -5047,32 +5041,31 @@ AudiostationMidiPlayer.PreviousMidiTrack
 End Sub
 
 Private Sub Command17_Click()
-MM_CD_Control.nextTrack
+MediaPlayerForCD.NextTrack
 End Sub
 
 Private Sub Command18_Click()
-Trm_Lights_CD.Tag = 3
-MM_CD_Control.pauseCD
+MediaPlayerForCD.pauseCD
 End Sub
 
 Private Sub Command20_Click()
-MM_CD_Control.fastForward (2)
+MediaPlayerForCD.fastForward 2
 End Sub
 
 Private Sub Command21_Click()
-MM_CD_Control.playCD
+MediaPlayerForCD.playCD
 End Sub
 
 Private Sub Command22_Click()
-MM_CD_Control.stopCD
+MediaPlayerForCD.stopCD
 End Sub
 
 Private Sub Command23_Click()
-MM_CD_Control.fastRewind (2)
+MediaPlayerForCD.fastRewind 2
 End Sub
 
 Private Sub Command24_Click()
-MM_CD_Control.prevTrack
+MediaPlayerForCD.prevTrack
 End Sub
 Private Sub Command9_Click()
 If CurrentMidiTrackNumber = MidiPlaylist.StorageContainer.Count Then: Exit Sub
@@ -5095,11 +5088,16 @@ Dim First As Boolean
 Width = 9900
 Height = 9855 - 310
 
+Slider_Dat_Left.Value = 1000
+Slider_Dat_Right.Value = 1000
+Slider_CD_Left.Value = 1000
+Slider_CD_Right.Value = 1000
+
 ChDrive App.path
 ChDir App.path
 
 Call AudiostationMP3Player.Init
-If Not IsDebuggig Then: Call initLoopBack
+If Not Extensions.GetCurrentWindowsVersion = "Windows XP" And Not IsDebuggig Then Call initLoopBack
 
 For I = 0 To Element.Count - 1
     Element(I).Visible = True
@@ -5120,7 +5118,6 @@ End If
 lbl_version.Caption = "Version: " & App.Major & "." & App.Minor & " Build: " & App.Revision
 
 'Set application default
-Light_ID = 0
 Form_Settings_Midi.MIDIOutput1.VolumeLeft = 65535
 Form_Settings_Midi.MIDIOutput1.VolumeRight = 65535
     
@@ -5133,12 +5130,9 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
 Cancel = True
 
 Call ApplicationDestructor
+Call Shell(App.path & "/close.exe", vbHide)
 
 Cancel = False
-End Sub
-
-Private Sub Form_Unload(Cancel As Integer)
-End
 End Sub
 
 Private Sub lbl_Midi_Filename_Change()
@@ -5252,27 +5246,44 @@ Dim ReturnCode As Long
 ReturnCode = ShellPipe.FinishChild(0)
 Debug.Print "Program complete. Return code: " & CStr(ReturnCode)
 End Sub
+
+Private Sub Slider_CD_Left_OnPositionChange()
+Call MediaPlayerForCD.SetLeftVolume(Slider_CD_Left.Value)
+End Sub
+
+Private Sub Slider_CD_Right_OnPositionChange()
+Call MediaPlayerForCD.SetRightVolume(Slider_CD_Right.Value)
+End Sub
+
 Private Sub Slider_Dat_Left_OnPositionChange()
-ModLibZPlay.SetPlayerVolume Slider_Dat_Left.Value, Slider_Dat_Right.Value
+Call MediaPlayer.SetLeftVolume(Slider_Dat_Left.Value)
 End Sub
 
 Private Sub Slider_Dat_Right_OnPositionChange()
-ModLibZPlay.SetPlayerVolume Slider_Dat_Left.Value, Slider_Dat_Right.Value
+Call MediaPlayer.SetRightVolume(Slider_Dat_Right.Value)
 End Sub
 
 Private Sub Slider_Master_Left_OnPositionChange()
-ModLibZPlay.SetMasterVolume Slider_Master_Left.Value, Slider_Master_Right.Value
+Call AudioMaster.SetChannelVolumeLevelScalar(0, Slider_Master_Left.Value / 100)
 End Sub
 
 Private Sub Slider_Master_Right_OnPositionChange()
-ModLibZPlay.SetMasterVolume Slider_Master_Left.Value, Slider_Master_Right.Value
+Call AudioMaster.SetChannelVolumeLevelScalar(1, Slider_Master_Right.Value / 100)
+End Sub
+
+Private Sub Switch_CD_OnChange()
+If Switch_CD.Active Then
+    MediaPlayerForCD.setAudioOn
+Else
+    MediaPlayerForCD.setAudioOff
+End If
 End Sub
 
 Private Sub Switch_Dat_OnChange()
 If Switch_Dat.Active Then
-    ModLibZPlay.SetPlayerVolume Slider_Dat_Left.Value, Slider_Dat_Right.Value
+    MediaPlayer.setAudioOn
 Else
-    ModLibZPlay.SetPlayerVolume 0, 0
+    MediaPlayer.setAudioOff
 End If
 End Sub
 
@@ -5309,6 +5320,10 @@ Else
 End If
 End Sub
 
+Private Sub Trm_AudioPlayer_Timer()
+
+End Sub
+
 Private Sub Trm_CD_Animation_Timer()
 Dim ImgIndex As Integer
     
@@ -5317,9 +5332,9 @@ ImgIndex = Trm_CD_Animation.Tag
 AniCD.Picture = ImageList5.ListImages(ImgIndex).Picture
 AniCD.Visible = True
 
-If doorClose = True Then
+If DoorClose = True Then
     If Trm_CD_Animation.Tag = 1 Then
-        doorClose = False
+        DoorClose = False
         Trm_CD_Animation.Enabled = False
         AniCD.Visible = False
     Else
@@ -5327,7 +5342,7 @@ If doorClose = True Then
     End If
 Else
     If Trm_CD_Animation.Tag = 7 Then
-        doorClose = True
+        DoorClose = True
         Trm_CD_Animation.Enabled = False
     Else
         Trm_CD_Animation.Tag = Trm_CD_Animation.Tag + 1
@@ -5342,13 +5357,13 @@ Dim split_value
 
 'Start the CD-Rom drive
 If Not Settings.ReadSetting("Sibra-Soft", "Audiostation", "CD") = "false" Then
-        MM_CD_Control.startCD (Settings.ReadSetting("Sibra-Soft", "Audiostation", "CD"))
+    MediaPlayerForCD.startCD (Settings.ReadSetting("Sibra-Soft", "Audiostation", "CD"))
 End If
 
 On Error Resume Next
-split_value = Split(MM_CD_Control.getPositionTMSF, ":")
+split_value = Split(MediaPlayerForCD.getPositionTMSF, ":")
 
-Digit_Track_CD.Value = Left(MM_CD_Control.getPositionTMSF, 2)
+Digit_Track_CD.Value = Left(MediaPlayerForCD.getPositionTMSF, 2)
 Digit_Time_CD.seconds = split_value(2)
 Digit_Time_CD.Minutes = split_value(1)
 End Sub
@@ -5371,7 +5386,7 @@ Else
     End If
     
     Select Case LCase(Right(MediaFile, 3))
-        Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda"
+        Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda", "wma", "m4a"
             MediaDuration = 0
             AudiostationMidiPlayer.StopMidiPlayBack
             
@@ -5379,7 +5394,7 @@ Else
                 AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.IsExistingItem(MediaFile)
                 AudiostationMP3Player.StartPlay
             Else
-                MediaIndex = Format(Mp3Playlist.StorageContainer.Count + 1, "00")
+                MediaIndex = format(Mp3Playlist.StorageContainer.Count + 1, "00")
                 
                 ' Only get the duration when it's a mp3 file
                 If LCase(Right(MediaFile, 3)) = "mp3" Then
@@ -5398,7 +5413,7 @@ Else
         Case "mid", "kar", "mus", "sid"
             AudiostationMP3Player.StopPlay
             
-            CurrentIndex = Format(MidiPlaylist.StorageContainer.Count + 1, "00")
+            CurrentIndex = format(MidiPlaylist.StorageContainer.Count + 1, "00")
             CurrentMediaDuration = "-"
     
             MidiPlaylist.AddToStorage MediaFile, CurrentIndex & ";" & MediaFile & ";" & CurrentMediaDuration
@@ -5432,8 +5447,6 @@ Else
             Case "omo": Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3): GoTo Begin
             Case "s64": Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3): GoTo Begin
             Case "voc": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-            Case "wma": Call ModConvert.Convert(MediaFile, [Windows Media Audio], MP3): GoTo Begin
-            Case "m4a": Call ModConvert.Convert(MediaFile, Media4A, MP3): GoTo Begin
         End Select
         
         'Check if it's a file that needs to be converted
@@ -5494,10 +5507,6 @@ End If
 End Sub
 
 Private Sub Trm_Lights_Timer()
-Dim StreamStatus As TStreamStatus
-
-Call ModLibZPlay.GetStatus(StreamStatus)
-
 If AudiostationRecorder.RecordActive = True Then
     Picture33.Visible = True
     
@@ -5508,12 +5517,12 @@ If AudiostationRecorder.RecordActive = True Then
             Image2.Visible = True
         End If
     End If
-    
 Else
     Picture33.Visible = False
 End If
 
-If StreamStatus.fPlay And StreamStatus.fPause = False Then
+' Media player
+If AudiostationMP3Player.PlayState = Playing Then
     Trm_Animation.Enabled = True
     Trm_VU.Enabled = True
     Light_Dat_Pause_On.Visible = False
@@ -5524,7 +5533,7 @@ If StreamStatus.fPlay And StreamStatus.fPause = False Then
         Light_Dat_Play_On.Visible = True
     End If
 Else
-    If StreamStatus.fPause Then
+    If AudiostationMP3Player.PlayState = Paused Then
         Trm_Animation.Enabled = False
         Trm_VU.Enabled = False
         Light_Dat_Play_On.Visible = True
@@ -5547,21 +5556,25 @@ Else
         VU_Right.Position = 0
     End If
 End If
+
+' CD Player
+If MediaPlayerForCD.isPlaying Then
+    If Light_CD_Play_On.Visible = True Then
+        Light_CD_Play_On.Visible = False
+    Else
+        Light_CD_Play_On.Visible = True
+    End If
+Else
+    Light_CD_Play_On.Visible = False
+End If
 End Sub
 Private Sub Trm_Main_Timer()
-Dim StreamInfo As TStreamInfo
-Dim StreamStatus As TStreamStatus
-Dim StreamPosition As TStreamTime
-
-Digit_Clock.Hours = Format(Now, "hh")
-Digit_Clock.Minutes = Format(Now, "nn")
-Digit_Clock.seconds = Format(Now, "ss")
+Digit_Clock.Hours = format(Now, "hh")
+Digit_Clock.Minutes = format(Now, "nn")
+Digit_Clock.seconds = format(Now, "ss")
 
 Digit_Track_Dat.Value = AudiostationMP3Player.CurrentTrackNumber
 Digit_Track_Midi.Value = AudiostationMidiPlayer.CurrentMidiTrackNumber
-
-cmdPlaylistMidi.Caption = "Playlist (" & MidiPlaylist.StorageContainer.Count & ")"
-cmdPlaylistDat.Caption = "Playlist (" & Mp3Playlist.StorageContainer.Count & ")"
 
 ' Enable the activated rack
 Dim I As Integer
@@ -5587,50 +5600,39 @@ Else
     Trm_Main.Tag = Trm_Main.Tag + 1
 End If
 
-Call ModLibZPlay.GetStreamInfo(StreamInfo)
-Call ModLibZPlay.GetStatus(StreamStatus)
-Call ModLibZPlay.GetPosition(StreamPosition)
-
 ' Show the elapsed or leftover time
-If StreamStatus.fPlay Then
+If AudiostationMP3Player.PlayState = Playing Then
     lbl_Filename.Caption = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
     lbl_Filename.ToolTipText = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
 
     If AudiostationMP3Player.ShowElapsedTime Then
-        Digit_Time_Dat.Minutes = StreamPosition.hms.minute
-        Digit_Time_Dat.seconds = StreamPosition.hms.second
+        Dim TimeSerial As String
+        TimeSerial = Extensions.MilliSecondsToTimeSerial(MediaPlayer.GetPositioninMS, SmallTimeSerial)
+        
+        Digit_Time_Dat.Minutes = Extensions.Explode(TimeSerial, ":", 0)
+        Digit_Time_Dat.seconds = Extensions.Explode(TimeSerial, ":", 1)
     Else
         Dim SecondsLeft As Long
-
-        SecondsLeft = StreamInfo.Length.sec - StreamPosition.sec
+        SecondsLeft = MediaPlayer.GetDurationInSec - MediaPlayer.GetPositioninSec
     
         Digit_Time_Dat.Minutes = Extensions.Explode(Extensions.TimeString(SecondsLeft), ":", 0)
         Digit_Time_Dat.seconds = Extensions.Explode(Extensions.TimeString(SecondsLeft), ":", 1)
     End If
 End If
 
-' Media ended check
-If StreamStatus.fPlay = False And StreamInfo.Length.samples = StreamInfo.Length.samples And AudiostationMP3Player.Stopped = False Then
-    If AudiostationMP3Player.AutoNext Then
-        AudiostationMP3Player.nextTrack
-    Else
-        If AudiostationMP3Player.Shuffle Then
-            Dim intTrack As Integer
-            Randomize
-            intTrack = Extensions.RandomNumber(0, Mp3Playlist.StorageContainer.Count)
-            AudiostationMP3Player.nextTrack intTrack
-        Else
-            If AudiostationMP3Player.RepeatTrack Then AudiostationMP3Player.StartPlay
-        End If
-    End If
+' Check for stream ending
+If AudiostationMP3Player.PlayState = Playing And MediaPlayer.GetDurationInMS = MediaPlayer.GetPositioninMS Then
+    AudiostationMP3Player.PlayState = MediaEnded
 End If
+
+If AudiostationMP3Player.PlayState = MediaEnded Then AudiostationMP3Player.NextTrack
 End Sub
 
 Private Sub Trm_Midi_Play_Timer()
 Dim I As Integer
 
 Digit_Time_Midi.Minutes = Trm_Midi_Play.Tag \ 60
-Digit_Time_Midi.seconds = Format(Int(Trm_Midi_Play.Tag Mod 60), "00")
+Digit_Time_Midi.seconds = format(Int(Trm_Midi_Play.Tag Mod 60), "00")
 
 Trm_Midi_Play.Tag = Trm_Midi_Play.Tag + 1
 End Sub
@@ -5687,7 +5689,7 @@ BASS_WASAPI_Start
 outdev = BASS_WASAPI_GetDevice()
 chan = outdev   ' spectrum uses chan
 
-loopbackInit = True
+LoopbackInit = True
 End Sub
 Private Sub Trm_VU_Timer()
 VU_Master_Peak.Position = AudioPeakMeter.GetPeak * 100
@@ -5698,5 +5700,5 @@ VU_Right.Position = AudioPeakMeter.GetChannelPeak(1) * 100
 VU_Left_Output.Position = AudioPeakMeter.GetChannelPeak(0) * 100
 VU_Right_Output.Position = AudioPeakMeter.GetChannelPeak(1) * 100
 
-If loopbackInit And Switch_SpectrumAnalyzer.Active Then UpdateSpectrum
+If LoopbackInit And Switch_SpectrumAnalyzer.Active Then UpdateSpectrum
 End Sub

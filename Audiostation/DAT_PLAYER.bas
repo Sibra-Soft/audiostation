@@ -1,4 +1,14 @@
 Attribute VB_Name = "AudiostationMP3Player"
+Public Enum EnumPlayStates
+    Paused
+    Stopped
+    Playing
+    MediaEnded
+End Enum
+
+Public MediaPlayer As New MediaPlayer
+Public MediaPlayerForCD As New MediaPlayerForCD
+
 Public Mp3Playlist As New LocalStorage
 
 Public RepeatTrack As Boolean
@@ -7,70 +17,71 @@ Public AutoNext As Boolean
 Public Shuffle As Boolean
 Public PlaySingleTrack As Boolean
 Public ShowElapsedTime As Boolean
-Public Stopped As Boolean
 
+Public PlayState As EnumPlayStates
 Public CurrentMediaFilename As String
 
 Public CurrentTrackNumber As Integer
 Public Sub Init()
+PlayState = Stopped
 AudiostationMP3Player.ShowElapsedTime = True
 End Sub
 Public Sub Rewind()
-Dim newPosition As TStreamTime
+Dim CurrentPosition As Long
 
-newPosition.sec = 5
-
-Call ModLibZPlay.SeekPosition(tfSecond, newPosition, smFromCurrentForward)
+CurrentPosition = MediaPlayer.GetPositioninSec
+MediaPlayer.ChangePosition CurrentPosition + 5
 End Sub
 Public Sub Forward()
-Dim newPosition As TStreamTime
+Dim CurrentPosition As Long
 
-newPosition.sec = 5
-
-Call ModLibZPlay.SeekPosition(tfSecond, newPosition, smFromCurrentBackward)
+CurrentPosition = MediaPlayer.GetPositioninSec
+MediaPlayer.ChangePosition CurrentPosition - 5
 End Sub
 Public Sub Pause()
-ModLibZPlay.PausePlayback
-Stopped = True
+MediaPlayer.Pause
+PlayState = Paused
 End Sub
 Public Sub StartPlay()
-Dim mediaFilename As String
-Dim StreamStatus As TStreamStatus
-
-Call ModLibZPlay.GetStatus(StreamStatus)
-
 AudiostationMidiPlayer.StopMidiPlayBack
 
-If StreamStatus.fPause Then
-    Call ModLibZPlay.ResumePlayback
+If PlayState = Paused Then
+    MediaPlayer.ResumePlay
 Else
     If CurrentTrackNumber = 0 Then: CurrentTrackNumber = 1
     
+    Dim mediaFilename As String
     mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
+    
     CurrentMediaFilename = mediaFilename
-        
-    Call ModLibZPlay.OpenFile(mediaFilename, sfAutodetect)
-    Call ModLibZPlay.StartPlayback
+    
+    MediaPlayer.FileName = mediaFilename
+    MediaPlayer.Play
 End If
 
-Stopped = False
+PlayState = Playing
 End Sub
 Public Sub StopPlay()
-ModLibZPlay.StopPlayback
-Stopped = True
+MediaPlayer.StopPlay
+PlayState = Stopped
 End Sub
-Public Sub nextTrack(Optional TrackNumber As Integer)
+Public Sub NextTrack(Optional TrackNumber As Integer, Optional force = False)
 Dim mediaFilename As String
 
 If Mp3Playlist.StorageContainer.Count = 0 Then: Exit Sub
-If AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.StorageContainer.Count Then: Exit Sub
+If AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.StorageContainer.Count And Not RepeatTrack Or Not AutoNext And Not force Then
+    Call StopPlay
+    Exit Sub
+End If
 
-If TrackNumber > 0 Then
-    'Track number is set by parameter
-    AudiostationMP3Player.CurrentTrackNumber = TrackNumber
-Else
-    'Auto select track number
-    AudiostationMP3Player.CurrentTrackNumber = AudiostationMP3Player.CurrentTrackNumber + 1
+If (Not RepeatTrack And AutoNext) Or force Then
+    If TrackNumber > 0 Then
+        'Track number is set by parameter
+        AudiostationMP3Player.CurrentTrackNumber = TrackNumber
+    Else
+        'Auto select track number
+        AudiostationMP3Player.CurrentTrackNumber = AudiostationMP3Player.CurrentTrackNumber + 1
+    End If
 End If
 
 AudiostationMP3Player.CurrentTrackNumber = CurrentTrackNumber
@@ -78,10 +89,7 @@ mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
 
 CurrentMediaFilename = mediaFilename
 
-Call ModLibZPlay.OpenFile(mediaFilename, sfAutodetect)
-Call ModLibZPlay.StartPlayback
-
-Stopped = False
+Call StartPlay
 End Sub
 Public Sub PreviousTrack()
 Dim mediaFilename As String
@@ -93,8 +101,5 @@ AudiostationMP3Player.CurrentTrackNumber = CurrentTrackNumber - 1
 mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
 CurrentMediaFilename = mediaFilename
 
-Call ModLibZPlay.OpenFile(mediaFilename, sfAutodetect)
-Call ModLibZPlay.StartPlayback
-
-Stopped = False
+Call StartPlay
 End Sub

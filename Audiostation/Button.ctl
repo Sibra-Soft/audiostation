@@ -63,7 +63,7 @@ Begin VB.UserControl Button
          Height          =   105
          Left            =   600
          Picture         =   "Button.ctx":0000
-         Top             =   30
+         Top             =   0
          Visible         =   0   'False
          Width           =   105
       End
@@ -71,7 +71,7 @@ Begin VB.UserControl Button
          Height          =   105
          Left            =   600
          Picture         =   "Button.ctx":0106
-         Top             =   30
+         Top             =   0
          Visible         =   0   'False
          Width           =   105
       End

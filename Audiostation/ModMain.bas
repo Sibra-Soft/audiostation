@@ -10,6 +10,8 @@ Public IsDebuggig As Boolean
 Public WebRequest As New WebClient
 Public Settings As New RegistrySettings
 Public Extensions As New SibraSoft
+
+
 Public Sub Main()
 Call ApplicationConstructor
 End Sub
@@ -20,9 +22,6 @@ Dim MediaDuration As String
 Dim MediaTagManager As New Mp3Info
 
 If Command = "debugging" Then: IsDebuggig = True
-
-' Init the LibzPlay Library
-Call ModLibZPlay.Initialize
 
 ' Clear the Audsta service line
 Settings.WriteSetting "Sibra-Soft", "Audiostation", "Audsta", vbNullString
@@ -55,7 +54,7 @@ If MediaFile = "" Then: GoTo Einde
 If App.PrevInstance = True Then: Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", MediaFile): End
 
 Select Case LCase(Right(MediaFile, 3))
-    Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda"  'Audio files
+    Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda", "wma", "m4a" 'Audio files
         MediaDuration = 0
         AudiostationMidiPlayer.StopMidiPlayBack
         
@@ -114,8 +113,6 @@ Select Case LCase(Right(MediaFile, 3))
             Case "omo": Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3)
             Case "s64": Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3)
             Case "voc": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3)
-            Case "wma": Call ModConvert.Convert(MediaFile, [Windows Media Audio], MP3)
-            Case "m4a": Call ModConvert.Convert(MediaFile, Media4A, MP3)
         End Select
         
         'Check if it's a file that needs to be converted
@@ -132,8 +129,6 @@ Einde:
     Form_Main.Show
 End Sub
 Public Sub ApplicationDestructor()
-Call ModLibZPlay.Terminate
-
 DoEvents
 
 Call Extensions.TerminateProcessByPid(AudiostationMidiPlayer.CurrentPlayerProcess)

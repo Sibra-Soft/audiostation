@@ -10,7 +10,7 @@ Public Enum ConvertFrom
     [Sony OpenMG Audio]
     [Raw Flac]
     [Creative Voice]
-    [Windows Media Audio]
+    [Windows Media]
     [Media4A]
 End Enum
 

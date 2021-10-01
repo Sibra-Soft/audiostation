@@ -90,14 +90,38 @@ Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As L
 
 Private Declare Sub ExitThread Lib "kernel32" (ByVal dwExitCode As Long)
 
+Private Declare Function RtlGetVersion Lib "NTDLL" (ByRef lpVersionInformation As Long) As Long
+
 'INI
 Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Long, ByVal lpFileName As String) As Long
 Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpString As Any, ByVal lpFileName As String) As Long
+Public Function NativeGetVersion() As String
+Dim tOSVw(&H54) As Long
+tOSVw(0) = &H54 * &H4
+Call RtlGetVersion(tOSVw(0))
+NativeGetVersion = Join(Array(tOSVw(1), tOSVw(2), tOSVw(3)), ".")
+End Function
+Public Function GetCurrentWindowsVersion() As String
+Dim VersionToName As String
+
+Select Case NativeGetVersion
+    Case "5.1": VersionToName = "Windows XP"
+    Case "5.3": VersionToName = "Windows 2003 (SERVER)"
+    Case "6.0": VersionToName = "Windows Vista"
+    Case "6.1": VersionToName = "Windows 7"
+    Case "6.2": VersionToName = "Windows 8"
+    Case "6.3": VersionToName = "Windows 8.1"
+    Case "10.0": VersionToName = "Windows 10"
+    Case Else: VersionToName = "Unknown"
+End Select
+
+GetCurrentWindowsVersion = VersionToName
+End Function
 Public Sub TerminateProcessByPid(pid As Long)
 Shell "taskkill.exe /f /t /pid " & pid, vbHide
 End Sub
-Public Sub TerminateProcessByName(name As String)
-Shell "taskkill.exe /f /t /im " & name
+Public Sub TerminateProcessByName(Name As String)
+Shell "taskkill.exe /f /t /im " & Name
 End Sub
 Public Sub RegUnReg(ByVal inFileSpec As String, Optional inHandle As String = "")
     On Error Resume Next
@@ -319,15 +343,15 @@ If lMinutes = 60 Then
     lHrs = lHrs + 1
 End If
 
-sAns = Format(CStr(lMinutes), "00") & ":" & Format(CStr(lSeconds), "00")
+sAns = format(CStr(lMinutes), "00") & ":" & format(CStr(lSeconds), "00")
 
 TimeString = sAns
 End Function
 Public Function SecondsToTimeSerial(ByVal sec As Long, ReturnType As enumTimeSerial) As String
 If ReturnType = LongTimeSerial Then
-    SecondsToTimeSerial = Format(DateAdd("s", sec, "00:00:00"), "HH:mm:ss")
+    SecondsToTimeSerial = format(DateAdd("s", sec, "00:00:00"), "HH:mm:ss")
 Else
-    SecondsToTimeSerial = Format(DateAdd("s", sec, "00:00"), "mm:ss")
+    SecondsToTimeSerial = format(DateAdd("s", sec, "00:00"), "mm:ss")
 End If
 End Function
 Public Function MilliSecondsToTimeSerial(ByVal MilliSeconds As Long, ReturnType As enumTimeSerial) As String
@@ -347,9 +371,9 @@ lngMinutesPart = lngMinSecRemainder \ 60000
 lngSecRemainder = lngMinSecRemainder Mod 60000
 lngSecondsPart = lngSecRemainder \ 1000
 
-sHoursPart = Format(lngHoursPart, "00")
-sMinutesPart = Format(lngMinutesPart, "00")
-sSecondsPart = Format(lngSecondsPart, "00")
+sHoursPart = format(lngHoursPart, "00")
+sMinutesPart = format(lngMinutesPart, "00")
+sSecondsPart = format(lngSecondsPart, "00")
 
 If ReturnType = LongTimeSerial Then
     sTimeRemaining = sHoursPart & ":" & sMinutesPart & ":" & sSecondsPart

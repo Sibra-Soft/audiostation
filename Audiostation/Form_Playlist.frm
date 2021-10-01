@@ -18,6 +18,7 @@ Begin VB.Form Form_Playlist
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "Form_Playlist.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
@@ -369,7 +370,7 @@ Dim FileTypesToShow As String
 Dim strLocation As String
 
 Enum PlsType
-    [Windows Media Player]
+    [Windows Media Player Playlist]
     [ShoutCast Playlist]
     [Common Playlist]
     [Audiostation Playlist]
@@ -483,7 +484,7 @@ For I = FirstIndex To FilesToAddCount
             If MediaDuration = "0" Then: MediaDuration = "-"
             
             'Add the file to the listview
-            Set lstItem = lstPlaylist.ListItems.Add(, file, Format(lstPlaylist.ListItems.Count + 1, "00"))
+            Set lstItem = lstPlaylist.ListItems.Add(, file, format(lstPlaylist.ListItems.Count + 1, "00"))
                 lstItem.SubItems(1) = file
                 lstItem.SubItems(2) = MediaDuration
         End If
@@ -687,7 +688,7 @@ Unload Me
 End Sub
 
 Private Sub cmdDelete_Click()
-lstPlaylist.ListItems.Remove (lstPlaylist.SelectedItem.Index)
+lstPlaylist.ListItems.Remove (lstPlaylist.selectedItem.Index)
 End Sub
 
 Private Sub cmdSavePlaylist_Click()
@@ -702,7 +703,7 @@ With CommonDialog
     If Right(LCase(.FileName), 3) = "apl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Audiostation Playlist])
     If Right(LCase(.FileName), 3) = "m3u" Then: Call SavePlaylist(.FileName, lstPlaylist, [Common Playlist])
     If Right(LCase(.FileName), 3) = "pls" Then: Call SavePlaylist(.FileName, lstPlaylist, [ShoutCast Playlist])
-    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player])
+    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player Playlist])
 End With
 
 Exit Sub
@@ -786,11 +787,11 @@ If lstPlaylist.ListItems.Count > 0 Then
     
     Select Case CurrentFormType
         Case enumFormTypes.MidiPlayer
-            AudiostationMidiPlayer.CurrentMidiTrackNumber = lstPlaylist.SelectedItem.Index
+            AudiostationMidiPlayer.CurrentMidiTrackNumber = lstPlaylist.selectedItem.Index
             AudiostationMidiPlayer.StartMidiPlayback
             
         Case enumFormTypes.Mp3Player
-            AudiostationMP3Player.CurrentTrackNumber = lstPlaylist.SelectedItem.Index
+            AudiostationMP3Player.CurrentTrackNumber = lstPlaylist.selectedItem.Index
             AudiostationMP3Player.StartPlay
     End Select
     

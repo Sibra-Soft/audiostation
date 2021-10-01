@@ -6,7 +6,7 @@ BEGIN
   DataSourceBehavior  = 0  'vbNone
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
-Attribute VB_Name = "CDClass"
+Attribute VB_Name = "MediaPlayerForCD"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
@@ -17,6 +17,15 @@ Private Declare Function GetDriveType Lib "kernel32" Alias "GetDriveTypeA" (ByVa
 
 Dim Error As Long
 Dim TheStat As String * 128
+'Set the left channel to a desired volume
+Public Function SetLeftVolume(ByVal Value As Integer) As Integer
+    mciSendString "setaudio song left volume to " & Value, 0, 0, 0
+End Function
+'Set the right channel volume
+Public Function SetRightVolume(ByVal Value As Integer) As Integer
+    '1000 = max | 0 = min
+    mciSendString "setaudio song right volume to " & Value, 0, 0, 0
+End Function
 'check the mci device for to see if a error occured
 'and give description.
 Public Function checkError() As String
@@ -126,8 +135,8 @@ Public Function getNumberTracks() As Long
     getNumberTracks = CLng(Trim$(TheStat))
 End Function
 'set the cd to play a specified track
-Public Function setTrack(track As Long)
-    Error = mciSendString("play cd from " & track, 0, 0, 0)
+Public Function setTrack(Track As Long)
+    Error = mciSendString("play cd from " & Track, 0, 0, 0)
 End Function
 'pause the current playing track
 Public Function pauseCD()
@@ -171,9 +180,9 @@ Public Function isPlaying() As Boolean
     End If
 End Function
 'get the length of a track in milli-seconds
-Public Function trackLengthMS(track As Long) As Long
+Public Function trackLengthMS(Track As Long) As Long
     Error = mciSendString("set cd time format ms", 0, 0, 0)
-    Error = mciSendString("status cd length track " & track, TheStat, 128, 0)
+    Error = mciSendString("status cd length track " & Track, TheStat, 128, 0)
     trackLengthMS = Val(TheStat)
 End Function
 'get the length of the cd in milli-seconds
@@ -193,14 +202,14 @@ Public Function cdLengthSeconds() As Long
     cdLengthSeconds = cdLengthMS / 1000
 End Function
 'track length in minute, second, frame
-Public Function trackLengthMSF(track As Long) As String
+Public Function trackLengthMSF(Track As Long) As String
     Error = mciSendString("set cd time format msf", 0, 0, 0)
-    Error = mciSendString("status cd length track " & track, TheStat, 128, 0)
+    Error = mciSendString("status cd length track " & Track, TheStat, 128, 0)
     trackLengthMSF = TheStat
 End Function
 'get the length of the track in seconds
-Public Function trackLengthSeconds(track As Long) As Long
-    trackLengthSeconds = trackLengthMS(track) / 1000
+Public Function trackLengthSeconds(Track As Long) As Long
+    trackLengthSeconds = trackLengthMS(Track) / 1000
 End Function
 'set off the audio output(mute)
 Public Function setAudioOff()
@@ -211,17 +220,17 @@ Public Function setAudioOn()
     Error = mciSendString("set cd audio all on", 0, 0, 0)
 End Function
 'select the next available track
-Public Function nextTrack()
-    Dim track As Long
-    track = getCurrentTrack + 1
-    If track > getNumberTracks Then Exit Function
-    Error = mciSendString("play cd from " & track, 0, 0, 0)
+Public Function NextTrack()
+    Dim Track As Long
+    Track = getCurrentTrack + 1
+    If Track > getNumberTracks Then Exit Function
+    Error = mciSendString("play cd from " & Track, 0, 0, 0)
 End Function
 'select the previous available track
 Public Function prevTrack()
-    Dim track As Long
+    Dim Track As Long
     If getCurrentTrack <= 1 Then Exit Function
-    track = getCurrentTrack - 1
-    If track > getNumberTracks Then Exit Function
-    Error = mciSendString("play cd from " & track, 0, 0, 0)
+    Track = getCurrentTrack - 1
+    If Track > getNumberTracks Then Exit Function
+    Error = mciSendString("play cd from " & Track, 0, 0, 0)
 End Function

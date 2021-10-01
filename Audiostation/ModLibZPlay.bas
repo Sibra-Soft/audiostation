@@ -1,14 +1,4 @@
 Attribute VB_Name = "ModLibZPlay"
-'<CSCC>
-'--------------------------------------------------------------------------------
-'    Component  : ModLibZPlay
-'    Project    : Audiostation
-'
-'    Description: [type_description_here]
-'
-'    Modified   :
-'--------------------------------------------------------------------------------
-'</CSCC>
 Option Explicit
 
 Public Enum TSettingID
@@ -780,10 +770,10 @@ End Type
 
 ' ----==== GDI+ API Declarationen ====----
 Private Declare Function GdiplusShutdown Lib "gdiplus" ( _
-                         ByVal Token As Long) As Long
+                         ByVal token As Long) As Long
                          
 Private Declare Function GdiplusStartup Lib "gdiplus" ( _
-                         ByRef Token As Long, _
+                         ByRef token As Long, _
                          ByRef lpInput As GDIPlusStartupInput, _
                          ByRef lpOutput As GdiplusStartupOutput) As Long
 
@@ -1741,11 +1731,11 @@ Public Sub GetStreamInfo(ByRef Info As TStreamInfo)
 
 End Sub
 
-Public Sub GetStatus(ByRef status As TStreamStatus)
+Public Sub GetStatus(ByRef Status As TStreamStatus)
 
     If oPlayer <> 0 Then
 
-        Call zplay_GetStatus(oPlayer, status)
+        Call zplay_GetStatus(oPlayer, Status)
 
     End If
 
