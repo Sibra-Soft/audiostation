@@ -1,5 +1,4 @@
 VBGROUP 5.0
 StartupProject=Audiostation\Audiostation.vbp
 Project=Projects\Close\AudiostationClose.vbp
-Project=Projects\Windat\AudiostationRecorder.vbp
 Project=Projects\Beepsymphony\Beep Symphony.vbp
