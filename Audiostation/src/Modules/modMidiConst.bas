@@ -1,15 +1,6 @@
 Attribute VB_Name = "ModConstMidi"
 Option Explicit
 
-'-------------------------------------------------------------------
-' Constants used by Midi Input and Output objects, as of version 2.10.025
-' Constants used by Midi File objects, as of version 1.20.011
-'
-' Acknowledgements:
-' - original author: Mabry inc.
-' - Web Link: www.mabry.com
-'-------------------------------------------------------------------
-
 '
 ' State Constants
 '

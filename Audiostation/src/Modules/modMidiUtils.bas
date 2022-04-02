@@ -1,6 +1,15 @@
 Attribute VB_Name = "ModMidiUtils"
 Option Explicit
 
+' /////////////////////////////////////////////////////////////////////////////////
+' Module:           ModMidiUtils
+' Description:      Util functions for MIDI playback
+'
+' Date Changed:     25-10-2021
+' Date Created:     04-10-2021
+' Author:           Sibra-Soft - Alex van den Berg
+' /////////////////////////////////////////////////////////////////////////////////
+
 Public gisEnd As Boolean
 Public gisCurrentDoEvents As Boolean
 Public gisCurrentQueue As Boolean
@@ -18,10 +27,7 @@ Public Const MB_HIGHNIBBLE = &HF0
 Public Const MB_LOWBYTE = &HFF
 Public Const MB_HIGHBYTE = &HFF00
 Public Const MB_DOEVENTSPOLLING = 10 ' release resources enough so <5% cpu usage
-' (Must be less than MIDIOutput1.TimerProcessStreamInterval so that
-' everything can resume as soon as possible. The program and form
-' are unresponsive while sleeping. The midi objects are responsive but
-' not if they fire events while program is unresponsive.)
+
 Public Const MB_DEVICEID = &H10 ' most common id used by output devices
 
 Public Declare Function GetCurrentThread Lib "kernel32" () As Long
@@ -29,7 +35,6 @@ Public Declare Function GetPriorityClass Lib "kernel32" (ByVal hProcess As Long)
 Public Declare Function GetThreadPriority Lib "kernel32" (ByVal hThread As Long) As Long
 Public Declare Function SetPriorityClass Lib "kernel32" (ByVal hProcess As Long, ByVal dwPriorityClass As Long) As Long
 Public Declare Function SetThreadPriority Lib "kernel32" (ByVal hThread As Long, ByVal nPriority As Long) As Long
-' see THREAD_PRIORITY_TIME_CRITICAL
 
 Public Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 
@@ -66,7 +71,7 @@ Public Function MidiNoteString2Display(chrBuffer As String) As String
         
         mNote = Asc(Mid$(chrBuffer, mPosition, 1))
         
-        ctextoctave = Trim$(Str$(Int((mNote - 0) / 12) - 1))
+        ctextoctave = Trim$(str$(Int((mNote - 0) / 12) - 1))
         ctextscale = ""
         Select Case (mNote Mod 12) ' 0-based scale, 12-steps
          Case 0: ctextscale = "c"
@@ -82,7 +87,7 @@ Public Function MidiNoteString2Display(chrBuffer As String) As String
          Case 10: ctextscale = "a#"
          Case 11: ctextscale = "b"
          Case Else
-            Err.Raise 1, , "PROGRAM ERROR 454, invalid note, " & Trim$(Str$(mNote))
+            Err.Raise 1, , "PROGRAM ERROR 454, invalid note, " & Trim$(str$(mNote))
         End Select
         
         cText = cText & ctextscale & ctextoctave
@@ -138,15 +143,15 @@ Public Function GetChecksum(ByVal cMessage As String) As String
     If gisEnd = True Then GoTo ExitEnd ' not needed at shutdown
     
     Dim tempchksum As Integer
-    Dim i As Integer
+    Dim I As Integer
    
     tempchksum = 0
-    For i = 1 To Len(cMessage)
-        tempchksum = ((tempchksum + Asc(Mid$(cMessage, i, 1))) And &HFF)
+    For I = 1 To Len(cMessage)
+        tempchksum = ((tempchksum + Asc(Mid$(cMessage, I, 1))) And &HFF)
         'tempchksum = (tempchksum + Asc(Mid$(cMessage, i, 1))) Mod 256 ' alternative
         'tempchksum = (tempchksum + Asc(Mid$(cMessage, i, 1))) Mod &H100 ' alternative
-        If i = MB_INTEGERUBOUND Then Exit For
-    Next i
+        If I = MB_INTEGERUBOUND Then Exit For
+    Next I
     tempchksum = -tempchksum And 127
     If tempchksum = &H80 Then tempchksum = 0
 

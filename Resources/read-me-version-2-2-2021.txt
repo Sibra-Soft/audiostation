@@ -101,8 +101,4 @@ Version 1.7 Build: 2017
 [ + ]	Added search function to create playlist dialog
 [ + ]	Recording device settings issue solved
 
-Version 1.6 Build: 2016
-[ + ]	Tra
-
-
 :::::::::::::::::::::: Sibra-Soft Software Production © 2021 ::::::::::::::::::::::

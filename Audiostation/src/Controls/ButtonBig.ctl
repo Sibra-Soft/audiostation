@@ -276,12 +276,12 @@ LeftPixels.Picture = ImageList1.ListImages(4).Picture
 RightPixels.Picture = ImageList1.ListImages(6).Picture
 
 ButtonContent.top = 7
-ButtonContent.Left = 6
+ButtonContent.left = 6
 
 Image1.top = 140
-Image1.Left = 75
+Image1.left = 75
 Image2.top = 140
-Image2.Left = 75
+Image2.left = 75
 End Sub
 
 Private Sub iLabelX1_OnMouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Long, ByVal Y As Long)
@@ -296,12 +296,12 @@ LeftPixels.Picture = ImageList1.ListImages(1).Picture
 RightPixels.Picture = ImageList1.ListImages(3).Picture
 
 ButtonContent.top = 6
-ButtonContent.Left = 5
+ButtonContent.left = 5
 
 Image1.top = 120
-Image1.Left = 60
+Image1.left = 60
 Image2.top = 120
-Image2.Left = 60
+Image2.left = 60
 End Sub
 Private Sub UserControl_Initialize()
 Dim K As Integer
@@ -311,7 +311,7 @@ For K = 1 To CenterPixels.count - 1
 Next
 
 ButtonContent.top = 6
-ButtonContent.Left = 5
+ButtonContent.left = 5
 End Sub
 
 Private Sub UserControl_Resize()
@@ -325,7 +325,7 @@ On Error Resume Next
 For J = 1 To Pixels
     Load CenterPixels(J)
     With CenterPixels(J)
-        .Left = 8 * J
+        .left = 8 * J
         .top = 0
         .Visible = True
     End With

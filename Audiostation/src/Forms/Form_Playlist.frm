@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Playlist 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
@@ -395,22 +395,22 @@ If lstPlaylist.ListItems.count > 31 Or Force = True Then
 End If
 End Sub
 Private Function ComboxboxToCommondialogFilter() As String
-Dim i As Integer
+Dim I As Integer
 Dim FileType As String
 Dim Description As String
 Dim FilterString As New StringBuilder
 
-For i = 0 To cboFileTypes.ListCount - 1
-    FileType = Extensions.StringBetween("(", ")", cboFileTypes.List(i))
-    Description = Extensions.Explode(cboFileTypes.List(i), "(", 0)
+For I = 0 To cboFileTypes.ListCount - 1
+    FileType = Extensions.StringBetween("(", ")", cboFileTypes.List(I))
+    Description = Extensions.Explode(cboFileTypes.List(I), "(", 0)
     
     FilterString.Append Description & "(" & FileType & ")|" & FileType & "|"
 Next
 
 ComboxboxToCommondialogFilter = FilterString.toString
 End Function
-Private Sub SavePlaylistAsHTML(Filename As String)
-Dim i As Integer
+Private Sub SavePlaylistAsHTML(FileName As String)
+Dim I As Integer
 Dim TemplateContent As String
 Dim table As New StringBuilder
 
@@ -427,11 +427,11 @@ table.AppendNL "<thead>"
     table.AppendNL "</tr>"
 table.AppendNL "</thead>"
 
-For i = 1 To lstPlaylist.ListItems.count
+For I = 1 To lstPlaylist.ListItems.count
     table.AppendNL "<tr>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(i).Text & "</td>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(i).SubItems(1) & "</td>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(i).SubItems(2) & "</td>"
+        table.AppendNL "<td>" & lstPlaylist.ListItems(I).text & "</td>"
+        table.AppendNL "<td>" & lstPlaylist.ListItems(I).SubItems(1) & "</td>"
+        table.AppendNL "<td>" & lstPlaylist.ListItems(I).SubItems(2) & "</td>"
     table.AppendNL "</tr>"
 Next
 
@@ -440,14 +440,14 @@ table.AppendNL "</table>"
 'Replace the template variable with the created table
 TemplateContent = Replace(TemplateContent, "{PlaylistTable}", table.toString)
 
-Call Extensions.FilePutContents(Filename, TemplateContent)
+Call Extensions.FilePutContents(FileName, TemplateContent)
 End Sub
 Public Sub AddToPlaylist(file As String)
 Dim MediaDuration As String
 Dim lstItem As ListItem
 Dim Files
 Dim FilesToAddCount As Integer
-Dim i As Integer
+Dim I As Integer
 Dim FirstIndex As Integer
 Dim AddingMoreThanOne As Boolean
 Dim FileNotFoundCount As Integer
@@ -469,9 +469,9 @@ If AddingMoreThanOne = True Then
 End If
 
 'Add files to the playlist
-For i = FirstIndex To FilesToAddCount
+For I = FirstIndex To FilesToAddCount
     'Get current file to process
-    file = Files(i)
+    file = Files(I)
     
     If Dir(file, vbDirectory) = vbNullString Then
         Debug.Print "File not found"
@@ -482,7 +482,7 @@ For i = FirstIndex To FilesToAddCount
         
             If CurrentFormType = Mp3Player Then
                 If (LCase(Right(file, 3)) = "mp3") Then
-                    Mp3Info.Filename = file
+                    Mp3Info.FileName = file
                     MediaDuration = Extensions.TimeString(Mp3Info.SongLength)
                 End If
             End If
@@ -518,7 +518,7 @@ Select Case Err.Number
 End Select
 End Sub
 Private Function SavePlaylist(ByVal strFile As String, ByRef lstFormList As ListView, ByVal PlaylistType As PlsType, Optional ByVal blnClearList As Boolean = False)
-Dim i As Integer
+Dim I As Integer
 Dim FN As Integer
 
 Dim MusicLibraryLocation As String
@@ -556,9 +556,9 @@ Select Case PlaylistType
         Close #1
         
     Case 1
-        For i = 1 To lstFormList.ListItems.count
-            Call Extensions.INIWrite("playlist", "File" & i, lstFormList.ListItems(i).key, strFile)
-        Next i
+        For I = 1 To lstFormList.ListItems.count
+            Call Extensions.INIWrite("playlist", "File" & I, lstFormList.ListItems(I).key, strFile)
+        Next I
         
         Call Extensions.INIWrite("playlist", "NumberOfEntries", lstFormList.ListItems.count, strFile)
         Call Extensions.INIWrite("playlist", "Version", 2, strFile)
@@ -567,18 +567,18 @@ Select Case PlaylistType
         Open strFile For Output As #FN
             Print #FN, "#EXTM3U"
             
-            For i = 1 To lstFormList.ListItems.count
-              Print #FN, "#EXTINF:0, " & Extensions.GetFileNameFromFilePath(lstFormList.ListItems(i).key, False)
-              Print #FN, lstFormList.ListItems(i).key
+            For I = 1 To lstFormList.ListItems.count
+              Print #FN, "#EXTINF:0, " & Extensions.GetFileNameFromFilePath(lstFormList.ListItems(I).key, False)
+              Print #FN, lstFormList.ListItems(I).key
               Print #FN, ""
-            Next i
+            Next I
         Close #FN
     
     Case 3
         Open strFile For Output As #FN
-            For i = 1 To lstFormList.ListItems.count
-              Print #FN, lstFormList.ListItems(i).key
-            Next i
+            For I = 1 To lstFormList.ListItems.count
+              Print #FN, lstFormList.ListItems(I).key
+            Next I
         Close #FN
         
         If blnClearList = True Then lstFormList.ListItems.Clear
@@ -586,33 +586,33 @@ End Select
 End Function
 Public Function PopulatePlaylist(Playlist As LocalStorage)
 Dim fso As New FileSystemObject
-Dim i As Integer
+Dim I As Integer
 
 Dim CurrentFile As String
 
 lstPlaylist.ListItems.Clear
 
 'Get the playlist from the local saved storage
-For i = 1 To Playlist.StorageContainer.count
-    CurrentFile = Playlist.GetItemByIndex(i, 1)
+For I = 1 To Playlist.StorageContainer.count
+    CurrentFile = Playlist.GetItemByIndex(I, 1)
     
     'Add the file to the listview
-    Set lstItem = lstPlaylist.ListItems.Add(, CurrentFile, Playlist.GetItemByIndex(i, 0))
+    Set lstItem = lstPlaylist.ListItems.Add(, CurrentFile, Playlist.GetItemByIndex(I, 0))
         lstItem.SubItems(1) = CurrentFile
-        lstItem.SubItems(2) = Playlist.GetItemByIndex(i, 2)
+        lstItem.SubItems(2) = Playlist.GetItemByIndex(I, 2)
     
     'Select the current playing mp3 audio track
-    If AudiostationMP3Player.CurrentTrackNumber = i And CurrentFormType = Mp3Player Then
-        lstPlaylist.ListItems(i).Bold = True
-        lstPlaylist.ListItems(i).ListSubItems(1).Bold = True
-        lstPlaylist.ListItems(i).ListSubItems(2).Bold = True
+    If AudiostationMP3Player.CurrentTrackNumber = I And CurrentFormType = Mp3Player Then
+        lstPlaylist.ListItems(I).Bold = True
+        lstPlaylist.ListItems(I).ListSubItems(1).Bold = True
+        lstPlaylist.ListItems(I).ListSubItems(2).Bold = True
     End If
     
     'Select the current playing midi audio track
-    If AudiostationMIDIPlayer.MidiTrackNr = i And CurrentFormType = MidiPlayer Then
-        lstPlaylist.ListItems(i).Bold = True
-        lstPlaylist.ListItems(i).ListSubItems(1).Bold = True
-        lstPlaylist.ListItems(i).ListSubItems(2).Bold = True
+    If AudiostationMIDIPlayer.MidiTrackNr = I And CurrentFormType = MidiPlayer Then
+        lstPlaylist.ListItems(I).Bold = True
+        lstPlaylist.ListItems(I).ListSubItems(1).Bold = True
+        lstPlaylist.ListItems(I).ListSubItems(2).Bold = True
     End If
 Next
 
@@ -666,14 +666,14 @@ Dim CurrentPlaylist As LocalStorage
 
 Select Case CurrentFormType
     Case enumFormTypes.MidiPlayer: Set CurrentPlaylist = MidiPlaylist
-    Case enumFormTypes.Mp3Player: Set CurrentPlaylist = Mp3Playlist
+    Case enumFormTypes.Mp3Player: Set CurrentPlaylist = MediaPlaylist
 End Select
 
 'First save the current playlist to the storage
 Call CurrentPlaylist.ListviewToStorage(lstPlaylist, 1)
 
 'Get the current file type to filter
-SplitValue = Split(cboFileTypes.Text, "(*")
+SplitValue = Split(cboFileTypes.text, "(*")
 FileTypeArray = Replace(SplitValue(1), ")", vbNullString)
 
 If Not cboFileTypes.ListIndex = 0 Then: CurrentPlaylist.filter (FileTypeArray)
@@ -701,15 +701,15 @@ Private Sub cmdSavePlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True
-    .Filename = App.path
+    .FileName = App.path
     .DialogTitle = GetLanguage(1017)
     .filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowSave
 
-    If Right(LCase(.Filename), 3) = "apl" Then: Call SavePlaylist(.Filename, lstPlaylist, [Audiostation Playlist])
-    If Right(LCase(.Filename), 3) = "m3u" Then: Call SavePlaylist(.Filename, lstPlaylist, [Common Playlist])
-    If Right(LCase(.Filename), 3) = "pls" Then: Call SavePlaylist(.Filename, lstPlaylist, [ShoutCast Playlist])
-    If Right(LCase(.Filename), 3) = "wpl" Then: Call SavePlaylist(.Filename, lstPlaylist, [Windows Media Player Playlist])
+    If Right(LCase(.FileName), 3) = "apl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Audiostation Playlist])
+    If Right(LCase(.FileName), 3) = "m3u" Then: Call SavePlaylist(.FileName, lstPlaylist, [Common Playlist])
+    If Right(LCase(.FileName), 3) = "pls" Then: Call SavePlaylist(.FileName, lstPlaylist, [ShoutCast Playlist])
+    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player Playlist])
 End With
 
 Exit Sub
@@ -732,8 +732,8 @@ Select Case CurrentFormType
         Call MidiPlaylist.ListviewToStorage(lstPlaylist, 1)
         
     Case enumFormTypes.Mp3Player
-        Call Mp3Playlist.ClearStorage
-        Call Mp3Playlist.ListviewToStorage(lstPlaylist, 1)
+        Call MediaPlaylist.ClearFilter
+        Call MediaPlaylist.ListviewToStorage(lstPlaylist, 1)
 End Select
 
 Unload Me
@@ -743,7 +743,7 @@ Private Sub Form_Activate()
 Screen.MousePointer = vbDefault
 End Sub
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 Dim SplitValue
 
 Screen.MousePointer = vbHourglass
@@ -758,22 +758,22 @@ Call LoadFileTypes
 
 Select Case CurrentFormType
     Case enumFormTypes.MidiPlayer: Call PopulatePlaylist(MidiPlaylist)
-    Case enumFormTypes.Mp3Player: Call PopulatePlaylist(Mp3Playlist)
+    Case enumFormTypes.Mp3Player: Call PopulatePlaylist(MediaPlaylist)
 End Select
 End Sub
 Private Sub cmdOpenPlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True
-    .Filename = App.path
+    .FileName = App.path
     .DialogTitle = GetLanguage(1018)
     .filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowOpen
     
-    If .FilterIndex = 1 Then: Call ModPlaylist.OpenAplPlaylist(.Filename)
-    If .FilterIndex = 2 Then: Call ModPlaylist.OpenM3uPlaylist(.Filename)
-    If .FilterIndex = 3 Then: Call ModPlaylist.OpenPlsPlaylist(.Filename)
-    If .FilterIndex = 4 Then: Call ModPlaylist.OpenWplPlaylist(.Filename)
+    If .FilterIndex = 1 Then: Call ModPlaylist.OpenAplPlaylist(.FileName)
+    If .FilterIndex = 2 Then: Call ModPlaylist.OpenM3uPlaylist(.FileName)
+    If .FilterIndex = 3 Then: Call ModPlaylist.OpenPlsPlaylist(.FileName)
+    If .FilterIndex = 4 Then: Call ModPlaylist.OpenWplPlaylist(.FileName)
 
     Call FitListviewToSize
 End With
@@ -797,7 +797,7 @@ If lstPlaylist.ListItems.count > 0 Then
             AudiostationMIDIPlayer.StartMidiPlayback
             
         Case enumFormTypes.Mp3Player
-            Call Mp3Playlist.ListviewToStorage(lstPlaylist, 1)
+            Call MediaPlaylist.ListviewToStorage(lstPlaylist, 1)
             
             AudiostationMP3Player.CurrentTrackNumber = lstPlaylist.SelectedItem.index
             AudiostationMP3Player.StartPlay
@@ -808,12 +808,12 @@ End If
 End Sub
 
 Private Sub lstPlaylist_OLEDragDrop(data As MSComctlLib.DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
-Dim i As Integer
+Dim I As Integer
 Dim CurrentFile As String
 
 'Add the dropped files to the playlist
-For i = 1 To data.Files.count
-    CurrentFile = data.Files(i)
+For I = 1 To data.Files.count
+    CurrentFile = data.Files(I)
     
     Call AddToPlaylist(CurrentFile)
 Next
@@ -822,7 +822,7 @@ Call FitListviewToSize
 End Sub
 
 Private Sub mnuadddirectory_popup_Click()
-Dim i As Integer
+Dim I As Integer
 Dim SelectedDirectory As String
 Dim StringBuilder As String
 Dim CurrentFile As String
@@ -837,8 +837,8 @@ If SelectedDirectory <> vbNullString Then
     If DirToPlaylist.ListCount > 32 Then: Call FitListviewToSize(True)
     
     'Construct the files string
-    For i = 0 To DirToPlaylist.ListCount - 1
-        CurrentFile = DirToPlaylist.path & "\" & DirToPlaylist.List(i)
+    For I = 0 To DirToPlaylist.ListCount - 1
+        CurrentFile = DirToPlaylist.path & "\" & DirToPlaylist.List(I)
         
         StringBuilder = StringBuilder & CurrentFile & vbNewLine
     Next
@@ -860,8 +860,8 @@ With CommonDialog
     .flags = cdlOFNAllowMultiselect Or cdlOFNExplorer Or cdlOFNHideReadOnly
     .ShowOpen
 
-    If .Filename <> vbNullString Then
-        Files = Extensions.CommondialogFilesToList(.Filename)
+    If .FileName <> vbNullString Then
+        Files = Extensions.CommondialogFilesToList(.FileName)
         
         Call AddToPlaylist(Files)
     End If
@@ -882,8 +882,8 @@ With CommonDialog
     .filter = "Hyperlink Markup Langauge Page (*.html)|*.html"
     .ShowSave
     
-    If .Filename <> vbNullString Then
-        Call SavePlaylistAsHTML(.Filename)
+    If .FileName <> vbNullString Then
+        Call SavePlaylistAsHTML(.FileName)
     End If
 End With
 
@@ -895,19 +895,19 @@ End Select
 End Sub
 
 Private Sub mnushuffleplaylist_Click()
-Dim i As Integer
+Dim I As Integer
 Dim lstItem As ListItem
 Dim newListItem As ListItem
     
 If lstPlaylist.ListItems.count = 0 Then: Exit Sub
-For i = 1 To Extensions.RandomNumber(1, lstPlaylist.ListItems.count)
-    Set lstItem = lstPlaylist.ListItems(i)
+For I = 1 To Extensions.RandomNumber(1, lstPlaylist.ListItems.count)
+    Set lstItem = lstPlaylist.ListItems(I)
         
-    Set newListItem = lstPlaylist.ListItems.Add(, , lstItem.Text)
+    Set newListItem = lstPlaylist.ListItems.Add(, , lstItem.text)
     newListItem.SubItems(1) = lstItem.SubItems(1)
     newListItem.SubItems(2) = lstItem.SubItems(2)
     
-    lstPlaylist.ListItems.Remove (i)
+    lstPlaylist.ListItems.Remove (I)
 Next
 End Sub
 
@@ -915,12 +915,12 @@ Private Sub Trm_Count_Timer()
 Dim Minutes As Long
 Dim seconds As Long
 Dim SplitValue
-Dim i As Integer
+Dim I As Integer
 Dim TotalSeconds As Long
 Dim ItemValue As String
 
-For i = 1 To lstPlaylist.ListItems.count
-    ItemValue = lstPlaylist.ListItems(i).SubItems(2)
+For I = 1 To lstPlaylist.ListItems.count
+    ItemValue = lstPlaylist.ListItems(I).SubItems(2)
     
     If ItemValue = "-" Or ItemValue = vbNullString Then
         'Do nothing

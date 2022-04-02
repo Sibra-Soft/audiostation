@@ -1,18 +1,28 @@
 Attribute VB_Name = "AudiostationMP3Player"
-Public PlayState As enumPlayStates
-Public PlaylistMode As enumPlaylistMode
-Public PlayMode As enumPlayMode
-Public PlayStateMediaMode As enumMediaMode
+Option Explicit
 
-Public Mp3Playlist As New LocalStorage
+' /////////////////////////////////////////////////////////////////////////////////
+' Module:           AudiostationMP3Player
+' Description:      Adds MP3 Player functionality
+'
+' Date Changed:     29-03-2022
+' Date Created:     04-10-2021
+' Author:           Sibra-Soft - Alex van den Berg
+' /////////////////////////////////////////////////////////////////////////////////
+
+Public MediaPlaylistMode As enumPlaylistMode
+Public MediaPlayMode As enumPlayMode
+Public MediaPlaystate As enumPlayStates
+
+Public MediaPlaylist As New LocalStorage
 
 Public ShowElapsedTime As Boolean
 Public CurrentMediaFilename As String
 Public CurrentTrackNumber As Integer
 Public Sub Init()
-PlayState = Stopped
-PlaylistMode = RepeatPlaylist
-PlayMode = PlaySingleTrack
+MediaPlaystate = Stopped
+MediaPlaylistMode = RepeatPlaylist
+MediaPlayMode = PlaySingleTrack
 AudiostationMP3Player.ShowElapsedTime = True
 End Sub
 Public Sub Rewind()
@@ -31,7 +41,7 @@ Call BASS_ChannelSetPosition(chan, BASS_ChannelSeconds2Bytes(chan, pos - 5), BAS
 End Sub
 Public Sub Pause()
 Call BASS_ChannelPause(chan)
-PlayState = Paused
+MediaPlaystate = Paused
 End Sub
 Public Sub StartPlay()
 AudiostationCDPlayer.StopPlay
@@ -39,7 +49,7 @@ AudiostationMIDIPlayer.StopMidiPlayback
 
 PlayStateMediaMode = MP3MediaMode
 
-If PlayState = Paused Then
+If MediaPlaystate = Paused Then
     Call BASS_ChannelPlay(chan, False)
 Else
     If CurrentTrackNumber = 0 Then: CurrentTrackNumber = 1
@@ -49,7 +59,7 @@ Else
     Call BASS_StreamFree(chan)
     Call BASS_MusicFree(chan)
     
-    mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
+    mediaFilename = MediaPlaylist.GetItemByIndex(CurrentTrackNumber, 1)
     
     CurrentMediaFilename = mediaFilename
     
@@ -59,17 +69,17 @@ Else
     Call BASS_ChannelPlay(chan, True)
 End If
 
-PlayState = Playing
+MediaPlaystate = Playing
 End Sub
 Public Sub StopPlay()
 Call BASS_ChannelStop(chan)
-PlayState = Stopped
+MediaPlaystate = Stopped
 End Sub
 Public Sub NextTrack(Optional TrackNumber As Integer, Optional Force = False)
 Dim mediaFilename As String
 
-If Mp3Playlist.StorageContainer.count = 0 Then: Exit Sub
-If CurrentTrackNumber = Mp3Playlist.StorageContainer.count Then: Exit Sub
+If MediaPlaylist.StorageContainer.count = 0 Then: Exit Sub
+If CurrentTrackNumber = MediaPlaylist.StorageContainer.count Then: Exit Sub
 
 If TrackNumber > 0 Then
     'Track number is set by parameter
@@ -80,11 +90,11 @@ Else
     
     If Force Then NextTrackNumber = AudiostationMP3Player.CurrentTrackNumber + 1: GoTo DoNext
     
-    Select Case AudiostationMP3Player.PlayMode
-        Case enumPlayMode.Shuffle: NextTrackNumber = Extensions.RandomNumber(1, Mp3Playlist.StorageContainer.count - 1)
+    Select Case AudiostationMP3Player.MediaPlayMode
+        Case enumPlayMode.Shuffle: NextTrackNumber = Extensions.RandomNumber(1, MediaPlaylist.StorageContainer.count - 1)
         Case enumPlayMode.PlaySingleTrack: Exit Sub
         Case enumPlayMode.AutoNextTrack
-            If PlaylistMode = RepeatSingleTrack Then
+            If MediaPlaylistMode = RepeatSingleTrack Then
                 NextTrackNumber = AudiostationMP3Player.CurrentTrackNumber
             Else
                 NextTrackNumber = AudiostationMP3Player.CurrentTrackNumber + 1
@@ -97,7 +107,7 @@ DoNext:
 End If
 
 AudiostationMP3Player.CurrentTrackNumber = CurrentTrackNumber
-mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
+mediaFilename = MediaPlaylist.GetItemByIndex(CurrentTrackNumber, 1)
 
 CurrentMediaFilename = mediaFilename
 
@@ -106,11 +116,11 @@ End Sub
 Public Sub PreviousTrack()
 Dim mediaFilename As String
 
-If Mp3Playlist.StorageContainer.count = 0 Or CurrentTrackNumber = 1 Then: Exit Sub
+If MediaPlaylist.StorageContainer.count = 0 Or CurrentTrackNumber = 1 Then: Exit Sub
 
 AudiostationMP3Player.CurrentTrackNumber = CurrentTrackNumber - 1
 
-mediaFilename = Mp3Playlist.GetItemByIndex(CurrentTrackNumber, 1)
+mediaFilename = MediaPlaylist.GetItemByIndex(CurrentTrackNumber, 1)
 CurrentMediaFilename = mediaFilename
 
 Call StartPlay

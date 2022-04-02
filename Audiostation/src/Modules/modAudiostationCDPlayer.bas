@@ -10,7 +10,9 @@ Option Explicit
 ' Author:           Sibra-Soft - Alex van den Berg
 ' /////////////////////////////////////////////////////////////////////////////////
 
-Public Mode As enumCDMode
+Public CDPlaystate As enumPlayStates
+
+Public mode As enumCDMode
 Public CurrentTrackCount As Long
 Public CurrentTrackNr As Long
 Private Sub EndSync(ByVal handle As Long, ByVal channel As Long, ByVal data As Long, ByVal user As Long)
@@ -63,7 +65,7 @@ AudiostationCDPlayer.StopPlay
 
 PlayStateMediaMode = CDMediaMode
 
-If PlayState = Paused Then
+If MediaPlaystate = Paused Then
     Call BASS_ChannelPlay(curdrive, 0)
 Else
     Call BASS_ChannelPlay(curdrive, 1)
@@ -76,13 +78,13 @@ Call BASS_ChannelPause(curdrive)
 End Sub
 Public Sub Forward()
 Dim pos As Long
-pos = BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetPosition(curdrive, BASS_POS_BYTE))
-Call BASS_ChannelSetPosition(chan, BASS_ChannelSeconds2Bytes(curdrive, pos - 5), BASS_POS_BYTE)
+pos = BASS_ChannelBytes2Seconds(curdrive, BASS_ChannelGetPosition(curdrive, BASS_POS_BYTE))
+Call BASS_ChannelSetPosition(curdrive, BASS_ChannelSeconds2Bytes(curdrive, pos - 5), BASS_POS_BYTE)
 End Sub
 Public Sub Rewind()
 Dim pos As Long
-pos = BASS_ChannelBytes2Seconds(chan, BASS_ChannelGetPosition(curdrive, BASS_POS_BYTE))
-Call BASS_ChannelSetPosition(chan, BASS_ChannelSeconds2Bytes(curdrive, pos + 5), BASS_POS_BYTE)
+pos = BASS_ChannelBytes2Seconds(curdrive, BASS_ChannelGetPosition(curdrive, BASS_POS_BYTE))
+Call BASS_ChannelSetPosition(curdrive, BASS_ChannelSeconds2Bytes(curdrive, pos + 5), BASS_POS_BYTE)
 End Sub
 Public Sub OpenOrCloseDriveDoor()
 If BASS_CD_DoorIsOpen(curdrive) Then
@@ -92,7 +94,7 @@ Else
 End If
 End Sub
 Public Sub NextTrack()
-Select Case Mode
+Select Case mode
      Case LoopMode: CurrentTrackNr = CurrentTrackNr
      Case RandomMode: CurrentTrackNr = Extensions.RandomNumber(0, CInt(CurrentTrackCount))
      Case Else: CurrentTrackNr = CurrentTrackNr + 1

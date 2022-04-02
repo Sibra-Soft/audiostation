@@ -1,13 +1,25 @@
 Attribute VB_Name = "AudiostationMIDIPlayer"
+Option Explicit
+
+' /////////////////////////////////////////////////////////////////////////////////
+' Module:           AudiostationMidiPlayer
+' Description:      Adds Midi player functionality
+'
+' Date Changed:     25-10-2021
+' Date Created:     04-10-2021
+' Author:           Sibra-Soft - Alex van den Berg
+' /////////////////////////////////////////////////////////////////////////////////
+
 Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
 Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lparam As Long) As Long
 
 Private Const WM_CHAR = &H102
 Private Const WM_CLOSE = &H10
 
-Public MidiPlaylist As New LocalStorage
 Public MidiFilename As String
 Public MidiTrackNr As Integer
+Public MidiPlaystate As enumPlayStates
+Public MidiPlaylist As New LocalStorage
 
 Public ConsoleWindow As Long
 Public Sub StartMidiPlayback()
@@ -19,20 +31,20 @@ If PlayStateMediaMode = SidMediaMode Then Call AudiostationMIDIPlayer.StopMidiPl
 Call Form_Main.ResetMidiVU ' Set all vu meters to 0
 If MidiTrackNr = 0 Then MidiTrackNr = 1
 
-If PlayState = Paused Then
+If MidiPlaystate = Paused Then
     Call Form_Midi.StartPlay
 Else
-    Dim Filename As String
+    Dim FileName As String
     
-    Filename = MidiPlaylist.GetItemByIndex(MidiTrackNr, 1)
-    MidiFilename = Extensions.GetFileNameFromFilePath(Filename, False)
+    FileName = MidiPlaylist.GetItemByIndex(MidiTrackNr, 1)
+    MidiFilename = Extensions.GetFileNameFromFilePath(FileName, False)
     
-    Select Case Right(Filename, 3)
+    Select Case Right(FileName, 3)
         Case "sid"
             Call AudiostationMIDIPlayer.StopMidiPlayback
             PlayStateMediaMode = SidMediaMode
            
-            Shell App.path & "\support\sidplayer\sid_player.exe " & Chr(34) & Filename & Chr(34), vbHide
+            Shell App.path & "\support\sidplayer\sid_player.exe " & Chr(34) & FileName & Chr(34), vbHide
             
             Call Extensions.Pause(500)
             ConsoleWindow = FindWindow(vbNullString, App.path & "\support\sidplayer\sid_player.exe")
@@ -44,25 +56,25 @@ Else
         Case Else
             PlayStateMediaMode = MidiMediaMode
             
-            Call Form_Midi.OpenFile(Filename)
+            Call Form_Midi.OpenFile(FileName)
             Call Form_Midi.StartPlay
             
     End Select
 End If
 
-PlayState = Playing
+MidiPlaystate = Playing
 End Sub
 Public Sub StopMidiPlayback()
 If PlayStateMediaMode = SidMediaMode Then
     Call PostMessage(ConsoleWindow, WM_CLOSE, 0&, 0&)
 Else
     Form_Midi.StopPlay
-    PlayState = Stopped
+    MidiPlaystate = Stopped
 End If
 End Sub
 Public Sub PauseMidiPlayback()
 Form_Midi.PausePlay
-PlayState = Paused
+MidiPlaystate = Paused
 End Sub
 Public Sub NextMidiTrack()
 If MidiTrackNr = MidiPlaylist.StorageContainer.count Then: Exit Sub

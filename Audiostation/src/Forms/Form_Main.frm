@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
@@ -32,15 +32,15 @@ Begin VB.Form Form_Main
       BackColor       =   &H00000000&
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
-      Height          =   1455
+      Height          =   1500
       Index           =   6
       Left            =   120
       Picture         =   "Form_Main.frx":088B
-      ScaleHeight     =   1455
-      ScaleWidth      =   10095
-      TabIndex        =   163
+      ScaleHeight     =   1500
+      ScaleWidth      =   9615
+      TabIndex        =   162
       Top             =   6900
-      Width           =   10095
+      Width           =   9615
    End
    Begin VB.Timer Timer_Stream 
       Enabled         =   0   'False
@@ -87,7 +87,7 @@ Begin VB.Form Form_Main
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
             BackStyle       =   0  'Transparent
-            Caption         =   "Copyright © 2009 - 2021 Sibra-Soft Software Production"
+            Caption         =   "Copyright © 2009 - 2022 Sibra-Soft Software Production"
             ForeColor       =   &H00FFFFFF&
             Height          =   195
             Left            =   45
@@ -173,7 +173,7 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   1
       Left            =   120
-      Picture         =   "Form_Main.frx":8B0F3
+      Picture         =   "Form_Main.frx":6C283
       ScaleHeight     =   1500
       ScaleWidth      =   9615
       TabIndex        =   113
@@ -186,7 +186,7 @@ Begin VB.Form Form_Main
       Height          =   1590
       Index           =   4
       Left            =   120
-      Picture         =   "Form_Main.frx":9AF35
+      Picture         =   "Form_Main.frx":7C0C5
       ScaleHeight     =   1590
       ScaleWidth      =   9615
       TabIndex        =   116
@@ -199,7 +199,7 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   3
       Left            =   120
-      Picture         =   "Form_Main.frx":CB9D7
+      Picture         =   "Form_Main.frx":ACB67
       ScaleHeight     =   1500
       ScaleWidth      =   9615
       TabIndex        =   115
@@ -237,23 +237,23 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":DB599
+            Picture         =   "Form_Main.frx":BC729
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":DD02B
+            Picture         =   "Form_Main.frx":BE1BB
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":DEABD
+            Picture         =   "Form_Main.frx":BFC4D
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":E054F
+            Picture         =   "Form_Main.frx":C16DF
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":E1FE1
+            Picture         =   "Form_Main.frx":C3171
             Key             =   ""
          EndProperty
       EndProperty
@@ -271,31 +271,31 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   7
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":E3A73
+            Picture         =   "Form_Main.frx":C4C03
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":EBEBD
+            Picture         =   "Form_Main.frx":CD04D
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":FBF01
+            Picture         =   "Form_Main.frx":DD091
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":10BF45
+            Picture         =   "Form_Main.frx":ED0D5
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":11BF89
+            Picture         =   "Form_Main.frx":FD119
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":12BFCD
+            Picture         =   "Form_Main.frx":10D15D
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":13C011
+            Picture         =   "Form_Main.frx":11D1A1
             Key             =   ""
          EndProperty
       EndProperty
@@ -341,7 +341,7 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":14C055
+            Picture         =   "Form_Main.frx":12D1E5
             Key             =   ""
          EndProperty
       EndProperty
@@ -361,7 +361,7 @@ Begin VB.Form Form_Main
       Height          =   1575
       Index           =   4
       Left            =   120
-      Picture         =   "Form_Main.frx":14C5EF
+      Picture         =   "Form_Main.frx":12D77F
       ScaleHeight     =   1575
       ScaleWidth      =   9735
       TabIndex        =   1
@@ -621,7 +621,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17DF89
+         Glyph           =   "Form_Main.frx":15F119
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -671,7 +671,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17DFDF
+         Glyph           =   "Form_Main.frx":15F16F
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -721,7 +721,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17E035
+         Glyph           =   "Form_Main.frx":15F1C5
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -771,7 +771,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17E08B
+         Glyph           =   "Form_Main.frx":15F21B
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -821,7 +821,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17E0E1
+         Glyph           =   "Form_Main.frx":15F271
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -871,7 +871,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":17E137
+         Glyph           =   "Form_Main.frx":15F2C7
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -915,8 +915,8 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2355
-         Value           =   50
-         Max             =   1000
+         Value           =   9
+         Max             =   9
       End
       Begin Audiostation.MixSlider Slider_CD_Right 
          Height          =   1215
@@ -926,8 +926,8 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2143
-         Value           =   50
-         Max             =   1000
+         Value           =   9
+         Max             =   9
       End
       Begin Audiostation.MixSlider Slider_Dat_Left 
          Height          =   1335
@@ -937,7 +937,8 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2355
-         Max             =   1000
+         Value           =   9
+         Max             =   9
       End
       Begin Audiostation.MixSlider Slider_Dat_Right 
          Height          =   1215
@@ -947,7 +948,8 @@ Begin VB.Form Form_Main
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2143
-         Max             =   1000
+         Value           =   9
+         Max             =   9
       End
       Begin Audiostation.MixSlider Slider_Midi_Left 
          Height          =   1335
@@ -970,7 +972,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX5 
          Height          =   210
          Left            =   6480
-         TabIndex        =   155
+         TabIndex        =   154
          Top             =   1200
          Width           =   855
          AutoSize        =   0   'False
@@ -1010,14 +1012,14 @@ Begin VB.Form Form_Main
       Begin VB.Image Image1 
          Height          =   960
          Left            =   8640
-         Picture         =   "Form_Main.frx":17E18D
+         Picture         =   "Form_Main.frx":15F31D
          Top             =   240
          Width           =   420
       End
       Begin VB.Image Image3 
          Height          =   1005
          Left            =   2750
-         Picture         =   "Form_Main.frx":17F6CF
+         Picture         =   "Form_Main.frx":16085F
          Top             =   240
          Width           =   345
       End
@@ -1035,35 +1037,35 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   8
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":1809E9
+            Picture         =   "Form_Main.frx":161B79
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":180BD9
+            Picture         =   "Form_Main.frx":161D69
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":180DC9
+            Picture         =   "Form_Main.frx":161F59
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":180FB8
+            Picture         =   "Form_Main.frx":162148
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":1811A4
+            Picture         =   "Form_Main.frx":162334
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":181394
+            Picture         =   "Form_Main.frx":162524
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":181587
+            Picture         =   "Form_Main.frx":162717
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":181777
+            Picture         =   "Form_Main.frx":162907
             Key             =   ""
          EndProperty
       EndProperty
@@ -1083,7 +1085,7 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   3
       Left            =   120
-      Picture         =   "Form_Main.frx":181963
+      Picture         =   "Form_Main.frx":162AF3
       ScaleHeight     =   1500
       ScaleWidth      =   9615
       TabIndex        =   2
@@ -1104,7 +1106,7 @@ Begin VB.Form Form_Main
          EndProperty
          Height          =   1215
          Left            =   1030
-         Picture         =   "Form_Main.frx":1B0D91
+         Picture         =   "Form_Main.frx":191F21
          ScaleHeight     =   1215
          ScaleWidth      =   5220
          TabIndex        =   69
@@ -1139,7 +1141,6 @@ Begin VB.Form Form_Main
             _ExtentX        =   1931
             _ExtentY        =   688
             Caption         =   "Random"
-            ShowLed         =   -1  'True
             TextAlignment   =   0
          End
          Begin Audiostation.ButtonBig Button_CDLoop 
@@ -1151,7 +1152,6 @@ Begin VB.Form Form_Main
             _ExtentX        =   1931
             _ExtentY        =   688
             Caption         =   "Loop"
-            ShowLed         =   -1  'True
             TextAlignment   =   0
          End
       End
@@ -1209,7 +1209,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   5
             Left            =   3960
-            Picture         =   "Form_Main.frx":1B91CB
+            Picture         =   "Form_Main.frx":19A35B
             Style           =   1  'Graphical
             TabIndex        =   5
             Top             =   50
@@ -1229,7 +1229,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3480
-            Picture         =   "Form_Main.frx":1B9795
+            Picture         =   "Form_Main.frx":19A925
             Style           =   1  'Graphical
             TabIndex        =   7
             Top             =   50
@@ -1249,7 +1249,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   3
             Left            =   3000
-            Picture         =   "Form_Main.frx":1B9D1F
+            Picture         =   "Form_Main.frx":19AEAF
             Style           =   1  'Graphical
             TabIndex        =   8
             Top             =   50
@@ -1269,7 +1269,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2520
-            Picture         =   "Form_Main.frx":1BA2A9
+            Picture         =   "Form_Main.frx":19B439
             Style           =   1  'Graphical
             TabIndex        =   9
             Top             =   50
@@ -1289,7 +1289,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   2040
-            Picture         =   "Form_Main.frx":1BA833
+            Picture         =   "Form_Main.frx":19B9C3
             Style           =   1  'Graphical
             TabIndex        =   11
             Top             =   50
@@ -1309,7 +1309,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   1495
-            Picture         =   "Form_Main.frx":1BADFD
+            Picture         =   "Form_Main.frx":19BF8D
             Style           =   1  'Graphical
             TabIndex        =   10
             Top             =   50
@@ -1329,7 +1329,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   6
             Left            =   4560
-            Picture         =   "Form_Main.frx":1BB3C7
+            Picture         =   "Form_Main.frx":19C557
             Style           =   1  'Graphical
             TabIndex        =   6
             Top             =   50
@@ -1438,7 +1438,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_CD_Play_On 
          Height          =   135
          Left            =   6900
-         Picture         =   "Form_Main.frx":1BB991
+         Picture         =   "Form_Main.frx":19CB21
          Top             =   240
          Visible         =   0   'False
          Width           =   135
@@ -1446,7 +1446,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_CD_Pause_On 
          Height          =   150
          Left            =   6895
-         Picture         =   "Form_Main.frx":1BBE6B
+         Picture         =   "Form_Main.frx":19CFFB
          Top             =   550
          Visible         =   0   'False
          Width           =   135
@@ -1474,7 +1474,7 @@ Begin VB.Form Form_Main
       Height          =   1575
       Index           =   5
       Left            =   120
-      Picture         =   "Form_Main.frx":1BC355
+      Picture         =   "Form_Main.frx":19D4E5
       ScaleHeight     =   1575
       ScaleWidth      =   9735
       TabIndex        =   71
@@ -1494,9 +1494,9 @@ Begin VB.Form Form_Main
          EndProperty
          Height          =   375
          Left            =   5520
-         Picture         =   "Form_Main.frx":1EB783
+         Picture         =   "Form_Main.frx":1CC913
          Style           =   1  'Graphical
-         TabIndex        =   145
+         TabIndex        =   144
          ToolTipText     =   "Open stream"
          Top             =   870
          Width           =   495
@@ -1504,7 +1504,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX Label_StreamTitle 
          Height          =   210
          Left            =   6240
-         TabIndex        =   156
+         TabIndex        =   155
          Top             =   120
          Width           =   3135
          AutoSize        =   0   'False
@@ -1544,7 +1544,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX1 
          Height          =   210
          Left            =   4320
-         TabIndex        =   146
+         TabIndex        =   145
          Top             =   120
          Width           =   1935
          AutoSize        =   0   'False
@@ -1594,9 +1594,9 @@ Begin VB.Form Form_Main
          EndProperty
          Height          =   375
          Left            =   4800
-         Picture         =   "Form_Main.frx":1EB94D
+         Picture         =   "Form_Main.frx":1CCADD
          Style           =   1  'Graphical
-         TabIndex        =   144
+         TabIndex        =   143
          ToolTipText     =   "Stop"
          Top             =   870
          Width           =   495
@@ -1615,9 +1615,9 @@ Begin VB.Form Form_Main
          EndProperty
          Height          =   375
          Left            =   4320
-         Picture         =   "Form_Main.frx":1EBED7
+         Picture         =   "Form_Main.frx":1CD067
          Style           =   1  'Graphical
-         TabIndex        =   143
+         TabIndex        =   142
          ToolTipText     =   "Play"
          Top             =   870
          Width           =   495
@@ -1626,7 +1626,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   1
          Left            =   4967
-         TabIndex        =   148
+         TabIndex        =   147
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -1639,7 +1639,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   0
          Left            =   4320
-         TabIndex        =   147
+         TabIndex        =   146
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -1654,7 +1654,7 @@ Begin VB.Form Form_Main
          Left            =   6720
          ScaleHeight     =   195
          ScaleWidth      =   2595
-         TabIndex        =   141
+         TabIndex        =   140
          Top             =   930
          Width           =   2655
          Begin VB.Label label_StreamStatus 
@@ -1672,7 +1672,7 @@ Begin VB.Form Form_Main
             ForeColor       =   &H0000FF00&
             Height          =   240
             Left            =   30
-            TabIndex        =   142
+            TabIndex        =   141
             Tag             =   "1013"
             Top             =   0
             Width           =   2655
@@ -2997,7 +2997,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   2
          Left            =   5614
-         TabIndex        =   149
+         TabIndex        =   148
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3009,8 +3009,8 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   3
-         Left            =   6261
-         TabIndex        =   150
+         Left            =   6255
+         TabIndex        =   149
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3023,7 +3023,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   4
          Left            =   6908
-         TabIndex        =   151
+         TabIndex        =   150
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3036,7 +3036,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   5
          Left            =   7555
-         TabIndex        =   152
+         TabIndex        =   151
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3049,7 +3049,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   6
          Left            =   8202
-         TabIndex        =   153
+         TabIndex        =   152
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3062,7 +3062,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   7
          Left            =   8850
-         TabIndex        =   154
+         TabIndex        =   153
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3087,7 +3087,7 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   2
       Left            =   120
-      Picture         =   "Form_Main.frx":1EC461
+      Picture         =   "Form_Main.frx":1CD5F1
       ScaleHeight     =   1500
       ScaleWidth      =   9735
       TabIndex        =   14
@@ -3117,14 +3117,14 @@ Begin VB.Form Form_Main
          Begin VB.Image Image2 
             Height          =   240
             Left            =   0
-            Picture         =   "Form_Main.frx":21B88F
+            Picture         =   "Form_Main.frx":1FCA1F
             Top             =   0
             Width           =   240
          End
          Begin VB.Image Image4 
             Height          =   240
             Left            =   0
-            Picture         =   "Form_Main.frx":21BE19
+            Picture         =   "Form_Main.frx":1FCFA9
             Top             =   0
             Width           =   240
          End
@@ -3142,7 +3142,7 @@ Begin VB.Form Form_Main
          EndProperty
          Height          =   1300
          Left            =   1480
-         Picture         =   "Form_Main.frx":21C3A3
+         Picture         =   "Form_Main.frx":1FD533
          ScaleHeight     =   1305
          ScaleWidth      =   2055
          TabIndex        =   59
@@ -3222,7 +3222,7 @@ Begin VB.Form Form_Main
                EndProperty
                Height          =   360
                Left            =   50
-               Picture         =   "Form_Main.frx":2253FD
+               Picture         =   "Form_Main.frx":20658D
                ScaleHeight     =   360
                ScaleWidth      =   1560
                TabIndex        =   61
@@ -3266,11 +3266,11 @@ Begin VB.Form Form_Main
          BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
             NumListImages   =   2
             BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Form_Main.frx":2255DD
+               Picture         =   "Form_Main.frx":20676D
                Key             =   ""
             EndProperty
             BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Form_Main.frx":225B77
+               Picture         =   "Form_Main.frx":206D07
                Key             =   ""
             EndProperty
          EndProperty
@@ -3308,7 +3308,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   0
-            Picture         =   "Form_Main.frx":226111
+            Picture         =   "Form_Main.frx":2072A1
             Style           =   1  'Graphical
             TabIndex        =   70
             Top             =   50
@@ -3328,7 +3328,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   8
             Left            =   5220
-            Picture         =   "Form_Main.frx":22669B
+            Picture         =   "Form_Main.frx":20782B
             Style           =   1  'Graphical
             TabIndex        =   18
             Top             =   50
@@ -3348,7 +3348,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   7
             Left            =   4680
-            Picture         =   "Form_Main.frx":226C65
+            Picture         =   "Form_Main.frx":207DF5
             Style           =   1  'Graphical
             TabIndex        =   17
             Top             =   50
@@ -3368,7 +3368,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   6
             Left            =   4200
-            Picture         =   "Form_Main.frx":22722F
+            Picture         =   "Form_Main.frx":2083BF
             Style           =   1  'Graphical
             TabIndex        =   19
             Top             =   50
@@ -3389,7 +3389,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   5
             Left            =   3720
-            Picture         =   "Form_Main.frx":2277B9
+            Picture         =   "Form_Main.frx":208949
             Style           =   1  'Graphical
             TabIndex        =   20
             Top             =   50
@@ -3409,7 +3409,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3240
-            Picture         =   "Form_Main.frx":227D43
+            Picture         =   "Form_Main.frx":208ED3
             Style           =   1  'Graphical
             TabIndex        =   21
             Top             =   50
@@ -3429,7 +3429,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2220
-            Picture         =   "Form_Main.frx":2282CD
+            Picture         =   "Form_Main.frx":20945D
             Style           =   1  'Graphical
             TabIndex        =   23
             Top             =   50
@@ -3449,7 +3449,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   3
             Left            =   2760
-            Picture         =   "Form_Main.frx":228897
+            Picture         =   "Form_Main.frx":209A27
             Style           =   1  'Graphical
             TabIndex        =   22
             Top             =   50
@@ -3469,7 +3469,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   1080
-            Picture         =   "Form_Main.frx":228E61
+            Picture         =   "Form_Main.frx":209FF1
             Style           =   1  'Graphical
             TabIndex        =   67
             Top             =   50
@@ -3495,18 +3495,6 @@ Begin VB.Form Form_Main
          TabIndex        =   15
          Top             =   100
          Width           =   1455
-         Begin Audiostation.ButtonBig Button_EditDatTrack 
-            Height          =   390
-            Left            =   50
-            TabIndex        =   140
-            Tag             =   "1003"
-            Top             =   410
-            Width           =   1215
-            _ExtentX        =   2143
-            _ExtentY        =   688
-            Caption         =   "Bewerken"
-            TextAlignment   =   0
-         End
          Begin Audiostation.ButtonBig cmdPlaylistDat 
             Height          =   390
             Left            =   50
@@ -3687,7 +3675,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Dat_Play_On 
          Height          =   135
          Left            =   6590
-         Picture         =   "Form_Main.frx":2293EB
+         Picture         =   "Form_Main.frx":20A57B
          Top             =   255
          Visible         =   0   'False
          Width           =   135
@@ -3695,7 +3683,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Dat_Pause_On 
          Height          =   150
          Left            =   6580
-         Picture         =   "Form_Main.frx":2298C5
+         Picture         =   "Form_Main.frx":20AA55
          Top             =   550
          Visible         =   0   'False
          Width           =   135
@@ -3716,7 +3704,7 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   1
       Left            =   120
-      Picture         =   "Form_Main.frx":229DAF
+      Picture         =   "Form_Main.frx":20AF3F
       ScaleHeight     =   1500
       ScaleWidth      =   9735
       TabIndex        =   28
@@ -4480,7 +4468,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   5
             Left            =   3960
-            Picture         =   "Form_Main.frx":259959
+            Picture         =   "Form_Main.frx":23AAE9
             Style           =   1  'Graphical
             TabIndex        =   31
             Top             =   50
@@ -4500,7 +4488,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3480
-            Picture         =   "Form_Main.frx":259F23
+            Picture         =   "Form_Main.frx":23B0B3
             Style           =   1  'Graphical
             TabIndex        =   33
             Top             =   50
@@ -4520,7 +4508,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   1495
-            Picture         =   "Form_Main.frx":25A4AD
+            Picture         =   "Form_Main.frx":23B63D
             Style           =   1  'Graphical
             TabIndex        =   36
             Top             =   50
@@ -4540,7 +4528,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   6
             Left            =   4500
-            Picture         =   "Form_Main.frx":25AA77
+            Picture         =   "Form_Main.frx":23BC07
             Style           =   1  'Graphical
             TabIndex        =   32
             Top             =   50
@@ -4560,7 +4548,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   3
             Left            =   3000
-            Picture         =   "Form_Main.frx":25B041
+            Picture         =   "Form_Main.frx":23C1D1
             Style           =   1  'Graphical
             TabIndex        =   34
             Top             =   50
@@ -4580,7 +4568,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2520
-            Picture         =   "Form_Main.frx":25B5CB
+            Picture         =   "Form_Main.frx":23C75B
             Style           =   1  'Graphical
             TabIndex        =   35
             Top             =   50
@@ -4600,7 +4588,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   2040
-            Picture         =   "Form_Main.frx":25BB55
+            Picture         =   "Form_Main.frx":23CCE5
             Style           =   1  'Graphical
             TabIndex        =   37
             Top             =   50
@@ -4720,7 +4708,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Midi_Floppy_Drive 
          Height          =   240
          Left            =   1800
-         Picture         =   "Form_Main.frx":25C11F
+         Picture         =   "Form_Main.frx":23D2AF
          Top             =   555
          Visible         =   0   'False
          Width           =   495
@@ -4728,14 +4716,14 @@ Begin VB.Form Form_Main
       Begin VB.Image Image6 
          Height          =   165
          Left            =   1920
-         Picture         =   "Form_Main.frx":25C7A1
+         Picture         =   "Form_Main.frx":23D931
          Top             =   590
          Width           =   255
       End
       Begin VB.Image FloppyIn 
          Height          =   735
          Left            =   1480
-         Picture         =   "Form_Main.frx":25CA1F
+         Picture         =   "Form_Main.frx":23DBAF
          Top             =   120
          Visible         =   0   'False
          Width           =   3225
@@ -4743,7 +4731,7 @@ Begin VB.Form Form_Main
       Begin VB.Image FloppyOut 
          Height          =   735
          Left            =   1480
-         Picture         =   "Form_Main.frx":25F7B9
+         Picture         =   "Form_Main.frx":240949
          Top             =   120
          Width           =   3225
       End
@@ -4770,7 +4758,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Midi_Play_On 
          Height          =   135
          Left            =   6090
-         Picture         =   "Form_Main.frx":262553
+         Picture         =   "Form_Main.frx":2436E3
          Top             =   250
          Visible         =   0   'False
          Width           =   135
@@ -4778,7 +4766,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Midi_Pause_On 
          Height          =   150
          Left            =   6085
-         Picture         =   "Form_Main.frx":262A2D
+         Picture         =   "Form_Main.frx":243BBD
          Top             =   550
          Visible         =   0   'False
          Width           =   135
@@ -4799,7 +4787,7 @@ Begin VB.Form Form_Main
       Height          =   735
       Index           =   0
       Left            =   120
-      Picture         =   "Form_Main.frx":262F17
+      Picture         =   "Form_Main.frx":2440A7
       ScaleHeight     =   735
       ScaleWidth      =   9615
       TabIndex        =   0
@@ -4809,77 +4797,72 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   5
          Left            =   4320
-         TabIndex        =   157
+         TabIndex        =   156
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
          _ExtentY        =   688
          Caption         =   "Clock"
          ShowLed         =   -1  'True
-         Active          =   -1  'True
-         TextAlignment   =   1
+         TextAlignment   =   0
       End
       Begin Audiostation.ButtonBig Button_Power 
          Height          =   390
          Index           =   4
          Left            =   5160
-         TabIndex        =   158
+         TabIndex        =   157
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
          _ExtentY        =   688
          Caption         =   "Mixer"
          ShowLed         =   -1  'True
-         Active          =   -1  'True
-         TextAlignment   =   1
+         TextAlignment   =   0
       End
       Begin Audiostation.ButtonBig Button_Power 
          Height          =   390
          Index           =   3
          Left            =   6000
-         TabIndex        =   159
+         TabIndex        =   158
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
          _ExtentY        =   688
          Caption         =   "CD"
          ShowLed         =   -1  'True
-         Active          =   -1  'True
-         TextAlignment   =   1
+         TextAlignment   =   0
       End
       Begin Audiostation.ButtonBig Button_Power 
          Height          =   390
          Index           =   1
          Left            =   7680
-         TabIndex        =   160
+         TabIndex        =   159
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
          _ExtentY        =   688
          Caption         =   "MIDI"
          ShowLed         =   -1  'True
-         Active          =   -1  'True
-         TextAlignment   =   1
+         TextAlignment   =   0
       End
       Begin Audiostation.ButtonBig Button_Power 
          Height          =   390
          Index           =   2
          Left            =   6840
-         TabIndex        =   161
+         TabIndex        =   160
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
          _ExtentY        =   688
          Caption         =   "DAT"
          ShowLed         =   -1  'True
-         Active          =   -1  'True
-         TextAlignment   =   1
+         TextAlignment   =   0
       End
       Begin Audiostation.ButtonBig Button_Power 
          Height          =   390
          Index           =   0
          Left            =   8640
-         TabIndex        =   162
+         TabIndex        =   161
          Top             =   120
          Width           =   795
          _ExtentX        =   1402
@@ -4890,14 +4873,14 @@ Begin VB.Form Form_Main
       Begin VB.Image OptionsMenuButton 
          Height          =   405
          Left            =   120
-         Picture         =   "Form_Main.frx":279E15
+         Picture         =   "Form_Main.frx":25AFA5
          Top             =   100
          Width           =   375
       End
       Begin VB.Image Image5 
          Height          =   450
          Left            =   720
-         Picture         =   "Form_Main.frx":27A65B
+         Picture         =   "Form_Main.frx":25B7EB
          Top             =   105
          Width           =   3165
       End
@@ -4985,25 +4968,49 @@ Private AudioMaster As New AudioVolume
 
 Dim DoorClose As Boolean
 Dim AppInit As Boolean
-Public Sub ResetMidiVU()
-Dim i As Integer
+Private Sub SetLeftRightVolume(channel As Long, sliderLeft As Double, sliderRight As Double)
+Dim vol, pan As Double
+Dim left, right As Integer
 
-For i = 0 To VU_Midi.count - 1
-    VU_Midi(i).Position = 0
+left = CInt(sliderLeft) / 10
+right = CInt(sliderRight) / 10
+
+If left = right Then
+    vol = left
+    pan = 0
+Else
+    If left > right Then
+        vol = left
+        pan = -1 + (right / left)
+    Else
+        vol = right
+        pan = 1 - (left / right)
+    End If
+End If
+
+Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_VOL, vol)
+Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_PAN, pan)
+End Sub
+
+Public Sub ResetMidiVU()
+Dim I As Integer
+
+For I = 0 To VU_Midi.count - 1
+    VU_Midi(I).Position = 0
 Next
 End Sub
 Private Sub SetPlaylistModeBasedOnSelected()
-If mnuplaytrack_popup.Checked Then AudiostationMP3Player.PlayMode = PlaySingleTrack
-If mnuautonext_popup.Checked Then AudiostationMP3Player.PlayMode = AutoNextTrack
-If mnushuffle_popup.Checked Then AudiostationMP3Player.PlayMode = Shuffle
+If mnuplaytrack_popup.Checked Then AudiostationMP3Player.MediaPlayMode = PlaySingleTrack
+If mnuautonext_popup.Checked Then AudiostationMP3Player.MediaPlayMode = AutoNextTrack
+If mnushuffle_popup.Checked Then AudiostationMP3Player.MediaPlayMode = Shuffle
 
-If mnurepeatplaylist_popup.Checked Then AudiostationMP3Player.PlaylistMode = RepeatPlaylist
-If mnurepeattrack_popup.Checked Then AudiostationMP3Player.PlaylistMode = RepeatSingleTrack
+If mnurepeatplaylist_popup.Checked Then AudiostationMP3Player.MediaPlaylistMode = RepeatPlaylist
+If mnurepeattrack_popup.Checked Then AudiostationMP3Player.MediaPlaylistMode = RepeatSingleTrack
 End Sub
-Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, Url As String, Optional Name As String = "")
+Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, Url As String, Optional name As String = "")
 If Url <> vbNullString Then
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & MemorySlot, Url & "~" & Name)
-    Button_TunerMemory(MemorySlot).Tag = Url & "~" & Name
+    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & MemorySlot, Url & "~" & name)
+    Button_TunerMemory(MemorySlot).Tag = Url & "~" & name
 End If
 End Sub
 Private Sub AniCD_Click()
@@ -5057,10 +5064,6 @@ Else
 End If
 End Sub
 
-Private Sub Button_EditDatTrack_Click()
-Call Shell(App.path & "\windat.exe " & Chr(34) & AudiostationMP3Player.CurrentMediaFilename & Chr(34), vbNormalFocus)
-End Sub
-
 Private Sub Button_MidiPlayer_Click(index As Integer)
 Select Case index
     Case 0: AudiostationMIDIPlayer.PreviousMidiTrack
@@ -5088,11 +5091,11 @@ Form_OpenStream.Show vbModal
 
 If AudioStaStreamer.Url <> vbNullString Then
     Timer_Stream.Enabled = False
-    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.Name) Then Timer_Stream.Enabled = True
+    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.name) Then Timer_Stream.Enabled = True
     
-    Dim i As Integer
-    For i = 0 To Button_TunerMemory.count - 1
-        Button_TunerMemory(i).Active = False
+    Dim I As Integer
+    For I = 0 To Button_TunerMemory.count - 1
+        Button_TunerMemory(I).Active = False
     Next
 End If
 End Sub
@@ -5104,7 +5107,7 @@ If AudioStaStreamer.Url = vbNullString Then
     End If
 Else
     Timer_Stream.Enabled = False
-    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.Name) Then Timer_Stream.Enabled = True
+    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.name) Then Timer_Stream.Enabled = True
 End If
 End Sub
 
@@ -5144,15 +5147,15 @@ Call BASS_ChannelPause(chan)
 End Sub
 
 Private Sub Button_TunerMemory_Click(index As Integer)
-Dim i As Integer
+Dim I As Integer
 
-For i = 0 To Button_TunerMemory.count - 1
-    Button_TunerMemory(i).Active = False
+For I = 0 To Button_TunerMemory.count - 1
+    Button_TunerMemory(I).Active = False
 Next
 
 If Button_TunerMemory(index).Tag = vbNullString Then
     If MsgBox("No stream has been assigned to the selected memory slot" & vbNewLine & "Do you wanto to assign the current stream?", vbQuestion + vbYesNo, "No stream") = vbYes Then
-        Call AssignToMemorySlotAndSave(index, AudioStaStreamer.Url, AudioStaStreamer.Name)
+        Call AssignToMemorySlotAndSave(index, AudioStaStreamer.Url, AudioStaStreamer.name)
     End If
 Else
     Button_TunerMemory(index).Active = True
@@ -5172,15 +5175,12 @@ End Sub
 Private Sub cmdAudioPlayer_Click(index As Integer)
 Select Case index
     Case 0: PopupMenu mnupopup_player
-    
-    Case 1
-        ' Recording
-    
+    Case 1 ' Recording
     Case 2: AudiostationMP3Player.PreviousTrack
     Case 3: AudiostationMP3Player.Forward
     Case 4: AudiostationMP3Player.StopPlay
     Case 5
-        If Mp3Playlist.StorageContainer.count = 0 Then
+        If MediaPlaylist.StorageContainer.count = 0 Then
             If MsgBox(GetLanguage(1023), vbQuestion + vbYesNo, "Playlist") = vbYes Then
                 Form_Playlist.CurrentFormType = Mp3Player
                 Form_Playlist.Show vbModal
@@ -5249,13 +5249,13 @@ Call BASS_SetConfig(BASS_CONFIG_NET_PREBUF, 0) ' minimize automatic pre-bufferin
 
 Call AudiostationMP3Player.Init
 
-Dim i As Integer
-For i = 0 To Button_TunerMemory.count - 1
-    Button_TunerMemory(i).Tag = Settings.ReadSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & i, vbNullString)
+Dim I As Integer
+For I = 0 To Button_TunerMemory.count - 1
+    Button_TunerMemory(I).Tag = Settings.ReadSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & I, vbNullString)
 Next
 
-For i = 0 To Element.count - 1
-    Element(i).Visible = True
+For I = 0 To Element.count - 1
+    Element(I).Visible = True
 Next
 
 mnupopup_player.Visible = False
@@ -5393,13 +5393,13 @@ Call SetPlaylistModeBasedOnSelected
 End Sub
 
 Private Sub mnuspectrumanalyzer_Click()
-Dim i As Integer
+Dim I As Integer
 
 If mnuspectrumanalyzer.Checked Then
     mnuspectrumanalyzer.Checked = False
 
-    For i = 0 To VU_Spectrum.count - 1
-        VU_Spectrum(i).Position = 0
+    For I = 0 To VU_Spectrum.count - 1
+        VU_Spectrum(I).Position = 0
     Next
 Else
     mnuspectrumanalyzer.Checked = True
@@ -5413,20 +5413,19 @@ PopupMenu mnupopup_app
 End Sub
 
 Private Sub Slider_CD_Left_OnPositionChange()
-'Call MediaPlayerForCD.SetLeftVolume(Slider_CD_Left.value)
+Call SetLeftRightVolume(curdrive, Slider_CD_Left.value, Slider_CD_Right.value)
 End Sub
 
 Private Sub Slider_CD_Right_OnPositionChange()
-'Call MediaPlayerForCD.SetRightVolume(Slider_CD_Right.value)
+Call SetLeftRightVolume(curdrive, Slider_CD_Left.value, Slider_CD_Right.value)
 End Sub
 
 Private Sub Slider_Dat_Left_OnPositionChange()
-Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_PAN, 0)
+Call SetLeftRightVolume(chan, Slider_Dat_Left.value, Slider_Dat_Right.value)
 End Sub
 
 Private Sub Slider_Dat_Right_OnPositionChange()
-Debug.Print Slider_Dat_Right.value * 10
-Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_PAN, -0.2)
+Call SetLeftRightVolume(chan, Slider_Dat_Left.value, Slider_Dat_Right.value)
 End Sub
 
 Private Sub Slider_Master_OnPositionChange()
@@ -5443,9 +5442,9 @@ End Sub
 
 Private Sub Switch_CD_OnChange()
 If Switch_CD.Active Then
-    'MediaPlayerForCD.setAudioOn
+    Call BASS_ChannelSetAttribute(curdrive, BASS_ATTRIB_VOL, 1)
 Else
-    'MediaPlayerForCD.setAudioOff
+    Call BASS_ChannelSetAttribute(curdrive, BASS_ATTRIB_VOL, 0)
 End If
 End Sub
 
@@ -5482,8 +5481,8 @@ If (progress > 75 Or BASS_StreamGetFilePosition(chan, BASS_FILEPOS_CONNECTED) = 
     If AudioStaStreamer.Error Then
         label_StreamStatus.Caption = "Error: Can't play stream"
     Else
-        If AudioStaStreamer.Name <> vbNullString Then
-            label_StreamStatus.Caption = "Playing: " & AudioStaStreamer.Name
+        If AudioStaStreamer.name <> vbNullString Then
+            label_StreamStatus.Caption = "Playing: " & AudioStaStreamer.name
         Else
             label_StreamStatus.Caption = "Playing"
         End If
@@ -5544,35 +5543,38 @@ If Settings.ReadSetting("Sibra-Soft", "Audiostation", "CheckFile") = "" Then
 Else
     MediaFile = Settings.ReadSetting("Sibra-Soft", "Audiostation", "CheckFile")
     
+    'Delete check file setting
+    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", vbNullString)
+    
     If Not Extensions.FileExists(MediaFile) Then
         Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", vbNullString)
         Exit Sub
     End If
     
-    Select Case LCase(Right(MediaFile, 3))
+    Select Case LCase(right(MediaFile, 3))
         Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda", "wma", "m4a"
             MediaDuration = 0
             
             AudiostationMIDIPlayer.StopMidiPlayback
             AudiostationCDPlayer.StopPlay
             
-            If Mp3Playlist.IsExistingItem(MediaFile) > 0 Then
+            If MediaPlaylist.IsExistingItem(MediaFile) > 0 Then
                 AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.IsExistingItem(MediaFile)
                 AudiostationMP3Player.StartPlay
             Else
-                MediaIndex = Format(Mp3Playlist.StorageContainer.count + 1, "00")
+                MediaIndex = Format(MediaPlaylist.StorageContainer.count + 1, "00")
                 
                 ' Only get the duration when it's a mp3 file
-                If LCase(Right(MediaFile, 3)) = "mp3" Then
-                    Mp3Info.Filename = MediaFile
+                If LCase(right(MediaFile, 3)) = "mp3" Then
+                    Mp3Info.FileName = MediaFile
                     MediaDuration = Extensions.TimeString(Mp3Info.SongLength)
                 End If
                 
                 If MediaDuration = "0" Then: MediaDuration = "-"
                 
-                Mp3Playlist.AddToStorage MediaFile, MediaIndex & ";" & MediaFile & ";" & MediaDuration
+                MediaPlaylist.AddToStorage MediaFile, MediaIndex & ";" & MediaFile & ";" & MediaDuration
                 
-                AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.StorageContainer.count
+                AudiostationMP3Player.CurrentTrackNumber = MediaPlaylist.StorageContainer.count
                 AudiostationMP3Player.StartPlay
             End If
                         
@@ -5592,7 +5594,7 @@ Else
         If Not (Dir(MediaFile, vbDirectory) = vbNullString) Then
             Screen.MousePointer = vbHourglass
             
-            Select Case LCase(Right(MediaFile, 3))
+            Select Case LCase(right(MediaFile, 3))
                 Case "apl": Call ModPlaylist.OpenAplPlaylist(MediaFile)
                 Case "m3u": Call ModPlaylist.OpenM3uPlaylist(MediaFile)
                 Case "pls": Call ModPlaylist.OpenPlsPlaylist(MediaFile)
@@ -5607,7 +5609,7 @@ Else
             
     Case Else
         'Check if it's a file that needs to be converted
-        Select Case LCase(Right(MediaFile, 3))
+        Select Case LCase(right(MediaFile, 3))
             Case "act": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
             Case "caf": Call ModConvert.Convert(MediaFile, [Apple Core Format], MP3): GoTo Begin
             Case "ogg": Call ModConvert.Convert(MediaFile, [OGG], MP3): GoTo Begin
@@ -5617,16 +5619,13 @@ Else
         End Select
         
         'Check if it's a file that needs to be converted
-        Select Case LCase(Right(MediaFile, 2))
+        Select Case LCase(right(MediaFile, 2))
             Case "ra": Call ModConvert.Convert(MediaFile, [Real Audio], MP3): GoTo Begin
             Case "rm": Call ModConvert.Convert(MediaFile, [Real Media], MP3): GoTo Begin
            
             Case Else: MsgBox GetLanguage(1020), vbCritical
         End Select
     End Select
-    
-    'Delete check file setting
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", vbNullString)
 End If
 End Sub
 
@@ -5642,7 +5641,7 @@ Private Sub Trm_Lights_Midi_Timer()
 If PlayStateMediaMode = MidiMediaMode Then
     If Form_Midi.HScrollPlayerTime.value = Form_Midi.HScrollPlayerTime.max Then PlayState = MediaEnded
 
-    If PlayState = Playing Then
+    If MidiPlaystate = Playing Then
         Trm_Floppy_Drive_Light.Enabled = True
         FloppyIn.Visible = True
         
@@ -5652,7 +5651,7 @@ If PlayStateMediaMode = MidiMediaMode Then
             Light_Midi_Play_On.Visible = True
         End If
         
-    ElseIf PlayState = Stopped Or MediaEnded Then
+    ElseIf MidiPlaystate = Stopped Or MediaEnded Then
         Trm_Floppy_Drive_Light.Enabled = False
         FloppyIn.Visible = False
         
@@ -5661,7 +5660,7 @@ If PlayStateMediaMode = MidiMediaMode Then
         Light_Midi_Pause_On.Visible = False
         Light_Midi_Play_On.Visible = False
     
-    ElseIf PlayState = Paused Then
+    ElseIf MidiPlaystate = Paused Then
         Trm_Floppy_Drive_Light.Enabled = False
         Light_Midi_Floppy_Drive.Visible = False
         FloppyIn.Visible = False
@@ -5679,7 +5678,7 @@ End Sub
 Private Sub Trm_Lights_Timer()
 ' Media Player
 If PlayStateMediaMode = MP3MediaMode Then
-    If PlayState = Playing Then
+    If MediaPlaystate = Playing Then
         Trm_Animation.Enabled = True
         Light_Dat_Pause_On.Visible = False
         
@@ -5689,7 +5688,7 @@ If PlayStateMediaMode = MP3MediaMode Then
             Light_Dat_Play_On.Visible = True
         End If
     Else
-        If PlayState = Paused Then
+        If MediaPlaystate = Paused Then
             Trm_Animation.Enabled = False
             Light_Dat_Play_On.Visible = True
         
@@ -5711,7 +5710,7 @@ End If
 
 ' CD Player
 If PlayStateMediaMode = CDMediaMode Then
-    If PlayState = Playing Then
+    If MediaPlaystate = Playing Then
         If Light_CD_Play_On.Visible = True Then
             Light_CD_Play_On.Visible = False
         Else
@@ -5723,7 +5722,7 @@ If PlayStateMediaMode = CDMediaMode Then
 End If
 End Sub
 Private Sub Trm_Main_Timer()
-Dim length, pos As Long
+Dim Length, pos As Long
 Dim Totaltime, Elapsedtime, Remainingtime  As Double
 Dim MidiPos As Long
 
@@ -5737,7 +5736,7 @@ Digit_Track_Midi.value = AudiostationMIDIPlayer.MidiTrackNr
 If Form_Midi.LabelQueueTime.Caption = "(wait)" Then
     
 Else
-    If Left(Form_Midi.LabelQueueTime.Caption, 1) = "." Then
+    If left(Form_Midi.LabelQueueTime.Caption, 1) = "." Then
         MidiPos = 0
     Else
         MidiPos = Extensions.Explode(Form_Midi.LabelQueueTime.Caption, ".", 0)
@@ -5754,22 +5753,22 @@ Else
 End If
 
 ' Enable the activated rack
-Dim i As Integer
-For i = 1 To Button_Power.count - 1
+Dim I As Integer
+For I = 1 To Button_Power.count - 1
     Dim mustBeOff As String
     
-    mustBeOff = Settings.ReadSetting("Sibra-Soft", "Audiostation", "Element-" & i, "OFF")
+    mustBeOff = Settings.ReadSetting("Sibra-Soft", "Audiostation", "Element-" & I, "OFF")
         
     If Not mustBeOff = "OFF" Then
-        If i = 4 Then: ElementOff(6).Visible = False
+        If I = 4 Then: ElementOff(6).Visible = False
         
-        ElementOff(i).Visible = False
-        Button_Power(i).Active = True
+        ElementOff(I).Visible = False
+        Button_Power(I).Active = True
     Else
-        If i = 4 Then: ElementOff(6).Visible = True
+        If I = 4 Then: ElementOff(6).Visible = True
         
-        ElementOff(i).Visible = True
-        Button_Power(i).Active = False
+        ElementOff(I).Visible = True
+        Button_Power(I).Active = False
     End If
 Next
 
@@ -5783,15 +5782,15 @@ End If
 
 ' Show the elapsed or leftover time
 If PlayStateMediaMode = MP3MediaMode Then
-    If PlayState = Playing Then
+    If AudiostationMP3Player.MediaPlaystate = Playing Then
         lbl_Filename.Caption = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
         lbl_Filename.ToolTipText = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
         
         Dim TimeSerial As String
         
-        length = BASS_ChannelGetLength(chan, BASS_POS_BYTE)
+        Length = BASS_ChannelGetLength(chan, BASS_POS_BYTE)
         pos = BASS_ChannelGetPosition(chan, BASS_POS_BYTE)
-        Totaltime = BASS_ChannelBytes2Seconds(chan, length)
+        Totaltime = BASS_ChannelBytes2Seconds(chan, Length)
         Elapsedtime = BASS_ChannelBytes2Seconds(chan, pos)
         Remainingtime = Totaltime - Elapsedtime
             
@@ -5810,8 +5809,8 @@ If PlayStateMediaMode = MP3MediaMode Then
     
     If CurrentMediaFilename <> vbNullString Then: MenuItem_Popup_Properties.Enabled = True
     
-    If AudiostationMP3Player.PlayState = Playing And Remainingtime = 0 Then AudiostationMP3Player.PlayState = MediaEnded
-    If AudiostationMP3Player.PlayState = MediaEnded Then AudiostationMP3Player.NextTrack
+    If AudiostationMP3Player.MediaPlaystate = Playing And Remainingtime = 0 Then AudiostationMP3Player.MediaPlaystate = MediaEnded
+    If AudiostationMP3Player.MediaPlaystate = MediaEnded Then AudiostationMP3Player.NextTrack
 End If
 End Sub
 Private Sub Trm_VU_Timer()
@@ -5824,7 +5823,7 @@ If PlayStateMediaMode = MP3MediaMode Then
     leftVU = LoWord(level) * 2
     rightVU = HiWord(level) * 2
     
-    If PlayState = Playing Then
+    If AudiostationMP3Player.MediaPlaystate = Playing Then
         VU_Left.Position = leftVU / 32768 * 100
         VU_Right.Position = rightVU / 32768 * 100
         
@@ -5844,8 +5843,8 @@ End If
 
 On Error Resume Next
 If PlayStateMediaMode = MidiMediaMode And Form_Midi.VIndicator1.count > 1 Then
-    For i = 0 To VU_Midi.count - 1
-        VU_Midi(i).Position = Form_Midi.VIndicator1(i).value
+    For I = 0 To VU_Midi.count - 1
+        VU_Midi(I).Position = Form_Midi.VIndicator1(I).value
     Next
 End If
 End Sub
