@@ -3,6 +3,7 @@ Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{A8B345A0-74B5-11D3-85C2-00105AC8B715}#1.0#0"; "iProfessionalLibrary.ocx"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
@@ -38,7 +39,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":088B
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   162
+      TabIndex        =   131
       Top             =   6900
       Width           =   9615
    End
@@ -58,7 +59,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":2F53D
       ScaleHeight     =   780
       ScaleWidth      =   9615
-      TabIndex        =   117
+      TabIndex        =   86
       Top             =   8400
       Width           =   9615
    End
@@ -71,7 +72,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":45543
       ScaleHeight     =   855
       ScaleWidth      =   9615
-      TabIndex        =   135
+      TabIndex        =   104
       Top             =   8400
       Visible         =   0   'False
       Width           =   9615
@@ -81,7 +82,7 @@ Begin VB.Form Form_Main
          Left            =   2880
          ScaleHeight     =   435
          ScaleWidth      =   6555
-         TabIndex        =   136
+         TabIndex        =   105
          Top             =   55
          Width           =   6615
          Begin VB.Label Label1 
@@ -91,7 +92,7 @@ Begin VB.Form Form_Main
             ForeColor       =   &H00FFFFFF&
             Height          =   195
             Left            =   45
-            TabIndex        =   138
+            TabIndex        =   107
             Top             =   210
             Width           =   4875
          End
@@ -111,7 +112,7 @@ Begin VB.Form Form_Main
             ForeColor       =   &H00FFFFFF&
             Height          =   195
             Left            =   45
-            TabIndex        =   137
+            TabIndex        =   106
             Top             =   20
             Width           =   180
          End
@@ -119,7 +120,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSevenSegmentClockX Digit_Clock 
          Height          =   495
          Left            =   80
-         TabIndex        =   139
+         TabIndex        =   108
          Top             =   55
          Width           =   2775
          Time            =   0
@@ -163,7 +164,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":5C441
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   114
+      TabIndex        =   83
       Top             =   2340
       Width           =   9615
    End
@@ -176,7 +177,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":6C283
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   113
+      TabIndex        =   82
       Top             =   840
       Width           =   9615
    End
@@ -189,7 +190,7 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":7C0C5
       ScaleHeight     =   1590
       ScaleWidth      =   9615
-      TabIndex        =   116
+      TabIndex        =   85
       Top             =   5330
       Width           =   9615
    End
@@ -202,14 +203,14 @@ Begin VB.Form Form_Main
       Picture         =   "Form_Main.frx":ACB67
       ScaleHeight     =   1500
       ScaleWidth      =   9615
-      TabIndex        =   115
+      TabIndex        =   84
       Top             =   3840
       Width           =   9615
    End
    Begin VB.Timer Trm_Lights 
       Interval        =   500
       Left            =   10920
-      Top             =   4920
+      Top             =   4440
    End
    Begin VB.Timer Trm_Animation 
       Enabled         =   0   'False
@@ -222,7 +223,7 @@ Begin VB.Form Form_Main
       Interval        =   50
       Left            =   10920
       Tag             =   "1"
-      Top             =   4440
+      Top             =   3960
    End
    Begin MSComctlLib.ImageList ImageList3 
       Left            =   10200
@@ -323,11 +324,6 @@ Begin VB.Form Form_Main
       Left            =   10920
       Top             =   600
    End
-   Begin VB.Timer Trm_Check_File 
-      Interval        =   10
-      Left            =   10920
-      Top             =   120
-   End
    Begin MSComctlLib.ImageList ImageList4 
       Left            =   10200
       Top             =   120
@@ -371,7 +367,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX ILaMaster 
          Height          =   195
          Left            =   120
-         TabIndex        =   124
+         TabIndex        =   93
          Top             =   1192
          Width           =   1215
          AutoSize        =   0   'False
@@ -411,7 +407,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX2 
          Height          =   210
          Left            =   3210
-         TabIndex        =   110
+         TabIndex        =   79
          Top             =   1185
          Width           =   900
          AutoSize        =   0   'False
@@ -451,7 +447,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX4 
          Height          =   210
          Left            =   5400
-         TabIndex        =   112
+         TabIndex        =   81
          Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
@@ -491,7 +487,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX3 
          Height          =   210
          Left            =   4320
-         TabIndex        =   111
+         TabIndex        =   80
          Top             =   1192
          Width           =   855
          AutoSize        =   0   'False
@@ -531,7 +527,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Master 
          Height          =   1335
          Left            =   360
-         TabIndex        =   123
+         TabIndex        =   92
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -542,13 +538,13 @@ Begin VB.Form Form_Main
          Left            =   9160
          ScaleHeight     =   1155
          ScaleWidth      =   195
-         TabIndex        =   105
+         TabIndex        =   74
          Top             =   120
          Width           =   255
          Begin isAnalogLibrary.iLedBarX VU_Master_Peak 
             Height          =   1215
             Left            =   0
-            TabIndex        =   106
+            TabIndex        =   75
             Top             =   0
             Width           =   255
             SegmentDirection=   0
@@ -642,7 +638,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Dat 
          Height          =   270
          Left            =   7560
-         TabIndex        =   103
+         TabIndex        =   72
          Top             =   600
          Width           =   975
          Active          =   -1  'True
@@ -692,7 +688,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Midi 
          Height          =   270
          Left            =   7560
-         TabIndex        =   104
+         TabIndex        =   73
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -742,7 +738,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Rec 
          Height          =   270
          Left            =   1680
-         TabIndex        =   107
+         TabIndex        =   76
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -792,7 +788,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Line 
          Height          =   270
          Left            =   1680
-         TabIndex        =   108
+         TabIndex        =   77
          Top             =   600
          Width           =   975
          Active          =   0   'False
@@ -842,7 +838,7 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_CD 
          Height          =   270
          Left            =   1680
-         TabIndex        =   109
+         TabIndex        =   78
          Top             =   900
          Width           =   975
          Active          =   -1  'True
@@ -892,7 +888,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Record_Left 
          Height          =   1335
          Left            =   3120
-         TabIndex        =   125
+         TabIndex        =   94
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -901,7 +897,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Record_Right 
          Height          =   1215
          Left            =   3555
-         TabIndex        =   126
+         TabIndex        =   95
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -910,7 +906,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_CD_Left 
          Height          =   1335
          Left            =   4200
-         TabIndex        =   127
+         TabIndex        =   96
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -921,7 +917,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_CD_Right 
          Height          =   1215
          Left            =   4635
-         TabIndex        =   128
+         TabIndex        =   97
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -932,7 +928,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Dat_Left 
          Height          =   1335
          Left            =   5280
-         TabIndex        =   129
+         TabIndex        =   98
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -943,7 +939,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Dat_Right 
          Height          =   1215
          Left            =   5715
-         TabIndex        =   130
+         TabIndex        =   99
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -954,7 +950,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Midi_Left 
          Height          =   1335
          Left            =   6360
-         TabIndex        =   131
+         TabIndex        =   100
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -963,7 +959,7 @@ Begin VB.Form Form_Main
       Begin Audiostation.MixSlider Slider_Midi_Right 
          Height          =   1215
          Left            =   6795
-         TabIndex        =   132
+         TabIndex        =   101
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
@@ -972,7 +968,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX5 
          Height          =   210
          Left            =   6480
-         TabIndex        =   154
+         TabIndex        =   123
          Top             =   1200
          Width           =   855
          AutoSize        =   0   'False
@@ -1135,7 +1131,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig Button_CDRandom 
             Height          =   390
             Left            =   40
-            TabIndex        =   133
+            TabIndex        =   102
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
@@ -1146,7 +1142,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig Button_CDLoop 
             Height          =   390
             Left            =   1200
-            TabIndex        =   134
+            TabIndex        =   103
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
@@ -1426,7 +1422,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig Button_CDOpen 
             Height          =   390
             Left            =   50
-            TabIndex        =   122
+            TabIndex        =   91
             Top             =   50
             Width           =   1215
             _ExtentX        =   2143
@@ -1481,6 +1477,79 @@ Begin VB.Form Form_Main
       Top             =   6900
       Visible         =   0   'False
       Width           =   9735
+      Begin VB.PictureBox Picture2 
+         BackColor       =   &H00000000&
+         Height          =   1050
+         Left            =   120
+         ScaleHeight     =   990
+         ScaleWidth      =   4035
+         TabIndex        =   132
+         Top             =   200
+         Width           =   4095
+         Begin iProfessionalLibrary.iLedMatrixX VU_Spectrum 
+            Height          =   960
+            Left            =   0
+            TabIndex        =   133
+            Top             =   10
+            Width           =   4035
+            AutoSize        =   -1  'True
+            IndicatorActiveColor=   65280
+            ColCount        =   29
+            RowCount        =   14
+            IndicatorStyle  =   1
+            IndicatorWidth  =   7
+            IndicatorHeight =   3
+            IndicatorBevelStyle=   0
+            OuterMargin     =   4
+            SpacingHorizontal=   2
+            SpacingVertical =   1
+            BackGroundColor =   0
+            BorderStyle     =   0
+            BeginProperty IndicatorCaptionActiveFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Tahoma"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            BeginProperty IndicatorCaptionInactiveFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Tahoma"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            IndicatorCaptionActiveFontColor=   -16777208
+            IndicatorCaptionInactiveFontColor=   16777215
+            Enabled         =   -1  'True
+            IndicatorShowReflection=   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            CachedDrawing   =   -1  'True
+            Object.Visible         =   -1  'True
+            Object.Width           =   269
+            Object.Height          =   64
+            IndicatorCaptionActiveFontName=   "Tahoma"
+            IndicatorCaptionActiveFontSize=   8
+            IndicatorCaptionActiveFontBold=   0   'False
+            IndicatorCaptionActiveFontItalic=   0   'False
+            IndicatorCaptionActiveFontUnderline=   0   'False
+            IndicatorCaptionActiveFontStrikeOut=   0   'False
+            IndicatorCaptionInactiveFontName=   "Tahoma"
+            IndicatorCaptionInactiveFontSize=   8
+            IndicatorCaptionInactiveFontBold=   0   'False
+            IndicatorCaptionInactiveFontItalic=   0   'False
+            IndicatorCaptionInactiveFontUnderline=   0   'False
+            IndicatorCaptionInactiveFontStrikeOut=   0   'False
+            OPCItemCount    =   0
+         End
+      End
       Begin VB.CommandButton Button_OpenStream 
          BackColor       =   &H00C0C0C0&
          BeginProperty Font 
@@ -1496,7 +1565,7 @@ Begin VB.Form Form_Main
          Left            =   5520
          Picture         =   "Form_Main.frx":1CC913
          Style           =   1  'Graphical
-         TabIndex        =   144
+         TabIndex        =   113
          ToolTipText     =   "Open stream"
          Top             =   870
          Width           =   495
@@ -1504,7 +1573,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX Label_StreamTitle 
          Height          =   210
          Left            =   6240
-         TabIndex        =   155
+         TabIndex        =   124
          Top             =   120
          Width           =   3135
          AutoSize        =   0   'False
@@ -1544,7 +1613,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX1 
          Height          =   210
          Left            =   4320
-         TabIndex        =   145
+         TabIndex        =   114
          Top             =   120
          Width           =   1935
          AutoSize        =   0   'False
@@ -1596,7 +1665,7 @@ Begin VB.Form Form_Main
          Left            =   4800
          Picture         =   "Form_Main.frx":1CCADD
          Style           =   1  'Graphical
-         TabIndex        =   143
+         TabIndex        =   112
          ToolTipText     =   "Stop"
          Top             =   870
          Width           =   495
@@ -1617,7 +1686,7 @@ Begin VB.Form Form_Main
          Left            =   4320
          Picture         =   "Form_Main.frx":1CD067
          Style           =   1  'Graphical
-         TabIndex        =   142
+         TabIndex        =   111
          ToolTipText     =   "Play"
          Top             =   870
          Width           =   495
@@ -1626,7 +1695,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   1
          Left            =   4967
-         TabIndex        =   147
+         TabIndex        =   116
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -1639,7 +1708,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   0
          Left            =   4320
-         TabIndex        =   146
+         TabIndex        =   115
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -1654,7 +1723,7 @@ Begin VB.Form Form_Main
          Left            =   6720
          ScaleHeight     =   195
          ScaleWidth      =   2595
-         TabIndex        =   140
+         TabIndex        =   109
          Top             =   930
          Width           =   2655
          Begin VB.Label label_StreamStatus 
@@ -1672,1332 +1741,17 @@ Begin VB.Form Form_Main
             ForeColor       =   &H0000FF00&
             Height          =   240
             Left            =   30
-            TabIndex        =   141
+            TabIndex        =   110
             Tag             =   "1013"
             Top             =   0
             Width           =   2655
          End
       End
-      Begin VB.PictureBox Picture2 
-         BackColor       =   &H00000000&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1080
-         Left            =   130
-         ScaleHeight     =   1020
-         ScaleWidth      =   3780
-         TabIndex        =   73
-         Top             =   170
-         Width           =   3840
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   0
-            Left            =   120
-            TabIndex        =   74
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   1
-            Left            =   240
-            TabIndex        =   75
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   2
-            Left            =   360
-            TabIndex        =   76
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   3
-            Left            =   480
-            TabIndex        =   77
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   4
-            Left            =   600
-            TabIndex        =   78
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   5
-            Left            =   720
-            TabIndex        =   79
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   6
-            Left            =   840
-            TabIndex        =   80
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   7
-            Left            =   960
-            TabIndex        =   81
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   8
-            Left            =   1080
-            TabIndex        =   82
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   9
-            Left            =   1200
-            TabIndex        =   83
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   10
-            Left            =   1320
-            TabIndex        =   84
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   11
-            Left            =   1440
-            TabIndex        =   85
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   12
-            Left            =   1560
-            TabIndex        =   86
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   13
-            Left            =   1680
-            TabIndex        =   87
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   14
-            Left            =   1800
-            TabIndex        =   88
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   15
-            Left            =   1920
-            TabIndex        =   89
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   16
-            Left            =   2040
-            TabIndex        =   90
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   17
-            Left            =   2160
-            TabIndex        =   91
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   18
-            Left            =   2280
-            TabIndex        =   92
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   19
-            Left            =   2400
-            TabIndex        =   93
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   20
-            Left            =   2520
-            TabIndex        =   94
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   21
-            Left            =   2640
-            TabIndex        =   95
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   22
-            Left            =   2760
-            TabIndex        =   96
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   23
-            Left            =   2880
-            TabIndex        =   97
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   24
-            Left            =   3000
-            TabIndex        =   98
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   25
-            Left            =   3120
-            TabIndex        =   99
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   26
-            Left            =   3240
-            TabIndex        =   100
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   27
-            Left            =   3360
-            TabIndex        =   101
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   65280
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-         Begin isAnalogLibrary.iLedBarX VU_Spectrum 
-            Height          =   795
-            Index           =   28
-            Left            =   3480
-            TabIndex        =   102
-            Top             =   100
-            Width           =   150
-            SegmentDirection=   0
-            SegmentMargin   =   2
-            SegmentSize     =   2
-            SegmentSpacing  =   1
-            SegmentStyle    =   0
-            BackGroundColor =   0
-            BorderStyle     =   0
-            SectionColor1   =   255
-            SectionColor2   =   65535
-            SectionColor3   =   255
-            SectionEnd1     =   50
-            SectionEnd2     =   75
-            SectionCount    =   1
-            ShowOffSegments =   -1  'True
-            CurrentMax      =   0
-            CurrentMin      =   0
-            PositionPercent =   0
-            Position        =   0
-            PositionMax     =   100
-            PositionMin     =   0
-            Object.Visible         =   -1  'True
-            Enabled         =   -1  'True
-            MinMaxFixed     =   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            Object.Width           =   10
-            Object.Height          =   53
-            FillReferenceValue=   0
-            FillReferenceEnabled=   0   'False
-            SectionColor4   =   65535
-            SectionColor5   =   65535
-            SectionEnd3     =   0
-            SectionEnd4     =   0
-            OPCItemCount    =   0
-         End
-      End
-      Begin VB.PictureBox Picture5 
-         BackColor       =   &H00C0C0C0&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   975
-         Left            =   1350
-         ScaleHeight     =   975
-         ScaleWidth      =   1095
-         TabIndex        =   72
-         Top             =   50
-         Width           =   1095
-      End
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   2
          Left            =   5614
-         TabIndex        =   148
+         TabIndex        =   117
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3010,7 +1764,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   3
          Left            =   6255
-         TabIndex        =   149
+         TabIndex        =   118
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3023,7 +1777,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   4
          Left            =   6908
-         TabIndex        =   150
+         TabIndex        =   119
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3036,7 +1790,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   5
          Left            =   7555
-         TabIndex        =   151
+         TabIndex        =   120
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3049,7 +1803,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   6
          Left            =   8202
-         TabIndex        =   152
+         TabIndex        =   121
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3062,7 +1816,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   7
          Left            =   8850
-         TabIndex        =   153
+         TabIndex        =   122
          Top             =   370
          Width           =   540
          _ExtentX        =   953
@@ -3498,7 +2252,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdPlaylistDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   120
+            TabIndex        =   89
             Top             =   5
             Width           =   1215
             _ExtentX        =   2143
@@ -3509,7 +2263,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdSettingsDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   121
+            TabIndex        =   90
             Top             =   810
             Width           =   1215
             _ExtentX        =   2143
@@ -4617,7 +3371,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdPlaylistMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   118
+            TabIndex        =   87
             Top             =   20
             Width           =   1215
             _ExtentX        =   2143
@@ -4628,7 +3382,7 @@ Begin VB.Form Form_Main
          Begin Audiostation.ButtonBig cmdSettingsMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   119
+            TabIndex        =   88
             Top             =   800
             Width           =   1215
             _ExtentX        =   2143
@@ -4797,7 +3551,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   5
          Left            =   4320
-         TabIndex        =   156
+         TabIndex        =   125
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -4810,7 +3564,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   4
          Left            =   5160
-         TabIndex        =   157
+         TabIndex        =   126
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -4823,7 +3577,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   3
          Left            =   6000
-         TabIndex        =   158
+         TabIndex        =   127
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -4836,7 +3590,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   1
          Left            =   7680
-         TabIndex        =   159
+         TabIndex        =   128
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -4849,7 +3603,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   2
          Left            =   6840
-         TabIndex        =   160
+         TabIndex        =   129
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -4862,7 +3616,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   0
          Left            =   8640
-         TabIndex        =   161
+         TabIndex        =   130
          Top             =   120
          Width           =   795
          _ExtentX        =   1402
@@ -5175,7 +3929,13 @@ End Sub
 Private Sub cmdAudioPlayer_Click(index As Integer)
 Select Case index
     Case 0: PopupMenu mnupopup_player
-    Case 1 ' Recording
+    Case 1
+        If AudioStaRecorder.Recording Then
+            AudioStaRecorder.SaveRecording
+        Else
+            AudioStaRecorder.StartRecorder
+        End If
+    
     Case 2: AudiostationMP3Player.PreviousTrack
     Case 3: AudiostationMP3Player.Forward
     Case 4: AudiostationMP3Player.StopPlay
@@ -5398,9 +4158,7 @@ Dim I As Integer
 If mnuspectrumanalyzer.Checked Then
     mnuspectrumanalyzer.Checked = False
 
-    For I = 0 To VU_Spectrum.count - 1
-        VU_Spectrum(I).Position = 0
-    Next
+
 Else
     mnuspectrumanalyzer.Checked = True
 End If
@@ -5531,104 +4289,6 @@ Else
     End If
 End If
 End Sub
-
-Private Sub Trm_Check_File_Timer()
-Dim MediaFile As String
-Dim MediaIndex As String
-Dim MediaDuration As String
-
-Begin:
-If Settings.ReadSetting("Sibra-Soft", "Audiostation", "CheckFile") = "" Then
-    'Check if there is a file to open
-Else
-    MediaFile = Settings.ReadSetting("Sibra-Soft", "Audiostation", "CheckFile")
-    
-    'Delete check file setting
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", vbNullString)
-    
-    If Not Extensions.FileExists(MediaFile) Then
-        Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CheckFile", vbNullString)
-        Exit Sub
-    End If
-    
-    Select Case LCase(right(MediaFile, 3))
-        Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda", "wma", "m4a"
-            MediaDuration = 0
-            
-            AudiostationMIDIPlayer.StopMidiPlayback
-            AudiostationCDPlayer.StopPlay
-            
-            If MediaPlaylist.IsExistingItem(MediaFile) > 0 Then
-                AudiostationMP3Player.CurrentTrackNumber = Mp3Playlist.IsExistingItem(MediaFile)
-                AudiostationMP3Player.StartPlay
-            Else
-                MediaIndex = Format(MediaPlaylist.StorageContainer.count + 1, "00")
-                
-                ' Only get the duration when it's a mp3 file
-                If LCase(right(MediaFile, 3)) = "mp3" Then
-                    Mp3Info.FileName = MediaFile
-                    MediaDuration = Extensions.TimeString(Mp3Info.SongLength)
-                End If
-                
-                If MediaDuration = "0" Then: MediaDuration = "-"
-                
-                MediaPlaylist.AddToStorage MediaFile, MediaIndex & ";" & MediaFile & ";" & MediaDuration
-                
-                AudiostationMP3Player.CurrentTrackNumber = MediaPlaylist.StorageContainer.count
-                AudiostationMP3Player.StartPlay
-            End If
-                        
-        Case "mid", "kar", "mus", "sid"
-            AudiostationMP3Player.StopPlay
-            AudiostationCDPlayer.StopPlay
-            
-            CurrentIndex = Format(MidiPlaylist.StorageContainer.count + 1, "00")
-            CurrentMediaDuration = "-"
-    
-            MidiPlaylist.AddToStorage MediaFile, CurrentIndex & ";" & MediaFile & ";" & CurrentMediaDuration
-            
-            AudiostationMIDIPlayer.MidiTrackNr = MidiPlaylist.StorageContainer.count
-            AudiostationMIDIPlayer.StartMidiPlayback
-        
-    Case "apl", "wpl", "m3u", "pls" 'Playlist files
-        If Not (Dir(MediaFile, vbDirectory) = vbNullString) Then
-            Screen.MousePointer = vbHourglass
-            
-            Select Case LCase(right(MediaFile, 3))
-                Case "apl": Call ModPlaylist.OpenAplPlaylist(MediaFile)
-                Case "m3u": Call ModPlaylist.OpenM3uPlaylist(MediaFile)
-                Case "pls": Call ModPlaylist.OpenPlsPlaylist(MediaFile)
-                Case "wpl": Call ModPlaylist.OpenWplPlaylist(MediaFile)
-            End Select
-            
-            Form_Playlist.CurrentFormType = Mp3Player
-            Form_Playlist.Show , Form_Main
-        Else
-            Debug.Print "Playlist file could not be found"
-        End If
-            
-    Case Else
-        'Check if it's a file that needs to be converted
-        Select Case LCase(right(MediaFile, 3))
-            Case "act": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-            Case "caf": Call ModConvert.Convert(MediaFile, [Apple Core Format], MP3): GoTo Begin
-            Case "ogg": Call ModConvert.Convert(MediaFile, [OGG], MP3): GoTo Begin
-            Case "omo": Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3): GoTo Begin
-            Case "s64": Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3): GoTo Begin
-            Case "voc": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-        End Select
-        
-        'Check if it's a file that needs to be converted
-        Select Case LCase(right(MediaFile, 2))
-            Case "ra": Call ModConvert.Convert(MediaFile, [Real Audio], MP3): GoTo Begin
-            Case "rm": Call ModConvert.Convert(MediaFile, [Real Media], MP3): GoTo Begin
-           
-            Case Else: MsgBox GetLanguage(1020), vbCritical
-        End Select
-    End Select
-End If
-End Sub
-
 Private Sub Trm_Floppy_Drive_Light_Timer()
 If Light_Midi_Floppy_Drive.Visible = True Then
     Light_Midi_Floppy_Drive.Visible = False
@@ -5722,7 +4382,7 @@ If PlayStateMediaMode = CDMediaMode Then
 End If
 End Sub
 Private Sub Trm_Main_Timer()
-Dim Length, pos As Long
+Dim length, pos As Long
 Dim Totaltime, Elapsedtime, Remainingtime  As Double
 Dim MidiPos As Long
 
@@ -5788,9 +4448,9 @@ If PlayStateMediaMode = MP3MediaMode Then
         
         Dim TimeSerial As String
         
-        Length = BASS_ChannelGetLength(chan, BASS_POS_BYTE)
+        length = BASS_ChannelGetLength(chan, BASS_POS_BYTE)
         pos = BASS_ChannelGetPosition(chan, BASS_POS_BYTE)
-        Totaltime = BASS_ChannelBytes2Seconds(chan, Length)
+        Totaltime = BASS_ChannelBytes2Seconds(chan, length)
         Elapsedtime = BASS_ChannelBytes2Seconds(chan, pos)
         Remainingtime = Totaltime - Elapsedtime
             
