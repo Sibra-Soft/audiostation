@@ -1,4 +1,4 @@
-![logo](https://www.audiostation.org/images/logo.png)
+![logo](https://github.com/Sibra-Soft/audiostation/blob/ddbb404f3e107a2c83412135383abae5c756ab20/logo.jpg)
 
 # Audiostation
 
@@ -6,4 +6,4 @@ Audiostation is an old school media player that can be installed on Windows syst
 
 The documentation has been moved to the [Wiki section](https://github.com/Sibra-Soft/Audiostation/wiki) of this project
 
-![screenshot](https://www.audiostation.org/images/audiostation_mp3_player.png)
+![screenshot](https://github.com/Sibra-Soft/audiostation/blob/ddbb404f3e107a2c83412135383abae5c756ab20/screenshot.jpg)
