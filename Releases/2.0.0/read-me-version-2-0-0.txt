@@ -1,0 +1,119 @@
+:::::::::::::::::::::: Sibra-Soft Software Production © 2020 ::::::::::::::::::::::
+
+
+::::::::::::::::::
+:: PROGRAM INFO ::
+::::::::::::::::::
+
+Program Name........: Audiostation
+Version.............: 2.0.2020
+Author..............: Alex van den Berg
+License Type........: Freeware
+File Size...........: 148 MB
+OS..................: Microsoft Windows
+Release Date........: 22-7-2020
+Languages...........: English; Dutch
+Download URL........: https://www.audiostation.org/
+ScreenShot URL......: https://www.audiostation.org/
+MD5 Hash............: 35F092B6D88B21348B4A1BB1ED72D4AD
+
+:::::::::::::
+:: CONTACT ::
+:::::::::::::
+
+Website.............: https://www.audiostation.org
+Email...............: info@sibra-soft.nl
+
+:::::::::::::::::::::::::::::
+:: DESCRIPTION or/and USES ::
+:::::::::::::::::::::::::::::
+
+Audiostation is an old school media player that can be installed on Windows systems. the program can play all common audio files like (*.mp3, *.wav, etc). It has a record function and has all the elements to play all the music you want to play.
+
+::::::::::::::
+:: REQUIRED ::
+::::::::::::::
+
+- Visual Basic 6 Runtime
+- Microsoft Windows
+- Sound Card
+
+::::::::::::::::
+:: WHAT'S NEW ::
+::::::::::::::::
+
+Version 2.0 Build: 2020
+[ + ]	Added spectrum analyzer to the mixer section
+[ + ]	Changed the mixing sliders for new graphical sliders
+[ + ]	Added new and beter *.sid player to the program
+[ + ]	Added beter playback for old Sibra-Soft Beep Symphony files
+[ + ]	Removed the Windows Media Player dependencies
+[ + ]	Added check for updates option
+[ + ]	Added beter audio recording functionality
+[ + ]	Changed the settings dialog of the dat player, you can only select a recording device
+
+::::::::::::::::
+:: CHANGE LOG ::
+::::::::::::::::
+
+Version 1.9 Build: 2019
+[ + ]	Added applications options menu
+[ + ]	Added audio playback options menu
+[ + ]	Added commondialog (file selection dialog) to the playlist dialog
+[ + ]	Added total duration indication to the playlist dialog
+[ + ]	Added option to switch from time remaining to time elapsed
+[ + ]	Added option for adding directories to the playlist
+[ + ]	Changed the way of adding files to the playlist
+[ + ]	New option for saving the playlist in multiple formats
+[ + ]	Improved midi player, no more division by zero errors
+[ + ]	Fixed issue with audiostation specific music file icons
+[ + ]	Added application menu
+[ + ]	Added latest version of VirtualMidiSync
+[ + ]	Added check for update option
+[ + ]	Fixed some minor bugs
+
+Version 1.8 Build: 2018
+[ + ]	Turn off Audiostation sections
+[ + ]	Better midi playback and included Virtual MIDI Synth installation
+[ + ]	Sections can be disabled
+[ + ]	Installation setup file is now smaller
+[ + ]	Midi settings dialog issue solved
+[ + ]	Application icons are added to a dll file
+[ + ]	File association issue in Windows 10 fixed
+
+Version 1.7 Build: 2017
+[ + ]	New playlist dialog
+[ + ]	New initialisation process
+[ + ]	CD-Rom animation
+[ + ]	Supports new file types: *.ra, *.rm, *.act, *.caf, *.w64,*.ogg, *.amo, *.voc
+[ + ]	No CD-Rom message error issue solved
+[ + ]	Improved performance
+[ + ]	Added search function to create playlist dialog
+[ + ]	Recording device settings issue solved
+
+Version 1.6 Build: 2016
+[ + ]	Track repeat function
+[ + ]	Random shuffle function
+[ + ]	With originale Creative Labs sample files (reggae.mid, jaz.mid, etc)
+[ + ]	Support for multiple platlists (.wpl, .pls, .m3u, etc)
+[ + ]	New folder structure in playlist creation dialog
+[ + ]	Support for Commodore64 sound files (*.sid)
+[ + ]	New VU led indicators
+[ + ]	Option to search for tracks when creating a playlist
+
+Version 1.5 Build: 2016
+[ + ]	Save settings issue is resolved
+[ + ]	The record function is fully functional
+[ + ]	Settings are saved in the registry and not in a *.ini file
+
+Version 1.4 Build: 2016
+[ + ]	Support for the old Sibra-Soft Beep Symphony format
+[ + ]	Sound record function
+[ + ]	Some form layouts have been changed
+[ + ]	About dialog has been added to the program
+[ + ]	New program icons have been made
+[ + ]	Intergration of the capture driver for recording speaker sound
+[ + ]	Support added for (*.ra, *.cda) files
+
+
+:::::::::::::::::::::: Sibra-Soft Software Production © 2020 ::::::::::::::::::::::
