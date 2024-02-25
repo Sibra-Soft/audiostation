@@ -1,0 +1,8 @@
+Line 160: Class WindatRecorder.ButtonBig of control Button_OK was not a loaded control class.
+Line 170: Class WindatRecorder.ButtonBig of control Button_Cancel was not a loaded control class.
+Line 166: The property name _ExtentX in Button_OK is invalid.
+Line 167: The property name _ExtentY in Button_OK is invalid.
+Line 168: The property name Caption in Button_OK is invalid.
+Line 176: The property name _ExtentX in Button_Cancel is invalid.
+Line 177: The property name _ExtentY in Button_Cancel is invalid.
+Line 178: The property name Caption in Button_Cancel is invalid.

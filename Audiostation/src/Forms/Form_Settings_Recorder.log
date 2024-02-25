@@ -1,0 +1,11 @@
+Line 26: Class Recorder.ButtonBig of control Button_Save was not a loaded control class.
+Line 120: Class Recorder.ButtonBig of control Button_Cancel was not a loaded control class.
+Line 19: Property Icon in Form_Settings_Recorder had an invalid file reference.
+Line 32: The property name _ExtentX in Button_Save is invalid.
+Line 33: The property name _ExtentY in Button_Save is invalid.
+Line 34: The property name Caption in Button_Save is invalid.
+Line 35: The property name TextAlignment in Button_Save is invalid.
+Line 126: The property name _ExtentX in Button_Cancel is invalid.
+Line 127: The property name _ExtentY in Button_Cancel is invalid.
+Line 128: The property name Caption in Button_Cancel is invalid.
+Line 129: The property name TextAlignment in Button_Cancel is invalid.

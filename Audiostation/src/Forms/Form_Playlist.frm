@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
 Begin VB.Form Form_Playlist 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
@@ -26,23 +26,28 @@ Begin VB.Form Form_Playlist
    ScaleHeight     =   8085
    ScaleWidth      =   12105
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   2  'CenterScreen
-   Tag             =   "1015"
-   Begin Audiostation.ButtonBig cmdSave 
+   StartUpPosition =   1  'CenterOwner
+   Tag             =   "1027"
+   Begin VB.Timer Timer_Main 
+      Interval        =   10
+      Left            =   11400
+      Top             =   3360
+   End
+   Begin Audiostation.ButtonBig Button_Save 
       Height          =   390
       Left            =   10200
-      TabIndex        =   7
+      TabIndex        =   1
       Top             =   6720
       Width           =   1695
       _ExtentX        =   2990
       _ExtentY        =   688
-      Caption         =   "Save"
+      Caption         =   "T(1017)"
       TextAlignment   =   0
    End
-   Begin MSComctlLib.ListView lstPlaylist 
+   Begin MSComctlLib.ListView Listview_Playlist 
       Height          =   6735
       Left            =   120
-      TabIndex        =   18
+      TabIndex        =   12
       Top             =   840
       Width           =   9975
       _ExtentX        =   17595
@@ -78,161 +83,36 @@ Begin VB.Form Form_Playlist
       Appearance      =   0  'Flat
       Height          =   1200
       Left            =   4200
-      TabIndex        =   17
+      TabIndex        =   11
       Top             =   3600
       Visible         =   0   'False
       Width           =   1575
    End
-   Begin VB.Timer Trm_Count 
-      Interval        =   200
-      Left            =   11040
-      Top             =   4560
-   End
-   Begin VB.ComboBox cboFileTypes 
+   Begin VB.ComboBox Combox_FilterType 
       Height          =   315
       Left            =   1440
       Style           =   2  'Dropdown List
-      TabIndex        =   8
+      TabIndex        =   2
       Top             =   120
       Width           =   8655
    End
-   Begin Audiostation.ButtonBig cmdClose 
+   Begin Audiostation.ButtonBig Button_Close 
       Height          =   390
       Left            =   10200
-      TabIndex        =   6
-      Tag             =   "1001"
+      TabIndex        =   0
       Top             =   7200
       Width           =   1695
       _ExtentX        =   2990
       _ExtentY        =   688
-      Caption         =   "Close"
+      Caption         =   "T(1025)"
       TextAlignment   =   0
    End
-   Begin VB.Timer Trm_Enable 
-      Interval        =   1
-      Left            =   10440
-      Top             =   4680
-   End
    Begin MSComDlg.CommonDialog CommonDialog 
-      Left            =   10200
-      Top             =   3960
+      Left            =   11400
+      Top             =   3840
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
-   End
-   Begin VB.PictureBox picOptions 
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   3780
-      Index           =   3
-      Left            =   -20000
-      ScaleHeight     =   3780
-      ScaleWidth      =   5685
-      TabIndex        =   2
-      TabStop         =   0   'False
-      Top             =   480
-      Width           =   5685
-      Begin VB.Frame fraSample4 
-         Caption         =   "Sample 4"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1785
-         Left            =   2100
-         TabIndex        =   5
-         Top             =   840
-         Width           =   2055
-      End
-   End
-   Begin VB.PictureBox picOptions 
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   3780
-      Index           =   2
-      Left            =   -20000
-      ScaleHeight     =   3780
-      ScaleWidth      =   5685
-      TabIndex        =   1
-      TabStop         =   0   'False
-      Top             =   480
-      Width           =   5685
-      Begin VB.Frame fraSample3 
-         Caption         =   "Sample 3"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1785
-         Left            =   1545
-         TabIndex        =   4
-         Top             =   675
-         Width           =   2055
-      End
-   End
-   Begin VB.PictureBox picOptions 
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   3780
-      Index           =   1
-      Left            =   -20000
-      ScaleHeight     =   3780
-      ScaleWidth      =   5685
-      TabIndex        =   0
-      TabStop         =   0   'False
-      Top             =   480
-      Width           =   5685
-      Begin VB.Frame fraSample2 
-         Caption         =   "Sample 2"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1785
-         Left            =   645
-         TabIndex        =   3
-         Top             =   300
-         Width           =   2055
-      End
    End
    Begin VB.PictureBox ButtonBar 
       BackColor       =   &H00C0C0C0&
@@ -242,67 +122,67 @@ Begin VB.Form Form_Playlist
       Left            =   10080
       ScaleHeight     =   2535
       ScaleWidth      =   1935
-      TabIndex        =   10
+      TabIndex        =   4
       Top             =   840
       Width           =   1935
-      Begin Audiostation.ButtonBig cmdDelete 
+      Begin Audiostation.ButtonBig Button_Delete 
          Height          =   390
          Left            =   120
-         TabIndex        =   11
+         TabIndex        =   5
          Tag             =   "1004"
          Top             =   1440
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
-         Caption         =   "Delete"
+         Caption         =   "T(1023)"
          TextAlignment   =   0
       End
-      Begin Audiostation.ButtonBig cmdClear 
+      Begin Audiostation.ButtonBig Button_ClearAll 
          Height          =   390
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   6
          Tag             =   "1005"
          Top             =   0
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
-         Caption         =   "Clear All"
+         Caption         =   "T(1020)"
          TextAlignment   =   0
       End
-      Begin Audiostation.ButtonBig cmdOpenPlaylist 
+      Begin Audiostation.ButtonBig Button_OpenPlaylist 
          Height          =   390
          Left            =   120
-         TabIndex        =   13
+         TabIndex        =   7
          Tag             =   "1009"
          Top             =   960
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
-         Caption         =   "Open Playlist"
+         Caption         =   "T(1022)"
          TextAlignment   =   0
       End
-      Begin Audiostation.ButtonBig cmdSavePlaylist 
+      Begin Audiostation.ButtonBig Button_SavePlaylist 
          Height          =   390
          Left            =   120
-         TabIndex        =   14
+         TabIndex        =   8
          Tag             =   "1008"
          Top             =   480
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
-         Caption         =   "Save Playlist"
+         Caption         =   "T(1021)"
          TextAlignment   =   0
       End
-      Begin Audiostation.ButtonBig cmdPlaylistOptions 
+      Begin Audiostation.ButtonBig Button_Options 
          Height          =   390
          Left            =   120
-         TabIndex        =   15
+         TabIndex        =   9
          Tag             =   "1054"
          Top             =   2040
          Width           =   1665
          _ExtentX        =   2937
          _ExtentY        =   688
-         Caption         =   "Playlist Options"
+         Caption         =   "T(1024)"
          TextAlignment   =   0
       End
    End
@@ -319,17 +199,17 @@ Begin VB.Form Form_Playlist
       EndProperty
       Height          =   255
       Left            =   120
-      TabIndex        =   19
+      TabIndex        =   13
       Top             =   600
       Width           =   9975
    End
-   Begin VB.Label lblPlaylistCount 
+   Begin VB.Label Label_PlaylistDetails 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
       Caption         =   "0 File(s) in this playlist, total duration 00:00:00"
       Height          =   195
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   10
       Top             =   7740
       Width           =   4020
    End
@@ -339,26 +219,30 @@ Begin VB.Form Form_Playlist
       Caption         =   "Filter Playlist:"
       Height          =   195
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   3
       Top             =   180
       Width           =   1155
    End
    Begin VB.Menu mnupopup 
       Caption         =   "- POPUP -"
-      Begin VB.Menu mnuaddfile_popup 
+      Begin VB.Menu menu_Popup_AddFiles 
          Caption         =   "&Add File(s)"
+         HelpContextID   =   1028
       End
-      Begin VB.Menu mnuadddirectory_popup 
+      Begin VB.Menu menu_Popup_AddDirectory 
          Caption         =   "&Add Directory"
+         HelpContextID   =   1029
       End
       Begin VB.Menu space01 
          Caption         =   "-"
       End
-      Begin VB.Menu mnushuffleplaylist 
+      Begin VB.Menu menu_Popup_ShufflePlaylist 
          Caption         =   "&Shuffle Playlist"
+         HelpContextID   =   1030
       End
-      Begin VB.Menu mnuhtmlplaylist_popup 
+      Begin VB.Menu menu_Popup_HtmlPlaylist 
          Caption         =   "&Generate HTML playlist"
+         HelpContextID   =   1031
       End
    End
 End
@@ -367,30 +251,30 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Integer, ByVal lparam As Any) As Long
+Option Explicit
 
-Private Const LB_FINDSTRINGEXACT = &H1A2
-Private Const LB_FINDSTRING = &H18F
-
+Dim InitDone As Boolean
 Dim DoneFitToSize As Boolean
-Dim FileTypesToShow As String
-Dim strLocation As String
+Dim HasPlayingItem As Boolean
 
-Enum PlsType
-    [Windows Media Player Playlist]
-    [ShoutCast Playlist]
-    [Common Playlist]
-    [Audiostation Playlist]
+Public Enum enumFormTypes
+    [MidiPlayer]
+    [Mp3Player]
 End Enum
 
-Public CurrentFormType As enumFormTypes
+Public FormType As enumFormTypes
 Private Sub FitListviewToSize(Optional Force As Boolean)
+Dim Offset As Integer
+
+Offset = 250
+
 'Do nothing if it's already been done
 If DoneFitToSize = True Then: Exit Sub
 
 'Check if the scrollbar is visible
-If lstPlaylist.ListItems.count > 31 Or Force = True Then
-    Form_Playlist.lstPlaylist.ColumnHeaders(1).Width = Form_Playlist.lstPlaylist.ColumnHeaders(1).Width - 250
+If Listview_Playlist.ListItems.Count > 31 Or Force = True Then
+    Form_Playlist.Listview_Playlist.ColumnHeaders(1).Width = Form_Playlist.Listview_Playlist.ColumnHeaders(1).Width - Offset
+    
     DoneFitToSize = True
 End If
 End Sub
@@ -398,11 +282,11 @@ Private Function ComboxboxToCommondialogFilter() As String
 Dim I As Integer
 Dim FileType As String
 Dim Description As String
-Dim FilterString As New StringBuilder
+Dim FilterString As New clsStringBuilder
 
-For I = 0 To cboFileTypes.ListCount - 1
-    FileType = Extensions.StringBetween("(", ")", cboFileTypes.List(I))
-    Description = Extensions.Explode(cboFileTypes.List(I), "(", 0)
+For I = 0 To Combox_FilterType.ListCount - 1
+    FileType = StrExt.Between("(", ")", Combox_FilterType.List(I))
+    Description = StrExt.SplitStr(Combox_FilterType.List(I), "(", 0)
     
     FilterString.Append Description & "(" & FileType & ")|" & FileType & "|"
 Next
@@ -412,10 +296,10 @@ End Function
 Private Sub SavePlaylistAsHTML(FileName As String)
 Dim I As Integer
 Dim TemplateContent As String
-Dim table As New StringBuilder
+Dim table As New clsStringBuilder
 
 'Open the file with the template content
-TemplateContent = Extensions.FileGetContents(App.path & "\templates\html_playlist.tpl")
+TemplateContent = Extensions.FileGetContents(App.Path & "\templates\html_playlist.tpl")
 
 'Create the table
 table.AppendNL "<table style='width:100%;' border='2px' >"
@@ -427,11 +311,11 @@ table.AppendNL "<thead>"
     table.AppendNL "</tr>"
 table.AppendNL "</thead>"
 
-For I = 1 To lstPlaylist.ListItems.count
+For I = 1 To Listview_Playlist.ListItems.Count
     table.AppendNL "<tr>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(I).text & "</td>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(I).SubItems(1) & "</td>"
-        table.AppendNL "<td>" & lstPlaylist.ListItems(I).SubItems(2) & "</td>"
+        table.AppendNL "<td>" & Listview_Playlist.ListItems(I).Text & "</td>"
+        table.AppendNL "<td>" & Listview_Playlist.ListItems(I).SubItems(1) & "</td>"
+        table.AppendNL "<td>" & Listview_Playlist.ListItems(I).SubItems(2) & "</td>"
     table.AppendNL "</tr>"
 Next
 
@@ -442,18 +326,16 @@ TemplateContent = Replace(TemplateContent, "{PlaylistTable}", table.toString)
 
 Call Extensions.FilePutContents(FileName, TemplateContent)
 End Sub
-Public Sub AddToPlaylist(file As String)
-Dim MediaDuration As String
-Dim lstItem As ListItem
+Public Sub AddToPlaylist(File As String)
 Dim Files
-Dim FilesToAddCount As Integer
+Dim FilesToAddCount, FilesAddedCount As Integer
 Dim I As Integer
 Dim FirstIndex As Integer
 Dim AddingMoreThanOne As Boolean
 Dim FileNotFoundCount As Integer
 
-On Error GoTo ErrorHandler
-Files = Split(file, vbNewLine)
+'On Error GoTo ErrorHandler
+Files = Split(File, vbNewLine)
 FilesToAddCount = UBound(Files)
 
 If FilesToAddCount > 0 Then: FirstIndex = 0
@@ -463,53 +345,47 @@ If FilesToAddCount > 1 Then: AddingMoreThanOne = True
 If AddingMoreThanOne = True Then
     Screen.MousePointer = vbHourglass
     
-    Form_Busy.ProgressBar.value = 0
-    Form_Busy.ProgressBar.max = FilesToAddCount
+    Form_Busy.ProgressBar.Value = 0
+    Form_Busy.ProgressBar.Max = FilesToAddCount + 1
     Form_Busy.Show , Me
 End If
+
+Debug.Print "Playlist: (Adding files to playlist)"
 
 'Add files to the playlist
 For I = FirstIndex To FilesToAddCount
     'Get current file to process
-    file = Files(I)
+    File = Files(I)
     
-    If Dir(file, vbDirectory) = vbNullString Then
-        Debug.Print "File not found"
+    If Dir(File, vbDirectory) = vbNullString Then
+        Debug.Print "File not found: " & File
         FileNotFoundCount = FileNotFoundCount + 1
     Else
-        If Not file = vbNullString Then
-            MediaDuration = 0
-        
-            If CurrentFormType = Mp3Player Then
-                If (LCase(Right(file, 3)) = "mp3") Then
-                    Mp3Info.FileName = file
-                    MediaDuration = Extensions.TimeString(Mp3Info.SongLength)
-                End If
-            End If
-            
-            If MediaDuration = "0" Then: MediaDuration = "-"
-            
-            'Add the file to the listview
-            Set lstItem = lstPlaylist.ListItems.Add(, file, Format(lstPlaylist.ListItems.count + 1, "00"))
-                lstItem.SubItems(1) = file
-                lstItem.SubItems(2) = MediaDuration
-        End If
+        If FormType = Mp3Player Then: Form_Main.AdioMediaPlaylist.AddFile File
+        If FormType = MidiPlayer Then: Form_Main.AdioMidiPlaylist.AddFile File
         
         If AddingMoreThanOne = True Then
             DoEvents
-            Form_Busy.ProgressBar.value = Form_Busy.ProgressBar.value + 1
+            Form_Busy.ProgressBar.Value = Form_Busy.ProgressBar.Value + 1
         End If
     End If
+    
+    FilesAddedCount = FilesAddedCount + 1
 Next
 
 'Check if all files are found
-If FileNotFoundCount > 0 Then MsgBox Extensions.StringFormat(GetLanguage(1068), FileNotFoundCount), vbExclamation
+If FileNotFoundCount > 0 Then MsgBox StrExt.format(GetTranslation(1036), FileNotFoundCount), vbExclamation
+
+Debug.Print "Playlist: (Done adding " & FilesAddedCount & " file(s), " & FileNotFoundCount & " file(s) not found while adding)"
 
 'Restore default
 Screen.MousePointer = vbDefault
 Unload Form_Busy
 
+Call PopulatePlaylist
+
 Exit Sub
+
 ErrorHandler:
 Select Case Err.Number
     Case 0
@@ -517,199 +393,144 @@ Select Case Err.Number
     Case Else: Debug.Print Err.Number & " - " & Err.Description
 End Select
 End Sub
-Private Function SavePlaylist(ByVal strFile As String, ByRef lstFormList As ListView, ByVal PlaylistType As PlsType, Optional ByVal blnClearList As Boolean = False)
-Dim I As Integer
-Dim FN As Integer
+Public Function PopulatePlaylist()
+Dim PlaylistItem As mdlAdioPlaylistItem
+Dim LstItem As ListItem
 
-Dim MusicLibraryLocation As String
-Dim strFilename As String
-Dim lstItem As ListItem
+Listview_Playlist.ListItems.Clear
 
-strLocation = strFile
-strFilename = Extensions.GetFileNameFromFilePath(strFile, False)
-
-FN = FreeFile
-
-Select Case PlaylistType
-    Case 0
-        Dim PlaylistName As String
-        
-        PlaylistName = Extensions.GetFileNameFromFile(strFile)
-        
-        Open strFile For Output As #1
-          Print #1, "<?wpl version="; 1#; "?>"
-          Print #1, "<smil>"
-          Print #1, "    <head>"
-          Print #1, "        <title>" & PlaylistName & "</title>"
-          Print #1, "    </head>"
-          Print #1, "    <body>"
-          Print #1, "        <seq>"
-          
-          ' Get all the items from the selected playlist
-          For Each lstItem In lstFormList.ListItems
-            Print #1, "<media src=""" & lstItem.SubItems(1) & """/>"
-          Next
-
-          Print #1, "       </seq>"
-          Print #1, "    </body>"
-          Print #1, "</smil>"
-        Close #1
-        
-    Case 1
-        For I = 1 To lstFormList.ListItems.count
-            Call Extensions.INIWrite("playlist", "File" & I, lstFormList.ListItems(I).key, strFile)
-        Next I
-        
-        Call Extensions.INIWrite("playlist", "NumberOfEntries", lstFormList.ListItems.count, strFile)
-        Call Extensions.INIWrite("playlist", "Version", 2, strFile)
-    
-    Case 2
-        Open strFile For Output As #FN
-            Print #FN, "#EXTM3U"
+Select Case FormType
+    Case enumFormTypes.MidiPlayer
+        For Each PlaylistItem In Form_Main.AdioMidiPlaylist.GetList
+            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.nR, "00"))
+                LstItem.SubItems(1) = PlaylistItem.LocalFile
+                LstItem.SubItems(2) = PlaylistItem.RuntimeString
             
-            For I = 1 To lstFormList.ListItems.count
-              Print #FN, "#EXTINF:0, " & Extensions.GetFileNameFromFilePath(lstFormList.ListItems(I).key, False)
-              Print #FN, lstFormList.ListItems(I).key
-              Print #FN, ""
-            Next I
-        Close #FN
-    
-    Case 3
-        Open strFile For Output As #FN
-            For I = 1 To lstFormList.ListItems.count
-              Print #FN, lstFormList.ListItems(I).key
-            Next I
-        Close #FN
+            If PlaylistItem.nR = CurrentMidiPlayerTrackNr Then
+                LstItem.Bold = True
+                LstItem.ListSubItems(1).Bold = True
+                LstItem.ListSubItems(2).Bold = True
+            End If
+        Next
         
-        If blnClearList = True Then lstFormList.ListItems.Clear
+    Case enumFormTypes.Mp3Player
+        For Each PlaylistItem In Form_Main.AdioMediaPlaylist.GetList
+            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.nR, "00"))
+                LstItem.SubItems(1) = PlaylistItem.LocalFile
+                LstItem.SubItems(2) = PlaylistItem.RuntimeString
+            
+            If PlaylistItem.nR = CurrentMediaPlayerTrackNr Then
+                LstItem.Bold = True
+                LstItem.ListSubItems(1).Bold = True
+                LstItem.ListSubItems(2).Bold = True
+            End If
+        Next
 End Select
-End Function
-Public Function PopulatePlaylist(Playlist As LocalStorage)
-Dim fso As New FileSystemObject
-Dim I As Integer
-
-Dim CurrentFile As String
-
-lstPlaylist.ListItems.Clear
-
-'Get the playlist from the local saved storage
-For I = 1 To Playlist.StorageContainer.count
-    CurrentFile = Playlist.GetItemByIndex(I, 1)
-    
-    'Add the file to the listview
-    Set lstItem = lstPlaylist.ListItems.Add(, CurrentFile, Playlist.GetItemByIndex(I, 0))
-        lstItem.SubItems(1) = CurrentFile
-        lstItem.SubItems(2) = Playlist.GetItemByIndex(I, 2)
-    
-    'Select the current playing mp3 audio track
-    If AudiostationMP3Player.CurrentTrackNumber = I And CurrentFormType = Mp3Player Then
-        lstPlaylist.ListItems(I).Bold = True
-        lstPlaylist.ListItems(I).ListSubItems(1).Bold = True
-        lstPlaylist.ListItems(I).ListSubItems(2).Bold = True
-    End If
-    
-    'Select the current playing midi audio track
-    If AudiostationMIDIPlayer.MidiTrackNr = I And CurrentFormType = MidiPlayer Then
-        lstPlaylist.ListItems(I).Bold = True
-        lstPlaylist.ListItems(I).ListSubItems(1).Bold = True
-        lstPlaylist.ListItems(I).ListSubItems(2).Bold = True
-    End If
-Next
 
 Call FitListviewToSize
 End Function
 Public Function LoadFileTypes()
-Select Case CurrentFormType
+Select Case FormType
     Case enumFormTypes.MidiPlayer
-        cboFileTypes.AddItem GetLanguage(1044) & " (*.mid;*.midi;*.kar;*.mus;*.sid)"
-        cboFileTypes.AddItem "MIDI File (*.mid)"
-        cboFileTypes.AddItem "MIDI File (*.midi)"
-        cboFileTypes.AddItem "Karaoke File (*.kar)"
-        cboFileTypes.AddItem "Sibra-Soft Beep Symphony (*.mus)"
-        cboFileTypes.AddItem "Commodore64 Sound File (*.sid)"
-        cboFileTypes.AddItem GetLanguage(1016) & " (*.*)"
+        Combox_FilterType.AddItem GetTranslation(1032) & " (*.mid;*.midi;*.kar;*.mus;*.sid)"
+        Combox_FilterType.AddItem "MIDI File (*.mid)"
+        Combox_FilterType.AddItem "MIDI File (*.midi)"
+        Combox_FilterType.AddItem "Karaoke File (*.kar)"
+        Combox_FilterType.AddItem "Sibra-Soft Beep Symphony (*.mus)"
+        Combox_FilterType.AddItem "Commodore64 Sound File (*.sid)"
+        Combox_FilterType.AddItem "Musical Instrument Digital Interface (*.rmi)"
+        Combox_FilterType.AddItem GetTranslation(1066) & " (*.*)"
         
-        cboFileTypes.ListIndex = 0 'Select the first item
+        Combox_FilterType.ListIndex = 0 'Select the first item
         
     Case enumFormTypes.Mp3Player
-        cboFileTypes.AddItem GetLanguage(1044) & " (*.mp3;*.mp2;*.m4a;*.ra;*.cda;*.wav;*.aif;*.aac;*.snd,;*.au;*.wma;*.rmi)"
-        cboFileTypes.AddItem "MPEG-1 Layer 3 (*.mp3)"
-        cboFileTypes.AddItem "MPEG-1 Layer 2 (*.mp2)"
-        cboFileTypes.AddItem "MPEG-4 Layer 4 Audio (*.m4a)"
-        cboFileTypes.AddItem "Convert - Real Audio (*.ra)"
-        cboFileTypes.AddItem "Convert - Real Media (*.rm)"
-        cboFileTypes.AddItem "CD Audio (*.cda)"
-        cboFileTypes.AddItem "Microsoft WaveForm Audio (*.wav)"
-        cboFileTypes.AddItem "Audio Interchange File (*.aif)"
-        cboFileTypes.AddItem "Advanced Audio Coding (*.aac)"
-        cboFileTypes.AddItem "Sun Microsystems Sound (*.snd)"
-        cboFileTypes.AddItem "Sun Microsystems Audio (*.au)"
-        cboFileTypes.AddItem "Windows Media Audio (*.wma)"
-        cboFileTypes.AddItem "Musical Instrument Digital Interface (*.rmi)"
-        cboFileTypes.AddItem "Convert - Voice File Format (*.act)"
-        cboFileTypes.AddItem "Convert - Apple Core Format (*.caf)"
-        cboFileTypes.AddItem "Convert - Westwood Studios Audio (*.wsaud)"
-        cboFileTypes.AddItem "Convert - Sony Wave64 (*.w64)"
-        cboFileTypes.AddItem "Convert - OGG (*.ogg)"
-        cboFileTypes.AddItem "Convert - Sony Opend Audio (*.amo)"
-        cboFileTypes.AddItem "Convert - Creative Voice (*.voc)"
-        cboFileTypes.AddItem GetLanguage(1016) & " (*.*)"
+        Combox_FilterType.AddItem GetTranslation(1032) & " (*.mp3;*.mp2;*.m4a;*.cda;*.wav;*.aif;*.wma;)"
+        Combox_FilterType.AddItem "MPEG-1 Layer 3 (*.mp3)"
+        Combox_FilterType.AddItem "MPEG-1 Layer 2 (*.mp2)"
+        Combox_FilterType.AddItem "MPEG-4 Layer 4 Audio (*.m4a)"
+        Combox_FilterType.AddItem "CD Audio (*.cda)"
+        Combox_FilterType.AddItem "Microsoft WaveForm Audio (*.wav)"
+        Combox_FilterType.AddItem "Audio Interchange File (*.aif)"
+        Combox_FilterType.AddItem "Advanced Audio Coding (*.aac)"
+        Combox_FilterType.AddItem "Windows Media Audio (*.wma)"
+        Combox_FilterType.AddItem "Ogg Vorbis Audio File (*.ogg)"
+        Combox_FilterType.AddItem "Free Lossless Audio Codec (*.flac)"
+        Combox_FilterType.AddItem GetTranslation(1066) & " (*.*)"
         
-        cboFileTypes.ListIndex = 0 'Select the first item
+        Combox_FilterType.ListIndex = 0 'Select the first item
 End Select
 End Function
 
-Private Sub cboFileTypes_Click()
-Dim SplitValue
-Dim FileTypeArray As String
-Dim CurrentPlaylist As LocalStorage
-
-Select Case CurrentFormType
-    Case enumFormTypes.MidiPlayer: Set CurrentPlaylist = MidiPlaylist
-    Case enumFormTypes.Mp3Player: Set CurrentPlaylist = MediaPlaylist
-End Select
-
-'First save the current playlist to the storage
-Call CurrentPlaylist.ListviewToStorage(lstPlaylist, 1)
-
-'Get the current file type to filter
-SplitValue = Split(cboFileTypes.text, "(*")
-FileTypeArray = Replace(SplitValue(1), ")", vbNullString)
-
-If Not cboFileTypes.ListIndex = 0 Then: CurrentPlaylist.filter (FileTypeArray)
-
-'Rebuild the playlist
-Call PopulatePlaylist(CurrentPlaylist)
-
-'Check if the filter is set, yes then clear the current filter
-If CurrentPlaylist.IsFilterd = True Then: CurrentPlaylist.ClearFilter
-End Sub
-
-Private Sub cmdClear_Click()
-lstPlaylist.ListItems.Clear
-End Sub
-
-Private Sub cmdClose_Click()
+Private Sub Button_Close_Click()
 Unload Me
 End Sub
 
-Private Sub cmdDelete_Click()
-lstPlaylist.ListItems.Remove (lstPlaylist.SelectedItem.index)
+Private Sub Button_Delete_Click()
+Select Case FormType
+    Case enumFormTypes.MidiPlayer
+        Form_Main.AdioMidiPlaylist.Remove Listview_Playlist.SelectedItem
+        
+    Case enumFormTypes.Mp3Player
+        Form_Main.AdioMediaPlaylist.Remove Listview_Playlist.SelectedItem
+End Select
+
+Listview_Playlist.ListItems.Remove Listview_Playlist.SelectedItem.Index
 End Sub
 
-Private Sub cmdSavePlaylist_Click()
+Private Sub Button_OpenPlaylist_Click()
+On Error GoTo ErrorHandler
+
+Debug.Print "Playlist: (ShowOpenPlaylistDialog)"
+
+With CommonDialog
+    .CancelError = True
+    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.Path)
+    .DialogTitle = GetTranslation(1018)
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .ShowOpen
+    
+    If .FilterIndex = 1 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_APL)
+    If .FilterIndex = 2 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_M3U)
+    If .FilterIndex = 3 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_PLS)
+    If .FilterIndex = 4 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_WPL)
+
+    Call PopulatePlaylist
+    Call FitListviewToSize
+    
+    Debug.Print "Playlist: (OpenPlaylist: " & .FileName & ")"
+End With
+
+Call Extensions.INIWrite("main", "LastLocation", Extensions.GetPathFromFilename(CommonDialog.FileName), ConfigFile)
+Exit Sub
+
+ErrorHandler:
+Select Case Err.Number
+    Case 0
+    Case Else: Debug.Print Err.Description
+End Select
+End Sub
+
+Private Sub Button_Options_Click()
+PopupMenu mnupopup
+End Sub
+
+Private Sub Button_Save_Click()
+Unload Me
+End Sub
+
+Private Sub Button_SavePlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True
-    .FileName = App.path
-    .DialogTitle = GetLanguage(1017)
-    .filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .FileName = App.Path
+    .DialogTitle = GetTranslation(1017)
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowSave
 
-    If Right(LCase(.FileName), 3) = "apl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Audiostation Playlist])
-    If Right(LCase(.FileName), 3) = "m3u" Then: Call SavePlaylist(.FileName, lstPlaylist, [Common Playlist])
-    If Right(LCase(.FileName), 3) = "pls" Then: Call SavePlaylist(.FileName, lstPlaylist, [ShoutCast Playlist])
-    If Right(LCase(.FileName), 3) = "wpl" Then: Call SavePlaylist(.FileName, lstPlaylist, [Windows Media Player Playlist])
+    If Right(LCase(.FileName), 3) = "apl" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_APL)
+    If Right(LCase(.FileName), 3) = "m3u" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_M3U)
+    If Right(LCase(.FileName), 3) = "pls" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_PLS)
+    If Right(LCase(.FileName), 3) = "wpl" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_WPL)
 End With
 
 Exit Sub
@@ -721,22 +542,47 @@ Select Case Err.Number
 End Select
 End Sub
 
-Private Sub cmdPlaylistOptions_Click()
-PopupMenu mnupopup
+Private Sub Button_ClearAll_Click()
+Select Case FormType
+    Case enumFormTypes.MidiPlayer: Form_Main.AdioMidiPlaylist.Clear
+    Case enumFormTypes.Mp3Player: Form_Main.AdioMediaPlaylist.Clear
+End Select
+        
+Call PopulatePlaylist
 End Sub
 
-Private Sub cmdSave_Click()
-Select Case CurrentFormType
-    Case enumFormTypes.MidiPlayer
-        Call MidiPlaylist.ClearStorage
-        Call MidiPlaylist.ListviewToStorage(lstPlaylist, 1)
+Private Sub Combox_FilterType_Click()
+If InitDone Then
+    Dim SelectedExtension As String
+    
+    If Combox_FilterType.ListIndex = 0 Then
+        SelectedExtension = "*"
+    Else
+        SelectedExtension = StrExt.SplitStr(Combox_FilterType.Text, "(*.", 1)
+        SelectedExtension = Replace$(SelectedExtension, ")", vbNullString)
+    End If
+    
+    With Form_Main
+        Select Case FormType
         
-    Case enumFormTypes.Mp3Player
-        Call MediaPlaylist.ClearFilter
-        Call MediaPlaylist.ListviewToStorage(lstPlaylist, 1)
-End Select
-
-Unload Me
+            Case enumFormTypes.MidiPlayer
+                If SelectedExtension <> "*" Then
+                    Call .AdioMidiPlaylist.ExecQuery("extension eq '" & SelectedExtension & "'")
+                Else
+                    Call .AdioMidiPlaylist.ClearQuery
+                End If
+            
+            Case enumFormTypes.Mp3Player
+                If SelectedExtension <> "*" Then
+                    Call .AdioMediaPlaylist.ExecQuery("extension eq '" & SelectedExtension & "'")
+                Else
+                    Call .AdioMediaPlaylist.ClearQuery
+                End If
+        End Select
+    End With
+    
+    Call PopulatePlaylist
+End If
 End Sub
 
 Private Sub Form_Activate()
@@ -753,67 +599,33 @@ DoneFitToSize = False
 mnupopup.Visible = False
 Me.Height = 8500
 
-Call SetLanguage(Me)
+Call TranslateFormAndControls(Me)
 Call LoadFileTypes
+Call PopulatePlaylist
 
-Select Case CurrentFormType
-    Case enumFormTypes.MidiPlayer: Call PopulatePlaylist(MidiPlaylist)
-    Case enumFormTypes.Mp3Player: Call PopulatePlaylist(MediaPlaylist)
-End Select
+InitDone = True
 End Sub
-Private Sub cmdOpenPlaylist_Click()
-On Error GoTo ErrorHandler
-With CommonDialog
-    .CancelError = True
-    .FileName = App.path
-    .DialogTitle = GetLanguage(1018)
-    .filter = "Audiostation Playlist (*.apl)|*.apl|" & GetLanguage(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
-    .ShowOpen
-    
-    If .FilterIndex = 1 Then: Call ModPlaylist.OpenAplPlaylist(.FileName)
-    If .FilterIndex = 2 Then: Call ModPlaylist.OpenM3uPlaylist(.FileName)
-    If .FilterIndex = 3 Then: Call ModPlaylist.OpenPlsPlaylist(.FileName)
-    If .FilterIndex = 4 Then: Call ModPlaylist.OpenWplPlaylist(.FileName)
-
-    Call FitListviewToSize
-End With
-
-Exit Sub
-
-ErrorHandler:
-Select Case Err.Number
-    Case 0
-    Case Else: Debug.Print Err.Description
-End Select
-End Sub
-
-Private Sub lstPlaylist_DblClick()
-If lstPlaylist.ListItems.count > 0 Then
-    Select Case CurrentFormType
-        Case enumFormTypes.MidiPlayer
-            Call MidiPlaylist.ListviewToStorage(lstPlaylist, 1)
-            
-            AudiostationMIDIPlayer.MidiTrackNr = lstPlaylist.SelectedItem.index
-            AudiostationMIDIPlayer.StartMidiPlayback
-            
-        Case enumFormTypes.Mp3Player
-            Call MediaPlaylist.ListviewToStorage(lstPlaylist, 1)
-            
-            AudiostationMP3Player.CurrentTrackNumber = lstPlaylist.SelectedItem.index
-            AudiostationMP3Player.StartPlay
+Private Sub Listview_Playlist_DblClick()
+If Listview_Playlist.ListItems.Count > 0 Then
+    Select Case FormType
+        Case enumFormTypes.MidiPlayer ' Start Midiplayer
+            Call Form_Main.AdioMidiPlaylist.GetTrack(PLS_GOTO, Listview_Playlist.SelectedItem)
+        
+        Case enumFormTypes.Mp3Player ' Start Mediaplayer
+            Call Form_Main.AdioMediaPlaylist.GetTrack(PLS_GOTO, Listview_Playlist.SelectedItem)
     End Select
     
     Unload Me
 End If
 End Sub
 
-Private Sub lstPlaylist_OLEDragDrop(data As MSComctlLib.DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Listview_Playlist_OLEDragDrop(Data As MSComctlLib.DataObject, Effect As Long, Button As Integer, Shift As Integer, x As Single, y As Single)
 Dim I As Integer
 Dim CurrentFile As String
 
 'Add the dropped files to the playlist
-For I = 1 To data.Files.count
-    CurrentFile = data.Files(I)
+For I = 1 To Data.Files.Count
+    CurrentFile = Data.Files(I)
     
     Call AddToPlaylist(CurrentFile)
 Next
@@ -821,24 +633,24 @@ Next
 Call FitListviewToSize
 End Sub
 
-Private Sub mnuadddirectory_popup_Click()
+Private Sub menu_Popup_AddDirectory_Click()
 Dim I As Integer
 Dim SelectedDirectory As String
 Dim StringBuilder As String
 Dim CurrentFile As String
 
 'Open the browse for folder dialog
-SelectedDirectory = Extensions.BrowseForFolder(Me.hwnd, "Open folder")
+SelectedDirectory = Extensions.BrowseForFolder(Me.hwnd, GetTranslation(1060))
 
 'Check if a folder is selected
 If SelectedDirectory <> vbNullString Then
-    DirToPlaylist.path = SelectedDirectory
+    DirToPlaylist.Path = SelectedDirectory
     
     If DirToPlaylist.ListCount > 32 Then: Call FitListviewToSize(True)
     
     'Construct the files string
     For I = 0 To DirToPlaylist.ListCount - 1
-        CurrentFile = DirToPlaylist.path & "\" & DirToPlaylist.List(I)
+        CurrentFile = DirToPlaylist.Path & "\" & DirToPlaylist.List(I)
         
         StringBuilder = StringBuilder & CurrentFile & vbNewLine
     Next
@@ -848,16 +660,17 @@ If SelectedDirectory <> vbNullString Then
 End If
 End Sub
 
-Private Sub mnuaddfile_popup_Click()
+Private Sub menu_Popup_AddFiles_Click()
 Dim Files As String
 
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True
     .MaxFileSize = 9999
-    .DialogTitle = "Add file(s) to playlist"
-    .filter = ComboxboxToCommondialogFilter
-    .flags = cdlOFNAllowMultiselect Or cdlOFNExplorer Or cdlOFNHideReadOnly
+    .DialogTitle = GetTranslation(1035)
+    .Filter = ComboxboxToCommondialogFilter
+    .Flags = cdlOFNAllowMultiselect Or cdlOFNExplorer
+    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.Path)
     .ShowOpen
 
     If .FileName <> vbNullString Then
@@ -867,6 +680,9 @@ With CommonDialog
     End If
 End With
 
+Call Extensions.INIWrite("main", "LastLocation", Extensions.GetPathFromFilename(CommonDialog.FileName), ConfigFile)
+Exit Sub
+
 ErrorHandler:
 Select Case Err.Number
     Case 0
@@ -874,12 +690,12 @@ Select Case Err.Number
 End Select
 End Sub
 
-Private Sub mnuhtmlplaylist_popup_Click()
+Private Sub menu_Popup_HtmlPlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
-    .DialogTitle = "Generate HTML playlist"
+    .DialogTitle = GetTranslation(1031)
     .CancelError = True
-    .filter = "Hyperlink Markup Langauge Page (*.html)|*.html"
+    .Filter = "Hyperlink Markup Langauge Page (*.html)|*.html"
     .ShowSave
     
     If .FileName <> vbNullString Then
@@ -894,55 +710,36 @@ Select Case Err.Number
 End Select
 End Sub
 
-Private Sub mnushuffleplaylist_Click()
+Private Sub menu_Popup_ShufflePlaylist_Click()
 Dim I As Integer
-Dim lstItem As ListItem
+Dim LstItem As ListItem
 Dim newListItem As ListItem
     
-If lstPlaylist.ListItems.count = 0 Then: Exit Sub
-For I = 1 To Extensions.RandomNumber(1, lstPlaylist.ListItems.count)
-    Set lstItem = lstPlaylist.ListItems(I)
+If Listview_Playlist.ListItems.Count = 0 Then: Exit Sub
+For I = 1 To Extensions.RandomNumber(1, Listview_Playlist.ListItems.Count)
+    Set LstItem = Listview_Playlist.ListItems(I)
         
-    Set newListItem = lstPlaylist.ListItems.Add(, , lstItem.text)
-    newListItem.SubItems(1) = lstItem.SubItems(1)
-    newListItem.SubItems(2) = lstItem.SubItems(2)
+    Set newListItem = Listview_Playlist.ListItems.Add(, , LstItem.Text)
+    newListItem.SubItems(1) = LstItem.SubItems(1)
+    newListItem.SubItems(2) = LstItem.SubItems(2)
     
-    lstPlaylist.ListItems.Remove (I)
+    Listview_Playlist.ListItems.Remove (I)
 Next
 End Sub
 
-Private Sub Trm_Count_Timer()
-Dim Minutes As Long
-Dim seconds As Long
-Dim SplitValue
-Dim I As Integer
+Private Sub Timer_Main_Timer()
 Dim TotalSeconds As Long
-Dim ItemValue As String
 
-For I = 1 To lstPlaylist.ListItems.count
-    ItemValue = lstPlaylist.ListItems(I).SubItems(2)
-    
-    If ItemValue = "-" Or ItemValue = vbNullString Then
-        'Do nothing
-    Else
-        SplitValue = Split(ItemValue, ":")
-        
-        Minutes = Minutes + SplitValue(0)
-        seconds = seconds + SplitValue(1)
-    End If
-Next
+If FormType = Mp3Player Then: TotalSeconds = Form_Main.AdioMediaPlaylist.GetPlaylistRuntimeInSeconds
+If FormType = MidiPlayer Then: TotalSeconds = Form_Main.AdioMidiPlaylist.GetPlaylistRuntimeInSeconds
 
-TotalSeconds = Minutes * 60 + seconds
+Label_PlaylistDetails.Caption = StrExt.format(GetTranslation(1026), Listview_Playlist.ListItems.Count, Extensions.SecondsToTimeSerial(TotalSeconds, LongTimeSerial))
 
-lblPlaylistCount.Caption = Extensions.StringFormat(GetLanguage(1053), lstPlaylist.ListItems.count, Extensions.SecondsToTimeSerial(TotalSeconds, LongTimeSerial))
-End Sub
-
-Private Sub Trm_Enable_Timer()
-If lstPlaylist.ListItems.count = 0 Then
-    cmdDelete.Enabled = False
-    mnuhtmlplaylist_popup.Enabled = False
+If Listview_Playlist.ListItems.Count = 0 Then
+    Button_Delete.Enabled = False
+    menu_Popup_HtmlPlaylist.Enabled = False
 Else
-    cmdDelete.Enabled = True
-    mnuhtmlplaylist_popup.Enabled = True
+    Button_Delete.Enabled = True
+    menu_Popup_HtmlPlaylist.Enabled = True
 End If
 End Sub

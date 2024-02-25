@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form Form_Track_Properties 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Track Properties"
+   Caption         =   "-"
    ClientHeight    =   3585
    ClientLeft      =   45
    ClientTop       =   390
@@ -23,7 +23,8 @@ Begin VB.Form Form_Track_Properties
    ScaleHeight     =   3585
    ScaleWidth      =   6000
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   2  'CenterScreen
+   StartUpPosition =   1  'CenterOwner
+   Tag             =   "1047"
    Begin Audiostation.ButtonBig Button_Close 
       Height          =   390
       Left            =   4800
@@ -32,20 +33,30 @@ Begin VB.Form Form_Track_Properties
       Width           =   1095
       _ExtentX        =   1931
       _ExtentY        =   688
-      Caption         =   "Close"
+      Caption         =   "T(1025)"
       TextAlignment   =   0
    End
    Begin VB.TextBox Textbox_Properties 
       Appearance      =   0  'Flat
       BackColor       =   &H00C0C0C0&
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00C00000&
       Height          =   3495
-      Left            =   50
+      Left            =   120
       Locked          =   -1  'True
       MultiLine       =   -1  'True
       TabIndex        =   0
       Text            =   "Form_Track_Properties.frx":000C
-      Top             =   50
+      Top             =   120
       Width           =   5895
    End
 End
@@ -54,23 +65,30 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Public File As String
 Private Sub Button_Close_Click()
 Unload Me
 End Sub
 
 Private Sub Form_Load()
-Dim BassTime As New BaseTime
+Dim Builder As New clsStringBuilder
 
-Mp3Info.Filename = CurrentMediaFilename
-
-With BassTime
-    Textbox_Properties.Text = "Total duration: " & Format(.GetDuration(chan), "0.0") & " seconds / " & .GetTime(.GetDuration(chan)) & vbNewLine & _
-    "Frequency: " & .GetFrequency(chan) & " Hz, " & .GetBits(chan) & " bits, " & .GetMode(chan) & vbNewLine & _
-    "Bytes/s: " & .GetBytesPerSecond(chan) & vbNewLine & _
-    "Kbp/s: " & Mp3Info.BitRate & vbNewLine & vbNewLine & _
-    "Artist: " & Mp3Info.Artist & vbNewLine & _
-    "Title: " & Mp3Info.Title & vbNewLine & _
-    "Year: " & Mp3Info.Year
+With Form_Main
+    Builder.AppendNL GetTranslation(1048) & Space(1) & .AdioTagging.ReadTag(File, tArtist, v2)
+    Builder.AppendNL GetTranslation(1049) & Space(1) & .AdioTagging.ReadTag(File, tTitle, v2)
+    Builder.AppendNL GetTranslation(1050) & Space(1) & .AdioTagging.ReadTag(File, tAlbum, v2)
+    Builder.AppendNL GetTranslation(1051) & Space(1) & .AdioTagging.ReadTag(File, tYear, v2)
+    Builder.AppendNL GetTranslation(1052) & Space(1) & .AdioTagging.ReadTag(File, tGenre, v2)
+    Builder.AppendNL vbNullString
+    Builder.AppendNL "Biterate: " & .AdioTagging.ReadProperty(File, pBitrate) & "kbps"
+    Builder.AppendNL "Channel Mode: " & .AdioTagging.ReadProperty(File, pChannels)
+    Builder.AppendNL "Frequency: " & .AdioTagging.ReadProperty(File, pFrequency)
+    Builder.AppendNL "Length: " & .AdioTagging.ReadProperty(File, pDurationInSeconds)
+    Builder.AppendNL "Size: " & Extensions.SetBytes(FileLen(File))
 End With
+
+Textbox_Properties.Text = Builder.toString
+
+Call TranslateFormAndControls(Me)
 End Sub
 

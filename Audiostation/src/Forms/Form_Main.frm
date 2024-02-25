@@ -1,17 +1,19 @@
 VERSION 5.00
 Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{A8B345A0-74B5-11D3-85C2-00105AC8B715}#1.0#0"; "iProfessionalLibrary.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{5F5C69A3-5434-4A28-B392-38259F02830A}#1.0#0"; "DataInter.ocx"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "Comctl32.ocx"
+Object = "{40F6D89D-D6BF-4EAD-B885-E1869BDF4E31}#41.0#0"; "AdioLibrary.ocx"
+Object = "{966CF34C-191F-4FB6-BF33-C8DB07C6A40D}#1.0#0"; "DigitBox.ocx"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Audiostation"
-   ClientHeight    =   9105
+   ClientHeight    =   10005
    ClientLeft      =   4695
    ClientTop       =   1275
-   ClientWidth     =   12750
+   ClientWidth     =   12960
    BeginProperty Font 
       Name            =   "Verdana"
       Size            =   8.25
@@ -25,43 +27,89 @@ Begin VB.Form Form_Main
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    OLEDropMode     =   1  'Manual
-   ScaleHeight     =   9105
-   ScaleWidth      =   12750
+   ScaleHeight     =   10005
+   ScaleWidth      =   12960
    StartUpPosition =   2  'CenterScreen
-   Begin VB.PictureBox ElementOff 
-      Appearance      =   0  'Flat
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   1500
-      Index           =   6
-      Left            =   120
-      Picture         =   "Form_Main.frx":088B
-      ScaleHeight     =   1500
-      ScaleWidth      =   9615
-      TabIndex        =   131
-      Top             =   6900
-      Width           =   9615
+   Begin VB.Timer Timer_MidiVu 
+      Interval        =   30
+      Left            =   10440
+      Top             =   1080
    End
-   Begin VB.Timer Timer_Stream 
-      Enabled         =   0   'False
-      Interval        =   50
-      Left            =   10920
-      Tag             =   "0"
-      Top             =   2040
-   End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   780
-      Index           =   5
+   Begin AdioLibrary.AdioCore AdioCore 
       Left            =   120
-      Picture         =   "Form_Main.frx":2F53D
-      ScaleHeight     =   780
-      ScaleWidth      =   9615
-      TabIndex        =   86
-      Top             =   8400
-      Width           =   9615
+      Top             =   9240
+      _ExtentX        =   10186
+      _ExtentY        =   873
+      Begin AdioLibrary.AdioMidiPlayer AdioMidiPlayer 
+         Left            =   3000
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioMediaPlayer AdioMediaPlayer 
+         Left            =   2400
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioRecorder AdioRecorder 
+         Left            =   1800
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioTagging AdioTagging 
+         Left            =   3840
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioCDPlayer AdioCDPlayer 
+         Left            =   1200
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioAudioPeak AdioAudioPeak 
+         Left            =   600
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioPlaylist AdioMidiPlaylist 
+         Left            =   5280
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+         AllowDuplicateItems=   0   'False
+      End
+      Begin AdioLibrary.AdioPlaylist AdioMediaPlaylist 
+         Left            =   4680
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+         AllowDuplicateItems=   0   'False
+      End
+   End
+   Begin VB.PictureBox PictureBox_Disabled 
+      AutoRedraw      =   -1  'True
+      BackColor       =   &H0000FFFF&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H00FFFFFF&
+      Height          =   465
+      Index           =   0
+      Left            =   12000
+      ScaleHeight     =   465
+      ScaleWidth      =   495
+      TabIndex        =   62
+      Top             =   2520
+      Width           =   495
+   End
+   Begin DataInter.uDataInter DataInter 
+      Left            =   12000
+      Top             =   1920
+      _ExtentX        =   873
+      _ExtentY        =   873
    End
    Begin VB.PictureBox Element 
       BackColor       =   &H00000000&
@@ -69,32 +117,47 @@ Begin VB.Form Form_Main
       Height          =   855
       Index           =   6
       Left            =   120
-      Picture         =   "Form_Main.frx":45543
+      Picture         =   "Form_Main.frx":088B
       ScaleHeight     =   855
       ScaleWidth      =   9615
-      TabIndex        =   104
+      TabIndex        =   82
+      Tag             =   "OFF"
       Top             =   8400
-      Visible         =   0   'False
       Width           =   9615
       Begin VB.PictureBox Picture4 
          BackColor       =   &H00000000&
          Height          =   495
-         Left            =   2880
+         Left            =   80
          ScaleHeight     =   435
-         ScaleWidth      =   6555
-         TabIndex        =   105
+         ScaleWidth      =   9345
+         TabIndex        =   83
          Top             =   55
-         Width           =   6615
+         Width           =   9400
+         Begin DigitBox.DigitBoxControl DigitBox_Clock 
+            Height          =   405
+            Left            =   15
+            TabIndex        =   117
+            Top             =   15
+            Width           =   1770
+            _ExtentX        =   3122
+            _ExtentY        =   714
+            DigitDisplay    =   "00:00:00"
+            DigitSize       =   1
+            DigitColor      =   0
+            DigitOutLine    =   0   'False
+            DigitJustify    =   0
+            DigitFormat     =   2
+         End
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
             BackStyle       =   0  'Transparent
-            Caption         =   "Copyright © 2009 - 2022 Sibra-Soft Software Production"
+            Caption         =   "Copyright © 2009 - 2024 Sibra-Soft"
             ForeColor       =   &H00FFFFFF&
             Height          =   195
-            Left            =   45
-            TabIndex        =   107
-            Top             =   210
-            Width           =   4875
+            Left            =   1920
+            TabIndex        =   85
+            Top             =   195
+            Width           =   3090
          End
          Begin VB.Label lbl_version 
             AutoSize        =   -1  'True
@@ -111,123 +174,36 @@ Begin VB.Form Form_Main
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   195
-            Left            =   45
-            TabIndex        =   106
-            Top             =   20
+            Left            =   1920
+            TabIndex        =   84
+            Top             =   15
             Width           =   180
          End
       End
-      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Clock 
-         Height          =   495
-         Left            =   80
-         TabIndex        =   108
-         Top             =   55
-         Width           =   2775
-         Time            =   0
-         ShowSeconds     =   -1  'True
-         ShowHours       =   -1  'True
-         HourStyle       =   0
-         AutoSize        =   -1  'True
-         DigitSpacing    =   6
-         SegmentMargin   =   5
-         SegmentColor    =   16777215
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   2
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         Hours           =   0
-         Minutes         =   0
-         Seconds         =   0
-         CountDirection  =   0
-         CountTimerEnabled=   0   'False
-         SegmentOffColor =   8421504
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   185
-         Object.Height          =   33
-         OPCItemCount    =   0
-      End
    End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   1500
-      Index           =   2
-      Left            =   120
-      Picture         =   "Form_Main.frx":5C441
-      ScaleHeight     =   1500
-      ScaleWidth      =   9615
-      TabIndex        =   83
-      Top             =   2340
-      Width           =   9615
-   End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   1500
-      Index           =   1
-      Left            =   120
-      Picture         =   "Form_Main.frx":6C283
-      ScaleHeight     =   1500
-      ScaleWidth      =   9615
-      TabIndex        =   82
-      Top             =   840
-      Width           =   9615
-   End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   1590
-      Index           =   4
-      Left            =   120
-      Picture         =   "Form_Main.frx":7C0C5
-      ScaleHeight     =   1590
-      ScaleWidth      =   9615
-      TabIndex        =   85
-      Top             =   5330
-      Width           =   9615
-   End
-   Begin VB.PictureBox ElementOff 
-      BackColor       =   &H00000000&
-      BorderStyle     =   0  'None
-      Height          =   1500
-      Index           =   3
-      Left            =   120
-      Picture         =   "Form_Main.frx":ACB67
-      ScaleHeight     =   1500
-      ScaleWidth      =   9615
-      TabIndex        =   84
-      Top             =   3840
-      Width           =   9615
-   End
-   Begin VB.Timer Trm_Lights 
+   Begin VB.Timer Timer_Lights 
+      Enabled         =   0   'False
       Interval        =   500
-      Left            =   10920
-      Top             =   4440
+      Left            =   9840
+      Top             =   120
    End
-   Begin VB.Timer Trm_Animation 
+   Begin VB.Timer Timer_MediaAnimation 
       Enabled         =   0   'False
       Interval        =   110
-      Left            =   11400
+      Left            =   10440
       Tag             =   "1"
-      Top             =   2520
+      Top             =   2760
    End
-   Begin VB.Timer Trm_Main 
-      Interval        =   50
-      Left            =   10920
+   Begin VB.Timer Timer_Main 
+      Enabled         =   0   'False
+      Interval        =   10
+      Left            =   10320
       Tag             =   "1"
-      Top             =   3960
+      Top             =   120
    End
-   Begin MSComctlLib.ImageList ImageList3 
-      Left            =   10200
-      Top             =   720
+   Begin MSComctlLib.ImageList Imagelist_CDDisplay 
+      Left            =   12000
+      Top             =   120
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -238,30 +214,30 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":BC729
+            Picture         =   "Form_Main.frx":17789
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":BE1BB
+            Picture         =   "Form_Main.frx":1921B
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":BFC4D
+            Picture         =   "Form_Main.frx":1ACAD
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":C16DF
+            Picture         =   "Form_Main.frx":1C73F
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":C3171
+            Picture         =   "Form_Main.frx":1E1D1
             Key             =   ""
          EndProperty
       EndProperty
    End
-   Begin MSComctlLib.ImageList ImageList5 
-      Left            =   10200
-      Top             =   1320
+   Begin MSComctlLib.ImageList Imagelist_CDAnimation 
+      Left            =   12000
+      Top             =   720
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -272,75 +248,41 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   7
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":C4C03
+            Picture         =   "Form_Main.frx":1FC63
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":CD04D
+            Picture         =   "Form_Main.frx":280AD
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":DD091
+            Picture         =   "Form_Main.frx":380F1
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":ED0D5
+            Picture         =   "Form_Main.frx":48135
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":FD119
+            Picture         =   "Form_Main.frx":58179
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":10D15D
+            Picture         =   "Form_Main.frx":681BD
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":11D1A1
+            Picture         =   "Form_Main.frx":78201
             Key             =   ""
          EndProperty
       EndProperty
-   End
-   Begin VB.Timer Trm_Floppy_Drive_Light 
-      Enabled         =   0   'False
-      Interval        =   200
-      Left            =   10920
-      Top             =   3480
-   End
-   Begin VB.Timer Trm_Lights_Midi 
-      Interval        =   500
-      Left            =   10920
-      Top             =   3000
    End
    Begin VB.Timer Trm_CD_Animation 
       Enabled         =   0   'False
       Interval        =   80
-      Left            =   10920
+      Left            =   10440
       Tag             =   "1"
-      Top             =   2520
-   End
-   Begin VB.Timer Trm_VU 
-      Interval        =   25
-      Left            =   10920
-      Top             =   600
-   End
-   Begin MSComctlLib.ImageList ImageList4 
-      Left            =   10200
-      Top             =   120
-      _ExtentX        =   1005
-      _ExtentY        =   1005
-      BackColor       =   -2147483643
-      ImageWidth      =   16
-      ImageHeight     =   16
-      MaskColor       =   12632256
-      _Version        =   393216
-      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   1
-         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":12D1E5
-            Key             =   ""
-         EndProperty
-      EndProperty
+      Top             =   4320
    End
    Begin VB.PictureBox Element 
       BackColor       =   &H00000000&
@@ -357,17 +299,137 @@ Begin VB.Form Form_Main
       Height          =   1575
       Index           =   4
       Left            =   120
-      Picture         =   "Form_Main.frx":12D77F
+      Picture         =   "Form_Main.frx":88245
       ScaleHeight     =   1575
-      ScaleWidth      =   9735
+      ScaleWidth      =   9615
       TabIndex        =   1
-      Top             =   5330
-      Visible         =   0   'False
-      Width           =   9735
+      Tag             =   "OFF"
+      Top             =   5340
+      Width           =   9615
+      Begin isAnalogLibrary.iLabelX iLabelX5 
+         Height          =   210
+         Left            =   6600
+         TabIndex        =   116
+         Top             =   1185
+         Width           =   855
+         AutoSize        =   0   'False
+         Alignment       =   0
+         BorderStyle     =   0
+         Caption         =   "MIDI"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         OuterMarginLeft =   0
+         OuterMarginTop  =   0
+         OuterMarginRight=   0
+         OuterMarginBottom=   0
+         ShadowShow      =   -1  'True
+         ShadowXOffset   =   -1
+         ShadowYOffset   =   -1
+         ShadowColor     =   16777215
+         BackGroundColor =   -16777201
+         UpdateFrameRate =   60
+         Object.Visible         =   -1  'True
+         FontColor       =   -16777208
+         Transparent     =   -1  'True
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Enabled         =   -1  'True
+         Object.Width           =   57
+         Object.Height          =   14
+         WordWrap        =   0   'False
+         OPCItemCount    =   0
+      End
+      Begin isAnalogLibrary.iLabelX iLabelX3 
+         Height          =   210
+         Left            =   4440
+         TabIndex        =   152
+         Top             =   1185
+         Width           =   855
+         AutoSize        =   0   'False
+         Alignment       =   0
+         BorderStyle     =   0
+         Caption         =   "CD"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         OuterMarginLeft =   0
+         OuterMarginTop  =   0
+         OuterMarginRight=   0
+         OuterMarginBottom=   0
+         ShadowShow      =   -1  'True
+         ShadowXOffset   =   -1
+         ShadowYOffset   =   -1
+         ShadowColor     =   16777215
+         BackGroundColor =   -16777201
+         UpdateFrameRate =   60
+         Object.Visible         =   -1  'True
+         FontColor       =   -16777208
+         Transparent     =   -1  'True
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Enabled         =   -1  'True
+         Object.Width           =   57
+         Object.Height          =   14
+         WordWrap        =   0   'False
+         OPCItemCount    =   0
+      End
+      Begin isAnalogLibrary.iLabelX iLabelX4 
+         Height          =   210
+         Left            =   5520
+         TabIndex        =   108
+         Top             =   1185
+         Width           =   855
+         AutoSize        =   0   'False
+         Alignment       =   0
+         BorderStyle     =   0
+         Caption         =   "DAT"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         OuterMarginLeft =   0
+         OuterMarginTop  =   0
+         OuterMarginRight=   0
+         OuterMarginBottom=   0
+         ShadowShow      =   -1  'True
+         ShadowXOffset   =   -1
+         ShadowYOffset   =   -1
+         ShadowColor     =   16777215
+         BackGroundColor =   -16777201
+         UpdateFrameRate =   60
+         Object.Visible         =   -1  'True
+         FontColor       =   -16777208
+         Transparent     =   -1  'True
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Enabled         =   -1  'True
+         Object.Width           =   57
+         Object.Height          =   14
+         WordWrap        =   0   'False
+         OPCItemCount    =   0
+      End
       Begin isAnalogLibrary.iLabelX ILaMaster 
          Height          =   195
          Left            =   120
-         TabIndex        =   93
+         TabIndex        =   73
          Top             =   1192
          Width           =   1215
          AutoSize        =   0   'False
@@ -407,7 +469,7 @@ Begin VB.Form Form_Main
       Begin isAnalogLibrary.iLabelX iLabelX2 
          Height          =   210
          Left            =   3210
-         TabIndex        =   79
+         TabIndex        =   67
          Top             =   1185
          Width           =   900
          AutoSize        =   0   'False
@@ -444,107 +506,28 @@ Begin VB.Form Form_Main
          WordWrap        =   0   'False
          OPCItemCount    =   0
       End
-      Begin isAnalogLibrary.iLabelX iLabelX4 
-         Height          =   210
-         Left            =   5400
-         TabIndex        =   81
-         Top             =   1192
-         Width           =   855
-         AutoSize        =   0   'False
-         Alignment       =   0
-         BorderStyle     =   0
-         Caption         =   "DAT"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   -1  'True
-         ShadowXOffset   =   -1
-         ShadowYOffset   =   -1
-         ShadowColor     =   16777215
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
-         Object.Visible         =   -1  'True
-         FontColor       =   -16777208
-         Transparent     =   -1  'True
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Enabled         =   -1  'True
-         Object.Width           =   57
-         Object.Height          =   14
-         WordWrap        =   0   'False
-         OPCItemCount    =   0
-      End
-      Begin isAnalogLibrary.iLabelX iLabelX3 
-         Height          =   210
-         Left            =   4320
-         TabIndex        =   80
-         Top             =   1192
-         Width           =   855
-         AutoSize        =   0   'False
-         Alignment       =   0
-         BorderStyle     =   0
-         Caption         =   "CD"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   -1  'True
-         ShadowXOffset   =   -1
-         ShadowYOffset   =   -1
-         ShadowColor     =   16777215
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
-         Object.Visible         =   -1  'True
-         FontColor       =   -16777208
-         Transparent     =   -1  'True
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Enabled         =   -1  'True
-         Object.Width           =   57
-         Object.Height          =   14
-         WordWrap        =   0   'False
-         OPCItemCount    =   0
-      End
       Begin Audiostation.MixSlider Slider_Master 
          Height          =   1335
          Left            =   360
-         TabIndex        =   92
+         TabIndex        =   72
          Top             =   0
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   2355
+         Max             =   100
       End
       Begin VB.PictureBox Picture1 
          Height          =   1215
          Left            =   9160
          ScaleHeight     =   1155
          ScaleWidth      =   195
-         TabIndex        =   74
+         TabIndex        =   65
          Top             =   120
          Width           =   255
-         Begin isAnalogLibrary.iLedBarX VU_Master_Peak 
+         Begin isAnalogLibrary.iLedBarX LedBar_Master 
             Height          =   1215
             Left            =   0
-            TabIndex        =   75
+            TabIndex        =   66
             Top             =   0
             Width           =   255
             SegmentDirection=   0
@@ -585,10 +568,74 @@ Begin VB.Form Form_Main
             OPCItemCount    =   0
          End
       End
+      Begin Audiostation.MixSlider Slider_Record 
+         Height          =   1335
+         Left            =   3360
+         TabIndex        =   74
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+         Max             =   100
+      End
+      Begin Audiostation.MixSlider Slider_CD_Volume 
+         Height          =   1335
+         Left            =   4320
+         TabIndex        =   75
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+         Max             =   100
+      End
+      Begin Audiostation.MixSlider Slider_CD_Balance 
+         Height          =   1215
+         Left            =   4755
+         TabIndex        =   76
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
+         Value           =   0
+         Min             =   -1000
+         Max             =   1000
+      End
+      Begin Audiostation.MixSlider Slider_Dat_Volume 
+         Height          =   1335
+         Left            =   5400
+         TabIndex        =   77
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+         Max             =   100
+      End
+      Begin Audiostation.MixSlider Slider_Dat_Balance 
+         Height          =   1215
+         Left            =   5835
+         TabIndex        =   78
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2143
+         Value           =   0
+         Min             =   -1000
+         Max             =   1000
+      End
+      Begin Audiostation.MixSlider Slider_Midi_Volume 
+         Height          =   1335
+         Left            =   6720
+         TabIndex        =   79
+         Top             =   0
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   2355
+         Max             =   100
+      End
       Begin isDigitalLibrary.iSwitchLedX Switch_Master 
          Height          =   270
          Left            =   7560
-         TabIndex        =   68
+         TabIndex        =   118
          Top             =   300
          Width           =   975
          Active          =   -1  'True
@@ -617,107 +664,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F119
-         BorderSize      =   2
-         BorderHighlightColor=   -16777196
-         BorderShadowColor=   8421504
-         BackGroundColor =   12632256
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   65
-         Object.Height          =   18
-         MomentaryStyle  =   0
-         CaptionFontName =   "Tahoma"
-         CaptionFontSize =   8
-         CaptionFontBold =   0   'False
-         CaptionFontItalic=   0   'False
-         CaptionFontUnderline=   0   'False
-         CaptionFontStrikeOut=   0   'False
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSwitchLedX Switch_Dat 
-         Height          =   270
-         Left            =   7560
-         TabIndex        =   72
-         Top             =   600
-         Width           =   975
-         Active          =   -1  'True
-         ActiveColor     =   65280
-         AutoLedSize     =   -1  'True
-         Caption         =   "DAT"
-         BeginProperty CaptionFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         CaptionMargin   =   5
-         IndicatorAlignment=   3
-         IndicatorHeight =   4
-         IndicatorMargin =   5
-         IndicatorWidth  =   10
-         ShowFocusRect   =   0   'False
-         Enabled         =   -1  'True
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         CaptionFontColor=   -16777208
-         CaptionAlignment=   1
-         UpdateFrameRate =   60
-         WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F16F
-         BorderSize      =   2
-         BorderHighlightColor=   -16777196
-         BorderShadowColor=   8421504
-         BackGroundColor =   12632256
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   65
-         Object.Height          =   18
-         MomentaryStyle  =   0
-         CaptionFontName =   "Tahoma"
-         CaptionFontSize =   8
-         CaptionFontBold =   0   'False
-         CaptionFontItalic=   0   'False
-         CaptionFontUnderline=   0   'False
-         CaptionFontStrikeOut=   0   'False
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSwitchLedX Switch_Midi 
-         Height          =   270
-         Left            =   7560
-         TabIndex        =   73
-         Top             =   900
-         Width           =   975
-         Active          =   -1  'True
-         ActiveColor     =   65280
-         AutoLedSize     =   -1  'True
-         Caption         =   "MIDI"
-         BeginProperty CaptionFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         CaptionMargin   =   5
-         IndicatorAlignment=   3
-         IndicatorHeight =   4
-         IndicatorMargin =   5
-         IndicatorWidth  =   10
-         ShowFocusRect   =   0   'False
-         Enabled         =   -1  'True
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         CaptionFontColor=   -16777208
-         CaptionAlignment=   1
-         UpdateFrameRate =   60
-         WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F1C5
+         Glyph           =   "Form_Main.frx":B9BDF
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -738,8 +685,8 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_Rec 
          Height          =   270
          Left            =   1680
-         TabIndex        =   76
-         Top             =   300
+         TabIndex        =   119
+         Top             =   400
          Width           =   975
          Active          =   -1  'True
          ActiveColor     =   65280
@@ -767,57 +714,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F21B
-         BorderSize      =   2
-         BorderHighlightColor=   -16777196
-         BorderShadowColor=   8421504
-         BackGroundColor =   12632256
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   65
-         Object.Height          =   18
-         MomentaryStyle  =   0
-         CaptionFontName =   "Tahoma"
-         CaptionFontSize =   8
-         CaptionFontBold =   0   'False
-         CaptionFontItalic=   0   'False
-         CaptionFontUnderline=   0   'False
-         CaptionFontStrikeOut=   0   'False
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSwitchLedX Switch_Line 
-         Height          =   270
-         Left            =   1680
-         TabIndex        =   77
-         Top             =   600
-         Width           =   975
-         Active          =   0   'False
-         ActiveColor     =   65280
-         AutoLedSize     =   -1  'True
-         Caption         =   "LINE"
-         BeginProperty CaptionFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         CaptionMargin   =   5
-         IndicatorAlignment=   3
-         IndicatorHeight =   4
-         IndicatorMargin =   5
-         IndicatorWidth  =   10
-         ShowFocusRect   =   0   'False
-         Enabled         =   -1  'True
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         CaptionFontColor=   -16777208
-         CaptionAlignment=   1
-         UpdateFrameRate =   60
-         WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F271
+         Glyph           =   "Form_Main.frx":B9C35
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -838,8 +735,8 @@ Begin VB.Form Form_Main
       Begin isDigitalLibrary.iSwitchLedX Switch_CD 
          Height          =   270
          Left            =   1680
-         TabIndex        =   78
-         Top             =   900
+         TabIndex        =   120
+         Top             =   720
          Width           =   975
          Active          =   -1  'True
          ActiveColor     =   65280
@@ -867,7 +764,7 @@ Begin VB.Form Form_Main
          CaptionAlignment=   1
          UpdateFrameRate =   60
          WordWrap        =   0   'False
-         Glyph           =   "Form_Main.frx":15F2C7
+         Glyph           =   "Form_Main.frx":B9C8B
          BorderSize      =   2
          BorderHighlightColor=   -16777196
          BorderShadowColor=   8421504
@@ -885,97 +782,17 @@ Begin VB.Form Form_Main
          CaptionFontStrikeOut=   0   'False
          OPCItemCount    =   0
       End
-      Begin Audiostation.MixSlider Slider_Record_Left 
-         Height          =   1335
-         Left            =   3120
-         TabIndex        =   94
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2355
-      End
-      Begin Audiostation.MixSlider Slider_Record_Right 
-         Height          =   1215
-         Left            =   3555
-         TabIndex        =   95
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2143
-      End
-      Begin Audiostation.MixSlider Slider_CD_Left 
-         Height          =   1335
-         Left            =   4200
-         TabIndex        =   96
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2355
-         Value           =   9
-         Max             =   9
-      End
-      Begin Audiostation.MixSlider Slider_CD_Right 
-         Height          =   1215
-         Left            =   4635
-         TabIndex        =   97
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2143
-         Value           =   9
-         Max             =   9
-      End
-      Begin Audiostation.MixSlider Slider_Dat_Left 
-         Height          =   1335
-         Left            =   5280
-         TabIndex        =   98
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2355
-         Value           =   9
-         Max             =   9
-      End
-      Begin Audiostation.MixSlider Slider_Dat_Right 
-         Height          =   1215
-         Left            =   5715
-         TabIndex        =   99
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2143
-         Value           =   9
-         Max             =   9
-      End
-      Begin Audiostation.MixSlider Slider_Midi_Left 
-         Height          =   1335
-         Left            =   6360
-         TabIndex        =   100
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2355
-      End
-      Begin Audiostation.MixSlider Slider_Midi_Right 
-         Height          =   1215
-         Left            =   6795
-         TabIndex        =   101
-         Top             =   0
-         Width           =   615
-         _ExtentX        =   1085
-         _ExtentY        =   2143
-      End
-      Begin isAnalogLibrary.iLabelX iLabelX5 
-         Height          =   210
-         Left            =   6480
-         TabIndex        =   123
-         Top             =   1200
-         Width           =   855
-         AutoSize        =   0   'False
-         Alignment       =   0
-         BorderStyle     =   0
-         Caption         =   "MIDI"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+      Begin isDigitalLibrary.iSwitchLedX Switch_Dat 
+         Height          =   270
+         Left            =   7560
+         TabIndex        =   150
+         Top             =   610
+         Width           =   975
+         Active          =   -1  'True
+         ActiveColor     =   65280
+         AutoLedSize     =   -1  'True
+         Caption         =   "DAT"
+         BeginProperty CaptionFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Tahoma"
             Size            =   8.25
             Charset         =   0
@@ -984,45 +801,105 @@ Begin VB.Form Form_Main
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   -1  'True
-         ShadowXOffset   =   -1
-         ShadowYOffset   =   -1
-         ShadowColor     =   16777215
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
+         CaptionMargin   =   5
+         IndicatorAlignment=   3
+         IndicatorHeight =   4
+         IndicatorMargin =   5
+         IndicatorWidth  =   10
+         ShowFocusRect   =   0   'False
+         Enabled         =   -1  'True
+         BorderStyle     =   0
          Object.Visible         =   -1  'True
-         FontColor       =   -16777208
-         Transparent     =   -1  'True
+         CaptionFontColor=   -16777208
+         CaptionAlignment=   1
+         UpdateFrameRate =   60
+         WordWrap        =   0   'False
+         Glyph           =   "Form_Main.frx":B9CE1
+         BorderSize      =   2
+         BorderHighlightColor=   -16777196
+         BorderShadowColor=   8421504
+         BackGroundColor =   12632256
          OptionSaveAllProperties=   0   'False
          AutoFrameRate   =   0   'False
+         Object.Width           =   65
+         Object.Height          =   18
+         MomentaryStyle  =   0
+         CaptionFontName =   "Tahoma"
+         CaptionFontSize =   8
+         CaptionFontBold =   0   'False
+         CaptionFontItalic=   0   'False
+         CaptionFontUnderline=   0   'False
+         CaptionFontStrikeOut=   0   'False
+         OPCItemCount    =   0
+      End
+      Begin isDigitalLibrary.iSwitchLedX Switch_Midi 
+         Height          =   270
+         Left            =   7560
+         TabIndex        =   151
+         Top             =   930
+         Width           =   975
+         Active          =   -1  'True
+         ActiveColor     =   65280
+         AutoLedSize     =   -1  'True
+         Caption         =   "MIDI"
+         BeginProperty CaptionFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         CaptionMargin   =   5
+         IndicatorAlignment=   3
+         IndicatorHeight =   4
+         IndicatorMargin =   5
+         IndicatorWidth  =   10
+         ShowFocusRect   =   0   'False
          Enabled         =   -1  'True
-         Object.Width           =   57
-         Object.Height          =   14
+         BorderStyle     =   0
+         Object.Visible         =   -1  'True
+         CaptionFontColor=   -16777208
+         CaptionAlignment=   1
+         UpdateFrameRate =   60
          WordWrap        =   0   'False
+         Glyph           =   "Form_Main.frx":B9D37
+         BorderSize      =   2
+         BorderHighlightColor=   -16777196
+         BorderShadowColor=   8421504
+         BackGroundColor =   12632256
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Object.Width           =   65
+         Object.Height          =   18
+         MomentaryStyle  =   0
+         CaptionFontName =   "Tahoma"
+         CaptionFontSize =   8
+         CaptionFontBold =   0   'False
+         CaptionFontItalic=   0   'False
+         CaptionFontUnderline=   0   'False
+         CaptionFontStrikeOut=   0   'False
          OPCItemCount    =   0
       End
       Begin VB.Image Image1 
          Height          =   960
          Left            =   8640
-         Picture         =   "Form_Main.frx":15F31D
+         Picture         =   "Form_Main.frx":B9D8D
          Top             =   240
          Width           =   420
       End
       Begin VB.Image Image3 
          Height          =   1005
          Left            =   2750
-         Picture         =   "Form_Main.frx":16085F
+         Picture         =   "Form_Main.frx":BB2CF
          Top             =   240
          Width           =   345
       End
    End
-   Begin MSComctlLib.ImageList ImageList1 
-      Left            =   2400
-      Top             =   5880
+   Begin MSComctlLib.ImageList Imagelist_MediaPlayerAnimation 
+      Left            =   12000
+      Top             =   1320
       _ExtentX        =   1005
       _ExtentY        =   1005
       BackColor       =   -2147483643
@@ -1033,35 +910,35 @@ Begin VB.Form Form_Main
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   8
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":161B79
+            Picture         =   "Form_Main.frx":BC5E9
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":161D69
+            Picture         =   "Form_Main.frx":BC7D9
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":161F59
+            Picture         =   "Form_Main.frx":BC9C9
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":162148
+            Picture         =   "Form_Main.frx":BCBB8
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":162334
+            Picture         =   "Form_Main.frx":BCDA4
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":162524
+            Picture         =   "Form_Main.frx":BCF94
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":162717
+            Picture         =   "Form_Main.frx":BD187
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "Form_Main.frx":162907
+            Picture         =   "Form_Main.frx":BD377
             Key             =   ""
          EndProperty
       EndProperty
@@ -1081,34 +958,13 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   3
       Left            =   120
-      Picture         =   "Form_Main.frx":162AF3
+      Picture         =   "Form_Main.frx":BD563
       ScaleHeight     =   1500
       ScaleWidth      =   9615
       TabIndex        =   2
+      Tag             =   "OFF"
       Top             =   3840
-      Visible         =   0   'False
       Width           =   9615
-      Begin VB.PictureBox AniCD 
-         BackColor       =   &H00C0C0C0&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1215
-         Left            =   1030
-         Picture         =   "Form_Main.frx":191F21
-         ScaleHeight     =   1215
-         ScaleWidth      =   5220
-         TabIndex        =   69
-         Top             =   50
-         Width           =   5220
-      End
       Begin VB.PictureBox Picture8 
          BackColor       =   &H00C0C0C0&
          BorderStyle     =   0  'None
@@ -1125,29 +981,31 @@ Begin VB.Form Form_Main
          Left            =   1500
          ScaleHeight     =   495
          ScaleWidth      =   2415
-         TabIndex        =   66
+         TabIndex        =   60
          Top             =   840
          Width           =   2415
          Begin Audiostation.ButtonBig Button_CDRandom 
             Height          =   390
             Left            =   40
-            TabIndex        =   102
+            TabIndex        =   80
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
             _ExtentY        =   688
             Caption         =   "Random"
+            ShowLed         =   -1  'True
             TextAlignment   =   0
          End
          Begin Audiostation.ButtonBig Button_CDLoop 
             Height          =   390
             Left            =   1200
-            TabIndex        =   103
+            TabIndex        =   81
             Top             =   50
             Width           =   1095
             _ExtentX        =   1931
             _ExtentY        =   688
             Caption         =   "Loop"
+            ShowLed         =   -1  'True
             TextAlignment   =   0
          End
       End
@@ -1167,7 +1025,7 @@ Begin VB.Form Form_Main
          Left            =   8540
          ScaleHeight     =   615
          ScaleWidth      =   825
-         TabIndex        =   58
+         TabIndex        =   52
          TabStop         =   0   'False
          Top             =   155
          Width           =   830
@@ -1185,7 +1043,7 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   435
-         Left            =   4420
+         Left            =   4410
          ScaleHeight     =   435
          ScaleWidth      =   5055
          TabIndex        =   4
@@ -1203,9 +1061,49 @@ Begin VB.Form Form_Main
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
+            Index           =   6
+            Left            =   4500
+            Picture         =   "Form_Main.frx":EC991
+            Style           =   1  'Graphical
+            TabIndex        =   6
+            Top             =   50
+            Width           =   495
+         End
+         Begin VB.CommandButton Button_CDPlayer 
+            BackColor       =   &H00C0C0C0&
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Index           =   7
+            Left            =   930
+            Picture         =   "Form_Main.frx":ECF5B
+            Style           =   1  'Graphical
+            TabIndex        =   114
+            Top             =   50
+            Width           =   495
+         End
+         Begin VB.CommandButton Button_CDPlayer 
+            BackColor       =   &H00C0C0C0&
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
             Index           =   5
             Left            =   3960
-            Picture         =   "Form_Main.frx":19A35B
+            Picture         =   "Form_Main.frx":ED4E5
             Style           =   1  'Graphical
             TabIndex        =   5
             Top             =   50
@@ -1225,7 +1123,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3480
-            Picture         =   "Form_Main.frx":19A925
+            Picture         =   "Form_Main.frx":EDAAF
             Style           =   1  'Graphical
             TabIndex        =   7
             Top             =   50
@@ -1245,7 +1143,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   3
             Left            =   3000
-            Picture         =   "Form_Main.frx":19AEAF
+            Picture         =   "Form_Main.frx":EE039
             Style           =   1  'Graphical
             TabIndex        =   8
             Top             =   50
@@ -1265,7 +1163,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2520
-            Picture         =   "Form_Main.frx":19B439
+            Picture         =   "Form_Main.frx":EE5C3
             Style           =   1  'Graphical
             TabIndex        =   9
             Top             =   50
@@ -1285,7 +1183,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   2040
-            Picture         =   "Form_Main.frx":19B9C3
+            Picture         =   "Form_Main.frx":EEB4D
             Style           =   1  'Graphical
             TabIndex        =   11
             Top             =   50
@@ -1305,100 +1203,12 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   1495
-            Picture         =   "Form_Main.frx":19BF8D
+            Picture         =   "Form_Main.frx":EF117
             Style           =   1  'Graphical
             TabIndex        =   10
             Top             =   50
             Width           =   495
          End
-         Begin VB.CommandButton Button_CDPlayer 
-            BackColor       =   &H00C0C0C0&
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   375
-            Index           =   6
-            Left            =   4560
-            Picture         =   "Form_Main.frx":19C557
-            Style           =   1  'Graphical
-            TabIndex        =   6
-            Top             =   50
-            Width           =   495
-         End
-      End
-      Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_CD 
-         Height          =   420
-         Left            =   5800
-         TabIndex        =   12
-         Top             =   180
-         Width           =   705
-         Value           =   "0"
-         DigitCount      =   2
-         LeadingStyle    =   1
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         SegmentOffColor =   8421504
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   47
-         Object.Height          =   28
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_CD 
-         Height          =   420
-         Left            =   7190
-         TabIndex        =   13
-         Top             =   180
-         Width           =   1380
-         Time            =   0
-         ShowSeconds     =   -1  'True
-         ShowHours       =   0   'False
-         HourStyle       =   0
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         Hours           =   0
-         Minutes         =   0
-         Seconds         =   0
-         CountDirection  =   0
-         CountTimerEnabled=   0   'False
-         SegmentOffColor =   65280
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   92
-         Object.Height          =   28
-         OPCItemCount    =   0
       End
       Begin VB.PictureBox Picture15 
          BackColor       =   &H00C0C0C0&
@@ -1419,22 +1229,41 @@ Begin VB.Form Form_Main
          TabIndex        =   3
          Top             =   100
          Width           =   1410
-         Begin Audiostation.ButtonBig Button_CDOpen 
-            Height          =   390
-            Left            =   50
-            TabIndex        =   91
-            Top             =   50
-            Width           =   1215
-            _ExtentX        =   2143
-            _ExtentY        =   688
-            Caption         =   "Eject CD"
-            TextAlignment   =   0
-         End
+      End
+      Begin DigitBox.DigitBoxControl DigitBox_CDDuration 
+         Height          =   405
+         Left            =   7300
+         TabIndex        =   111
+         Top             =   180
+         Width           =   1155
+         _ExtentX        =   2037
+         _ExtentY        =   714
+         DigitDisplay    =   "00:00"
+         DigitSize       =   1
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
+         DigitJustify    =   0
+         DigitFormat     =   1
+      End
+      Begin DigitBox.DigitBoxControl DigitBox_CDTrack 
+         Height          =   405
+         Left            =   5880
+         TabIndex        =   113
+         Top             =   180
+         Width           =   540
+         _ExtentX        =   953
+         _ExtentY        =   714
+         DigitDisplay    =   "00"
+         DigitPlaceHolders=   2
+         DigitSize       =   1
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
+         DigitJustify    =   0
       End
       Begin VB.Image Light_CD_Play_On 
          Height          =   135
          Left            =   6900
-         Picture         =   "Form_Main.frx":19CB21
+         Picture         =   "Form_Main.frx":EF6E1
          Top             =   240
          Visible         =   0   'False
          Width           =   135
@@ -1442,18 +1271,11 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_CD_Pause_On 
          Height          =   150
          Left            =   6895
-         Picture         =   "Form_Main.frx":19CFFB
+         Picture         =   "Form_Main.frx":EFBBB
          Top             =   550
          Visible         =   0   'False
          Width           =   135
       End
-   End
-   Begin MSComDlg.CommonDialog CommonDialog1 
-      Left            =   10200
-      Top             =   2040
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
    End
    Begin VB.PictureBox Element 
       BackColor       =   &H00000000&
@@ -1470,150 +1292,17 @@ Begin VB.Form Form_Main
       Height          =   1575
       Index           =   5
       Left            =   120
-      Picture         =   "Form_Main.frx":19D4E5
+      Picture         =   "Form_Main.frx":F00A5
       ScaleHeight     =   1575
-      ScaleWidth      =   9735
-      TabIndex        =   71
+      ScaleWidth      =   9615
+      TabIndex        =   64
+      Tag             =   "OFF"
       Top             =   6900
-      Visible         =   0   'False
-      Width           =   9735
-      Begin VB.PictureBox Picture2 
-         BackColor       =   &H00000000&
-         Height          =   1050
-         Left            =   120
-         ScaleHeight     =   990
-         ScaleWidth      =   4035
-         TabIndex        =   132
-         Top             =   200
-         Width           =   4095
-         Begin iProfessionalLibrary.iLedMatrixX VU_Spectrum 
-            Height          =   960
-            Left            =   0
-            TabIndex        =   133
-            Top             =   10
-            Width           =   4035
-            AutoSize        =   -1  'True
-            IndicatorActiveColor=   65280
-            ColCount        =   29
-            RowCount        =   14
-            IndicatorStyle  =   1
-            IndicatorWidth  =   7
-            IndicatorHeight =   3
-            IndicatorBevelStyle=   0
-            OuterMargin     =   4
-            SpacingHorizontal=   2
-            SpacingVertical =   1
-            BackGroundColor =   0
-            BorderStyle     =   0
-            BeginProperty IndicatorCaptionActiveFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Tahoma"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            BeginProperty IndicatorCaptionInactiveFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Tahoma"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            IndicatorCaptionActiveFontColor=   -16777208
-            IndicatorCaptionInactiveFontColor=   16777215
-            Enabled         =   -1  'True
-            IndicatorShowReflection=   0   'False
-            Transparent     =   0   'False
-            UpdateFrameRate =   60
-            OptionSaveAllProperties=   0   'False
-            AutoFrameRate   =   0   'False
-            CachedDrawing   =   -1  'True
-            Object.Visible         =   -1  'True
-            Object.Width           =   269
-            Object.Height          =   64
-            IndicatorCaptionActiveFontName=   "Tahoma"
-            IndicatorCaptionActiveFontSize=   8
-            IndicatorCaptionActiveFontBold=   0   'False
-            IndicatorCaptionActiveFontItalic=   0   'False
-            IndicatorCaptionActiveFontUnderline=   0   'False
-            IndicatorCaptionActiveFontStrikeOut=   0   'False
-            IndicatorCaptionInactiveFontName=   "Tahoma"
-            IndicatorCaptionInactiveFontSize=   8
-            IndicatorCaptionInactiveFontBold=   0   'False
-            IndicatorCaptionInactiveFontItalic=   0   'False
-            IndicatorCaptionInactiveFontUnderline=   0   'False
-            IndicatorCaptionInactiveFontStrikeOut=   0   'False
-            OPCItemCount    =   0
-         End
-      End
-      Begin VB.CommandButton Button_OpenStream 
-         BackColor       =   &H00C0C0C0&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   5520
-         Picture         =   "Form_Main.frx":1CC913
-         Style           =   1  'Graphical
-         TabIndex        =   113
-         ToolTipText     =   "Open stream"
-         Top             =   870
-         Width           =   495
-      End
-      Begin isAnalogLibrary.iLabelX Label_StreamTitle 
-         Height          =   210
-         Left            =   6240
-         TabIndex        =   124
-         Top             =   120
-         Width           =   3135
-         AutoSize        =   0   'False
-         Alignment       =   2
-         BorderStyle     =   0
-         Caption         =   "Nothing playing"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         OuterMarginLeft =   0
-         OuterMarginTop  =   0
-         OuterMarginRight=   0
-         OuterMarginBottom=   0
-         ShadowShow      =   -1  'True
-         ShadowXOffset   =   -1
-         ShadowYOffset   =   -1
-         ShadowColor     =   16777215
-         BackGroundColor =   -16777201
-         UpdateFrameRate =   60
-         Object.Visible         =   -1  'True
-         FontColor       =   -16777208
-         Transparent     =   -1  'True
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Enabled         =   -1  'True
-         Object.Width           =   209
-         Object.Height          =   14
-         WordWrap        =   0   'False
-         OPCItemCount    =   0
-      End
+      Width           =   9615
       Begin isAnalogLibrary.iLabelX iLabelX1 
          Height          =   210
-         Left            =   4320
-         TabIndex        =   114
+         Left            =   4200
+         TabIndex        =   91
          Top             =   120
          Width           =   1935
          AutoSize        =   0   'False
@@ -1650,6 +1339,1352 @@ Begin VB.Form Form_Main
          WordWrap        =   0   'False
          OPCItemCount    =   0
       End
+      Begin isAnalogLibrary.iLabelX Label_StreamTitle 
+         Height          =   210
+         Left            =   6120
+         TabIndex        =   100
+         Top             =   120
+         Width           =   3135
+         AutoSize        =   0   'False
+         Alignment       =   2
+         BorderStyle     =   0
+         Caption         =   "T(1054)"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         OuterMarginLeft =   0
+         OuterMarginTop  =   0
+         OuterMarginRight=   0
+         OuterMarginBottom=   0
+         ShadowShow      =   -1  'True
+         ShadowXOffset   =   -1
+         ShadowYOffset   =   -1
+         ShadowColor     =   16777215
+         BackGroundColor =   -16777201
+         UpdateFrameRate =   60
+         Object.Visible         =   -1  'True
+         FontColor       =   -16777208
+         Transparent     =   -1  'True
+         OptionSaveAllProperties=   0   'False
+         AutoFrameRate   =   0   'False
+         Enabled         =   -1  'True
+         Object.Width           =   209
+         Object.Height          =   14
+         WordWrap        =   0   'False
+         OPCItemCount    =   0
+      End
+      Begin VB.PictureBox Picture2 
+         BackColor       =   &H00000000&
+         Height          =   1050
+         Left            =   120
+         ScaleHeight     =   990
+         ScaleWidth      =   3720
+         TabIndex        =   107
+         Top             =   200
+         Width           =   3780
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   0
+            Left            =   120
+            TabIndex        =   121
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   1
+            Left            =   240
+            TabIndex        =   122
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   2
+            Left            =   360
+            TabIndex        =   123
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   3
+            Left            =   480
+            TabIndex        =   124
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   4
+            Left            =   600
+            TabIndex        =   125
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   5
+            Left            =   720
+            TabIndex        =   126
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   6
+            Left            =   840
+            TabIndex        =   127
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   7
+            Left            =   960
+            TabIndex        =   128
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   8
+            Left            =   1080
+            TabIndex        =   129
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   9
+            Left            =   1200
+            TabIndex        =   130
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   10
+            Left            =   1320
+            TabIndex        =   131
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   11
+            Left            =   1440
+            TabIndex        =   132
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   12
+            Left            =   1560
+            TabIndex        =   133
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   13
+            Left            =   1680
+            TabIndex        =   134
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   14
+            Left            =   1800
+            TabIndex        =   135
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   15
+            Left            =   1920
+            TabIndex        =   136
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   16
+            Left            =   2040
+            TabIndex        =   137
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   17
+            Left            =   2160
+            TabIndex        =   138
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   18
+            Left            =   2280
+            TabIndex        =   139
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   19
+            Left            =   2400
+            TabIndex        =   140
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   20
+            Left            =   2520
+            TabIndex        =   141
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   21
+            Left            =   2640
+            TabIndex        =   142
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   22
+            Left            =   2760
+            TabIndex        =   143
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   23
+            Left            =   2880
+            TabIndex        =   144
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   24
+            Left            =   3000
+            TabIndex        =   145
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   25
+            Left            =   3120
+            TabIndex        =   146
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   26
+            Left            =   3240
+            TabIndex        =   147
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   27
+            Left            =   3360
+            TabIndex        =   148
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   65280
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+         Begin isAnalogLibrary.iLedBarX LedBar_Spectrum 
+            Height          =   975
+            Index           =   28
+            Left            =   3480
+            TabIndex        =   149
+            Top             =   15
+            Width           =   105
+            SegmentDirection=   0
+            SegmentMargin   =   0
+            SegmentSize     =   3
+            SegmentSpacing  =   2
+            SegmentStyle    =   0
+            BackGroundColor =   0
+            BorderStyle     =   0
+            SectionColor1   =   33023
+            SectionColor2   =   65535
+            SectionColor3   =   255
+            SectionEnd1     =   50
+            SectionEnd2     =   75
+            SectionCount    =   1
+            ShowOffSegments =   -1  'True
+            CurrentMax      =   0
+            CurrentMin      =   0
+            PositionPercent =   0
+            Position        =   0
+            PositionMax     =   100
+            PositionMin     =   0
+            Object.Visible         =   -1  'True
+            Enabled         =   -1  'True
+            MinMaxFixed     =   0   'False
+            Transparent     =   0   'False
+            UpdateFrameRate =   60
+            OptionSaveAllProperties=   0   'False
+            AutoFrameRate   =   0   'False
+            Object.Width           =   7
+            Object.Height          =   65
+            FillReferenceValue=   0
+            FillReferenceEnabled=   0   'False
+            SectionColor4   =   65535
+            SectionColor5   =   65535
+            SectionEnd3     =   0
+            SectionEnd4     =   0
+            OPCItemCount    =   0
+         End
+      End
+      Begin VB.CommandButton Button_OpenStream 
+         BackColor       =   &H00C0C0C0&
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   5400
+         Picture         =   "Form_Main.frx":11F4D3
+         Style           =   1  'Graphical
+         TabIndex        =   90
+         ToolTipText     =   "Open stream"
+         Top             =   870
+         Width           =   495
+      End
       Begin VB.CommandButton Button_StopStream 
          BackColor       =   &H00C0C0C0&
          BeginProperty Font 
@@ -1662,10 +2697,10 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4800
-         Picture         =   "Form_Main.frx":1CCADD
+         Left            =   4680
+         Picture         =   "Form_Main.frx":11F69D
          Style           =   1  'Graphical
-         TabIndex        =   112
+         TabIndex        =   89
          ToolTipText     =   "Stop"
          Top             =   870
          Width           =   495
@@ -1683,10 +2718,10 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4320
-         Picture         =   "Form_Main.frx":1CD067
+         Left            =   4200
+         Picture         =   "Form_Main.frx":11FC27
          Style           =   1  'Graphical
-         TabIndex        =   111
+         TabIndex        =   88
          ToolTipText     =   "Play"
          Top             =   870
          Width           =   495
@@ -1694,9 +2729,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   1
-         Left            =   4967
-         TabIndex        =   116
-         Top             =   370
+         Left            =   4845
+         TabIndex        =   93
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1707,9 +2742,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   0
-         Left            =   4320
-         TabIndex        =   115
-         Top             =   370
+         Left            =   4200
+         TabIndex        =   92
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1720,15 +2755,15 @@ Begin VB.Form Form_Main
       Begin VB.PictureBox Picture6 
          BackColor       =   &H00000000&
          Height          =   255
-         Left            =   6720
+         Left            =   6600
          ScaleHeight     =   195
          ScaleWidth      =   2595
-         TabIndex        =   109
+         TabIndex        =   86
          Top             =   930
          Width           =   2655
          Begin VB.Label label_StreamStatus 
             BackStyle       =   0  'Transparent
-            Caption         =   "Onbekend"
+            Caption         =   "T(1019)"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   6.75
@@ -1741,7 +2776,7 @@ Begin VB.Form Form_Main
             ForeColor       =   &H0000FF00&
             Height          =   240
             Left            =   30
-            TabIndex        =   110
+            TabIndex        =   87
             Tag             =   "1013"
             Top             =   0
             Width           =   2655
@@ -1750,9 +2785,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   2
-         Left            =   5614
-         TabIndex        =   117
-         Top             =   370
+         Left            =   5490
+         TabIndex        =   94
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1763,9 +2798,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   3
-         Left            =   6255
-         TabIndex        =   118
-         Top             =   370
+         Left            =   6135
+         TabIndex        =   95
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1776,9 +2811,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   4
-         Left            =   6908
-         TabIndex        =   119
-         Top             =   370
+         Left            =   6795
+         TabIndex        =   96
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1789,9 +2824,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   5
-         Left            =   7555
-         TabIndex        =   120
-         Top             =   370
+         Left            =   7440
+         TabIndex        =   97
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1802,9 +2837,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   6
-         Left            =   8202
-         TabIndex        =   121
-         Top             =   370
+         Left            =   8085
+         TabIndex        =   98
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1815,9 +2850,9 @@ Begin VB.Form Form_Main
       Begin Audiostation.ButtonBig Button_TunerMemory 
          Height          =   390
          Index           =   7
-         Left            =   8850
-         TabIndex        =   122
-         Top             =   370
+         Left            =   8730
+         TabIndex        =   99
+         Top             =   375
          Width           =   540
          _ExtentX        =   953
          _ExtentY        =   688
@@ -1841,14 +2876,29 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   2
       Left            =   120
-      Picture         =   "Form_Main.frx":1CD5F1
+      Picture         =   "Form_Main.frx":1201B1
       ScaleHeight     =   1500
-      ScaleWidth      =   9735
-      TabIndex        =   14
+      ScaleWidth      =   9615
+      TabIndex        =   12
+      Tag             =   "OFF"
       Top             =   2340
-      Visible         =   0   'False
-      Width           =   9735
-      Begin VB.PictureBox Picture33 
+      Width           =   9615
+      Begin DigitBox.DigitBoxControl DigitBox_DatDuration 
+         Height          =   405
+         Left            =   4920
+         TabIndex        =   109
+         Top             =   180
+         Width           =   1155
+         _ExtentX        =   2037
+         _ExtentY        =   714
+         DigitDisplay    =   "00:00"
+         DigitSize       =   1
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
+         DigitJustify    =   0
+         DigitFormat     =   1
+      End
+      Begin VB.PictureBox Picturebox_Recording 
          BackColor       =   &H00000000&
          BorderStyle     =   0  'None
          BeginProperty Font 
@@ -1864,21 +2914,22 @@ Begin VB.Form Form_Main
          Left            =   6510
          ScaleHeight     =   555
          ScaleWidth      =   255
-         TabIndex        =   65
+         TabIndex        =   59
          Top             =   200
          Visible         =   0   'False
          Width           =   255
-         Begin VB.Image Image2 
+         Begin VB.Image Image_Recording 
             Height          =   240
             Left            =   0
-            Picture         =   "Form_Main.frx":1FCA1F
+            Picture         =   "Form_Main.frx":14F5DF
             Top             =   0
+            Visible         =   0   'False
             Width           =   240
          End
          Begin VB.Image Image4 
             Height          =   240
             Left            =   0
-            Picture         =   "Form_Main.frx":1FCFA9
+            Picture         =   "Form_Main.frx":14FB69
             Top             =   0
             Width           =   240
          End
@@ -1895,12 +2946,12 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1300
-         Left            =   1480
-         Picture         =   "Form_Main.frx":1FD533
+         Left            =   1440
+         Picture         =   "Form_Main.frx":1500F3
          ScaleHeight     =   1305
          ScaleWidth      =   2055
-         TabIndex        =   59
-         Top             =   40
+         TabIndex        =   53
+         Top             =   50
          Width           =   2055
          Begin VB.PictureBox Picture32 
             BackColor       =   &H00C0C0C0&
@@ -1918,7 +2969,7 @@ Begin VB.Form Form_Main
             Left            =   960
             ScaleHeight     =   375
             ScaleWidth      =   1035
-            TabIndex        =   63
+            TabIndex        =   57
             Top             =   830
             Width           =   1035
             Begin VB.Label Label5 
@@ -1937,7 +2988,7 @@ Begin VB.Form Form_Main
                ForeColor       =   &H00808080&
                Height          =   375
                Left            =   0
-               TabIndex        =   64
+               TabIndex        =   58
                Top             =   50
                Width           =   1005
             End
@@ -1958,10 +3009,10 @@ Begin VB.Form Form_Main
             Left            =   210
             ScaleHeight     =   525
             ScaleWidth      =   1695
-            TabIndex        =   60
+            TabIndex        =   54
             Top             =   240
             Width           =   1695
-            Begin VB.PictureBox Picture11 
+            Begin VB.PictureBox Picture_MediaPlayerAnimation 
                AutoSize        =   -1  'True
                BackColor       =   &H00000000&
                BorderStyle     =   0  'None
@@ -1976,17 +3027,16 @@ Begin VB.Form Form_Main
                EndProperty
                Height          =   360
                Left            =   50
-               Picture         =   "Form_Main.frx":20658D
                ScaleHeight     =   360
                ScaleWidth      =   1560
-               TabIndex        =   61
+               TabIndex        =   55
                Top             =   160
                Width           =   1560
             End
-            Begin VB.Label lbl_Filename 
+            Begin VB.Label Label_FilenameDat 
                Alignment       =   2  'Center
                BackStyle       =   0  'Transparent
-               Caption         =   "Onbekend"
+               Caption         =   "T(1019)"
                BeginProperty Font 
                   Name            =   "Arial"
                   Size            =   6.75
@@ -1999,35 +3049,13 @@ Begin VB.Form Form_Main
                ForeColor       =   &H00808080&
                Height          =   195
                Left            =   90
-               TabIndex        =   62
+               TabIndex        =   56
                Tag             =   "1013"
                Top             =   0
                UseMnemonic     =   0   'False
                Width           =   1485
             End
          End
-      End
-      Begin MSComctlLib.ImageList ImageList2 
-         Left            =   2160
-         Top             =   720
-         _ExtentX        =   1005
-         _ExtentY        =   1005
-         BackColor       =   -2147483643
-         ImageWidth      =   16
-         ImageHeight     =   16
-         MaskColor       =   12632256
-         _Version        =   393216
-         BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-            NumListImages   =   2
-            BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Form_Main.frx":20676D
-               Key             =   ""
-            EndProperty
-            BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Form_Main.frx":206D07
-               Key             =   ""
-            EndProperty
-         EndProperty
       End
       Begin VB.PictureBox Picture12 
          BackColor       =   &H00C0C0C0&
@@ -2045,7 +3073,7 @@ Begin VB.Form Form_Main
          Left            =   3705
          ScaleHeight     =   495
          ScaleWidth      =   5775
-         TabIndex        =   16
+         TabIndex        =   14
          Top             =   840
          Width           =   5775
          Begin VB.CommandButton cmdAudioPlayer 
@@ -2062,9 +3090,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   0
-            Picture         =   "Form_Main.frx":2072A1
+            Picture         =   "Form_Main.frx":15914D
             Style           =   1  'Graphical
-            TabIndex        =   70
+            TabIndex        =   63
             Top             =   50
             Width           =   495
          End
@@ -2082,9 +3110,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   8
             Left            =   5220
-            Picture         =   "Form_Main.frx":20782B
+            Picture         =   "Form_Main.frx":1596D7
             Style           =   1  'Graphical
-            TabIndex        =   18
+            TabIndex        =   16
             Top             =   50
             Width           =   495
          End
@@ -2102,9 +3130,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   7
             Left            =   4680
-            Picture         =   "Form_Main.frx":207DF5
+            Picture         =   "Form_Main.frx":159CA1
             Style           =   1  'Graphical
-            TabIndex        =   17
+            TabIndex        =   15
             Top             =   50
             Width           =   495
          End
@@ -2122,9 +3150,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   6
             Left            =   4200
-            Picture         =   "Form_Main.frx":2083BF
+            Picture         =   "Form_Main.frx":15A26B
             Style           =   1  'Graphical
-            TabIndex        =   19
+            TabIndex        =   17
             Top             =   50
             Width           =   495
          End
@@ -2143,9 +3171,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   5
             Left            =   3720
-            Picture         =   "Form_Main.frx":208949
+            Picture         =   "Form_Main.frx":15A7F5
             Style           =   1  'Graphical
-            TabIndex        =   20
+            TabIndex        =   18
             Top             =   50
             Width           =   495
          End
@@ -2163,9 +3191,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3240
-            Picture         =   "Form_Main.frx":208ED3
+            Picture         =   "Form_Main.frx":15AD7F
             Style           =   1  'Graphical
-            TabIndex        =   21
+            TabIndex        =   19
             Top             =   50
             Width           =   495
          End
@@ -2183,9 +3211,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2220
-            Picture         =   "Form_Main.frx":20945D
+            Picture         =   "Form_Main.frx":15B309
             Style           =   1  'Graphical
-            TabIndex        =   23
+            TabIndex        =   21
             Top             =   50
             Width           =   495
          End
@@ -2203,9 +3231,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   3
             Left            =   2760
-            Picture         =   "Form_Main.frx":209A27
+            Picture         =   "Form_Main.frx":15B8D3
             Style           =   1  'Graphical
-            TabIndex        =   22
+            TabIndex        =   20
             Top             =   50
             Width           =   495
          End
@@ -2223,9 +3251,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   1080
-            Picture         =   "Form_Main.frx":209FF1
+            Picture         =   "Form_Main.frx":15BE9D
             Style           =   1  'Graphical
-            TabIndex        =   67
+            TabIndex        =   61
             Top             =   50
             Width           =   495
          End
@@ -2246,36 +3274,36 @@ Begin VB.Form Form_Main
          Left            =   80
          ScaleHeight     =   1215
          ScaleWidth      =   1455
-         TabIndex        =   15
+         TabIndex        =   13
          Top             =   100
          Width           =   1455
          Begin Audiostation.ButtonBig cmdPlaylistDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   89
+            TabIndex        =   70
             Top             =   5
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Playlist"
+            Caption         =   "T(1001)"
             TextAlignment   =   0
          End
          Begin Audiostation.ButtonBig cmdSettingsDat 
             Height          =   390
             Left            =   50
-            TabIndex        =   90
+            TabIndex        =   71
             Top             =   810
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Settings"
+            Caption         =   "T(1002)"
             TextAlignment   =   0
          End
       End
-      Begin isAnalogLibrary.iLedBarX VU_Left 
+      Begin isAnalogLibrary.iLedBarX LedBar_DatLeft 
          Height          =   135
          Left            =   7310
-         TabIndex        =   24
+         TabIndex        =   22
          Top             =   240
          Width           =   1935
          SegmentDirection=   2
@@ -2315,10 +3343,10 @@ Begin VB.Form Form_Main
          SectionEnd4     =   0
          OPCItemCount    =   0
       End
-      Begin isAnalogLibrary.iLedBarX VU_Right 
+      Begin isAnalogLibrary.iLedBarX LedBar_DatRight 
          Height          =   135
          Left            =   7310
-         TabIndex        =   25
+         TabIndex        =   23
          Top             =   420
          Width           =   1935
          SegmentDirection=   2
@@ -2358,78 +3386,24 @@ Begin VB.Form Form_Main
          SectionEnd4     =   0
          OPCItemCount    =   0
       End
-      Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_Dat 
-         Height          =   420
-         Left            =   3780
-         TabIndex        =   26
+      Begin DigitBox.DigitBoxControl DigitBox_DatTrack 
+         Height          =   405
+         Left            =   3860
+         TabIndex        =   110
          Top             =   180
-         Width           =   705
-         Value           =   "0"
-         DigitCount      =   2
-         LeadingStyle    =   1
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         SegmentOffColor =   8421504
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   47
-         Object.Height          =   28
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_Dat 
-         Height          =   420
-         Left            =   4800
-         TabIndex        =   27
-         Top             =   180
-         Width           =   1380
-         Time            =   0
-         ShowSeconds     =   -1  'True
-         ShowHours       =   0   'False
-         HourStyle       =   0
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         Hours           =   0
-         Minutes         =   0
-         Seconds         =   0
-         CountDirection  =   0
-         CountTimerEnabled=   0   'False
-         SegmentOffColor =   65280
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   92
-         Object.Height          =   28
-         OPCItemCount    =   0
+         Width           =   540
+         _ExtentX        =   953
+         _ExtentY        =   714
+         DigitDisplay    =   "00"
+         DigitPlaceHolders=   2
+         DigitSize       =   1
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
       End
       Begin VB.Image Light_Dat_Play_On 
          Height          =   135
          Left            =   6590
-         Picture         =   "Form_Main.frx":20A57B
+         Picture         =   "Form_Main.frx":15C427
          Top             =   255
          Visible         =   0   'False
          Width           =   135
@@ -2437,7 +3411,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Dat_Pause_On 
          Height          =   150
          Left            =   6580
-         Picture         =   "Form_Main.frx":20AA55
+         Picture         =   "Form_Main.frx":15C901
          Top             =   550
          Visible         =   0   'False
          Width           =   135
@@ -2458,13 +3432,26 @@ Begin VB.Form Form_Main
       Height          =   1500
       Index           =   1
       Left            =   120
-      Picture         =   "Form_Main.frx":20AF3F
+      Picture         =   "Form_Main.frx":15CDEB
       ScaleHeight     =   1500
-      ScaleWidth      =   9735
-      TabIndex        =   28
+      ScaleWidth      =   9615
+      TabIndex        =   24
+      Tag             =   "OFF"
       Top             =   840
-      Visible         =   0   'False
-      Width           =   9735
+      Width           =   9615
+      Begin DigitBox.DigitBoxControl DigitBox_MidiDuration 
+         Height          =   315
+         Left            =   8420
+         TabIndex        =   115
+         Top             =   230
+         Width           =   855
+         _ExtentX        =   1508
+         _ExtentY        =   556
+         DigitDisplay    =   "00:00"
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
+         DigitFormat     =   1
+      End
       Begin VB.PictureBox Picture9 
          BackColor       =   &H00000000&
          BorderStyle     =   0  'None
@@ -2481,14 +3468,14 @@ Begin VB.Form Form_Main
          Left            =   6310
          ScaleHeight     =   405
          ScaleWidth      =   1935
-         TabIndex        =   38
+         TabIndex        =   34
          Top             =   200
          Width           =   1935
          Begin isAnalogLibrary.iLedBarX VU_Midi 
             Height          =   400
             Index           =   0
             Left            =   0
-            TabIndex        =   39
+            TabIndex        =   35
             Top             =   0
             Width           =   100
             SegmentDirection=   0
@@ -2532,7 +3519,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   1
             Left            =   120
-            TabIndex        =   40
+            TabIndex        =   36
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2576,7 +3563,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   2
             Left            =   240
-            TabIndex        =   41
+            TabIndex        =   37
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2620,7 +3607,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   3
             Left            =   360
-            TabIndex        =   42
+            TabIndex        =   38
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2664,7 +3651,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   4
             Left            =   480
-            TabIndex        =   43
+            TabIndex        =   39
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2708,7 +3695,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   5
             Left            =   600
-            TabIndex        =   44
+            TabIndex        =   40
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2752,7 +3739,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   6
             Left            =   720
-            TabIndex        =   45
+            TabIndex        =   41
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2796,7 +3783,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   7
             Left            =   840
-            TabIndex        =   46
+            TabIndex        =   42
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2840,7 +3827,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   8
             Left            =   960
-            TabIndex        =   47
+            TabIndex        =   43
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2884,7 +3871,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   9
             Left            =   1080
-            TabIndex        =   48
+            TabIndex        =   44
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2928,7 +3915,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   10
             Left            =   1200
-            TabIndex        =   49
+            TabIndex        =   45
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -2972,7 +3959,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   11
             Left            =   1320
-            TabIndex        =   50
+            TabIndex        =   46
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3016,7 +4003,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   12
             Left            =   1440
-            TabIndex        =   51
+            TabIndex        =   47
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3060,7 +4047,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   13
             Left            =   1560
-            TabIndex        =   52
+            TabIndex        =   48
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3104,7 +4091,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   14
             Left            =   1680
-            TabIndex        =   53
+            TabIndex        =   49
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3148,7 +4135,7 @@ Begin VB.Form Form_Main
             Height          =   405
             Index           =   15
             Left            =   1800
-            TabIndex        =   54
+            TabIndex        =   50
             Top             =   0
             Width           =   105
             SegmentDirection=   0
@@ -3202,10 +4189,10 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Left            =   4420
+         Left            =   4410
          ScaleHeight     =   495
          ScaleWidth      =   5055
-         TabIndex        =   30
+         TabIndex        =   26
          Top             =   840
          Width           =   5055
          Begin VB.CommandButton Button_MidiPlayer 
@@ -3222,9 +4209,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   5
             Left            =   3960
-            Picture         =   "Form_Main.frx":23AAE9
+            Picture         =   "Form_Main.frx":18C995
             Style           =   1  'Graphical
-            TabIndex        =   31
+            TabIndex        =   27
             Top             =   50
             Width           =   495
          End
@@ -3242,9 +4229,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   4
             Left            =   3480
-            Picture         =   "Form_Main.frx":23B0B3
+            Picture         =   "Form_Main.frx":18CF5F
             Style           =   1  'Graphical
-            TabIndex        =   33
+            TabIndex        =   29
             Top             =   50
             Width           =   495
          End
@@ -3262,27 +4249,7 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   0
             Left            =   1495
-            Picture         =   "Form_Main.frx":23B63D
-            Style           =   1  'Graphical
-            TabIndex        =   36
-            Top             =   50
-            Width           =   495
-         End
-         Begin VB.CommandButton Button_MidiPlayer 
-            BackColor       =   &H00C0C0C0&
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   375
-            Index           =   6
-            Left            =   4500
-            Picture         =   "Form_Main.frx":23BC07
+            Picture         =   "Form_Main.frx":18D4E9
             Style           =   1  'Graphical
             TabIndex        =   32
             Top             =   50
@@ -3300,11 +4267,31 @@ Begin VB.Form Form_Main
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
+            Index           =   6
+            Left            =   4500
+            Picture         =   "Form_Main.frx":18DAB3
+            Style           =   1  'Graphical
+            TabIndex        =   28
+            Top             =   50
+            Width           =   495
+         End
+         Begin VB.CommandButton Button_MidiPlayer 
+            BackColor       =   &H00C0C0C0&
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
             Index           =   3
             Left            =   3000
-            Picture         =   "Form_Main.frx":23C1D1
+            Picture         =   "Form_Main.frx":18E07D
             Style           =   1  'Graphical
-            TabIndex        =   34
+            TabIndex        =   30
             Top             =   50
             Width           =   495
          End
@@ -3322,9 +4309,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   2
             Left            =   2520
-            Picture         =   "Form_Main.frx":23C75B
+            Picture         =   "Form_Main.frx":18E607
             Style           =   1  'Graphical
-            TabIndex        =   35
+            TabIndex        =   31
             Top             =   50
             Width           =   495
          End
@@ -3342,9 +4329,9 @@ Begin VB.Form Form_Main
             Height          =   375
             Index           =   1
             Left            =   2040
-            Picture         =   "Form_Main.frx":23CCE5
+            Picture         =   "Form_Main.frx":18EB91
             Style           =   1  'Graphical
-            TabIndex        =   37
+            TabIndex        =   33
             Top             =   50
             Width           =   495
          End
@@ -3365,104 +4352,51 @@ Begin VB.Form Form_Main
          Left            =   80
          ScaleHeight     =   1215
          ScaleWidth      =   1335
-         TabIndex        =   29
+         TabIndex        =   25
          Top             =   100
          Width           =   1335
          Begin Audiostation.ButtonBig cmdPlaylistMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   87
+            TabIndex        =   68
             Top             =   20
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Playlist"
+            Caption         =   "T(1001)"
             TextAlignment   =   0
          End
          Begin Audiostation.ButtonBig cmdSettingsMidi 
             Height          =   390
             Left            =   50
-            TabIndex        =   88
+            TabIndex        =   69
             Top             =   800
             Width           =   1215
             _ExtentX        =   2143
             _ExtentY        =   688
-            Caption         =   "Settings"
+            Caption         =   "T(1002)"
             TextAlignment   =   0
          End
       End
-      Begin isDigitalLibrary.iSevenSegmentHexadecimalX Digit_Track_Midi 
-         Height          =   420
-         Left            =   5040
-         TabIndex        =   56
+      Begin DigitBox.DigitBoxControl DigitBox_MidiTrack 
+         Height          =   405
+         Left            =   5110
+         TabIndex        =   112
          Top             =   180
-         Width           =   705
-         Value           =   "0"
-         DigitCount      =   2
-         LeadingStyle    =   1
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         SegmentOffColor =   8421504
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   47
-         Object.Height          =   28
-         OPCItemCount    =   0
-      End
-      Begin isDigitalLibrary.iSevenSegmentClockX Digit_Time_Midi 
-         Height          =   420
-         Left            =   8250
-         TabIndex        =   57
-         Top             =   180
-         Width           =   1140
-         Time            =   0
-         ShowSeconds     =   -1  'True
-         ShowHours       =   0   'False
-         HourStyle       =   0
-         AutoSize        =   0   'False
-         DigitSpacing    =   3
-         SegmentMargin   =   3
-         SegmentColor    =   65280
-         SegmentSeperation=   1
-         SegmentSize     =   1
-         ShowOffSegments =   -1  'True
-         PowerOff        =   0   'False
-         BackGroundColor =   0
-         BorderStyle     =   0
-         Object.Visible         =   -1  'True
-         Enabled         =   -1  'True
-         Hours           =   0
-         Minutes         =   0
-         Seconds         =   0
-         CountDirection  =   0
-         CountTimerEnabled=   0   'False
-         SegmentOffColor =   65280
-         AutoSegmentOffColor=   -1  'True
-         Transparent     =   0   'False
-         UpdateFrameRate =   60
-         OptionSaveAllProperties=   0   'False
-         AutoFrameRate   =   0   'False
-         Object.Width           =   76
-         Object.Height          =   28
-         OPCItemCount    =   0
+         Width           =   540
+         _ExtentX        =   953
+         _ExtentY        =   714
+         DigitDisplay    =   "00"
+         DigitPlaceHolders=   2
+         DigitSize       =   1
+         DigitColor      =   1
+         DigitOutLine    =   0   'False
+         DigitJustify    =   0
       End
       Begin VB.Image Light_Midi_Floppy_Drive 
          Height          =   240
          Left            =   1800
-         Picture         =   "Form_Main.frx":23D2AF
+         Picture         =   "Form_Main.frx":18F15B
          Top             =   555
          Visible         =   0   'False
          Width           =   495
@@ -3470,14 +4404,14 @@ Begin VB.Form Form_Main
       Begin VB.Image Image6 
          Height          =   165
          Left            =   1920
-         Picture         =   "Form_Main.frx":23D931
+         Picture         =   "Form_Main.frx":18F7DD
          Top             =   590
          Width           =   255
       End
       Begin VB.Image FloppyIn 
          Height          =   735
          Left            =   1480
-         Picture         =   "Form_Main.frx":23DBAF
+         Picture         =   "Form_Main.frx":18FA5B
          Top             =   120
          Visible         =   0   'False
          Width           =   3225
@@ -3485,13 +4419,13 @@ Begin VB.Form Form_Main
       Begin VB.Image FloppyOut 
          Height          =   735
          Left            =   1480
-         Picture         =   "Form_Main.frx":240949
+         Picture         =   "Form_Main.frx":1927F5
          Top             =   120
          Width           =   3225
       End
-      Begin VB.Label lbl_Midi_Filename 
+      Begin VB.Label Label_MidiFilename 
          BackStyle       =   0  'Transparent
-         Caption         =   "Onbekend"
+         Caption         =   "T(1019)"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   6.75
@@ -3502,17 +4436,16 @@ Begin VB.Form Form_Main
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H0000FF00&
-         Height          =   240
+         Height          =   200
          Left            =   2210
-         TabIndex        =   55
-         Tag             =   "1013"
+         TabIndex        =   51
          Top             =   1013
          Width           =   2055
       End
       Begin VB.Image Light_Midi_Play_On 
          Height          =   135
          Left            =   6090
-         Picture         =   "Form_Main.frx":2436E3
+         Picture         =   "Form_Main.frx":19558F
          Top             =   250
          Visible         =   0   'False
          Width           =   135
@@ -3520,7 +4453,7 @@ Begin VB.Form Form_Main
       Begin VB.Image Light_Midi_Pause_On 
          Height          =   150
          Left            =   6085
-         Picture         =   "Form_Main.frx":243BBD
+         Picture         =   "Form_Main.frx":195A69
          Top             =   550
          Visible         =   0   'False
          Width           =   135
@@ -3541,7 +4474,7 @@ Begin VB.Form Form_Main
       Height          =   735
       Index           =   0
       Left            =   120
-      Picture         =   "Form_Main.frx":2440A7
+      Picture         =   "Form_Main.frx":195F53
       ScaleHeight     =   735
       ScaleWidth      =   9615
       TabIndex        =   0
@@ -3551,7 +4484,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   5
          Left            =   4320
-         TabIndex        =   125
+         TabIndex        =   101
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -3564,7 +4497,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   4
          Left            =   5160
-         TabIndex        =   126
+         TabIndex        =   102
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -3577,7 +4510,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   3
          Left            =   6000
-         TabIndex        =   127
+         TabIndex        =   103
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -3590,7 +4523,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   1
          Left            =   7680
-         TabIndex        =   128
+         TabIndex        =   104
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -3603,7 +4536,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   2
          Left            =   6840
-         TabIndex        =   129
+         TabIndex        =   105
          Top             =   120
          Width           =   825
          _ExtentX        =   1455
@@ -3616,7 +4549,7 @@ Begin VB.Form Form_Main
          Height          =   390
          Index           =   0
          Left            =   8640
-         TabIndex        =   130
+         TabIndex        =   106
          Top             =   120
          Width           =   795
          _ExtentX        =   1402
@@ -3627,89 +4560,157 @@ Begin VB.Form Form_Main
       Begin VB.Image OptionsMenuButton 
          Height          =   405
          Left            =   120
-         Picture         =   "Form_Main.frx":25AFA5
+         Picture         =   "Form_Main.frx":1ACE51
          Top             =   100
          Width           =   375
       End
       Begin VB.Image Image5 
          Height          =   450
          Left            =   720
-         Picture         =   "Form_Main.frx":25B7EB
+         Picture         =   "Form_Main.frx":1AD697
          Top             =   105
          Width           =   3165
       End
    End
-   Begin VB.Timer Trm_CD_Play 
-      Interval        =   1000
-      Left            =   10920
-      Tag             =   "0"
-      Top             =   1560
+   Begin ComctlLib.ImageList Imagelist_ElementsDisabled 
+      Left            =   11400
+      Top             =   720
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   638
+      ImageHeight     =   48
+      MaskColor       =   12632256
+      _Version        =   327682
+      BeginProperty Images {0713E8C2-850A-101B-AFC0-4210102A8DA7} 
+         NumListImages   =   7
+         BeginProperty ListImage1 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":1B2161
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage2 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":1C88F3
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage3 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":1F75B5
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage4 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":226277
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage5 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":254F39
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage6 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":2B465B
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage7 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "Form_Main.frx":313D7D
+            Key             =   ""
+         EndProperty
+      EndProperty
    End
-   Begin VB.Menu mnupopup_player 
+   Begin Audiostation.ShellPipe ShellPipe 
+      Left            =   12000
+      Top             =   3120
+      _ExtentX        =   635
+      _ExtentY        =   635
+      PollInterval    =   300
+   End
+   Begin VB.Menu menu_Popup01 
       Caption         =   "- POPUP (1) -"
-      Begin VB.Menu mnushuffle_popup 
-         Caption         =   "&Shuffle"
-         HelpContextID   =   1056
-      End
-      Begin VB.Menu mnuautonext_popup 
-         Caption         =   "&Auto next"
-         HelpContextID   =   1057
-      End
-      Begin VB.Menu mnuplaytrack_popup 
-         Caption         =   "&Play one track"
+      Begin VB.Menu menu_Popup_AutoStop 
+         Caption         =   "&Auto Stop"
          Checked         =   -1  'True
-         HelpContextID   =   1058
+         HelpContextID   =   1003
       End
-      Begin VB.Menu space02 
+      Begin VB.Menu menu_Popup1_Space01 
          Caption         =   "-"
       End
-      Begin VB.Menu mnurepeattrack_popup 
-         Caption         =   "&Repeat track"
-         HelpContextID   =   1059
-      End
-      Begin VB.Menu mnurepeatplaylist_popup 
-         Caption         =   "&Repeat playlist"
+      Begin VB.Menu menu_Popup_PlayOneTrack 
+         Caption         =   "&Play Single"
          Checked         =   -1  'True
-         HelpContextID   =   1060
+         HelpContextID   =   1005
       End
-      Begin VB.Menu space05 
+      Begin VB.Menu menu_Popup_RepeatTrack 
+         Caption         =   "&Repeat Track"
+         HelpContextID   =   1006
+      End
+      Begin VB.Menu menu_Popup1_Space02 
          Caption         =   "-"
       End
-      Begin VB.Menu MenuItem_Popup_Properties 
+      Begin VB.Menu menu_Popup_NoRepeat 
+         Caption         =   "&No Repeat"
+         Checked         =   -1  'True
+      End
+      Begin VB.Menu menu_Popup_RepeatPlaylist 
+         Caption         =   "&Repeat Playlist"
+         HelpContextID   =   1007
+      End
+      Begin VB.Menu menu_Popup_Shuffle 
+         Caption         =   "&Shuffle Playlist"
+         HelpContextID   =   1008
+      End
+      Begin VB.Menu menu_Popup1_Space03 
+         Caption         =   "-"
+      End
+      Begin VB.Menu menu_Popup_Properties 
          Caption         =   "&Properties"
-         Enabled         =   0   'False
+         HelpContextID   =   1009
       End
    End
-   Begin VB.Menu mnupopup_app 
+   Begin VB.Menu menu_Popup02 
       Caption         =   "- POPUP (2) -"
-      Begin VB.Menu mnuplugins 
-         Caption         =   "&Loaded plugins"
-      End
-      Begin VB.Menu mnuaudioplayersettings_popup 
+      Begin VB.Menu menu_Popup_Settings 
          Caption         =   "&Audiostation Settings"
-         HelpContextID   =   1062
+         HelpContextID   =   1010
       End
-      Begin VB.Menu space04 
+      Begin VB.Menu menu_Popup_Space03 
          Caption         =   "-"
       End
-      Begin VB.Menu mnuspectrumanalyzer 
+      Begin VB.Menu menu_Popup_ShowSpectrum 
          Caption         =   "&Show spectrum analyzer"
          Checked         =   -1  'True
+         HelpContextID   =   1011
       End
-      Begin VB.Menu space03 
+      Begin VB.Menu menu_Popup_Space04 
          Caption         =   "-"
       End
-      Begin VB.Menu mnucheck_for_updates 
+      Begin VB.Menu menu_Popup_CheckForUpdates 
          Caption         =   "&Check for updates"
+         HelpContextID   =   1012
       End
-      Begin VB.Menu mnuabout_popup 
+      Begin VB.Menu menu_Popup_About 
          Caption         =   "&About Audiostation"
-         HelpContextID   =   1064
+         HelpContextID   =   1013
       End
-      Begin VB.Menu mnuclose_popup 
+      Begin VB.Menu menu_Popup_Close 
          Caption         =   "&Close Audiostation"
-         HelpContextID   =   1065
+         HelpContextID   =   1014
          Shortcut        =   ^Q
+      End
+   End
+   Begin VB.Menu menu_Popup03 
+      Caption         =   "- POPUP (3) -"
+      Begin VB.Menu menu_Popup_PlayRecording 
+         Caption         =   "&Play"
+         HelpContextID   =   1015
+      End
+      Begin VB.Menu menu_Popup_Record 
+         Caption         =   "&Record"
+         HelpContextID   =   1016
+      End
+      Begin VB.Menu menu_Popup_SaveRecording 
+         Caption         =   "&Save Recording"
+         HelpContextID   =   1017
+      End
+      Begin VB.Menu menu_Popup_RecordingSettings 
+         Caption         =   "&Settings"
+         HelpContextID   =   1018
       End
    End
 End
@@ -3718,57 +4719,165 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private AudioMaster As New AudioVolume
+Option Explicit
 
-Dim DoorClose As Boolean
-Dim AppInit As Boolean
-Private Sub SetLeftRightVolume(channel As Long, sliderLeft As Double, sliderRight As Double)
-Dim vol, pan As Double
-Dim left, right As Integer
+Public RecorderFound As Boolean
+Public Recording As Boolean
 
-left = CInt(sliderLeft) / 10
-right = CInt(sliderRight) / 10
+Public ShowRemaining As Boolean
+Public ShowRemainingForMidi As Boolean
 
-If left = right Then
-    vol = left
-    pan = 0
-Else
-    If left > right Then
-        vol = left
-        pan = -1 + (right / left)
-    Else
-        vol = right
-        pan = 1 - (left / right)
-    End If
-End If
+Dim VolumeChannelId As String
+Dim MidiMediaType As enumMidiMediaType
+Dim InitDone As Boolean
+Public Sub SettingsChanged()
 
-Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_VOL, vol)
-Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_PAN, pan)
 End Sub
+Private Sub GetElementsState()
+Dim I, ButtonIndex As Integer
 
-Public Sub ResetMidiVU()
-Dim I As Integer
-
-For I = 0 To VU_Midi.count - 1
-    VU_Midi(I).Position = 0
+For I = 1 To 6
+    Element(I).Tag = Extensions.INIRead("main", "Element-" & I, ConfigFile, "OFF")
+    
+    If (I - 1) = 0 Then
+        ButtonIndex = 1
+    Else
+        If I = 6 Then
+            ButtonIndex = 5
+        Else
+            ButtonIndex = I
+        End If
+    End If
+    
+    If StrExt.Contains(Element(I).Tag, "OFF") Then
+        Button_Power(ButtonIndex).Active = False
+    Else
+        Button_Power(ButtonIndex).Active = True
+    End If
 Next
 End Sub
-Private Sub SetPlaylistModeBasedOnSelected()
-If mnuplaytrack_popup.Checked Then AudiostationMP3Player.MediaPlayMode = PlaySingleTrack
-If mnuautonext_popup.Checked Then AudiostationMP3Player.MediaPlayMode = AutoNextTrack
-If mnushuffle_popup.Checked Then AudiostationMP3Player.MediaPlayMode = Shuffle
+Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, url As String, Optional Name As String = "")
+Form_Streams.Show vbModal, Me
 
-If mnurepeatplaylist_popup.Checked Then AudiostationMP3Player.MediaPlaylistMode = RepeatPlaylist
-If mnurepeattrack_popup.Checked Then AudiostationMP3Player.MediaPlaylistMode = RepeatSingleTrack
-End Sub
-Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, Url As String, Optional name As String = "")
-If Url <> vbNullString Then
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & MemorySlot, Url & "~" & name)
-    Button_TunerMemory(MemorySlot).Tag = Url & "~" & name
+If url <> vbNullString Then
+    Call Extensions.INIWrite("main", "TunerMemory-" & MemorySlot, url & "~" & Name, ConfigFile)
+    
+    Button_TunerMemory(MemorySlot).Tag = url & "~" & Name
 End If
 End Sub
-Private Sub AniCD_Click()
-Trm_CD_Animation.Enabled = True
+
+Private Sub AdioAudioPeak_ChannelAudioLevelChange(leftValue As Integer, rightValue As Integer)
+LedBar_DatLeft.Position = leftValue
+LedBar_DatRight.Position = rightValue
+End Sub
+
+Private Sub AdioAudioPeak_MasterAudioPeakLevelChange(Value As Integer)
+LedBar_Master.Position = Value
+End Sub
+
+Private Sub AdioAudioPeak_SpectrumLevelChange(col As Integer, Value As Integer)
+If menu_Popup_ShowSpectrum.Checked Then: LedBar_Spectrum(col).Position = Value
+End Sub
+
+Private Sub AdioCDPlayer_DeviceFound(Id As Long, DriveName As String, DriveLetter As String)
+Call AppLog.LogInfo("CD-Rom device found: " & DriveName & " - " & DriveLetter & ":")
+End Sub
+
+Private Sub AdioCDPlayer_NoCdRomDeviceFound()
+Call AppLog.LogInfo("No CD-Rom device found on this computer")
+Button_Power(3).Enabled = False
+End Sub
+
+Private Sub AdioCDPlayer_StartPlay()
+AdioMediaPlayer.StopPlay
+AdioMidiPlayer.StopPlay
+
+Call AdioAudioPeak.SetChannel(AdioCDPlayer.Channel)
+End Sub
+
+Private Sub AdioCore_DeviceFound(Id As Integer, Name As String, InputDev As Boolean, OutputDev As Boolean)
+Call AppLog.LogInfo("Audio device found: " & Name & " - " & Id & " - Input: " & InputDev & " - Output: " & OutputDev)
+End Sub
+
+Private Sub AdioMediaPlayer_MediaEnded()
+If Not menu_Popup_AutoStop.Checked Then
+    If menu_Popup_PlayOneTrack.Checked Then
+        Call AdioMediaPlaylist.GetTrack(PLS_NEXT)
+        Exit Sub
+    Else
+        Call AdioMediaPlayer.StartPlay
+        Exit Sub
+    End If
+End If
+End Sub
+
+Private Sub AdioMediaPlayer_NewMediaFile(File As String)
+Dim fso As New FileSystemObject
+
+Label_FilenameDat.Caption = fso.GetFileName(File)
+
+Call AppLog.LogInfo("Starting playing " & File)
+
+menu_Popup_Properties.Enabled = True
+End Sub
+
+Private Sub AdioMediaPlayer_NewStream()
+label_StreamStatus.Caption = "Loading..."
+End Sub
+
+Private Sub AdioMediaPlayer_StartPlay()
+AdioCDPlayer.StopPlay
+AdioMidiPlayer.StopPlay
+
+Call AdioAudioPeak.SetChannel(AdioMediaPlayer.Channel)
+End Sub
+
+Private Sub AdioMediaPlayer_StreamBuffering(Percent As Integer)
+Debug.Print Percent
+End Sub
+
+Private Sub AdioMediaPlayer_StreamTitleChange(Title As String)
+Label_StreamTitle.Caption = Title
+End Sub
+
+Private Sub AdioMediaPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
+AdioMediaPlayer.LoadFile Track.LocalFile
+AdioMediaPlayer.StartPlay
+
+CurrentMediaPlayerTrackNr = Track.nR
+End Sub
+
+Private Sub AdioMidiPlayer_MidiTrack(Name As String, TrackNr As Integer)
+Debug.Print "Midi track: " & Name
+End Sub
+
+Private Sub AdioMidiPlayer_MidiTrackAudioLevelChange(TrackNr As Integer, Level As Integer)
+If TrackNr > 15 Then: Exit Sub
+
+VU_Midi(TrackNr).Position = Level
+End Sub
+
+Private Sub AdioMidiPlayer_NewMediaFile(File As String)
+Dim fso As New FileSystemObject
+
+Label_MidiFilename.Caption = fso.GetFileName(File)
+End Sub
+
+Private Sub AdioMidiPlayer_Ready()
+Debug.Print "Midi player ready"
+End Sub
+
+Private Sub AdioMidiPlayer_StartPlay()
+AdioMediaPlayer.StopPlay
+AdioCDPlayer.StopPlay
+End Sub
+
+Private Sub AdioMidiPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
+AdioMidiPlayer.StopPlay
+AdioMidiPlayer.LoadFile Track.LocalFile
+AdioMidiPlayer.StartPlay
+
+CurrentMidiPlayerTrackNr = Track.nR
 End Sub
 
 Private Sub Button_CDLoop_Click()
@@ -3776,32 +4885,24 @@ If Button_CDLoop.Active = False Then
     Button_CDLoop.Active = True
     Button_CDRandom.Active = False
     
-    Light_Panel_CD.Picture = ImageList3.ListImages(3).Picture
+    Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(3).Picture
 Else
     Button_CDLoop.Active = False
     
-    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
+    Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(2).Picture
 End If
 End Sub
 
-Private Sub Button_CDOpen_Click()
-Trm_CD_Animation.Enabled = True
-
-If BASS_CD_DoorIsOpen(curdrive) Then
-    Call BASS_CD_Door(curdrive, BASS_CD_DOOR_CLOSE)
-Else
-    Call BASS_CD_Door(curdrive, BASS_CD_DOOR_OPEN)
-End If
-End Sub
-
-Private Sub Button_CDPlayer_Click(index As Integer)
-Select Case index
-    Case 0: Call AudiostationCDPlayer.PreviousTrack
-    Case 1: Call AudiostationCDPlayer.Rewind
-    Case 2: Call AudiostationCDPlayer.StopPlay
-    Case 3: Call AudiostationCDPlayer.Play
-    Case 4: Call AudiostationCDPlayer.Pause
-    Case 5: Call AudiostationCDPlayer.Forward
+Private Sub Button_CDPlayer_Click(Index As Integer)
+Select Case Index
+    'Case 0: Call AdioCDPlayer.PreviousTrack
+    Case 1: Call AdioCDPlayer.SeekBySeconds(AdioRewind)
+    Case 2: Call AdioCDPlayer.StopPlay
+    Case 3: Call AdioCDPlayer.StartPlay
+    Case 4: Call AdioCDPlayer.PausePlay
+    Case 5: Call AdioCDPlayer.SeekBySeconds(AdioForward)
+    'Case 6: Call MediaPlayer_CD.NextTrack
+    Case 7: Call AdioCDPlayer.OpenDoor
 End Select
 End Sub
 
@@ -3810,158 +4911,154 @@ If Button_CDRandom.Active = False Then
     Button_CDRandom.Active = True
     Button_CDLoop.Active = False
     
-    Light_Panel_CD.Picture = ImageList3.ListImages(4).Picture
+    Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(4).Picture
 Else
     Button_CDRandom.Active = False
     
-    Light_Panel_CD.Picture = ImageList3.ListImages(2).Picture
+    Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(2).Picture
 End If
 End Sub
 
-Private Sub Button_MidiPlayer_Click(index As Integer)
-Select Case index
-    Case 0: AudiostationMIDIPlayer.PreviousMidiTrack
-    Case 1: AudiostationMIDIPlayer.RewindMidi10Seconds
-    Case 2: AudiostationMIDIPlayer.StopMidiPlayback
-    
+Private Sub Button_MidiPlayer_Click(Index As Integer)
+Select Case Index
+    Case 0: Call AdioMidiPlaylist.GetTrack(PLS_PREV)
+    Case 1: Call AdioMidiPlayer.SeekBySeconds(AdioRewind)
+    Case 2: Call AdioMidiPlayer.StopPlay
     Case 3
-        If AudiostationMIDIPlayer.MidiPlaylist.StorageContainer.count = 0 Then
-            If MsgBox(GetLanguage(1023), vbQuestion + vbYesNo, "Playlist") = vbYes Then
-                Form_Playlist.CurrentFormType = MidiPlayer
+        If AdioMidiPlaylist.ListCount = 0 Then
+            If MsgBox(GetTranslation(1056), vbQuestion + vbYesNo) = vbYes Then
+                Form_Playlist.FormType = enumFormTypes.MidiPlayer
                 Form_Playlist.Show vbModal
             End If
         Else
-            AudiostationMIDIPlayer.StartMidiPlayback
+            Call AdioMidiPlayer.StartPlay
         End If
-    
-    Case 4: AudiostationMIDIPlayer.PauseMidiPlayback
-    Case 5: AudiostationMIDIPlayer.ForwardMidi10Seconds
-    Case 6: AudiostationMIDIPlayer.NextMidiTrack
+
+    Case 4: Call AdioMidiPlayer.PausePlay
+    Case 5: Call AdioMidiPlayer.SeekBySeconds(AdioForward)
+    Case 6: Call AdioMidiPlaylist.GetTrack(PLS_NEXT)
 End Select
 End Sub
-
 Private Sub Button_OpenStream_Click()
-Form_OpenStream.Show vbModal
+Form_Streams.Show vbModal, Me
 
-If AudioStaStreamer.Url <> vbNullString Then
-    Timer_Stream.Enabled = False
-    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.name) Then Timer_Stream.Enabled = True
-    
+If Not StrExt.IsNullOrWhiteSpace(StreamUrl) Then
+    AdioMediaPlayer.LoadStream StreamUrl
+        
     Dim I As Integer
-    For I = 0 To Button_TunerMemory.count - 1
+    For I = 0 To Button_TunerMemory.Count - 1
         Button_TunerMemory(I).Active = False
     Next
 End If
 End Sub
 
 Private Sub Button_PlayStream_Click()
-If AudioStaStreamer.Url = vbNullString Then
-    If MsgBox("No stream is active" & vbNewLine & "Do you want to open a stream", vbQuestion + vbYesNo, "No stream") = vbYes Then
+If StrExt.IsNullOrWhiteSpace(StreamUrl) Then
+    If MsgBox(GetTranslation(1055), vbQuestion + vbYesNo) = vbYes Then
         Call Button_OpenStream_Click
     End If
 Else
-    Timer_Stream.Enabled = False
-    If AudioStaStreamer.OpenStream(AudioStaStreamer.Url, AudioStaStreamer.name) Then Timer_Stream.Enabled = True
+    Call AdioMediaPlayer.LoadStream(StreamUrl)
 End If
 End Sub
 
-Private Sub Button_Power_Click(index As Integer)
-Select Case index
-    Case 0
-        CloseApplication = True
-        Unload Me
-    
-    Case Else
-        If Button_Power(index).Active Then
-            'Turn off element
-            Button_Power(index).Active = False
-            Element(index).Tag = "DELETE"
-            
-            Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "Element-" & index, "OFF")
+Private Sub Button_Power_Click(Index As Integer)
+Dim ElmIndex As Integer
+
+Select Case Index
+    Case 1, 2, 3, 4, 5
+        If Index = 5 Then
+            ElmIndex = 6
         Else
-            'Turn on element
-            Button_Power(index).Active = True
-            Element(index).Tag = "ADD"
-            
-            Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "Element-" & index, "ON")
+            ElmIndex = Index
         End If
         
-        If index = 3 And Button_Power(index).Active = True Then
-            AniCD.Picture = ImageList5.ListImages(1).Picture
-            AniCD.Visible = True
+        If Element(ElmIndex).Tag = "ON" Then
+            Button_Power(Index).Active = False
             
-            Trm_CD_Animation.Tag = 1
-            Trm_CD_Animation.Enabled = True
+            If Index = 4 Then
+                Element(4).Tag = "OFF"
+                Element(5).Tag = "OFF"
+            Else
+                Element(ElmIndex).Tag = "OFF"
+            End If
+            
+            InitDone = False
+        Else
+            Button_Power(Index).Active = True
+            
+            If Index = 4 Then
+                Element(4).Tag = "ON"
+                Element(5).Tag = "ON"
+            Else
+                Element(ElmIndex).Tag = "ON"
+            End If
+            
+            InitDone = False
         End If
+    
+    Case 0: Unload Me
 End Select
 End Sub
 
 Private Sub Button_StopStream_Click()
-Call BASS_ChannelPause(chan)
+AdioMediaPlayer.StopPlay
 End Sub
 
-Private Sub Button_TunerMemory_Click(index As Integer)
+Private Sub Button_TunerMemory_Click(Index As Integer)
 Dim I As Integer
 
-For I = 0 To Button_TunerMemory.count - 1
+For I = 0 To Button_TunerMemory.Count - 1
     Button_TunerMemory(I).Active = False
 Next
 
-If Button_TunerMemory(index).Tag = vbNullString Then
-    If MsgBox("No stream has been assigned to the selected memory slot" & vbNewLine & "Do you wanto to assign the current stream?", vbQuestion + vbYesNo, "No stream") = vbYes Then
-        Call AssignToMemorySlotAndSave(index, AudioStaStreamer.Url, AudioStaStreamer.name)
+If Button_TunerMemory(Index).Tag = vbNullString Then
+    If MsgBox(GetTranslation(1060), vbQuestion + vbYesNo) = vbYes Then
+        Button_OpenStream_Click
     End If
 Else
-    Button_TunerMemory(index).Active = True
+    Button_TunerMemory(Index).Active = True
     
-    Dim StreamUrl As String
-    Dim StreamName As String
+    StreamUrl = StrExt.SplitStr(Button_TunerMemory(Index).Tag, "~", 0)
+    StreamName = StrExt.SplitStr(Button_TunerMemory(Index).Tag, "~", 1)
     
-    StreamUrl = Extensions.Explode(Button_TunerMemory(index).Tag, "~", 0)
-    StreamName = Extensions.Explode(Button_TunerMemory(index).Tag, "~", 1)
-    
-    Timer_Stream.Enabled = False
-    Call AudioStaStreamer.OpenStream(StreamUrl, StreamName)
-    Timer_Stream.Enabled = True
+    Call AdioMediaPlayer.LoadStream(StreamUrl)
 End If
 End Sub
 
-Private Sub cmdAudioPlayer_Click(index As Integer)
-Select Case index
-    Case 0: PopupMenu mnupopup_player
-    Case 1
-        If AudioStaRecorder.Recording Then
-            AudioStaRecorder.SaveRecording
-        Else
-            AudioStaRecorder.StartRecorder
-        End If
+Private Sub cmdAudioPlayer_Click(Index As Integer)
+Select Case Index
+    Case 0: PopupMenu menu_Popup01
+    Case 1: PopupMenu menu_Popup03
     
-    Case 2: AudiostationMP3Player.PreviousTrack
-    Case 3: AudiostationMP3Player.Forward
-    Case 4: AudiostationMP3Player.StopPlay
+    Case 2: Call AdioMediaPlaylist.GetTrack(PLS_PREV)
+    Case 3: Call AdioMediaPlayer.SeekBySeconds(AdioRewind)
+    Case 4: Call AdioMediaPlayer.StopPlay
     Case 5
-        If MediaPlaylist.StorageContainer.count = 0 Then
-            If MsgBox(GetLanguage(1023), vbQuestion + vbYesNo, "Playlist") = vbYes Then
-                Form_Playlist.CurrentFormType = Mp3Player
+        If AdioMediaPlaylist.ListCount = 0 Then
+            If MsgBox(GetTranslation(1056), vbQuestion + vbYesNo) = vbYes Then
+                Form_Playlist.FormType = enumFormTypes.Mp3Player
                 Form_Playlist.Show vbModal
             End If
         Else
-            AudiostationMP3Player.StartPlay
+            ' If no track is selected, select the first in the playlist
+            If CurrentMediaPlayerTrackNr = 0 Then: Call AdioMediaPlaylist.GetTrack(PLS_FIRST)
+            Call AdioMediaPlayer.StartPlay
         End If
     
-    Case 6: AudiostationMP3Player.Pause
-    Case 7: AudiostationMP3Player.Rewind
-    Case 8: AudiostationMP3Player.NextTrack 0, True
+    Case 6: Call AdioMediaPlayer.PausePlay
+    Case 7: Call AdioMediaPlayer.SeekBySeconds(AdioForward)
+    Case 8: Call AdioMediaPlaylist.GetTrack(PLS_NEXT)
 End Select
 End Sub
 
 Private Sub cmdPlaylistDat_Click()
-Form_Playlist.CurrentFormType = Mp3Player
+Form_Playlist.FormType = Mp3Player
 Form_Playlist.Show , Me
 End Sub
 
 Private Sub CmdPlaylistMidi_Click()
-Form_Playlist.CurrentFormType = MidiPlayer
+Form_Playlist.FormType = MidiPlayer
 Form_Playlist.Show , Me
 End Sub
 
@@ -3972,539 +5069,531 @@ End Sub
 Private Sub cmdSettingsMidi_Click()
 Form_Settings.Show vbModal, Me
 End Sub
-Private Sub Digit_Time_Dat_OnClick()
-If AudiostationMP3Player.ShowElapsedTime = True Then
-    AudiostationMP3Player.ShowElapsedTime = False
+
+Private Sub DataInter_DataReceived(Data As String)
+Call AppLog.LogInfo("DataInterFileCopy" & Data)
+
+Select Case StrExt.SplitStr(Data, "~", 0)
+    Case "OpenFile" ' Open a file from a other Audiostation instance
+        Call OpenFile(StrExt.SplitStr(Data, "~", 1))
+        
+    Case "StartRecording"
+        menu_Popup_Record.Caption = "Stop Recording"
+        menu_Popup_Record.Tag = "stop"
+        
+        menu_Popup_SaveRecording.Enabled = False
+        menu_Popup_PlayRecording.Enabled = False
+        
+        Recording = True
+        
+    Case "StopRecording"
+        menu_Popup_Record.Caption = "Record"
+        menu_Popup_Record.Tag = "start"
+        
+        menu_Popup_SaveRecording.Enabled = True
+        menu_Popup_PlayRecording.Enabled = True
+        
+        Recording = False
+           
+        Debug.Print "Stop recording, Length: " & StrExt.SplitStr(Data, "~", 1)
+        
+    Case "Done"
+        DataInter.Finish
+        RecorderFound = False
+        
+End Select
+End Sub
+
+Private Sub DataInter_ReceptorConnected()
+RecorderFound = True
+Call AppLog.LogInfo("Application connected to data interchange")
+End Sub
+
+Private Sub DigitBox_DatDuration_Click()
+If ShowRemaining Then
+    ShowRemaining = False
 Else
-    AudiostationMP3Player.ShowElapsedTime = True
+    ShowRemaining = True
+End If
+End Sub
+
+Private Sub DigitBox_MidiDuration_Click()
+If ShowRemainingForMidi Then
+    ShowRemainingForMidi = False
+Else
+    ShowRemainingForMidi = True
 End If
 End Sub
 
 Private Sub Form_Load()
+Dim PlaybackDeviceIndex, PlaybackDeviceId As Long
+Dim MidiDeviceId As Integer
+
+Call AppLog.LogInfo("Initialize AdioCore component")
+AdioCore.Initialize
+
+Call AppLog.LogInfo("Initialize AdioAudioPeak component")
+AdioAudioPeak.Run
+
+Call AppLog.LogInfo("Initialize AdioCDPlayer component")
+AdioCDPlayer.Initialize
+
+Call AppLog.LogInfo("Initialize AdioMidiPlayer component")
+MidiDeviceId = CInt(Extensions.INIRead("main", "MidiPlaybackDeviceId", ConfigFile, 0)) - 1
+
+AdioMidiPlayer.GetListOfMidiDevices
+AdioMidiPlayer.InitComponent MidiDeviceId
+
+Randomize
+Call DataInter.Connect("15448")
+
 Width = 9900
 Height = 9855 - 310
 
-Slider_Dat_Left.value = 1000
-Slider_Dat_Right.value = 1000
-Slider_CD_Left.value = 1000
-Slider_CD_Right.value = 1000
-
-ChDrive App.path
-ChDir App.path
-
-' Check the correct BASS was loaded
-If (HiWord(BASS_GetVersion) <> BASSVERSION) Then
-    MsgBox "An incorrect version of BASS.DLL was loaded", vbCritical
-    End
-End If
-
-' Initialize BASS
-If (BASS_Init(-1, 44100, 0, Me.hwnd, 0) = 0) Then
-    MsgBox es & vbCrLf & vbCrLf & "error code: " & BASS_ErrorGetCode, vbExclamation, "Error"
-    End
-End If
-
-Call BASS_SetConfig(BASS_CONFIG_NET_PLAYLIST, 1) ' enable playlist processing
-Call BASS_SetConfig(BASS_CONFIG_NET_PREBUF, 0) ' minimize automatic pre-buffering, so we can do it (and display it) instead
-
-Call AudiostationMP3Player.Init
-
 Dim I As Integer
-For I = 0 To Button_TunerMemory.count - 1
-    Button_TunerMemory(I).Tag = Settings.ReadSetting("Sibra-Soft", "Audiostation", "TunerMemory-" & I, vbNullString)
+For I = 0 To Button_TunerMemory.Count - 1
+    Button_TunerMemory(I).Tag = Extensions.INIRead("main", "TunerMemory-" & I, ConfigFile, vbNullString)
 Next
 
-For I = 0 To Element.count - 1
-    Element(I).Visible = True
-Next
+' Disable menu items
+menu_Popup01.Visible = False
+menu_Popup02.Visible = False
+menu_Popup03.Visible = False
 
-mnupopup_player.Visible = False
-mnupopup_app.Visible = False
+menu_Popup_Record.Tag = "start"
+
+menu_Popup_Properties.Enabled = False
+menu_Popup_SaveRecording.Enabled = False
+menu_Popup_PlayRecording.Enabled = False
 
 ' Get the application settings
-mnuspectrumanalyzer.Checked = Settings.ReadSetting("Sibra-Soft", "Audiostation", "UseSpectrumAnalyzer", True)
+menu_Popup_ShowSpectrum.Checked = Extensions.INIRead("main", "UseSpectrumAnalyzer", ConfigFile, 1)
+menu_Popup_AutoStop.Checked = Extensions.INIRead("main", "AutoStop", ConfigFile, 1)
+
+ShowRemaining = Extensions.INIRead("main", "ShowRemainingTime", ConfigFile, 0)
+ShowRemainingForMidi = Extensions.INIRead("main", "ShowRemainingTimeForMidi", ConfigFile, 0)
 
 'Display program version
 lbl_version.Caption = "Version: " & App.Major & "." & App.Minor & " Build: " & App.Revision
 
-' Check if the CD-Rom drive exists
-If Not CheckIfCDRomDriveExists Then
-    Button_Power(3).Enabled = False
-    
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "Element-3", "OFF")
-    Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "CD", 0)
+Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(2).Picture
+Picture_MediaPlayerAnimation.Picture = Imagelist_MediaPlayerAnimation.ListImages(1).Picture
+
+DigitBox_Clock.DigitDisplay = Time
+
+Call TranslateFormAndControls(Me)
+
+Call GetElementsState
+Call SettingsChanged
+
+' Get the midi volume controller
+If Not modVolume.ChannelExists("VirtualMIDISynth.exe") Is Nothing Then
+    VolumeChannelId = modVolume.ChannelExists("VirtualMIDISynth.exe").Pid
+Else
+    If Not modVolume.ChannelExists("Audiostation.exe") Is Nothing Then
+        VolumeChannelId = modVolume.ChannelExists("Audiostation.exe").Pid
+    End If
 End If
 
-Light_Panel_CD.Picture = ImageList3.ListImages(1).Picture
-cthread = 0
-
-Call SetLanguage(Me)
-Call SetPlaylistModeBasedOnSelected
+Timer_Main.Enabled = True
+Timer_Lights.Enabled = True
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+Dim VirtualMidiSyncPid As Long
+
 Cancel = True
 
-AudiostationMIDIPlayer.StopMidiPlayback
-AudiostationMP3Player.StopPlay
+Call AppLog.LogInfo("Ending")
 
-Call ApplicationDestructor
-Call Shell(App.path & "/close.exe", vbHide)
+' Stop playing, recording, etc.
+Call AdioMediaPlayer.StopPlay
+Call AdioCDPlayer.StopPlay
+
+' Send end to all connected applications
+DataInter.SendData "end"
+
+' Save element state
+Dim I As Integer
+For I = 1 To 6
+    Call Extensions.INIWrite("main", "Element-" & I, Element(I).Tag, ConfigFile)
+Next
+
+Call AppLog.CloseLog
 
 Cancel = False
-End Sub
-
-Private Sub lbl_Midi_Filename_Change()
-lbl_Midi_Filename.ToolTipText = lbl_Midi_Filename.Caption
-End Sub
-
-Private Sub MenuItem_Popup_Properties_Click()
-Form_Track_Properties.Show vbModal
-End Sub
-
-Private Sub mnuabout_popup_Click()
-Form_About.Show vbModal
-End Sub
-
-Private Sub mnuaudioplayersettings_popup_Click()
-Form_Settings.Show vbModal, Me
-End Sub
-
-Private Sub mnuautonext_popup_Click()
-mnushuffle_popup.Checked = False
-mnuautonext_popup.Checked = True
-mnuplaytrack_popup.Checked = False
-
-Call SetPlaylistModeBasedOnSelected
-End Sub
-
-Private Sub mnucheck_for_updates_Click()
-Dim iRet As Integer
-
-Dim appMinor As Integer
-Dim appMajor As Integer
-Dim appRevision As Integer
-
-Dim webMinor As Integer
-Dim webMajor As Integer
-Dim webRevision As Integer
-
-Dim webResponse As String
-
-If Extensions.IsWebConnected Then
-    webResponse = WebRequest.WebRequest("https://www.audiostation.org/app-deploy/audiostation/version.txt")
-    
-    webMinor = Extensions.Explode(webResponse, ".", "0")
-    webMajor = Extensions.Explode(webResponse, ".", "1")
-    webRevision = Extensions.Explode(webResponse, ".", "2")
-    
-    appMinor = App.Minor
-    appMajor = App.Major
-    appRevision = App.Revision
-    
-    If webMinor > appMinor Or webMajor = appMajor Or webRevision > appRevision Then
-        iRet = MsgBox("A new version of Audiostation was found, do you want to download this new version?", vbYesNo + vbQuestion, "New version")
-        
-        If iRet = vbYes Then Shell "explorer.exe https://www.audiostation.org", vbNormalFocus
-    Else
-        MsgBox "You have the newest version of Audiostation", vbInformation
-    End If
-Else
-    MsgBox "You are not connected to the internet, you must have a working internet connection to check for updates", vbExclamation, "Connection error"
-End If
-End Sub
-
-Private Sub mnuclose_popup_Click()
 End
 End Sub
 
-Private Sub mnuplaytrack_popup_Click()
-mnushuffle_popup.Checked = False
-mnuautonext_popup.Checked = False
-mnuplaytrack_popup.Checked = True
-
-Call SetPlaylistModeBasedOnSelected
+Private Sub Label_FilenameDat_Change()
+Label_FilenameDat.ToolTipText = Label_FilenameDat.Caption
 End Sub
 
-Private Sub mnuplugins_Click()
-Form_Plugins.Show vbModal
+Private Sub Label_MidiFilename_Change()
+Label_MidiFilename.ToolTipText = Label_MidiFilename.Caption
+End Sub
+Private Sub menu_Popup_About_Click()
+Form_About.Show vbModal, Me
 End Sub
 
-Private Sub mnurepeatplaylist_popup_Click()
-mnurepeatplaylist_popup.Checked = True
-mnurepeattrack_popup.Checked = False
-
-Call SetPlaylistModeBasedOnSelected
-End Sub
-
-Private Sub mnurepeattrack_popup_Click()
-mnurepeatplaylist_popup.Checked = False
-mnurepeattrack_popup.Checked = True
-
-Call SetPlaylistModeBasedOnSelected
-End Sub
-
-Private Sub mnushuffle_popup_Click()
-mnushuffle_popup.Checked = True
-mnuautonext_popup.Checked = False
-mnuplaytrack_popup.Checked = False
-
-Call SetPlaylistModeBasedOnSelected
-End Sub
-
-Private Sub mnuspectrumanalyzer_Click()
-Dim I As Integer
-
-If mnuspectrumanalyzer.Checked Then
-    mnuspectrumanalyzer.Checked = False
-
-
+Private Sub menu_Popup_AutoStop_Click()
+If menu_Popup_AutoStop.Checked Then
+    menu_Popup_AutoStop.Checked = False
 Else
-    mnuspectrumanalyzer.Checked = True
+    menu_Popup_AutoStop.Checked = True
 End If
 
-Call Settings.WriteSetting("Sibra-Soft", "Audiostation", "UseSpectrumAnalyzer", mnuspectrumanalyzer.Checked)
+Call Extensions.INIWrite("main", "AutoStop", IIf(menu_Popup_AutoStop.Checked, 1, 0), ConfigFile)
+Call SettingsChanged
+End Sub
+
+Private Sub menu_Popup_NoRepeat_Click()
+menu_Popup_Shuffle.Checked = False
+menu_Popup_RepeatPlaylist.Checked = False
+menu_Popup_NoRepeat.Checked = True
+
+AdioMediaPlaylist.RepeatMode = PLS_NO_REPEAT
+End Sub
+
+Private Sub menu_Popup_PlayOneTrack_Click()
+menu_Popup_PlayOneTrack.Checked = True
+menu_Popup_RepeatTrack.Checked = False
+
+AdioMediaPlayer.RepeatMode = AdioPlayTrack
+End Sub
+
+Private Sub menu_Popup_PlayRecording_Click()
+DataInter.SendData "play"
+End Sub
+
+Private Sub menu_Popup_Properties_Click()
+Form_Track_Properties.File = AdioMediaPlayer.LoadedFile
+Form_Track_Properties.Show vbModal, Me
+End Sub
+
+Private Sub menu_Popup_Record_Click()
+If RecorderFound = False Then
+    Shell App.path & "\recorder.exe", vbHide
+    
+    Do While RecorderFound = False
+        DoEvents
+    Loop
+End If
+
+If menu_Popup_Record.Tag = "start" Then
+    
+    Call DataInter.SendData("record")
+    
+ElseIf menu_Popup_Record.Tag = "stop" Then
+
+    Call DataInter.SendData("stop")
+    
+End If
+End Sub
+
+Private Sub menu_Popup_RecordingSettings_Click()
+Form_Settings_Recorder.Show vbModal, Me
+End Sub
+
+Private Sub menu_Popup_RepeatPlaylist_Click()
+menu_Popup_Shuffle.Checked = False
+menu_Popup_RepeatPlaylist.Checked = True
+menu_Popup_NoRepeat.Checked = False
+
+AdioMediaPlaylist.RepeatMode = PLS_REPEAT
+End Sub
+
+Private Sub menu_Popup_RepeatTrack_Click()
+menu_Popup_PlayOneTrack.Checked = False
+menu_Popup_RepeatTrack.Checked = True
+
+AdioMediaPlayer.RepeatMode = AdioRepeatTrack
+End Sub
+
+Private Sub menu_Popup_SaveRecording_Click()
+DataInter.SendData "save"
+DataInter.SendData "end"
+End Sub
+
+Private Sub menu_Popup_Settings_Click()
+Form_Settings.Show vbModal, Me
+End Sub
+
+Private Sub menu_Popup_ShowSpectrum_Click()
+Dim Result As Integer
+
+If menu_Popup_ShowSpectrum.Checked Then
+    menu_Popup_ShowSpectrum.Checked = False
+    Result = 0
+    
+    ' Call AdioAudioPeak.reset
+Else
+    menu_Popup_ShowSpectrum.Checked = True
+    Result = 1
+End If
+
+Call Extensions.INIWrite("main", "UseSpectrumAnalyzer", CStr(Result), ConfigFile)
+End Sub
+
+Private Sub menu_Popup_Shuffle_Click()
+menu_Popup_Shuffle.Checked = True
+menu_Popup_RepeatPlaylist.Checked = False
+menu_Popup_NoRepeat.Checked = False
+
+AdioMediaPlaylist.RepeatMode = PLS_SHUFFLE
 End Sub
 
 Private Sub OptionsMenuButton_Click()
-PopupMenu mnupopup_app
+PopupMenu menu_Popup02
 End Sub
 
-Private Sub Slider_CD_Left_OnPositionChange()
-Call SetLeftRightVolume(curdrive, Slider_CD_Left.value, Slider_CD_Right.value)
+Private Sub ShellPipe_DataArrival(ByVal CharsTotal As Long)
+DigitBox_MidiDuration.DigitDisplay = Right(Trim(ShellPipe.GetData), 5)
 End Sub
 
-Private Sub Slider_CD_Right_OnPositionChange()
-Call SetLeftRightVolume(curdrive, Slider_CD_Left.value, Slider_CD_Right.value)
+Private Sub Slider_CD_Balance_OnPositionChange()
+Call AdioCDPlayer.SetBalance(Slider_CD_Balance.Value)
 End Sub
 
-Private Sub Slider_Dat_Left_OnPositionChange()
-Call SetLeftRightVolume(chan, Slider_Dat_Left.value, Slider_Dat_Right.value)
+Private Sub Slider_Dat_Balance_OnPositionChange()
+Call AdioMediaPlayer.SetBalance(Slider_Dat_Balance.Value)
 End Sub
 
-Private Sub Slider_Dat_Right_OnPositionChange()
-Call SetLeftRightVolume(chan, Slider_Dat_Left.value, Slider_Dat_Right.value)
+Private Sub Slider_Dat_Volume_OnPositionChange()
+Call AdioMediaPlayer.SetVolume(Slider_Dat_Volume.Value)
 End Sub
 
 Private Sub Slider_Master_OnPositionChange()
-Call BASS_SetVolume(Slider_Master.value / 100)
+Call AdioAudioPeak.SetMasterVolume(Slider_Master.Value)
 End Sub
 
-Private Sub Slider_Midi_Left_OnPositionChange()
-Form_Midi.MIDIOutput1.VolumeLeft = Slider_Midi_Left.value
-End Sub
-
-Private Sub Slider_Midi_Right_OnPositionChange()
-Form_Midi.MIDIOutput1.VolumeRight = Slider_Midi_Right.value
+Private Sub Slider_Midi_Volume_OnPositionChangeFinished()
+Call modVolume.SetVolumeById(VolumeChannelId, Slider_Midi_Volume.Value)
 End Sub
 
 Private Sub Switch_CD_OnChange()
-If Switch_CD.Active Then
-    Call BASS_ChannelSetAttribute(curdrive, BASS_ATTRIB_VOL, 1)
-Else
-    Call BASS_ChannelSetAttribute(curdrive, BASS_ATTRIB_VOL, 0)
-End If
+AdioCDPlayer.Mute
 End Sub
 
 Private Sub Switch_Dat_OnChange()
-If Switch_Dat.Active Then
-    Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_VOL, 1)
-Else
-    Call BASS_ChannelSetAttribute(chan, BASS_ATTRIB_VOL, 0)
-End If
+AdioMediaPlayer.MuteAudio
 End Sub
 
 Private Sub Switch_Master_OnChange()
 If Switch_Master.Active Then
-    Call AudioMaster.SetMute(0)
+    Call AdioAudioPeak.MuteMasterVolume
 Else
-    Call AudioMaster.SetMute(1)
+    Call AdioAudioPeak.MuteMasterVolume
 End If
 End Sub
 
-Private Sub Timer_Stream_Timer()
-Dim progress As Long
+Private Sub Switch_Midi_OnChange()
+If Switch_Midi.Active Then
+    Call modVolume.SetUnmuteById(VolumeChannelId)
+Else
+    Call modVolume.SetMuteById(VolumeChannelId)
+End If
+End Sub
 
-progress = BASS_StreamGetFilePosition(chan, BASS_FILEPOS_BUFFER) * 100 / BASS_StreamGetFilePosition(chan, BASS_FILEPOS_END)    ' percentage of buffer filled
+Private Sub Timer_Lights_Timer()
+' Recorder
+If Recording Then
+    Picturebox_Recording.Visible = True
 
-If (progress > 75 Or BASS_StreamGetFilePosition(chan, BASS_FILEPOS_CONNECTED) = 0) Then  ' over 75% full (or end of download)
-    Timer_Stream.Enabled = False
-    
-    Call DoMeta
-    
-    Call BASS_ChannelSetSync(chan, BASS_SYNC_META, 0, AddressOf MetaSync, 0)
-    Call BASS_ChannelSetSync(chan, BASS_SYNC_END, 0, AddressOf EndSync, 0)
-    Call BASS_ChannelPlay(chan, True)
-    
-    If AudioStaStreamer.Error Then
-        label_StreamStatus.Caption = "Error: Can't play stream"
+    If Image_Recording.Visible = True Then
+        Image_Recording.Visible = False
     Else
-        If AudioStaStreamer.name <> vbNullString Then
-            label_StreamStatus.Caption = "Playing: " & AudioStaStreamer.name
-        Else
-            label_StreamStatus.Caption = "Playing"
-        End If
+        Image_Recording.Visible = True
     End If
 Else
-    Label_StreamTitle.Caption = "Nothing playing"
-    label_StreamStatus.Caption = "Buffering... " & progress & "%"
+    Picturebox_Recording.Visible = False
+End If
+
+' Midi
+If AdioMidiPlayer.State = AdioPlaying Then
+    FloppyIn.Visible = True
+
+    Light_Midi_Pause_On.Visible = False
+
+    If Light_Midi_Play_On.Visible = True Then
+        Light_Midi_Play_On.Visible = False
+        Light_Midi_Floppy_Drive.Visible = True
+    Else
+        Light_Midi_Play_On.Visible = True
+        Light_Midi_Floppy_Drive.Visible = False
+    End If
+
+ElseIf AdioMidiPlayer.State = AdioStopped Or AdioEnded Then
+    FloppyIn.Visible = False
+
+    Light_Midi_Floppy_Drive.Visible = False
+    Light_Midi_Play_On.Visible = False
+    Light_Midi_Pause_On.Visible = False
+    Light_Midi_Play_On.Visible = False
+
+ElseIf AdioMidiPlayer.State = AdioPaused Then
+    Light_Midi_Floppy_Drive.Visible = False
+    FloppyIn.Visible = False
+
+    If Light_Midi_Pause_On.Visible = True Then
+        Light_Midi_Pause_On.Visible = False
+    Else
+        Light_Midi_Pause_On.Visible = True
+    End If
+End If
+
+' Media
+If AdioMediaPlayer.State = AdioPlaying Then
+    Timer_MediaAnimation.Enabled = True
+    Light_Dat_Pause_On.Visible = False
+
+    If Light_Dat_Play_On.Visible = True Then
+        Light_Dat_Play_On.Visible = False
+    Else
+        Light_Dat_Play_On.Visible = True
+    End If
+ElseIf AdioMediaPlayer.State = AdioPaused Then
+    Timer_MediaAnimation.Enabled = False
+    Light_Dat_Play_On.Visible = True
+
+    LedBar_DatLeft.Position = 0
+    LedBar_DatRight.Position = 0
+
+    If Light_Dat_Pause_On.Visible = True Then
+        Light_Dat_Pause_On.Visible = False
+    Else
+        Light_Dat_Pause_On.Visible = True
+    End If
+ElseIf AdioMediaPlayer.State = AdioStopped Or AdioEnded Then
+    Light_Dat_Pause_On.Visible = False
+    Light_Dat_Play_On.Visible = False
+
+    LedBar_DatLeft.Position = 0
+    LedBar_DatRight.Position = 0
+
+    Timer_MediaAnimation.Enabled = False
 End If
 End Sub
 
-Private Sub Trm_Animation_Timer()
+Private Sub Timer_Main_Timer()
+Dim E As Integer
+
+DigitBox_Clock.DigitDisplay = Time
+
+' Duration of the media player
+DigitBox_DatTrack.DigitDisplay = format(CurrentMediaPlayerTrackNr, "00")
+DigitBox_MidiTrack.DigitDisplay = format(CurrentMidiPlayerTrackNr, "00")
+
+If AdioMediaPlayer.State = AdioPaused Or AdioMediaPlayer.State = AdioStopped Then
+    Call AdioAudioPeak.ResetSpectrum
+End If
+
+If ShowRemaining Then
+    DigitBox_DatDuration.DigitDisplay = AdioMediaPlayer.GetProperties.RemainingString
+Else
+    DigitBox_DatDuration.DigitDisplay = AdioMediaPlayer.GetProperties.ElapsedString
+End If
+
+If ShowRemainingForMidi Then
+    DigitBox_MidiDuration.DigitDisplay = AdioMidiPlayer.GetProperties.RemainingString
+Else
+    DigitBox_MidiDuration.DigitDisplay = AdioMidiPlayer.GetProperties.ElapsedString
+End If
+
+' Init of the Audiostation application
+If Not InitDone Then
+    On Error GoTo ErrorHandler
+    
+    For E = 1 To PictureBox_Disabled.Count
+        Unload PictureBox_Disabled(E)
+    Next
+
+AddDisabled:
+    For E = 1 To Element.Count - 1
+        Dim NewElementIndex, DisabledIndex As Integer
+        
+        NewElementIndex = PictureBox_Disabled.Count
+        
+        Load PictureBox_Disabled(NewElementIndex)
+        
+        PictureBox_Disabled(NewElementIndex).Top = Element(E).Top
+        PictureBox_Disabled(NewElementIndex).Left = Element(E).Left
+        PictureBox_Disabled(NewElementIndex).Height = Element(E).Height
+        PictureBox_Disabled(NewElementIndex).Width = Element(E).Width
+        PictureBox_Disabled(NewElementIndex).BackColor = vbBlack
+        
+        DisabledIndex = E + 1
+        If DisabledIndex = 6 Then
+            PictureBox_Disabled(4).Picture = Imagelist_ElementsDisabled.ListImages(6).Picture
+            PictureBox_Disabled(4).Height = 3060
+            PictureBox_Disabled(4).ZOrder 0
+        Else
+            PictureBox_Disabled(NewElementIndex).Picture = Imagelist_ElementsDisabled.ListImages(DisabledIndex).Picture
+            PictureBox_Disabled(NewElementIndex).ZOrder 0
+        End If
+        
+        If LCase(Element(E).Tag) = "off" And Not InStr(1, Element(E).Tag, "force") > 0 Then
+            PictureBox_Disabled(NewElementIndex).Visible = True
+        Else
+            PictureBox_Disabled(NewElementIndex).Visible = False
+        End If
+    Next
+End If
+
+InitDone = True
+
+Exit Sub
+
+ErrorHandler:
+Select Case Err.Number
+    Case 0
+    Case 340: GoTo AddDisabled
+End Select
+End Sub
+
+Private Sub Timer_MediaAnimation_Timer()
 Dim J As Integer
 
-J = Trm_Animation.Tag
-Picture11.Picture = ImageList1.ListImages.Item(J).Picture
+J = Timer_MediaAnimation.Tag
+Picture_MediaPlayerAnimation.Picture = Imagelist_MediaPlayerAnimation.ListImages.Item(J).Picture
 
-If Trm_Animation.Tag = ImageList1.ListImages.count Then
-    Trm_Animation.Tag = 1
+If Timer_MediaAnimation.Tag = Imagelist_MediaPlayerAnimation.ListImages.Count Then
+    Timer_MediaAnimation.Tag = 1
 Else
-    Trm_Animation.Tag = Trm_Animation.Tag + 1
+    Timer_MediaAnimation.Tag = Timer_MediaAnimation.Tag + 1
 End If
+End Sub
+
+Private Sub Timer_MidiVu_Timer()
+Dim I As Integer
+
+For I = 0 To VU_Midi.Count - 1
+    VU_Midi(I).Position = VU_Midi(I).Position - 5
+Next
 End Sub
 
 Private Sub Trm_CD_Animation_Timer()
-Dim ImgIndex As Integer
-    
-ImgIndex = Trm_CD_Animation.Tag
-
-AniCD.Picture = ImageList5.ListImages(ImgIndex).Picture
-AniCD.Visible = True
-
-If DoorClose = True Then
-    If Trm_CD_Animation.Tag = 1 Then
-        DoorClose = False
-        Trm_CD_Animation.Enabled = False
-        AniCD.Visible = False
-    Else
-        Trm_CD_Animation.Tag = Trm_CD_Animation.Tag - 1
-    End If
-Else
-    If Trm_CD_Animation.Tag = 7 Then
-        DoorClose = True
-        Trm_CD_Animation.Enabled = False
-    Else
-        Trm_CD_Animation.Tag = Trm_CD_Animation.Tag + 1
-    End If
-End If
-End Sub
-Private Sub Trm_Floppy_Drive_Light_Timer()
-If Light_Midi_Floppy_Drive.Visible = True Then
-    Light_Midi_Floppy_Drive.Visible = False
-Else
-    Light_Midi_Floppy_Drive.Visible = True
-End If
-End Sub
-
-Private Sub Trm_Lights_Midi_Timer()
-If PlayStateMediaMode = MidiMediaMode Then
-    If Form_Midi.HScrollPlayerTime.value = Form_Midi.HScrollPlayerTime.max Then PlayState = MediaEnded
-
-    If MidiPlaystate = Playing Then
-        Trm_Floppy_Drive_Light.Enabled = True
-        FloppyIn.Visible = True
-        
-        If Light_Midi_Play_On.Visible = True Then
-            Light_Midi_Play_On.Visible = False
-        Else
-            Light_Midi_Play_On.Visible = True
-        End If
-        
-    ElseIf MidiPlaystate = Stopped Or MediaEnded Then
-        Trm_Floppy_Drive_Light.Enabled = False
-        FloppyIn.Visible = False
-        
-        Light_Midi_Floppy_Drive.Visible = False
-        Light_Midi_Play_On.Visible = False
-        Light_Midi_Pause_On.Visible = False
-        Light_Midi_Play_On.Visible = False
-    
-    ElseIf MidiPlaystate = Paused Then
-        Trm_Floppy_Drive_Light.Enabled = False
-        Light_Midi_Floppy_Drive.Visible = False
-        FloppyIn.Visible = False
-        
-        If Light_Midi_Pause_On.Visible = True Then
-            Light_Midi_Pause_On.Visible = False
-        Else
-            Light_Midi_Pause_On.Visible = True
-        End If
-    
-    End If
-End If
-End Sub
-
-Private Sub Trm_Lights_Timer()
-' Media Player
-If PlayStateMediaMode = MP3MediaMode Then
-    If MediaPlaystate = Playing Then
-        Trm_Animation.Enabled = True
-        Light_Dat_Pause_On.Visible = False
-        
-        If Light_Dat_Play_On.Visible = True Then
-            Light_Dat_Play_On.Visible = False
-        Else
-            Light_Dat_Play_On.Visible = True
-        End If
-    Else
-        If MediaPlaystate = Paused Then
-            Trm_Animation.Enabled = False
-            Light_Dat_Play_On.Visible = True
-        
-            VU_Left.Position = 0
-            VU_Right.Position = 0
-        
-            If Light_Dat_Pause_On.Visible = True Then
-                Light_Dat_Pause_On.Visible = False
-            Else
-                Light_Dat_Pause_On.Visible = True
-            End If
-        Else
-            Light_Dat_Pause_On.Visible = False
-            Light_Dat_Play_On.Visible = False
-            Trm_Animation.Enabled = False
-        End If
-    End If
-End If
-
-' CD Player
-If PlayStateMediaMode = CDMediaMode Then
-    If MediaPlaystate = Playing Then
-        If Light_CD_Play_On.Visible = True Then
-            Light_CD_Play_On.Visible = False
-        Else
-            Light_CD_Play_On.Visible = True
-        End If
-    Else
-        Light_CD_Play_On.Visible = False
-    End If
-End If
-End Sub
-Private Sub Trm_Main_Timer()
-Dim length, pos As Long
-Dim Totaltime, Elapsedtime, Remainingtime  As Double
-Dim MidiPos As Long
-
-Digit_Clock.Hours = Format(Now, "hh")
-Digit_Clock.Minutes = Format(Now, "nn")
-Digit_Clock.seconds = Format(Now, "ss")
-
-Digit_Track_Dat.value = AudiostationMP3Player.CurrentTrackNumber
-Digit_Track_Midi.value = AudiostationMIDIPlayer.MidiTrackNr
-
-If Form_Midi.LabelQueueTime.Caption = "(wait)" Then
-    
-Else
-    If left(Form_Midi.LabelQueueTime.Caption, 1) = "." Then
-        MidiPos = 0
-    Else
-        MidiPos = Extensions.Explode(Form_Midi.LabelQueueTime.Caption, ".", 0)
-    End If
-End If
-
-Digit_Time_Midi.seconds = Extensions.Explode(Extensions.TimeString(MidiPos), ":", 1)
-Digit_Time_Midi.Minutes = Extensions.Explode(Extensions.TimeString(MidiPos), ":", 0)
-
-If AudiostationMIDIPlayer.MidiFilename = vbNullString Then
-    lbl_Midi_Filename.Caption = "Unknown"
-Else
-    lbl_Midi_Filename.Caption = AudiostationMIDIPlayer.MidiFilename
-End If
-
-' Enable the activated rack
-Dim I As Integer
-For I = 1 To Button_Power.count - 1
-    Dim mustBeOff As String
-    
-    mustBeOff = Settings.ReadSetting("Sibra-Soft", "Audiostation", "Element-" & I, "OFF")
-        
-    If Not mustBeOff = "OFF" Then
-        If I = 4 Then: ElementOff(6).Visible = False
-        
-        ElementOff(I).Visible = False
-        Button_Power(I).Active = True
-    Else
-        If I = 4 Then: ElementOff(6).Visible = True
-        
-        ElementOff(I).Visible = True
-        Button_Power(I).Active = False
-    End If
-Next
-
-' Startup loop
-If Trm_Main.Tag = 6 Then
-    Trm_Main.Interval = 1
-Else
-    Button_Power(Trm_Main.Tag).Active = True
-    Trm_Main.Tag = Trm_Main.Tag + 1
-End If
-
-' Show the elapsed or leftover time
-If PlayStateMediaMode = MP3MediaMode Then
-    If AudiostationMP3Player.MediaPlaystate = Playing Then
-        lbl_Filename.Caption = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
-        lbl_Filename.ToolTipText = Extensions.GetFileNameFromFilePath(AudiostationMP3Player.CurrentMediaFilename, False)
-        
-        Dim TimeSerial As String
-        
-        length = BASS_ChannelGetLength(chan, BASS_POS_BYTE)
-        pos = BASS_ChannelGetPosition(chan, BASS_POS_BYTE)
-        Totaltime = BASS_ChannelBytes2Seconds(chan, length)
-        Elapsedtime = BASS_ChannelBytes2Seconds(chan, pos)
-        Remainingtime = Totaltime - Elapsedtime
-            
-        If AudiostationMP3Player.ShowElapsedTime Then
-            TimeSerial = Extensions.SecondsToTimeSerial(Elapsedtime, SmallTimeSerial)
-    
-            Digit_Time_Dat.Minutes = Extensions.Explode(TimeSerial, ":", 0)
-            Digit_Time_Dat.seconds = Extensions.Explode(TimeSerial, ":", 1)
-        Else
-            TimeSerial = Extensions.SecondsToTimeSerial(Remainingtime, SmallTimeSerial)
-    
-            Digit_Time_Dat.Minutes = Extensions.Explode(TimeSerial, ":", 0)
-            Digit_Time_Dat.seconds = Extensions.Explode(TimeSerial, ":", 1)
-        End If
-    End If
-    
-    If CurrentMediaFilename <> vbNullString Then: MenuItem_Popup_Properties.Enabled = True
-    
-    If AudiostationMP3Player.MediaPlaystate = Playing And Remainingtime = 0 Then AudiostationMP3Player.MediaPlaystate = MediaEnded
-    If AudiostationMP3Player.MediaPlaystate = MediaEnded Then AudiostationMP3Player.NextTrack
-End If
-End Sub
-Private Sub Trm_VU_Timer()
-If PlayStateMediaMode = MP3MediaMode Then
-    Dim level As Long
-    Dim leftVU, rightVU As Long
-    
-    level = BASS_ChannelGetLevel(chan)
-    
-    leftVU = LoWord(level) * 2
-    rightVU = HiWord(level) * 2
-    
-    If AudiostationMP3Player.MediaPlaystate = Playing Then
-        VU_Left.Position = leftVU / 32768 * 100
-        VU_Right.Position = rightVU / 32768 * 100
-        
-        VU_Master_Peak.Position = leftVU / 32768 * 100
-    Else
-        VU_Master_Peak.Position = 0
-        VU_Left.Position = 0
-        VU_Right.Position = 0
-    End If
-    
-    If mnuspectrumanalyzer.Checked Then: UpdateSpectrum
-Else
-    VU_Master_Peak.Position = 0
-    VU_Left.Position = 0
-    VU_Right.Position = 0
-End If
-
-On Error Resume Next
-If PlayStateMediaMode = MidiMediaMode And Form_Midi.VIndicator1.count > 1 Then
-    For I = 0 To VU_Midi.count - 1
-        VU_Midi(I).Position = Form_Midi.VIndicator1(I).value
-    Next
-End If
+'Dim ImgIndex As Integer
+'
+'ImgIndex = Trm_CD_Animation.Tag
+'
+'AniCD.Picture = ImageList5.ListImages(ImgIndex).Picture
+'AniCD.Visible = True
+'
+'If DoorClose = True Then
+'    If Trm_CD_Animation.Tag = 1 Then
+'        DoorClose = False
+'        Trm_CD_Animation.Enabled = False
+'        AniCD.Visible = False
+'    Else
+'        Trm_CD_Animation.Tag = Trm_CD_Animation.Tag - 1
+'    End If
+'Else
+'    If Trm_CD_Animation.Tag = 7 Then
+'        DoorClose = True
+'        Trm_CD_Animation.Enabled = False
+'    Else
+'        Trm_CD_Animation.Tag = Trm_CD_Animation.Tag + 1
+'    End If
+'End If
 End Sub

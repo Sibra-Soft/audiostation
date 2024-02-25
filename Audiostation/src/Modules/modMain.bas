@@ -1,154 +1,124 @@
-Attribute VB_Name = "ModMain"
+Attribute VB_Name = "modMain"
+'///////////////////////////////////////////////////////////////
+'// FileName        : modMain.bas
+'// FileType        : Microsoft Visual Basic 6 - Module
+'// Author          : Alex van den Berg
+'// Created         : 04-10-2021
+'// Last Modified   : 05-11-2023
+'// Copyright       : Sibra-Soft
+'// Description     : Main application module
+'////////////////////////////////////////////////////////////////
+
 Option Explicit
 
-' /////////////////////////////////////////////////////////////////////////////////
-' Module:           ModMain
-' Description:      Main application module of the program
-'
-' Date Changed:     25-06-2022
-' Date Created:     04-10-2021
-' Author:           Sibra-Soft - Alex van den Berg
-' /////////////////////////////////////////////////////////////////////////////////
-
-Public LanguageFile As String
-
-Public Const MAXDRIVES = 10
-Public curdrive As Long
-Public stream(MAXDRIVES) As Long
-Public seeking As Long
+Public ConfigFile As String
 
 Public IsDebuggig As Boolean
 
-Public PlayStateMediaMode As enumMediaMode
+Public StrExt As New clsStringExtensions
+Public Extensions As New clsSibraSoft
+Public Dialogs As New clsDialogExtensions
+Public AppLog As New clsLogger
 
-Public Mp3Info As New Mp3Info
-Public WebRequest As New WebClient
-Public Settings As New RegistrySettings
-Public Extensions As New SibraSoft
+Public StreamUrl As String
+Public StreamName As String
 
-Public AudioStaRecorder As New AudiostationRecorder
-Public AudioStaStreamer As New AudiostationSteamer
+Public CurrentMediaPlayerTrackNr As Long
+Public CurrentMidiPlayerTrackNr As Long
 Public Sub Main()
 Call ApplicationConstructor
 End Sub
 Public Sub OpenFile(MediaFile As String)
-Dim MediaIndex As String
-Dim MediaDuration As String
-Dim CurrentIndex As Integer
-Dim CurrentMediaDuration As String
+Dim LastTrackAdded As Long
+Dim TrackNr As Long
 
 Begin:
 If Not Extensions.FileExists(MediaFile) Then Exit Sub
 
-curdrive = Settings.ReadSetting("Sibra-Soft", "Audiostation", "CDDeviceId", 0)
+Call AppLog.LogInfo("Load file: " & MediaFile)
 
-Select Case LCase(right(MediaFile, 3))
-    Case "mp3", "wav", "mp2", "aac", "snd", "au", "rmi", "cda", "wma", "m4a"
-        MediaDuration = 0
-        
-        AudiostationMIDIPlayer.StopMidiPlayback
-        AudiostationCDPlayer.StopPlay
-        
-        If MediaPlaylist.IsExistingItem(MediaFile) > 0 Then
-            AudiostationMP3Player.CurrentTrackNumber = MediaPlaylist.IsExistingItem(MediaFile)
-            AudiostationMP3Player.StartPlay
-        Else
-            MediaIndex = Format(MediaPlaylist.StorageContainer.count + 1, "00")
+With Form_Main
+    Select Case LCase(Right(MediaFile, 3))
+        Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg" ' Media files
+            TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
+            Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
             
-            ' Only get the duration when it's a mp3 file
-            If LCase(right(MediaFile, 3)) = "mp3" Then
-                Mp3Info.FileName = MediaFile
-                MediaDuration = Extensions.TimeString(Mp3Info.SongLength)
-            End If
+        Case "mid", "kar", "mus", "sid" ' Midi files
+            TrackNr = .AdioMidiPlaylist.AddFile(MediaFile).nR
+            Call .AdioMidiPlaylist.GetTrack(PLS_GOTO, TrackNr)
             
-            If MediaDuration = "0" Then: MediaDuration = "-"
+        Case "apl", "wpl", "m3u", "pls" 'Playlist files
+            Screen.MousePointer = vbHourglass
             
-            MediaPlaylist.AddToStorage MediaFile, MediaIndex & ";" & MediaFile & ";" & MediaDuration
+            Form_Playlist.FormType = Mp3Player
+            Select Case LCase(Right(MediaFile, 3))
+                Case "apl": Call .AdioMediaPlaylist.LoadPlaylist(MediaFile, PLAYLIST_APL)
+                Case "m3u": Call .AdioMediaPlaylist.LoadPlaylist(MediaFile, PLAYLIST_M3U)
+                Case "pls": Call .AdioMediaPlaylist.LoadPlaylist(MediaFile, PLAYLIST_PLS)
+                Case "wpl": Call .AdioMediaPlaylist.LoadPlaylist(MediaFile, PLAYLIST_WPL)
+            End Select
             
-            AudiostationMP3Player.CurrentTrackNumber = MediaPlaylist.StorageContainer.count
-            AudiostationMP3Player.StartPlay
-        End If
-                    
-    Case "mid", "kar", "mus", "sid"
-        AudiostationMP3Player.StopPlay
-        AudiostationCDPlayer.StopPlay
-        
-        CurrentIndex = Format(MidiPlaylist.StorageContainer.count + 1, "00")
-        CurrentMediaDuration = "-"
-
-        MidiPlaylist.AddToStorage MediaFile, CurrentIndex & ";" & MediaFile & ";" & CurrentMediaDuration
-        
-        AudiostationMIDIPlayer.MidiTrackNr = MidiPlaylist.StorageContainer.count
-        AudiostationMIDIPlayer.StartMidiPlayback
-    
-Case "apl", "wpl", "m3u", "pls" 'Playlist files
-    If Not (Dir(MediaFile, vbDirectory) = vbNullString) Then
-        Screen.MousePointer = vbHourglass
-        
-        Select Case LCase(right(MediaFile, 3))
-            Case "apl": Call ModPlaylist.OpenAplPlaylist(MediaFile)
-            Case "m3u": Call ModPlaylist.OpenM3uPlaylist(MediaFile)
-            Case "pls": Call ModPlaylist.OpenPlsPlaylist(MediaFile)
-            Case "wpl": Call ModPlaylist.OpenWplPlaylist(MediaFile)
+            Form_Playlist.Show , Form_Main
+    Case Else
+        'Check if it's a file that needs to be converted
+        Select Case LCase(Right(MediaFile, 3))
+            Case "aac":
+            Case "act": 'Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
+            Case "caf": 'Call ModConvert.Convert(MediaFile, [Apple Core Format], MP3): GoTo Begin
+            Case "omo": 'Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3): GoTo Begin
+            Case "s64": 'Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3): GoTo Begin
+            Case "voc": 'Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
         End Select
-        
-        Form_Playlist.CurrentFormType = Mp3Player
-        Form_Playlist.Show , Form_Main
-    Else
-        Debug.Print "Playlist file could not be found"
-    End If
-        
-Case Else
-    'Check if it's a file that needs to be converted
-    Select Case LCase(right(MediaFile, 3))
-        Case "act": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-        Case "caf": Call ModConvert.Convert(MediaFile, [Apple Core Format], MP3): GoTo Begin
-        Case "ogg": Call ModConvert.Convert(MediaFile, [OGG], MP3): GoTo Begin
-        Case "omo": Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3): GoTo Begin
-        Case "s64": Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3): GoTo Begin
-        Case "voc": Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-    End Select
     
-    'Check if it's a file that needs to be converted
-    Select Case LCase(right(MediaFile, 2))
-        Case "ra": Call ModConvert.Convert(MediaFile, [Real Audio], MP3): GoTo Begin
-        Case "rm": Call ModConvert.Convert(MediaFile, [Real Media], MP3): GoTo Begin
-       
-        Case Else: MsgBox GetLanguage(1020), vbCritical
+        'Check if it's a file that needs to be converted
+        Select Case LCase(Right(MediaFile, 2))
+            Case "ra": 'Call ModConvert.Convert(MediaFile, [Real Audio], MP3): GoTo Begin
+            Case "rm": 'Call ModConvert.Convert(MediaFile, [Real Media], MP3): GoTo Begin
+    
+            Case Else: MsgBox GetTranslation(1057), vbExclamation
+        End Select
     End Select
-End Select
+End With
 End Sub
 Public Sub ApplicationConstructor()
 Dim MediaFile As String
-Dim MediaIndex As String
-Dim MediaDuration As String
 
-If Command = "debugging" Then: IsDebuggig = True
+Call argProcessCMDLine
 
-'Check if the temp folder exists
-If Dir(App.path & "\temp\", vbDirectory) = vbNullString Then: MkDir (App.path & "\temp\")
+ChDrive App.Path
+ChDir App.Path
 
-'Set the current application langauge
-LanguageFile = LCase(Settings.ReadSetting("Sibra-Soft", "Audiostation", "Langauge", "english"))
+' Create folders that are used by the application
+Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation")
+Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation\temp\")
+Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation\logs\")
 
-'Get the loaded file
-MediaFile = Command$
-MediaFile = Replace(MediaFile, Chr(34), vbNullString)
+' Set the folder for the application logfiles
+Call AppLog.Init(Environ$("AppData") & "\Audiostation\logs\")
 
+' Get the settings file
+ConfigFile = Environ$("AppData") & "\Audiostation\settings.ini"
+Call AppLog.LogInfo("Application config file set: " & ConfigFile)
+
+' Set the current application langauge
+Call SetLanguage(Extensions.INIRead("main", "Langauge", ConfigFile, "english"))
+
+' Get the loaded file
+If UBound(modArgs.argv) > 0 Then: MediaFile = modArgs.argv(1)
 If Not Extensions.FileExists(MediaFile) Then GoTo Einde
 If MediaFile = "" Then: GoTo Einde
 
-If App.PrevInstance Then: Call OpenFile(MediaFile): End
-
-Call OpenFile(MediaFile)
-GoTo Einde
+' Make sure to load the file in the last instance of the application
+If App.PrevInstance Then
+    Form_System.DataInter.Connect 15448
+    Form_System.DataInter.SendData "OpenFile~" & MediaFile
+    End
+Else
+    Call OpenFile(MediaFile)
+    GoTo Einde
+End If
 
 Exit Sub
-
 Einde:
     Form_Main.Show
-End Sub
-Public Sub ApplicationDestructor()
-Call BASS_ChannelFree(chan)
-Call BASS_Free
 End Sub

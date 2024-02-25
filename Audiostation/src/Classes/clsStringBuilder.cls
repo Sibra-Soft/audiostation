@@ -6,21 +6,22 @@ BEGIN
   DataSourceBehavior  = 0  'vbNone
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
-Attribute VB_Name = "StringBuilder"
+Attribute VB_Name = "clsStringBuilder"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-Option Explicit
+'///////////////////////////////////////////////////////////////
+'// FileName        : Logger.cls
+'// FileType        : Microsoft Visual Basic 6 - Class Module
+'// Author          : Alex van den Berg
+'// Created         : 05-10-2021
+'// Last Modified   : 05-11-2023
+'// Copyright       : Sibra-Soft
+'// Description     : Stringbuilder class like in .NetFramework
+'////////////////////////////////////////////////////////////////
 
-' /////////////////////////////////////////////////////////////////////////////////
-' Class:            StringBuilder
-' Description:      Stringbuilder class like in .NetFramework
-'
-' Date Changed:     05-10-2021
-' Date Created:     22-09-2021
-' Author:           Sibra-Soft - Alex van den Berg
-' /////////////////////////////////////////////////////////////////////////////////
+Option Explicit
 
 Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (pDst As Any, pSrc As Any, ByVal ByteLen As Long)
 
@@ -29,8 +30,8 @@ Private m_iChunkSize As Long
 Private m_iPos As Long
 Private m_iLen As Long
 
-Public Property Get length() As Long
-   length = m_iPos \ 2
+Public Property Get Length() As Long
+   Length = m_iPos \ 2
 End Property
 
 Public Property Get Capacity() As Long
@@ -124,7 +125,7 @@ Public Sub Insert(ByVal iIndex As Long, ByRef sThis As String)
    
    ' is iIndex within bounds?
    If (iIndex * 2 > m_iPos) Then
-      err.Raise 9
+      Err.Raise 9
    Else
    
       lLen = LenB(sThis)
@@ -158,11 +159,11 @@ Public Sub Remove(ByVal iIndex As Long, ByVal lLen As Long)
 
    ' is iIndex within bounds?
    If (iIndex * 2 > m_iPos) Then
-      err.Raise 9
+      Err.Raise 9
    Else
       ' is there sufficient length?
       If ((iIndex + lLen) * 2 > m_iPos) Then
-         err.Raise 9
+         Err.Raise 9
       Else
          ' Need to copy characters from iIndex*2 to m_iPos back by lLen chars:
          lSrc = UnsignedAdd(StrPtr(m_sString), (iIndex + lLen) * 2)

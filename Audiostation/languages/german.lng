@@ -42,7 +42,7 @@
 1041=Aufnahmeeinstellungen ändern
 1042=Ändern Sie die Einstellungen für die automatische Lautstärke
 1043=Animationen & Aussehen
-1044=Media-Player-Funktionalität
+1044=Media-Player
 1045=OK
 1046=Streaming öffnen
 1047=Track-Eigenschaften
@@ -64,3 +64,5 @@
 1063=Zeigen Sie die verbleibende Zeit an
 1064=Autostopp verwenden
 1065=Sie müssen die Anwendung neu starten, wenn Sie Änderungen an der Sprache vornehmen
+1066=Alle Dateien
+1067=Midi Player

@@ -1,4 +1,4 @@
-Attribute VB_Name = "ModPlaylist"
+Attribute VB_Name = "modPlaylist"
 Public Function OpenAplPlaylist(strPlaylistFile As String)
 Dim Files As String
 
@@ -9,16 +9,16 @@ End Function
 Public Function OpenWplPlaylist(FileName As String)
 Dim Lines
 Dim FileContent As String
-Dim I As Integer
+Dim i As Integer
 Dim Media As String
 Dim Files As String
 
 FileContent = Extensions.FileGetContents(FileName)
 Lines = Split(FileContent, vbNewLine)
 
-For I = 0 To UBound(Lines)
-    If InStr(1, Lines(I), "<media") Then
-        Media = Extensions.StringBetween("<media", "/>", Trim(Lines(I)))
+For i = 0 To UBound(Lines)
+    If InStr(1, Lines(i), "<media") Then
+        Media = StrExt.Between("<media", "/>", Trim(Lines(i)))
         Media = Replace(Media, Chr(34), vbNullString)
         Media = Replace(Media, "media src=", vbNullString)
         
@@ -56,14 +56,14 @@ Close #FN
 Call Form_Playlist.AddToPlaylist(Files)
 End Function
 Public Function OpenPlsPlaylist(strPlaylistFile As String, Optional TargetListbox As ListBox)
-Dim I As Integer
+Dim i As Integer
 Dim strNumberofEntries As Integer
 Dim FileToAdd As String
 
 strNumberofEntries = Extensions.INIRead("playlist", "NumberOfEntries", strPlaylistFile)
 
-For I = 1 To strNumberofEntries
-    FileToAdd = Extensions.INIRead("playlist", "File" & I, strPlaylistFile)
+For i = 1 To strNumberofEntries
+    FileToAdd = Extensions.INIRead("playlist", "File" & i, strPlaylistFile)
 
     Call Form_Playlist.AddToPlaylist(FileToAdd)
 Next

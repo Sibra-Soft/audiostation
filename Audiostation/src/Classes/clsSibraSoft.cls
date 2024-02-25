@@ -155,8 +155,8 @@ End Function
 Public Sub TerminateProcessByPid(pid As Long)
 Shell "taskkill.exe /f /t /pid " & pid, vbHide
 End Sub
-Public Sub TerminateProcessByName(Name As String)
-Shell "taskkill.exe /f /t /im " & Name
+Public Sub TerminateProcessByName(name As String)
+Shell "taskkill.exe /f /t /im " & name
 End Sub
 Public Sub RegUnReg(ByVal inFileSpec As String, Optional inHandle As String = "")
     On Error Resume Next
@@ -249,7 +249,7 @@ FileExists = myFSO.FileExists(sFullPath)
 End Function
 Public Function CommondialogFilesToList(Files As String) As String
 Dim FileList
-Dim i As Integer
+Dim I As Integer
 Dim Output As String
 
 Debug.Print Files
@@ -258,9 +258,9 @@ FileList = Split(Files, Chr(0))
 If UBound(FileList) = 0 Then
     Output = Files
 Else
-    For i = 0 To UBound(FileList)
-        If Me.FileExists(FileList(0) & "\" & FileList(i)) Then
-            Output = Output & FileList(0) & "\" & FileList(i) & vbNewLine
+    For I = 0 To UBound(FileList)
+        If Me.FileExists(FileList(0) & "\" & FileList(I)) Then
+            Output = Output & FileList(0) & "\" & FileList(I) & vbNewLine
         End If
     Next
 End If
@@ -315,17 +315,17 @@ EstimatedTimeRemaining = EstimatedTotalTime - Elapsedtime
 GetTimeRemaining = EstimatedTimeRemaining
 End Function
 Public Function GetFileNameFromFile(flname As String) As String
-Dim posn As Integer, i As Integer
+Dim posn As Integer, I As Integer
 Dim FName As String
 
 posn = 0
-For i = 1 To Len(flname)
-    If (Mid(flname, i, 1) = "\") Then posn = i
-Next i
-FName = Right(flname, Len(flname) - posn)
+For I = 1 To Len(flname)
+    If (Mid(flname, I, 1) = "\") Then posn = I
+Next I
+FName = right(flname, Len(flname) - posn)
 posn = InStr(FName, ".")
     If posn <> 0 Then
-        FName = Left(FName, posn - 1)
+        FName = left(FName, posn - 1)
     End If
 GetFileNameFromFile = FName
 End Function
@@ -340,13 +340,13 @@ If msgType = logFailureAudit Then: strErrorType = "FAILUREAUDIT"
 
 Shell ("cmd.exe /c EVENTCREATE /T " & strErrorType & " /ID " & ErrorCode & " /L " & msgLog & " /D " & Chr(34) & MsgDescription & Chr(34) & " /so fonvex.exe"), vbHide
 End Function
-Public Function FolderName(Filename As String) As String
+Public Function FolderName(FileName As String) As String
 Dim posn As Integer
 
-posn = InStrRev(Filename, "\")
+posn = InStrRev(FileName, "\")
 
 If posn > 0 Then
-    FolderName = Left$(Filename, posn)
+    FolderName = left$(FileName, posn)
 Else
     FolderName = ""
 End If
@@ -443,19 +443,19 @@ MilliSecondsToTimeSerial = sTimeRemaining
 End Function
 Public Function StringStartsWith(ByVal find_text As String, ByVal string_source As String, Optional ByVal caseSensitive As Boolean = True) As Boolean
 If caseSensitive Then
-    StringStartsWith = (Left$(string_source, LenB(find_text) / 2) = find_text)
+    StringStartsWith = (left$(string_source, LenB(find_text) / 2) = find_text)
 Else
-    StringStartsWith = (Left$(LCase(string_source), LenB(find_text) / 2) = LCase$(find_text))
+    StringStartsWith = (left$(LCase(string_source), LenB(find_text) / 2) = LCase$(find_text))
 End If
 End Function
 Public Function StringFormat(SourceString As String, ParamArray Values()) As String
-Dim i As Integer
+Dim I As Integer
 Dim ReturnValue As String
 
 ReturnValue = SourceString
 
-For i = 0 To UBound(Values)
-    ReturnValue = Replace(ReturnValue, "{" & i & "}", Values(i))
+For I = 0 To UBound(Values)
+    ReturnValue = Replace(ReturnValue, "{" & I & "}", Values(I))
 Next
 
 StringFormat = ReturnValue
@@ -468,32 +468,32 @@ SplitValue = Split(TargetString, Delimiter)
 Explode = SplitValue(Posistion)
 End Function
 Public Function StringToCollection(TargetString As String, Seperator As String) As Collection
-Dim i As Integer
+Dim I As Integer
 Dim SplitValue
 
 SplitValue = Split(TargetString, Seperator)
 
-For i = 0 To UBound(SplitValue)
-    StringToCollection.Add SplitValue(i)
+For I = 0 To UBound(SplitValue)
+    StringToCollection.Add SplitValue(I)
 Next
 End Function
 Public Function CollectionToString(TargetCollection As Collection, Seperator As String) As String
-Dim i As Integer
+Dim I As Integer
 Dim ReturnValue As String
 
-For i = 1 To TargetCollection.count
-    ReturnValue = ReturnValue & TargetCollection(i) & Seperator
+For I = 1 To TargetCollection.count
+    ReturnValue = ReturnValue & TargetCollection(I) & Seperator
 Next
 
 CollectionToString = ReturnValue
 End Function
-Public Function INIRead(Section As String, KeyName As String, Filename As String, Optional DefaultValue As String) As String
+Public Function INIRead(Section As String, KeyName As String, FileName As String, Optional DefaultValue As String) As String
 Dim sRet As String
 Dim ReturnValue As String
 
 sRet = String(255, Chr(0))
 
-ReturnValue = Left(sRet, GetPrivateProfileString(Section, ByVal KeyName$, "", sRet, Len(sRet), Filename))
+ReturnValue = left(sRet, GetPrivateProfileString(Section, ByVal KeyName$, "", sRet, Len(sRet), FileName))
 
 If ReturnValue = vbNullString Then
     INIRead = DefaultValue
@@ -532,7 +532,7 @@ End If
 
 
 If lRet > 0 Then
-   GetLongFilename = Left$(sLongFileName, lRet)
+   GetLongFilename = left$(sLongFileName, lRet)
 End If
 End Function
 Public Function cUNC(sPathName As String) As String
@@ -552,12 +552,12 @@ Const ERROR_NO_NET_OR_BAD_PATH = 1203&
 'Verify whether the disk is connected to the network
 If Mid$(sPathName, 2, 1) = ":" Then
     sUNCName = String$(lLenUNC, 0)
-    lErrCode = WNetGetConnection(Left$(sPathName, 2), sUNCName, lLenUNC)
+    lErrCode = WNetGetConnection(left$(sPathName, 2), sUNCName, lLenUNC)
     lEndBuffer = InStr(sUNCName, vbNullChar) - 1
     'Can ignore the errors below (will still return the correct UNC)
     If lEndBuffer > 0 And (lErrCode = NO_ERROR Or lErrCode = ERROR_CONNECTION_UNAVAIL Or lErrCode = ERROR_NOT_CONNECTED) Then
         'Success
-        sUNCName = Trim$(Left$(sUNCName, InStr(sUNCName, vbNullChar) - 1))
+        sUNCName = Trim$(left$(sUNCName, InStr(sUNCName, vbNullChar) - 1))
         cUNC = sUNCName & Mid$(sPathName, 3)
     Else
         'Error, return original path
@@ -573,7 +573,7 @@ Dim sUser As String
 Dim lpBuff As String * 1024
 
 GetUserName lpBuff, Len(lpBuff)
-sUser = Left$(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1)
+sUser = left$(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1)
 lpBuff = ""
     
 GetCurrentUser = sUser
@@ -611,7 +611,7 @@ sShortPathName = Space(255)
 iLen = Len(sShortPathName)
 
 lRetVal = GetShortPathName(sLongFileName, sShortPathName, iLen)
-GetShortName = Left(sShortPathName, lRetVal)
+GetShortName = left(sShortPathName, lRetVal)
 End Function
 
 Public Sub Pause(HowLong As Long)
@@ -654,7 +654,7 @@ Public Function BrowseForFolder(ByVal lngHwnd As Long, ByVal strPrompt As String
         
         If intNull > 0 Then
             'Set the value
-            strPath = Left(strPath, intNull - 1)
+            strPath = left(strPath, intNull - 1)
         End If
     End If
     
@@ -693,22 +693,22 @@ Loop
 RmDir path
 End Function
 Public Function GetFileNameFromFilePath(FilePath As String, WithExtension As Boolean) As String
-Dim posn As Integer, i As Integer
+Dim posn As Integer, I As Integer
 Dim FName As String
     
 posn = 0
-For i = 1 To Len(FilePath)
-    If (Strings.Mid(FilePath, i, 1) = "\") Then posn = i
-Next i
+For I = 1 To Len(FilePath)
+    If (Strings.Mid(FilePath, I, 1) = "\") Then posn = I
+Next I
 
-FName = Strings.Right(FilePath, Len(FilePath) - posn)
+FName = Strings.right(FilePath, Len(FilePath) - posn)
 posn = InStr(FName, ".")
 
 If posn <> 0 Then
     If WithExtension = True Then
-        FName = Strings.Left(FName, Len(FName))
+        FName = Strings.left(FName, Len(FName))
     Else
-        FName = Strings.Left(FName, posn - 1)
+        FName = Strings.left(FName, posn - 1)
     End If
 End If
 

@@ -42,7 +42,7 @@
 1041=Change recorder settings
 1042=Change auto volume settings
 1043=Animations & appearance
-1044=Media player functionality
+1044=Media Player
 1045=OK
 1046=Open stream
 1047=Track properties
@@ -64,3 +64,5 @@
 1063=Show remaining time
 1064=Use auto stop
 1065=You must restart the application when you make changes to the language
+1066=All files
+1067=Midi Player

@@ -22,27 +22,26 @@ Option Explicit
 ' Author:           Sibra-Soft - Alex van den Berg
 ' /////////////////////////////////////////////////////////////////////////////////
 
-Public QuerystringParameters As New Nest
 Private Function GenerateQuerystring()
 Dim i As Integer
 Dim Querystring As String
-Dim Name As String
-Dim value As String
+Dim name As String
+Dim Value As String
 
-For i = 1 To QuerystringParameters.count
-    Name = QuerystringParameters.ItemKey(i)
-    value = QuerystringParameters.Item(i)
-
-    If i = QuerystringParameters.count Then
-        Querystring = Querystring & Name & "=" & value
-    Else
-        Querystring = Querystring & Name & "=" & value & "&"
-    End If
-Next
+'For I = 1 To QuerystringParameters.Count
+'    name = QuerystringParameters.ItemKey(I)
+'    Value = QuerystringParameters.Item(I)
+'
+'    If I = QuerystringParameters.Count Then
+'        Querystring = Querystring & name & "=" & Value
+'    Else
+'        Querystring = Querystring & name & "=" & Value & "&"
+'    End If
+'Next
 
 GenerateQuerystring = Querystring
 End Function
-Public Function WebRequest(Url As String) As String
+Public Function WebRequest(url As String) As String
 Dim sURL As String
 Dim strXML As String
 Dim xmlhttp As MSXML2.XMLHTTP60
@@ -52,10 +51,10 @@ Set xmlhttp = New XMLHTTP60
 
 Querystring = GenerateQuerystring()
 
-If QuerystringParameters.count > 0 Then Url = Url & "?" & Querystring
+'If QuerystringParameters.Count > 0 Then URL = URL & "?" & Querystring
 
-xmlhttp.Open "GET", Url, False
-xmlhttp.send strXML
+xmlhttp.Open "GET", url, False
+'xmlhttp.send strXML
 
 WebRequest = xmlhttp.responseText
 End Function

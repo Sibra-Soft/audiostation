@@ -56,9 +56,9 @@ Begin VB.UserControl MixSlider
       TickLabelPrecision=   0
       CurrentMax      =   0
       CurrentMin      =   0
-      PositionPercent =   1
+      PositionPercent =   1.52590218966964E-03
       Position        =   100
-      PositionMax     =   100
+      PositionMax     =   65535
       PositionMin     =   0
       BorderStyle     =   0
       Object.Visible         =   -1  'True
@@ -128,53 +128,72 @@ Attribute VB_Exposed = False
 Event OnPositionChange() 'MappingInfo=iSliderX9,iSliderX9,-1,OnPositionChange
 Event OnPositionChangeFinished() 'MappingInfo=iSliderX9,iSliderX9,-1,OnPositionChangeFinished
 
-Private Sub iSliderX9_OnPositionChange()
-    RaiseEvent OnPositionChange
-End Sub
 
 'WARNING! DO NOT REMOVE OR MODIFY THE FOLLOWING COMMENTED LINES!
 'MappingInfo=iSliderX9,iSliderX9,-1,Position
-Public Property Get value() As Double
-    value = iSliderX9.Position
+Public Property Get Value() As Double
+    Value = iSliderX9.Position
 End Property
 
-Public Property Let value(ByVal New_Value As Double)
+Public Property Let Value(ByVal New_Value As Double)
     iSliderX9.Position() = New_Value
     PropertyChanged "Value"
 End Property
 
-Private Sub iSliderX9_OnPositionChangeFinished()
-    RaiseEvent OnPositionChangeFinished
-End Sub
+'WARNING! DO NOT REMOVE OR MODIFY THE FOLLOWING COMMENTED LINES!
+'MappingInfo=iSliderX9,iSliderX9,-1,PositionMin
+Public Property Get Min() As Double
+    Min = iSliderX9.PositionMin
+End Property
+
+Public Property Let Min(ByVal New_Min As Double)
+    iSliderX9.PositionMin() = New_Min
+    PropertyChanged "Min"
+End Property
 
 'WARNING! DO NOT REMOVE OR MODIFY THE FOLLOWING COMMENTED LINES!
 'MappingInfo=iSliderX9,iSliderX9,-1,PositionMax
-Public Property Get max() As Double
-    max = iSliderX9.PositionMax
+Public Property Get Max() As Double
+    Max = iSliderX9.PositionMax
 End Property
 
-Public Property Let max(ByVal New_Max As Double)
+Public Property Let Max(ByVal New_Max As Double)
     iSliderX9.PositionMax() = New_Max
     PropertyChanged "Max"
 End Property
 
 'WARNING! DO NOT REMOVE OR MODIFY THE FOLLOWING COMMENTED LINES!
-'MappingInfo=iSliderX9,iSliderX9,-1,PixelsMin
-Public Property Get min() As Long
-    min = iSliderX9.PixelsMin
+'MappingInfo=iSliderX9,iSliderX9,-1,PositionPercent
+Public Property Get Percentage() As Double
+    Percentage = iSliderX9.PositionPercent
+End Property
+
+Public Property Let Percentage(ByVal New_Percentage As Double)
+    iSliderX9.PositionPercent() = New_Percentage
+    PropertyChanged "Percentage"
 End Property
 
 'Load property values from storage
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
 
     iSliderX9.Position = PropBag.ReadProperty("Value", 100)
-    iSliderX9.PositionMax = PropBag.ReadProperty("Max", 100)
+    iSliderX9.PositionMin = PropBag.ReadProperty("Min", 0)
+    iSliderX9.PositionMax = PropBag.ReadProperty("Max", 65535)
 End Sub
 
 'Write property values to storage
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
 
     Call PropBag.WriteProperty("Value", iSliderX9.Position, 100)
-    Call PropBag.WriteProperty("Max", iSliderX9.PositionMax, 100)
+    Call PropBag.WriteProperty("Min", iSliderX9.PositionMin, 0)
+    Call PropBag.WriteProperty("Max", iSliderX9.PositionMax, 65535)
+End Sub
+
+Private Sub iSliderX9_OnPositionChange()
+    RaiseEvent OnPositionChange
+End Sub
+
+Private Sub iSliderX9_OnPositionChangeFinished()
+    RaiseEvent OnPositionChangeFinished
 End Sub
 
