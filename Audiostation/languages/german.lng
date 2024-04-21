@@ -1,6 +1,6 @@
 [language]
-1001=Wiedergabeliste
-1002=Institutionen
+1001=Wiederg.liste
+1002=Einstellungen
 1003=AutoStop
 1004=Automatische Lautstärke
 1005=Einzelspur abspielen
@@ -12,11 +12,11 @@
 1011=Spektrum zeigen
 1012=Auf Updates prüfen
 1013=Über Audiostation
-1014=Audiostation Schließen
+1014=Audiostation schließen
 1015=Spielen
 1016=Zurückzuziehen
 1017=Speichern
-1018=Institutionen
+1018=Einstellungen
 1019=Unbekannt
 1020=Alles löschen
 1021=Speichern
@@ -24,7 +24,7 @@
 1023=Löschen
 1024=Optionen
 1025=Schließen
-1026={0} Datei(en) in Playlist, Gesamtspielzeit {1}
+1026={0} Datei(en) in Wiedergabeliste, Gesamtspielzeit {1}
 1027=Wiedergabeliste öffnen/erstellen
 1028=Dateien hinzufügen
 1029=Ordner hinzufügen
@@ -35,10 +35,10 @@
 1034=Wiedergabeliste speichern
 1035=Fügen Sie Dateien zur Wiedergabeliste hinzu
 1036=Es konnten nicht alle Dateien der ausgewählten Wiedergabeliste gefunden werden.
-1037=Stornieren
+1037=Abbrechen
 1038=Sprache:
-1039=Midi gerät:
-1040=Audio gerät:
+1039=Midi Gerät:
+1040=Audiogerät:
 1041=Aufnahmeeinstellungen ändern
 1042=Ändern Sie die Einstellungen für die automatische Lautstärke
 1043=Animationen & Aussehen
