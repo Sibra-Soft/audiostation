@@ -8,7 +8,7 @@ Documentation of the project can be found at: [docs.audiostation.org](https://do
 
 ![screenshot](https://github.com/Sibra-Soft/audiostation/blob/master/Resources/screenshot.jpg)
 
-# Related Project
+# Related Projects
 The installation package of Audiostation contains more solutions/applications than Audiostation only.
 - [Ministation](https://github.com/Sibra-Soft/ministation)
 - [Program Manager](https://github.com/Sibra-Soft/program-manager)
