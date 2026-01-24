@@ -6,7 +6,7 @@ REM Compiling
 echo === Compiling ===
 cd ./project
 mkdir Build
-start /wait "" "C:\Program Files\Develop\Visual Basic 6\VB6.exe" /MAKE ".\source\Ministation.vbp" /outdir "Build/" /out "build.log"
+start /wait "" "C:\Program Files\Develop\Visual Basic 6\VB6.exe" /MAKE ".\source\Audiostation.vbp" /outdir "Build/" /out "build.log"
 echo === Compiling Completed ===
 
 CALL :sleep 5
