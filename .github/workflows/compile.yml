@@ -1,0 +1,108 @@
+name: Compile Visual Basic 6 Project
+
+on:
+  release:
+    types: [published]
+  
+jobs:
+  compile:
+    runs-on: windows-latest
+    steps:
+      - name: Download VB Compiler Image
+        run: |
+          Invoke-WebRequest "${{ secrets.COMPILER_IMAGE_URL }}" -OutFile vb_compiler_image.zip
+         
+      - name: Unzip Image
+        run: |
+          Expand-Archive -Path "vb_compiler_image.zip" -DestinationPath "vb_compiler_image"
+          
+      - name: Install + Verify Runtime
+        run: |
+          $process = Start-Process -FilePath ".\vb_compiler_image\runtime_setup.exe" -ArgumentList "/silent" -Wait -PassThru        
+          $exitCode = $process.ExitCode
+          if ($exitCode -eq 0 -or $exitCode -eq 3010)
+          {
+              Write-Host "Installation successful"
+          }
+          else
+          {
+              Write-Host "Non zero exit code returned by the installation process: $exitCode"
+              exit $exitCode
+          }
+          
+      - name: Install + Verify Compiler
+        run: |
+          $process = Start-Process -FilePath ".\vb_compiler_image\compiler_setup.exe" -ArgumentList "-S" -Wait -PassThru        
+          $exitCode = $process.ExitCode
+          if ($exitCode -eq 0 -or $exitCode -eq 3010)
+          {
+              Write-Host "Installation successful"
+          }
+          else
+          {
+              Write-Host "Non zero exit code returned by the installation process: $exitCode"
+              exit $exitCode
+          }
+          
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: './project'
+          
+      - name: Register Project Dependencies
+        shell: cmd
+        run: |
+          $ErrorActionPreference = "Stop"
+          cd ./project/deps
+          reg_deps.ps1 "../source/ministation.vbp"
+          
+      - name: Prepare Compile
+        shell: cmd
+        run: | 
+          CALL ./project/prepare.bat
+          
+      - name: Compile Visual Basic Project
+        shell: cmd
+        run: |         
+          CALL ./project/build.bat
+          
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-exe
+          path: ./project/Build
+                   
+      - name: Install NSIS
+        uses: negrutiu/nsis-install@v2
+        
+      - name: Prepare Setup
+        shell: cmd
+        run: | 
+          CALL ./project/prepare_setup.bat
+          
+      - name: Build installer
+        run: makensis ./project/setup/Audiostation Setup.nsi
+        
+      - name: Build installer for Windows XP
+        run: makensis ./project/setup/Audiostation Setup - Win XP.nsi
+        
+      - name: Upload setup file to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./project/setup/Audiostation_windows_setup.exe
+          asset_name: Audiostation_windows_setup.exe
+          asset_content_type: application/exe
+      
+      - name: Upload setup (Win XP) file to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./project/setup/Audiostation_windows_xp_setup.exe
+          asset_name: Audiostation_windows_xp_setup.exe
+          asset_content_type: application/exe
+      
