@@ -49,7 +49,7 @@ jobs:
           path: './project'
           
       - name: Register Project Dependencies
-        shell: cmd
+        shell: powershell
         run: |
           cd ./project/deps
           reg_deps.ps1 "../source/Audiostation.vbp"
