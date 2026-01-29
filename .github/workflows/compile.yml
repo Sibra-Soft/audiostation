@@ -81,6 +81,9 @@ jobs:
       - name: Build installer
         run: makensis ./project/setup/audiostation_setup.nsi
         
+      - name: Build Windows XP installer
+        run: makensis ./project/setup/audiostation_setup_xp.nsi
+        
       - name: Upload setup file to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
@@ -89,4 +92,14 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./project/setup/Audiostation_windows_setup.exe
           asset_name: Audiostation_windows_setup.exe
+          asset_content_type: application/exe
+          
+      - name: Upload XP setup file to GitHub Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./project/setup/Audiostation_windows_xp_setup.exe
+          asset_name: Audiostation_windows_xp_setup.exe
           asset_content_type: application/exe
