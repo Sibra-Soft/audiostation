@@ -1,7 +1,8 @@
 name: Compile Visual Basic 6 Project
 
-on: 
-  workflow_dispatch
+on:
+  release:
+    types: [published]
   
 jobs:
   compile:
