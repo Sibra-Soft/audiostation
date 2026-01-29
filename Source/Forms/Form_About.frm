@@ -128,7 +128,7 @@ Begin VB.Form Form_About
       Begin VB.Label Label9 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Copyright © Sibra-Soft 2009 - 2023"
+         Caption         =   "Copyright © Sibra-Soft 2009 - 2026"
          Height          =   195
          Left            =   120
          TabIndex        =   8
@@ -253,14 +253,12 @@ MsgBox "Thanks to:" & vbNewLine & _
 "- High Voltage SID Collection" & vbNewLine & _
 "- Virtual Midi Synth" & vbNewLine & _
 "- SID Player" & vbNewLine & _
-"- Rogerd Pack (Screen Capture Recorder)" & vbNewLine & _
 "- Mabry Software, Inc. (Midi Device Controller)" & vbNewLine & _
-"- BeepBox.co" & vbNewLine & _
 "- ffmpeg.org", vbInformation, "Thanks"
 End Sub
 
 Private Sub Form_Load()
-lbl_version.Caption = App.Major & "." & App.Minor & " Build: " & App.Revision
+lbl_version.Caption = App.Major & "." & App.Minor & "." & App.Revision
 
 Call TranslateFormAndControls(Me)
 End Sub

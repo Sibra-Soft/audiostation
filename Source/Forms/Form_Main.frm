@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
-Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
+Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "ISDIGI~1.OCX"
+Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "ISANAL~1.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{5F5C69A3-5434-4A28-B392-38259F02830A}#1.0#0"; "DataInter.ocx"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "Comctl32.ocx"
@@ -151,7 +151,7 @@ Begin VB.Form Form_Main
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
             BackStyle       =   0  'Transparent
-            Caption         =   "Copyright © 2009 - 2024 Sibra-Soft"
+            Caption         =   "Copyright © 2009 - 2025 Sibra-Soft"
             ForeColor       =   &H00FFFFFF&
             Height          =   195
             Left            =   1920
@@ -5174,7 +5174,7 @@ ShowRemaining = Extensions.INIRead("main", "ShowRemainingTime", ConfigFile, 0)
 ShowRemainingForMidi = Extensions.INIRead("main", "ShowRemainingTimeForMidi", ConfigFile, 0)
 
 'Display program version
-lbl_version.Caption = "Version: " & App.Major & "." & App.Minor & " Build: " & App.Revision
+lbl_version.Caption = "Version: " & App.Major & "." & App.Minor & "." & App.Revision
 
 Light_Panel_CD.Picture = Imagelist_CDDisplay.ListImages(2).Picture
 Picture_MediaPlayerAnimation.Picture = Imagelist_MediaPlayerAnimation.ListImages(1).Picture
@@ -5187,13 +5187,13 @@ Call GetElementsState
 Call SettingsChanged
 
 ' Get the midi volume controller
-If Not modVolume.ChannelExists("VirtualMIDISynth.exe") Is Nothing Then
-    VolumeChannelId = modVolume.ChannelExists("VirtualMIDISynth.exe").Pid
-Else
-    If Not modVolume.ChannelExists("Audiostation.exe") Is Nothing Then
-        VolumeChannelId = modVolume.ChannelExists("Audiostation.exe").Pid
-    End If
-End If
+'If Not modVolume.ChannelExists("VirtualMIDISynth.exe") Is Nothing Then
+'    VolumeChannelId = modVolume.ChannelExists("VirtualMIDISynth.exe").Pid
+'Else
+'    If Not modVolume.ChannelExists("Audiostation.exe") Is Nothing Then
+'        VolumeChannelId = modVolume.ChannelExists("Audiostation.exe").Pid
+'    End If
+'End If
 
 Timer_Main.Enabled = True
 Timer_Lights.Enabled = True

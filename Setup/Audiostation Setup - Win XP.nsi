@@ -1,8 +1,8 @@
-!define PRODUCT_NAME "Ministation"
-!define PRODUCT_VERSION "1.0.1"
+!define PRODUCT_NAME "Audiostation"
+!define PRODUCT_VERSION "2.4.0"
 !define PRODUCT_PUBLISHER "Sibra-Soft"
 !define PRODUCT_WEB_SITE "https://www.audiostation.org"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Ministation.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Audiostation.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
@@ -27,7 +27,7 @@
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
-!define MUI_FINISHPAGE_RUN "$INSTDIR\Ministation.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\Audiostation.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -36,6 +36,7 @@
 ; Language files
 !insertmacro MUI_LANGUAGE "Dutch"
 !insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "German"
 
 RequestExecutionLevel admin
 
@@ -52,7 +53,7 @@ Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
-Section "Ministation" SEC01
+Section "Audiostation" SEC01
   SetOutPath "$INSTDIR"
 
   SetOverwrite ifnewer
@@ -60,7 +61,7 @@ Section "Ministation" SEC01
   
   CreateDirectory "$SMPROGRAMS\Ministation"
 
-  File ".\build\Ministation.exe"
+  File ".\build\Audiostation.exe"
   File ".\deps\AdioLibrary.ocx"
   File ".\deps\bass.dll"
   File ".\deps\basscd.dll"
@@ -90,21 +91,21 @@ SectionEnd
 
 Section "Start Menu Shortcuts" SEC02
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  CreateShortCut "$SMPROGRAMS\Ministation\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-  CreateShortCut "$SMPROGRAMS\Ministation\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  CreateShortCut "$SMPROGRAMS\Ministation\Ministation.lnk" "$INSTDIR\Ministation.exe"
+  CreateShortCut "$SMPROGRAMS\Audiostation\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\Audiostation\Uninstall.lnk" "$INSTDIR\uninst.exe"
+  CreateShortCut "$SMPROGRAMS\Audiostation\Ministation.lnk" "$INSTDIR\Audiostation.exe"
 SectionEnd
 
 Section "Desktop Shortcut" SEC03
-  CreateShortCut "$DESKTOP\Ministation.lnk" "$INSTDIR\Ministation.exe"
+  CreateShortCut "$DESKTOP\Ministation.lnk" "$INSTDIR\Audiostation.exe"
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\Ministation.exe"
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\Audiostation.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Ministation.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Audiostation.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
@@ -138,12 +139,12 @@ Section Uninstall
   Delete "$INSTDIR\AdioLibrary.ocx"
   Delete "$INSTDIR\Ministation.exe"
 
-  Delete "$SMPROGRAMS\Ministation\Uninstall.lnk"
-  Delete "$SMPROGRAMS\Ministation\Website.lnk"
-  Delete "$DESKTOP\Ministation.lnk"
-  Delete "$SMPROGRAMS\Ministation\Ministation.lnk"
+  Delete "$SMPROGRAMS\Audiostation\Uninstall.lnk"
+  Delete "$SMPROGRAMS\Audiostation\Website.lnk"
+  Delete "$DESKTOP\Audiostation.lnk"
+  Delete "$SMPROGRAMS\Audiostation\Audiostation.lnk"
 
-  RMDir "$SMPROGRAMS\Ministation"
+  RMDir "$SMPROGRAMS\Audiostation"
   RMDir "$INSTDIR"
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"

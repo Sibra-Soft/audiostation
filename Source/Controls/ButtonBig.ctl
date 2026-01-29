@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
+Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "ISANAL~1.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.UserControl ButtonBig 
    BackColor       =   &H00C0C0C0&

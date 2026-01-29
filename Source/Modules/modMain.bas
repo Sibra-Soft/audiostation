@@ -4,7 +4,7 @@ Attribute VB_Name = "modMain"
 '// FileType        : Microsoft Visual Basic 6 - Module
 '// Author          : Alex van den Berg
 '// Created         : 04-10-2021
-'// Last Modified   : 05-11-2023
+'// Last Modified   : 29-01-2026
 '// Copyright       : Sibra-Soft
 '// Description     : Main application module
 '////////////////////////////////////////////////////////////////
@@ -62,12 +62,9 @@ With Form_Main
     Case Else
         'Check if it's a file that needs to be converted
         Select Case LCase(Right(MediaFile, 3))
-            Case "aac":
-            Case "act": 'Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
-            Case "caf": 'Call ModConvert.Convert(MediaFile, [Apple Core Format], MP3): GoTo Begin
-            Case "omo": 'Call ModConvert.Convert(MediaFile, [Sony OpenMG Audio], MP3): GoTo Begin
-            Case "s64": 'Call ModConvert.Convert(MediaFile, [Sony Wave64], MP3): GoTo Begin
-            Case "voc": 'Call ModConvert.Convert(MediaFile, [Voice File Format], MP3): GoTo Begin
+            Case "flac"
+                TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
+                Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
         End Select
     
         'Check if it's a file that needs to be converted
@@ -85,13 +82,18 @@ Dim MediaFile As String
 
 Call argProcessCMDLine
 
-ChDrive App.Path
-ChDir App.Path
+ChDrive App.path
+ChDir App.path
 
 ' Create folders that are used by the application
 Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation")
 Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation\temp\")
 Call Extensions.CreateFolderIfNotExists(Environ$("AppData") & "\Audiostation\logs\")
+
+' Copy settings file
+If Not Extensions.FileExists((Environ$("AppData") & "\Audiostation\settings.ini")) Then
+    Call FileCopy(App.path & "\settings.ini", (Environ$("AppData") & "\Audiostation\settings.ini"))
+End If
 
 ' Set the folder for the application logfiles
 Call AppLog.Init(Environ$("AppData") & "\Audiostation\logs\")
