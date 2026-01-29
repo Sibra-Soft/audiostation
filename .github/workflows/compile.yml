@@ -51,7 +51,6 @@ jobs:
       - name: Register Project Dependencies
         shell: cmd
         run: |
-          $ErrorActionPreference = "Stop"
           cd ./project/deps
           reg_deps.ps1 "../source/Audiostation.vbp"
           
