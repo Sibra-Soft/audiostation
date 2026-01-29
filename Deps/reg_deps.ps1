@@ -3,13 +3,26 @@ param(
     [string]$VbpFile
 )
 
+function Register($file)
+{
+	Write-Host "Dependency: $file"
+    $p = Start-Process -FilePath $useRegsvr32 -ArgumentList "/s", "`"$file`"" -Wait -PassThru
+
+    if ($p.ExitCode -ne 0) {
+        Write-Host "  [ERROR] regsvr32 exitcode = $($p.ExitCode)" -ForegroundColor Red
+    }
+    else {
+        Write-Host "  [OK]" -ForegroundColor Green
+    }
+}
+
 if (!(Test-Path $VbpFile)) {
     Write-Host "FOUT: VBP bestand niet gevonden: $VbpFile" -ForegroundColor Red
     exit 1
 }
 
 Write-Host "======================================" 
-Write-Host "VB6 Dependency Register (PowerShell)"
+Write-Host "VB6 Dependency Register"
 Write-Host "Project: $VbpFile"
 Write-Host "======================================"
 Write-Host ""
@@ -39,8 +52,6 @@ foreach ($line in $lines) {
 
     $filePath = $filePath.Trim('"').Trim()
 
-    Write-Host "Dependency: $filePath"
-
     if (!(Test-Path -LiteralPath $filePath)) {
         Write-Host "  Status: Not Found" -ForegroundColor Red
         $errors++
@@ -51,26 +62,16 @@ foreach ($line in $lines) {
     if ($filePath -match '\\SysWOW64\\') {
         $useRegsvr32 = $Regsvr32_32
     }
-
-
-    $p = Start-Process -FilePath $useRegsvr32 -ArgumentList "/s", "`"$filePath`"" -Wait -PassThru
-
-    if ($p.ExitCode -ne 0) {
-        Write-Host "  [ERROR] regsvr32 exitcode = $($p.ExitCode)" -ForegroundColor Red
-        $errors++
-    }
-    else {
-        Write-Host "  [OK]" -ForegroundColor Green
-    }
+	
+	if(Register($filePath) == 0) {
+		$errors++
+	}
 }
+
+Register("midifl2k.ocx")
+Register("midifl32.ocx")
+Register("midiio2k.ocx")
+Register("midiio32.ocx")
 
 Write-Host ""
 Write-Host "======================================"
-if ($errors -eq 0) {
-    Write-Host "Alle dependencies succesvol verwerkt." -ForegroundColor Green
-    exit 0
-}
-else {
-    Write-Host "Er zijn fouten opgetreden: $errors" -ForegroundColor Red
-    exit 1
-}
