@@ -79,7 +79,7 @@ jobs:
           CALL ./project/prepare_setup.bat
           
       - name: Build installer
-        run: makensis ./project/setup/Audiostation Setup.nsi
+        run: makensis ./project/setup/audiostation_setup.nsi
         
       - name: Upload setup file to GitHub Release
         uses: actions/upload-release-asset@v1
