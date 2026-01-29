@@ -105,7 +105,6 @@ AUTHORS text
 *.woff binary
 *.pyc binary
 *.pdf binary
-*.exe
 *.sf2
 *.oca
 *.log
