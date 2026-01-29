@@ -52,7 +52,7 @@ jobs:
         shell: powershell
         run: |
           cd ./project/deps
-          reg_deps.ps1 "../source/Audiostation.vbp"
+          .\reg_deps.ps1 "../source/Audiostation.vbp"
           
       - name: Prepare Compile
         shell: cmd
