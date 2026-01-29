@@ -54,7 +54,7 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           cd ./project/deps
-          reg_deps.ps1 "../source/ministation.vbp"
+          reg_deps.ps1 "../source/Audiostation.vbp"
           
       - name: Prepare Compile
         shell: cmd
@@ -83,9 +83,6 @@ jobs:
       - name: Build installer
         run: makensis ./project/setup/Audiostation Setup.nsi
         
-      - name: Build installer for Windows XP
-        run: makensis ./project/setup/Audiostation Setup - Win XP.nsi
-        
       - name: Upload setup file to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
@@ -95,14 +92,3 @@ jobs:
           asset_path: ./project/setup/Audiostation_windows_setup.exe
           asset_name: Audiostation_windows_setup.exe
           asset_content_type: application/exe
-      
-      - name: Upload setup (Win XP) file to GitHub Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./project/setup/Audiostation_windows_xp_setup.exe
-          asset_name: Audiostation_windows_xp_setup.exe
-          asset_content_type: application/exe
-      
