@@ -1,4 +1,4 @@
-name: Compile Visual Basic 6 Project
+name: Release
 
 on:
   release:
