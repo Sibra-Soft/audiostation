@@ -1,0 +1,121 @@
+:::::::::::::::::::::: Sibra-Soft Software Production © ::::::::::::::::::::::
+
+
+::::::::::::::::::
+:: PROGRAM INFO ::
+::::::::::::::::::
+
+Program Name........: AudioStation
+Version.............: 2.4.1
+Author..............: Alex van den Berg
+License Type........: Freeware
+File Size...........: 9 MB
+OS..................: Microsoft Windows
+Release Date........: 29-01-2026
+Languages...........: English; Dutch; German
+Download URL........: http://www.audiostation.org/
+ScreenShot URL......: http://www.audiostation.org/
+SHA256 Hash.........: 7cc4d4d51089250ca62bdd421287273bedd5d84b6110e198dc66bf17e911de18
+
+:::::::::::::
+:: CONTACT ::
+:::::::::::::
+
+Website.............: http://www.audiostation.org
+Email...............: info@sibra-soft.nl
+
+:::::::::::::::::::::::::::::
+:: DESCRIPTION or/and USES ::
+:::::::::::::::::::::::::::::
+
+Audiostation is an old school media player that can be installed on Windows systems. the program can play all common audio files like (*.mp3, *.wav, etc). It has a record function and has all the elements to play all the music you want to play.
+
+::::::::::::::
+:: REQUIRED ::
+::::::::::::::
+
+- Visual Basic 6 Runtime
+- Microsoft Windows
+- Sound Card
+
+::::::::::::::::
+:: WHAT'S NEW ::
+::::::::::::::::
+
+Version 2.4.0
+[ + ]	Converted language files to ANSI encoding
+[ + ]	Added depencencies to the GitHub repo
+[ - ]	Removed unnecessary files
+[ + ]	Added compile workflow
+[ - ]	Removed old classes and modules from the project
+[ + ]	Update german.lng by @creopard
+
+::::::::::::::::
+:: CHANGE LOG ::
+::::::::::::::::
+
+Version 2.4.0
+[ + ]	Added Un4Seen Bass support
+[ + ]	Added DirectSound support
+[ + ]	New digit display controls
+[ + ]	New streams form with listbox for faster loading
+[ + ]	Re-Translated the complete application
+[ + ]	Added new recording application
+[ + ]	New way of loading audio files when the program is running
+[ + ]	New way of getting the duration of the audio files
+[ + ]	Added new track properties window
+
+Version 2.3.0
+[ + ]	Added forward and rewind seek option for midi playback
+[ + ]	Better Midi playback
+[ + ]	Better track and playlist repeat functionality
+[ + ]	Added online radio tuner
+[ + ]	Added track properties dialog
+[ + ]	Fixed Windows XP compatibility issue
+[ + ]	Add german translation of the application
+[ + ]	Removed init dialog from the application
+[ + ]	Various code improvements and bug fixes
+
+Version 2.2.0
+[ + ]	Fixed issue with playing *.wma files
+[ + ]	Fixed issue with playing CD's
+[ + ]	Fixed Windows XP compatibility issue
+[ + ]	Changed font of various buttons
+[ + ]	Added beter audio support for wma, mp3, wav, etc.
+
+Version 2.1.0
+[ + ]	Fixed virus error after installing application
+
+Version 2.0.0
+[ + ]	Added spectrum analyzer to the mixer section
+[ + ]	Changed the mixing sliders for new graphical sliders
+[ + ]	Added new and beter *.sid player to the program
+[ + ]	Added beter playback for old Sibra-Soft Beep Symphony files
+[ + ]	Removed the Windows Media Player dependencies
+[ + ]	Added check for updates option
+[ + ]	Added beter audio recording functionality
+[ + ]	Changed the settings dialog of the dat player, you can only select a recording device
+
+Version 1.9.0
+[ + ]	Added applications options menu
+[ + ]	Added audio playback options menu
+[ + ]	Added commondialog (file selection dialog) to the playlist dialog
+[ + ]	Added total duration indication to the playlist dialog
+[ + ]	Added option to switch from time remaining to time elapsed
+[ + ]	Added option for adding directories to the playlist
+[ + ]	Changed the way of adding files to the playlist
+[ + ]	New option for saving the playlist in multiple formats
+[ + ]	Improved midi player, no more division by zero errors
+[ + ]	Fixed issue with audiostation specific music file icons
+[ + ]	Added application menu
+[ + ]	Added latest version of VirtualMidiSync
+[ + ]	Added check for update option
+[ + ]	Fixed some minor bugs
+
+Version 1.8.0
+[ + ]	Turn off Audiostation sections
+[ + ]	Better midi playback and included Virtual MIDI Synth installation
+[ + ]	Sections can 
+
+
+:::::::::::::::::::::: Sibra-Soft Software Production © ::::::::::::::::::::::
