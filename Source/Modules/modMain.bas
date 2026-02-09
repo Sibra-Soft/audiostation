@@ -4,7 +4,7 @@ Attribute VB_Name = "modMain"
 '// FileType        : Microsoft Visual Basic 6 - Module
 '// Author          : Alex van den Berg
 '// Created         : 04-10-2021
-'// Last Modified   : 29-01-2026
+'// Last Modified   : 09-02-2026
 '// Copyright       : Sibra-Soft
 '// Description     : Main application module
 '////////////////////////////////////////////////////////////////
@@ -61,10 +61,11 @@ With Form_Main
             Form_Playlist.Show , Form_Main
     Case Else
         'Check if it's a file that needs to be converted
-        Select Case LCase(Right(MediaFile, 3))
+        Select Case LCase(Right(MediaFile, 4))
             Case "flac"
                 TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
                 Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
+                Exit Sub
         End Select
     
         'Check if it's a file that needs to be converted
