@@ -225,6 +225,7 @@ Section "File Associations" SEC06
   !insertmacro APP_ASSOCIATE "pls" "audiostation.pls" "PLS" "$INSTDIR\win32.dll,12" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "m3u" "audiostation.m3u" "M3U" "$INSTDIR\win32.dll,6" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "wpl" "audiostation.wpl" "Windows Media Player Playlist" "$INSTDIR\win32.dll,19" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
+  !insertmacro APP_ASSOCIATE "flac" "audiostation.flac" "FLAC" "$INSTDIR\win32.dll,0" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
 SectionEnd
 
 Section -Post
@@ -327,6 +328,7 @@ Section Uninstall
   !insertmacro APP_UNASSOCIATE "pls" "audiostation.pls"
   !insertmacro APP_UNASSOCIATE "m3u" "audiostation.m3u"
   !insertmacro APP_UNASSOCIATE "wpl" "audiostation.wpl"
+  !insertmacro APP_UNASSOCIATE "flac" "audiostation.flac"
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
