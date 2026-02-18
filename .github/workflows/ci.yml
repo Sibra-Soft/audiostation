@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  
+jobs:
+  compile:
+    runs-on: windows-latest
+    steps:
+      - name: Download VB Compiler Image
+        run: |
+          Invoke-WebRequest "${{ secrets.COMPILER_IMAGE_URL }}" -OutFile vb_compiler_image.zip
+         
+      - name: Unzip Image
+        run: |
+          Expand-Archive -Path "vb_compiler_image.zip" -DestinationPath "vb_compiler_image"
+          
+      - name: Install + Verify Runtime
+        run: |
+          $process = Start-Process -FilePath ".\vb_compiler_image\runtime_setup.exe" -ArgumentList "/silent" -Wait -PassThru        
+          $exitCode = $process.ExitCode
+          if ($exitCode -eq 0 -or $exitCode -eq 3010)
+          {
+              Write-Host "Installation successful"
+          }
+          else
+          {
+              Write-Host "Non zero exit code returned by the installation process: $exitCode"
+              exit $exitCode
+          }
+          
+      - name: Install + Verify Compiler
+        run: |
+          $process = Start-Process -FilePath ".\vb_compiler_image\compiler_setup.exe" -ArgumentList "-S" -Wait -PassThru        
+          $exitCode = $process.ExitCode
+          if ($exitCode -eq 0 -or $exitCode -eq 3010)
+          {
+              Write-Host "Installation successful"
+          }
+          else
+          {
+              Write-Host "Non zero exit code returned by the installation process: $exitCode"
+              exit $exitCode
+          }
+          
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: './project'
+          
+      - name: Register Project Dependencies
+        shell: powershell
+        run: |
+          cd ./project/deps
+          .\reg_deps.ps1 "../source/Audiostation.vbp"
+          
+      - name: Prepare Compile
+        shell: cmd
+        run: | 
+          CALL ./project/prepare.bat
+          
+      - name: Compile Visual Basic Project
+        shell: cmd
+        run: |         
+          CALL ./project/build.bat
