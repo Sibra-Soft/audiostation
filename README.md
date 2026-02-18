@@ -1,4 +1,4 @@
-[![Compile Visual Basic 6 Project](https://github.com/Sibra-Soft/audiostation/actions/workflows/compile.yml/badge.svg)](https://github.com/Sibra-Soft/audiostation/actions/workflows/compile.yml)
+[![Release](https://github.com/Sibra-Soft/audiostation/actions/workflows/release.yml/badge.svg)](https://github.com/Sibra-Soft/audiostation/actions/workflows/release.yml)
 
 ![logo](https://github.com/Sibra-Soft/audiostation/blob/ddbb404f3e107a2c83412135383abae5c756ab20/logo.jpg)
 
