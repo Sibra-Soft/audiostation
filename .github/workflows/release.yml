@@ -54,7 +54,7 @@ jobs:
         run: |
           cd ./project
           dotnet nuget add source --username alexxvandenberg --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/sibra-soft/index.json"
-          dotnet nuget restore -PackagesDirectory ./Packages
+          nuget restore -PackagesDirectory ./Packages
           
       - name: Register NuGet Packages
         shell: powershell
