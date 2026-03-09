@@ -2,9 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ develop ]
-  push:
-    branches: [ develop ]
+    types: [opened, synchronize, reopened]
   
 jobs:
   compile:
@@ -49,6 +47,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           path: './project'
           
       - name: Restore NuGet Packages
