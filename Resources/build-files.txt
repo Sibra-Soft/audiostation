@@ -2,4 +2,5 @@
 .\deps\basscd.dll ; .
 .\deps\bassflac.dll ; .
 .\deps\bassmix.dll ; .
+.\deps\basswma.dll ; .
 .\deps\basswasapi.dll ; .
