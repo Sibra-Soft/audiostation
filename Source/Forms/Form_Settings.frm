@@ -3,7 +3,7 @@ Begin VB.Form Form_Settings
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "-"
-   ClientHeight    =   6270
+   ClientHeight    =   6555
    ClientLeft      =   2565
    ClientTop       =   1500
    ClientWidth     =   6660
@@ -16,12 +16,11 @@ Begin VB.Form Form_Settings
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
-   Icon            =   "Form_Settings_Record.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6270
+   ScaleHeight     =   6555
    ScaleWidth      =   6660
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
@@ -38,11 +37,19 @@ Begin VB.Form Form_Settings
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   5385
-      Left            =   120
+      Height          =   5655
+      Left            =   135
       TabIndex        =   0
-      Top             =   120
+      Top             =   135
       Width           =   6375
+      Begin VB.ComboBox Combox_Skin 
+         Height          =   315
+         Left            =   2295
+         Style           =   2  'Dropdown List
+         TabIndex        =   25
+         Top             =   440
+         Width           =   3975
+      End
       Begin VB.Frame Frame_MidiPlayer 
          BackColor       =   &H00C0C0C0&
          BorderStyle     =   0  'None
@@ -50,7 +57,7 @@ Begin VB.Form Form_Settings
          Height          =   1095
          Left            =   3360
          TabIndex        =   20
-         Top             =   4080
+         Top             =   4350
          Width           =   2895
          Begin VB.CheckBox Checkbox_AutoStopMidi 
             BackColor       =   &H00C0C0C0&
@@ -107,7 +114,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   19
-         Top             =   4920
+         Top             =   5190
          Value           =   1  'Checked
          Width           =   2175
       End
@@ -117,7 +124,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   18
-         Top             =   4560
+         Top             =   4830
          Width           =   3135
       End
       Begin VB.OptionButton OptionButton_ElapsedTime 
@@ -126,8 +133,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   17
-         Top             =   4335
-         Value           =   -1  'True
+         Top             =   4605
          Width           =   3015
       End
       Begin VB.ComboBox Combox_CDRomDrive 
@@ -135,27 +141,25 @@ Begin VB.Form Form_Settings
          Left            =   2280
          Style           =   2  'Dropdown List
          TabIndex        =   11
-         Top             =   420
+         Top             =   823
          Width           =   3975
       End
       Begin VB.ComboBox Combox_Language 
          Height          =   315
-         ItemData        =   "Form_Settings_Record.frx":000C
+         ItemData        =   "Form_Settings.frx":0000
          Left            =   2280
-         List            =   "Form_Settings_Record.frx":0019
+         List            =   "Form_Settings.frx":0002
          Style           =   2  'Dropdown List
          TabIndex        =   10
-         Top             =   800
+         Top             =   1206
          Width           =   3975
       End
       Begin VB.ComboBox Combox_MidiDevice 
          Height          =   315
-         ItemData        =   "Form_Settings_Record.frx":0035
          Left            =   2280
-         List            =   "Form_Settings_Record.frx":0042
          Style           =   2  'Dropdown List
          TabIndex        =   9
-         Top             =   1180
+         Top             =   1590
          Width           =   3975
       End
       Begin VB.CheckBox Checkbox_AnimationDat 
@@ -164,7 +168,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   7
-         Top             =   3120
+         Top             =   3390
          Value           =   2  'Grayed
          Width           =   3615
       End
@@ -172,7 +176,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   6
-         Top             =   2220
+         Top             =   2490
          Width           =   675
          _ExtentX        =   1191
          _ExtentY        =   344
@@ -197,7 +201,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   4
-         Top             =   3600
+         Top             =   3870
          Value           =   1  'Checked
          Width           =   2775
       End
@@ -207,7 +211,7 @@ Begin VB.Form Form_Settings
          Height          =   255
          Left            =   120
          TabIndex        =   3
-         Top             =   3360
+         Top             =   3630
          Value           =   2  'Grayed
          Width           =   3375
       End
@@ -215,7 +219,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   8
-         Top             =   2400
+         Top             =   2670
          Width           =   675
          _ExtentX        =   1191
          _ExtentY        =   344
@@ -234,6 +238,16 @@ Begin VB.Form Form_Settings
             Strikethrough   =   0   'False
          EndProperty
       End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Skin:"
+         Height          =   195
+         Left            =   135
+         TabIndex        =   26
+         Top             =   495
+         Width           =   450
+      End
       Begin VB.Label Label7 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
@@ -250,7 +264,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   16
-         Top             =   4080
+         Top             =   4350
          Width           =   780
       End
       Begin VB.Label Label6 
@@ -269,7 +283,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   15
-         Top             =   2880
+         Top             =   3150
          UseMnemonic     =   0   'False
          Width           =   780
       End
@@ -280,7 +294,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   14
-         Top             =   480
+         Top             =   885
          Width           =   1335
       End
       Begin VB.Label Label3 
@@ -290,7 +304,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   13
-         Top             =   855
+         Top             =   1260
          Width           =   675
       End
       Begin VB.Label Label4 
@@ -300,7 +314,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   12
-         Top             =   1245
+         Top             =   1650
          Width           =   675
       End
       Begin VB.Label Label5 
@@ -319,7 +333,7 @@ Begin VB.Form Form_Settings
          Height          =   195
          Left            =   120
          TabIndex        =   5
-         Top             =   2025
+         Top             =   2295
          Width           =   780
       End
    End
@@ -327,7 +341,7 @@ Begin VB.Form Form_Settings
       Height          =   390
       Left            =   3390
       TabIndex        =   1
-      Top             =   5760
+      Top             =   6030
       Width           =   1095
       _ExtentX        =   1931
       _ExtentY        =   688
@@ -338,7 +352,7 @@ Begin VB.Form Form_Settings
       Height          =   390
       Left            =   2190
       TabIndex        =   2
-      Top             =   5760
+      Top             =   6030
       Width           =   1095
       _ExtentX        =   1931
       _ExtentY        =   688
@@ -406,6 +420,13 @@ Else
     Combox_CDRomDrive.Enabled = False
     Label_CDRomCombox.Enabled = False
 End If
+
+Combox_Skin.AddItem "Audiostation Classic"
+Combox_Skin.Text = "Audiostation Classic"
+
+Combox_Language.AddItem "Dutch"
+Combox_Language.AddItem "English"
+Combox_Language.AddItem "German"
 
 Combox_Language.Text = LCase(Extensions.INIRead("main", "Langauge", ConfigFile, "English"))
 
