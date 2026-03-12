@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Playlist 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
@@ -299,7 +299,7 @@ Dim TemplateContent As String
 Dim table As New clsStringBuilder
 
 'Open the file with the template content
-TemplateContent = Extensions.FileGetContents(App.Path & "\templates\html_playlist.tpl")
+TemplateContent = Extensions.FileGetContents(App.path & "\templates\html_playlist.tpl")
 
 'Create the table
 table.AppendNL "<table style='width:100%;' border='2px' >"
@@ -484,9 +484,9 @@ Debug.Print "Playlist: (ShowOpenPlaylistDialog)"
 
 With CommonDialog
     .CancelError = True
-    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.Path)
+    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.path)
     .DialogTitle = GetTranslation(1018)
-    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|Winamp " & GetTranslation(1001) & " (*.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowOpen
     
     If .FilterIndex = 1 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_APL)
@@ -522,9 +522,9 @@ Private Sub Button_SavePlaylist_Click()
 On Error GoTo ErrorHandler
 With CommonDialog
     .CancelError = True
-    .FileName = App.Path
+    .FileName = App.path
     .DialogTitle = GetTranslation(1017)
-    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|Winamp " & GetTranslation(1001) & " (*.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowSave
 
     If Right(LCase(.FileName), 3) = "apl" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_APL)
@@ -644,13 +644,13 @@ SelectedDirectory = Extensions.BrowseForFolder(Me.hwnd, GetTranslation(1060))
 
 'Check if a folder is selected
 If SelectedDirectory <> vbNullString Then
-    DirToPlaylist.Path = SelectedDirectory
+    DirToPlaylist.path = SelectedDirectory
     
     If DirToPlaylist.ListCount > 32 Then: Call FitListviewToSize(True)
     
     'Construct the files string
     For I = 0 To DirToPlaylist.ListCount - 1
-        CurrentFile = DirToPlaylist.Path & "\" & DirToPlaylist.List(I)
+        CurrentFile = DirToPlaylist.path & "\" & DirToPlaylist.List(I)
         
         StringBuilder = StringBuilder & CurrentFile & vbNewLine
     Next
@@ -670,7 +670,7 @@ With CommonDialog
     .DialogTitle = GetTranslation(1035)
     .Filter = ComboxboxToCommondialogFilter
     .Flags = cdlOFNAllowMultiselect Or cdlOFNExplorer
-    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.Path)
+    .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.path)
     .ShowOpen
 
     If .FileName <> vbNullString Then
