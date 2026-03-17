@@ -220,7 +220,7 @@ Section "File Associations" SEC06
   !insertmacro APP_ASSOCIATE "cda" "audiostation.cda" "CDA" "$INSTDIR\win32.dll,4" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "ra" "audiostation.ra" "RA" "$INSTDIR\win32.dll,0" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "mus" "audiostation.mus" "MUS" "$INSTDIR\win32.dll,11" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
-  !insertmacro APP_ASSOCIATE "sid" "audiostation.sid" "SID" "$INSTDIR\win32.dll,13" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
+  !insertmacro APP_ASSOCIATE "sid" "audiostation.sid" "SID" "$INSTDIR\win32.dll,15" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "apl" "audiostation.apl" "Audiostation Playlist" "$INSTDIR\win32.dll,1" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "pls" "audiostation.pls" "PLS" "$INSTDIR\win32.dll,12" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
   !insertmacro APP_ASSOCIATE "m3u" "audiostation.m3u" "M3U" "$INSTDIR\win32.dll,6" "Open with Audiostation" "$INSTDIR\audiostation.exe $\"%1$\""
