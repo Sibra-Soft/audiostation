@@ -1,15 +1,15 @@
 Attribute VB_Name = "modMain"
+Option Explicit
+
 '///////////////////////////////////////////////////////////////
 '// FileName        : modMain.bas
 '// FileType        : Microsoft Visual Basic 6 - Module
 '// Author          : Alex van den Berg
 '// Created         : 04-10-2021
-'// Last Modified   : 09-02-2026
+'// Last Modified   : 15-03-2026
 '// Copyright       : Sibra-Soft
 '// Description     : Main application module
 '////////////////////////////////////////////////////////////////
-
-Option Explicit
 
 Public ConfigFile As String
 
@@ -39,15 +39,18 @@ Call AppLog.LogInfo("Load file: " & MediaFile)
 
 With Form_Main
     Select Case LCase(Right(MediaFile, 3))
-        Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg" ' Media files
+        ' Media player files
+        Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg"
             TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
             Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
-            
-        Case "mid", "kar", "mus", "sid" ' Midi files
+        
+        ' Midi player files
+        Case "mid", "kar", "mus", "sid"
             TrackNr = .AdioMidiPlaylist.AddFile(MediaFile).nR
             Call .AdioMidiPlaylist.GetTrack(PLS_GOTO, TrackNr)
-            
-        Case "apl", "wpl", "m3u", "pls" 'Playlist files
+        
+        'Playlist files
+        Case "apl", "wpl", "m3u", "pls"
             Screen.MousePointer = vbHourglass
             
             Form_Playlist.FormType = Mp3Player
@@ -72,7 +75,7 @@ With Form_Main
         Select Case LCase(Right(MediaFile, 2))
             Case "ra": 'Call ModConvert.Convert(MediaFile, [Real Audio], MP3): GoTo Begin
             Case "rm": 'Call ModConvert.Convert(MediaFile, [Real Media], MP3): GoTo Begin
-    
+            
             Case Else: MsgBox GetTranslation(1057), vbExclamation
         End Select
     End Select

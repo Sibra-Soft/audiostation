@@ -10,6 +10,7 @@ Attribute VB_Name = "modVolume"
 '////////////////////////////////////////////////////////////////
 
 Option Explicit
+
 Public Function ListOfVolChannels() As Collection
 Dim returnCollection As New Collection
 Dim channelFile As String

@@ -1,4 +1,6 @@
 Attribute VB_Name = "modLanguage"
+Option Explicit
+
 '///////////////////////////////////////////////////////////////
 '// FileName        : modLanguage.bas
 '// FileType        : Microsoft Visual Basic 6 - Module
@@ -8,8 +10,6 @@ Attribute VB_Name = "modLanguage"
 '// Copyright       : Sibra-Soft
 '// Description     : Multi-language application module
 '////////////////////////////////////////////////////////////////
-
-Option Explicit
 
 Private Language As String
 
@@ -55,7 +55,7 @@ Next
 Call AppLog.LogInfo("TranslateFormAndControls: Done - Menu's: " & MenuCount & " - Controls: " & ControlCount)
 End Sub
 Public Function SetLanguage(Language As String)
-File = App.Path & "\languages\" & Language & ".lng"
+File = App.path & "\languages\" & Language & ".lng"
 Language = Language
 
 If Not Extensions.FileExists(File) Then MsgBox "The specified language file could not be found: " & vbNewLine & modLanguage.File, vbOKOnly + vbExclamation, "Error": End
