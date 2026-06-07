@@ -4,7 +4,7 @@ Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{5F5C69A3-5434-4A28-B392-38259F02830A}#1.0#0"; "DataInter.ocx"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "Comctl32.ocx"
-Object = "{694608C6-ED15-479D-8B33-789C68374392}#1.0#0"; "AdioLibrary.ocx"
+Object = "{694608C6-ED15-479D-8B33-789C68374392}#1.1#0"; "AdioLibrary.ocx"
 Object = "{966CF34C-191F-4FB6-BF33-C8DB07C6A40D}#1.0#0"; "DigitBox.ocx"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
@@ -4614,13 +4614,6 @@ Begin VB.Form Form_Main
          EndProperty
       EndProperty
    End
-   Begin Audiostation.ShellPipe ShellPipe 
-      Left            =   12000
-      Top             =   3120
-      _ExtentX        =   635
-      _ExtentY        =   635
-      PollInterval    =   300
-   End
    Begin VB.Menu menu_Popup01 
       Caption         =   "- POPUP (1) -"
       Begin VB.Menu menu_Popup_AutoStop 
@@ -5346,11 +5339,6 @@ End Sub
 Private Sub OptionsMenuButton_Click()
 PopupMenu menu_Popup02
 End Sub
-
-Private Sub ShellPipe_DataArrival(ByVal CharsTotal As Long)
-DigitBox_MidiDuration.DigitDisplay = Right(Trim(ShellPipe.GetData), 5)
-End Sub
-
 Private Sub Slider_CD_Balance_OnPositionChange()
 Call AdioCDPlayer.SetBalance(Slider_CD_Balance.Value)
 End Sub
