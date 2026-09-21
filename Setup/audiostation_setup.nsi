@@ -72,7 +72,7 @@ Section "!Audiostation" SEC_main
   File ".\publish\recorder.exe"
   File ".\publish\streams.db"
   
-  File ".\packages\AdioLibrary.1.0.2\tools\AdioLibrary.ocx"
+  File ".\packages\AdioLibrary.1.0.3\tools\AdioLibrary.ocx"
   
   File ".\deps\bass.dll"
   File ".\deps\basscd.dll"
