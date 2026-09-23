@@ -7,4 +7,6 @@ XCOPY ".\deps\*.dll" ".\setup\deps" /s /i
 
 XCOPY ".\source\Languages\*.lng" ".\setup\languages" /s /i
 
+XCOPY ".\packages\*" ".\setup\packages" /s /i
+
 XCOPY ".\build\*.exe" ".\setup\build" /s /i
