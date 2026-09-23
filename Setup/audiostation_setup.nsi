@@ -71,9 +71,7 @@ Section "!Audiostation" SEC_main
   File ".\publish\settings.ini"
   File ".\publish\recorder.exe"
   File ".\publish\streams.db"
-  
   File ".\packages\AdioLibrary.1.0.3\tools\AdioLibrary.ocx"
-  
   File ".\deps\bass.dll"
   File ".\deps\basscd.dll"
   File ".\deps\bassflac.dll"
