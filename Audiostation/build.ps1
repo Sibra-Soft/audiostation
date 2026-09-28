@@ -63,8 +63,8 @@ function Get-RegSvr32Path {
 }
 
 function PrepareBuild(){
-	$PROJECT_DIR = "./Source/"
-	$COPY_LIST   = "../Resources/build-files.txt"
+	$PROJECT_DIR = "./"
+	$COPY_LIST   = "./Resources/build-files.txt"
 
 	Set-Location $PROJECT_DIR
 
@@ -99,8 +99,7 @@ function PrepareBuild(){
 			-ErrorAction Stop
 	}
 
-	Write-Host "=== Prepare-Build Completed ==="
-	exit 0	
+	Write-Host "=== Prepare-Build Completed ==="	
 }
 
 function RegisterNugetPackageLibrary(){
@@ -146,21 +145,20 @@ function RegisterNugetPackageLibrary(){
 
 	Write-Host ""
 	Write-Host "All NuGet package OCX files are registered" -ForegroundColor Cyan
-	exit 0
 }
 
-CompileProject(){
+function CompileProject(){
 	Write-Host "Start Compiling" -ForegroundColor Cyan
 	
-	if (-not (Test-Path "Build")) {
-		New-Item -ItemType Directory -Path "Build" | Out-Null
+	if (-not (Test-Path "./Build")) {
+		New-Item -ItemType Directory -Path "./Build" | Out-Null
 	}
 
 	$vb6Exe = "C:\Program Files\Develop\Visual Basic 6\VB6.exe"
 
 	Start-Process `
 		-FilePath $vb6Exe `
-		-ArgumentList '/MAKE', '".\source\Audiostation.vbp"', '/outdir', '"Build/"', '/out', '"build.log"' `
+		-ArgumentList '/MAKE', '".\source\Audiostation.vbp"', '/outdir', '"./Build/"', '/out', '"build.log"' `
 		-Wait
 	
 	Write-Host "Compile Complete" -ForegroundColor Green
@@ -168,6 +166,7 @@ CompileProject(){
 	
 	Start-Sleep -Seconds 5
 	
+	$logFile = ".\build.log"
 	if (-not (Test-Path $logFile)) {
 		Write-Host "build.log not found" -ForegroundColor Red
 		exit 1

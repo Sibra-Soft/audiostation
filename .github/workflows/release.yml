@@ -49,34 +49,16 @@ jobs:
         with:
           path: './project'
           
-      - name: Restore NuGet Packages
+      - name: Add NuGet source
         shell: cmd
         run: |
-          cd ./project
           dotnet nuget add source --username alexxvandenberg --password ${{ secrets.GH_PACKAGES_PAT }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/sibra-soft/index.json"
-          nuget restore -PackagesDirectory ./Packages
           
-      - name: Register NuGet Packages
+      - name: Build Project
         shell: powershell
         run: |
           cd ./project
-          .\nuget.ps1
-          
-      - name: Register Project Dependencies
-        shell: powershell
-        run: |
-          cd ./project/deps
-          .\reg_deps.ps1 "../source/Audiostation.vbp"
-          
-      - name: Prepare Compile
-        shell: cmd
-        run: | 
-          CALL ./project/prepare.bat
-          
-      - name: Compile Visual Basic Project
-        shell: cmd
-        run: |         
-          CALL ./project/build.bat
+          .\build.ps1
           
       - name: Upload zip artifact
         uses: actions/upload-artifact@v4

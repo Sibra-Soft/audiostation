@@ -110,6 +110,7 @@ AUTHORS text
 *.log
 
 # NuGet Packages
+nuget.exe
 *.nupkg
 *.snupkg
 *.nuget.props
@@ -117,3 +118,4 @@ AUTHORS text
 
 # Paths
 */build/*
+*/packages/*
