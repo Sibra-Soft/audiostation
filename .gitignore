@@ -114,3 +114,6 @@ AUTHORS text
 *.snupkg
 *.nuget.props
 *.nuget.targets
+
+# Paths
+*/build/*

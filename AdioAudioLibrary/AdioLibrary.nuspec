@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AdioLibrary</id>
+    <version>1.0.3</version>
+    <title>Adio Audio Library</title>
+    <authors>Alex van den Berg</authors>
+    <owners>Sibra-Soft</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <readme>readme.md</readme>
+    <projectUrl>https://www.audiostation.org/</projectUrl>
+    <description>A lightweight component library for Audiostation, providing ready-to-use building blocks such as a MediaPlayer, MidiPlayer, playlists, and audio metering. Designed for easy integration and rapid development of audio applications.</description>
+    <summary></summary>
+    <repository type="git" url="https://github.com/Sibra-Soft/Audiostation" />
+  </metadata>
+  <files>
+    <file src="build\AdioLibrary.exp" target="tools\AdioLibrary.exp" />
+    <file src="build\AdioLibrary.lib" target="tools\AdioLibrary.lib" />
+    <file src="build\AdioLibrary.ocx" target="tools\AdioLibrary.ocx" />
+    <file src="readme.md" target="readme.md" />
+  </files>
+</package>
