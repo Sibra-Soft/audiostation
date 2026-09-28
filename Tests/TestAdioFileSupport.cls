@@ -17,6 +17,11 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Implements ITestCase
+
+Private Sub Class_Initialize()
+
+End Sub
+
 Private Function ITestCase_TestCaseInstance() As ITestCase
     Dim objResult As New TestAdioFileSupport
     Debug.Assert TypeName(objResult) = TypeName(Me)
@@ -44,10 +49,15 @@ Private Sub ITestCase_RunTest( _
         Case objTestNum.NextNumber: Call TestUnsupportedFileError
         Case objTestNum.NextNumber: Call TestFileNotFoundError
         
+        Call objTestNum.NextNumber: Call TestKarFileSupport
+        Call objTestNum.NextNumber: Call TestMidiFileSupport
         Case objTestNum.NextNumber: Call TestMP3FileSupport
         Case objTestNum.NextNumber: Call TestWAVFileSupport
         Case objTestNum.NextNumber: Call TestFLACFileSupport
         Case objTestNum.NextNumber: Call TestOGGFileSupport
+        Case objTestNum.NextNumber: Call TestWMAFileSupport
+        Case objTestNum.NextNumber: Call TestAACFileSupport
+        Case objTestNum.NextNumber: Call TestM4AFileSupport
         
         Case Else
             EndOfTests = True
@@ -67,7 +77,28 @@ Private Sub TestUnsupportedFileError()
 With Form_Test
     .AdioMediaPlayer.LoadFile App.Path & "\bass.dll"
     
-    AssertTrue (.MediaPlayerErrorCount > 0), "Error should be thrown when unsupported file want to load"
+    AssertTrue (.MediaPlayerErrorCount > 0), "Error should be thrown when unsupported file is loaded"
+End With
+End Sub
+Private Sub TestKarFileSupport()
+With Form_Test
+    .AdioMediaPlayer.LoadFile App.Path & "\test.kar"
+
+    AssertEqual 0, .MidiPlayerErrorCount, "No errors should be thrown when loading a Kar file"
+End With
+End Sub
+Private Sub TestMidiFileSupport()
+With Form_Test
+    .AdioMediaPlayer.LoadFile App.Path & "\test.mid"
+
+    AssertEqual 0, .MidiPlayerErrorCount, "No errors should be thrown when loading a Midi file"
+End With
+End Sub
+Private Sub TestM4AFileSupport()
+With Form_Test
+    .AdioMediaPlayer.LoadFile App.Path & "\test.m4a"
+
+    AssertEqual 0, .MidiPlayerErrorCount, "No errors should be thrown when loading a M4A file"
 End With
 End Sub
 Private Sub TestMP3FileSupport()
@@ -75,6 +106,20 @@ With Form_Test
     .AdioMediaPlayer.LoadFile App.Path & "\test.mp3"
 
     AssertEqual 0, .MediaPlayerErrorCount, "No errors should be thrown when loading a MP3 file"
+End With
+End Sub
+Private Sub TestWMAFileSupport()
+With Form_Test
+    .AdioMediaPlayer.LoadFile App.Path & "\test.wma"
+
+    AssertEqual 0, .MediaPlayerErrorCount, "No errors should be thrown when loading a WMA file"
+End With
+End Sub
+Private Sub TestAACFileSupport()
+With Form_Test
+    .AdioMediaPlayer.LoadFile App.Path & "\test.aac"
+
+    AssertEqual 0, .MediaPlayerErrorCount, "No errors should be thrown when loading a AAC file"
 End With
 End Sub
 Private Sub TestWAVFileSupport()
