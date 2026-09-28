@@ -4872,10 +4872,6 @@ End If
 End Sub
 
 
-Private Sub AdioCore1_GetVolume(Value As Integer)
-
-End Sub
-
 Private Sub Button_CDLoop_Click()
 If Button_CDLoop.Active = False Then
     Button_CDLoop.Active = True

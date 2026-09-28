@@ -40,7 +40,7 @@ Call AppLog.LogInfo("Load file: " & MediaFile)
 With Form_Main
     Select Case LCase(Right(MediaFile, 3))
         ' Media player files
-        Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg"
+        Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg", "aac"
             TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).plsNr
             Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
         

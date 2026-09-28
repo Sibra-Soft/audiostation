@@ -119,3 +119,4 @@ nuget.exe
 # Paths
 */build/*
 */packages/*
+Audiostation/Source/Audiostation.exe
