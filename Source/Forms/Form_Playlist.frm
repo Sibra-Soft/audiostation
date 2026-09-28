@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form Form_Playlist 
    BackColor       =   &H00C0C0C0&
    BorderStyle     =   3  'Fixed Dialog
@@ -486,7 +486,7 @@ With CommonDialog
     .CancelError = True
     .InitDir = Extensions.INIRead("main", "LastLocation", ConfigFile, App.path)
     .DialogTitle = GetTranslation(1018)
-    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|Winamp " & GetTranslation(1001) & " (*.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowOpen
     
     If .FilterIndex = 1 Then: Call Form_Main.AdioMediaPlaylist.LoadPlaylist(.FileName, PLAYLIST_APL)
@@ -524,7 +524,7 @@ With CommonDialog
     .CancelError = True
     .FileName = App.path
     .DialogTitle = GetTranslation(1017)
-    .Filter = "Audiostation Playlist (*.apl)|*.apl|" & GetTranslation(1019) & " (.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
+    .Filter = "Audiostation Playlist (*.apl)|*.apl|Winamp " & GetTranslation(1001) & " (*.m3u)|*.m3u|ShoutCast Playlist (*.pls)|*.pls|Windows Media Player Playlist (*.wpl)|*.wpl"
     .ShowSave
 
     If Right(LCase(.FileName), 3) = "apl" Then: Call Form_Main.AdioMediaPlaylist.SavePlaylist(.FileName, PLAYLIST_APL)
