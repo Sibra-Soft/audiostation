@@ -402,11 +402,11 @@ Listview_Playlist.ListItems.Clear
 Select Case FormType
     Case enumFormTypes.MidiPlayer
         For Each PlaylistItem In Form_Main.AdioMidiPlaylist.GetList
-            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.nR, "00"))
-                LstItem.SubItems(1) = PlaylistItem.LocalFile
-                LstItem.SubItems(2) = PlaylistItem.RuntimeString
+            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.plsNr, "00"))
+                LstItem.SubItems(1) = PlaylistItem.plsLocalFile
+                LstItem.SubItems(2) = PlaylistItem.plsRuntimeString
             
-            If PlaylistItem.nR = CurrentMidiPlayerTrackNr Then
+            If PlaylistItem.plsNr = CurrentMidiPlayerTrackNr Then
                 LstItem.Bold = True
                 LstItem.ListSubItems(1).Bold = True
                 LstItem.ListSubItems(2).Bold = True
@@ -415,11 +415,11 @@ Select Case FormType
         
     Case enumFormTypes.Mp3Player
         For Each PlaylistItem In Form_Main.AdioMediaPlaylist.GetList
-            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.nR, "00"))
-                LstItem.SubItems(1) = PlaylistItem.LocalFile
-                LstItem.SubItems(2) = PlaylistItem.RuntimeString
+            Set LstItem = Listview_Playlist.ListItems.Add(, , format(PlaylistItem.plsNr, "00"))
+                LstItem.SubItems(1) = PlaylistItem.plsLocalFile
+                LstItem.SubItems(2) = PlaylistItem.plsRuntimeString
             
-            If PlaylistItem.nR = CurrentMediaPlayerTrackNr Then
+            If PlaylistItem.plsNr = CurrentMediaPlayerTrackNr Then
                 LstItem.Bold = True
                 LstItem.ListSubItems(1).Bold = True
                 LstItem.ListSubItems(2).Bold = True
