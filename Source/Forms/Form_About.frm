@@ -220,7 +220,7 @@ Begin VB.Form Form_About
       BackStyle       =   0  'Transparent
       Caption         =   $"Form_About.frx":03B0
       Height          =   1095
-      Left            =   120
+      Left            =   135
       TabIndex        =   2
       Top             =   1440
       Width           =   5775
