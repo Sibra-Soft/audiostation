@@ -14,5 +14,4 @@ Documentation of the project can be found at: [docs.audiostation.org](https://do
 The installation package of Audiostation contains more solutions/applications than Audiostation only.
 - [Ministation](https://github.com/sibra-soft/ministation)
 - [SoundShell](https://github.com/sibra-soft/soundshell)
-- [Adio Audio Library](https://github.com/sibra-soft/adio-audio-library)
 - [Program Manager](https://github.com/sibra-soft/program-manager)
