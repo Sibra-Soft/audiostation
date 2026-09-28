@@ -6,7 +6,7 @@ Option Explicit
 '// FileType        : Microsoft Visual Basic 6 - Module
 '// Author          : Alex van den Berg
 '// Created         : 04-10-2021
-'// Last Modified   : 15-03-2026
+'// Last Modified   : 28-09-2026
 '// Copyright       : Sibra-Soft
 '// Description     : Main application module
 '////////////////////////////////////////////////////////////////
@@ -41,12 +41,12 @@ With Form_Main
     Select Case LCase(Right(MediaFile, 3))
         ' Media player files
         Case "mp3", "wav", "mp2", "cda", "wma", "m4a", "ogg"
-            TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
+            TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).plsNr
             Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
         
         ' Midi player files
         Case "mid", "kar", "mus", "sid"
-            TrackNr = .AdioMidiPlaylist.AddFile(MediaFile).nR
+            TrackNr = .AdioMidiPlaylist.AddFile(MediaFile).plsNr
             Call .AdioMidiPlaylist.GetTrack(PLS_GOTO, TrackNr)
         
         'Playlist files
@@ -66,7 +66,7 @@ With Form_Main
         'Check if it's a file that needs to be converted
         Select Case LCase(Right(MediaFile, 4))
             Case "flac"
-                TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).nR
+                TrackNr = .AdioMediaPlaylist.AddFile(MediaFile).plsNr
                 Call .AdioMediaPlaylist.GetTrack(PLS_GOTO, TrackNr)
                 Exit Sub
         End Select

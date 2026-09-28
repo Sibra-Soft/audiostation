@@ -1,11 +1,11 @@
 VERSION 5.00
 Object = "{0A362340-2E5E-11D3-85BF-00105AC8B715}#1.0#0"; "isDigitalLibrary.ocx"
 Object = "{C5412DA5-2E2F-11D3-85BF-00105AC8B715}#1.0#0"; "isAnalogLibrary.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
 Object = "{5F5C69A3-5434-4A28-B392-38259F02830A}#1.0#0"; "DataInter.ocx"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "Comctl32.ocx"
-Object = "{694608C6-ED15-479D-8B33-789C68374392}#1.1#0"; "AdioLibrary.ocx"
 Object = "{966CF34C-191F-4FB6-BF33-C8DB07C6A40D}#1.0#0"; "DigitBox.ocx"
+Object = "{7FDC67C4-27B5-450E-B7B8-DD56BB0A0EA9}#1.0#0"; "AdioLibrary.ocx"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
@@ -30,66 +30,64 @@ Begin VB.Form Form_Main
    ScaleHeight     =   10005
    ScaleWidth      =   12960
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Timer Timer_MidiVu 
-      Interval        =   30
-      Left            =   10440
-      Top             =   1080
-   End
    Begin AdioLibrary.AdioCore AdioCore 
-      Left            =   120
-      Top             =   9240
-      _ExtentX        =   10186
-      _ExtentY        =   873
-      Begin AdioLibrary.AdioMidiPlayer AdioMidiPlayer 
-         Left            =   3000
-         Top             =   0
-         _ExtentX        =   847
-         _ExtentY        =   847
-      End
-      Begin AdioLibrary.AdioMediaPlayer AdioMediaPlayer 
-         Left            =   2400
+      Left            =   135
+      Top             =   9315
+      _ExtentX        =   9313
+      _ExtentY        =   847
+      Begin AdioLibrary.AdioTagging AdioTagging 
+         Left            =   3375
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
       End
       Begin AdioLibrary.AdioRecorder AdioRecorder 
-         Left            =   1800
-         Top             =   0
-         _ExtentX        =   847
-         _ExtentY        =   847
-      End
-      Begin AdioLibrary.AdioTagging AdioTagging 
-         Left            =   3840
-         Top             =   0
-         _ExtentX        =   847
-         _ExtentY        =   847
-      End
-      Begin AdioLibrary.AdioCDPlayer AdioCDPlayer 
-         Left            =   1200
-         Top             =   0
-         _ExtentX        =   847
-         _ExtentY        =   847
-      End
-      Begin AdioLibrary.AdioAudioPeak AdioAudioPeak 
-         Left            =   600
+         Left            =   2835
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
       End
       Begin AdioLibrary.AdioPlaylist AdioMidiPlaylist 
-         Left            =   5280
+         Left            =   4185
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
-         AllowDuplicateItems=   0   'False
+      End
+      Begin AdioLibrary.AdioMidiPlayer AdioMidiPlayer 
+         Left            =   2295
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioMediaPlayer AdioMediaPlayer 
+         Left            =   1755
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioAudioPeak AdioAudioPeak 
+         Left            =   1215
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
+      End
+      Begin AdioLibrary.AdioCDPlayer AdioCDPlayer 
+         Left            =   675
+         Top             =   0
+         _ExtentX        =   847
+         _ExtentY        =   847
       End
       Begin AdioLibrary.AdioPlaylist AdioMediaPlaylist 
-         Left            =   4680
+         Left            =   4725
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
-         AllowDuplicateItems=   0   'False
       End
+   End
+   Begin VB.Timer Timer_MidiVu 
+      Interval        =   30
+      Left            =   10440
+      Top             =   1080
    End
    Begin VB.PictureBox PictureBox_Disabled 
       AutoRedraw      =   -1  'True
@@ -151,7 +149,7 @@ Begin VB.Form Form_Main
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
             BackStyle       =   0  'Transparent
-            Caption         =   "Copyright © 2009 - 2025 Sibra-Soft"
+            Caption         =   "Copyright © 2009 - 2026 Sibra-Soft"
             ForeColor       =   &H00FFFFFF&
             Height          =   195
             Left            =   1920
@@ -4834,10 +4832,10 @@ Label_StreamTitle.Caption = Title
 End Sub
 
 Private Sub AdioMediaPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
-AdioMediaPlayer.LoadFile Track.LocalFile
+AdioMediaPlayer.LoadFile Track.plsLocalFile
 AdioMediaPlayer.StartPlay
 
-CurrentMediaPlayerTrackNr = Track.nR
+CurrentMediaPlayerTrackNr = Track.plsNr
 End Sub
 
 Private Sub AdioMidiPlayer_MidiTrack(Name As String, TrackNr As Integer)
@@ -4867,10 +4865,10 @@ End Sub
 
 Private Sub AdioMidiPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
 AdioMidiPlayer.StopPlay
-AdioMidiPlayer.LoadFile Track.LocalFile
+AdioMidiPlayer.LoadFile Track.plsLocalFile
 AdioMidiPlayer.StartPlay
 
-CurrentMidiPlayerTrackNr = Track.nR
+CurrentMidiPlayerTrackNr = Track.plsNr
 End Sub
 
 Private Sub Button_CDLoop_Click()
