@@ -1,3 +1,7 @@
+.\deps\midifl2k.ocx ; .
+.\deps\midifl32.ocx ; .
+.\deps\midiio2k.ocx ; .
+.\deps\midiio32.ocx ; .
 .\deps\bass.dll ; .
 .\deps\basscd.dll ; .
 .\deps\bassflac.dll ; .
