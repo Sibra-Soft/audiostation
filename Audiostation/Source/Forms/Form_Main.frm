@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
 Object = "{5F5C69A3-5434-4A28-B392-38259F02830A}#1.0#0"; "DataInter.ocx"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "Comctl32.ocx"
 Object = "{966CF34C-191F-4FB6-BF33-C8DB07C6A40D}#1.0#0"; "DigitBox.ocx"
-Object = "{7FDC67C4-27B5-450E-B7B8-DD56BB0A0EA9}#1.0#0"; "AdioLibrary.ocx"
+Object = "{7FDC67C4-27B5-450E-B7B8-DD56BB0A0EA9}#1.1#0"; "AdioLibrary.ocx"
 Begin VB.Form Form_Main 
    BackColor       =   &H00000000&
    BorderStyle     =   1  'Fixed Single
@@ -33,7 +33,7 @@ Begin VB.Form Form_Main
    Begin AdioLibrary.AdioCore AdioCore 
       Left            =   135
       Top             =   9315
-      _ExtentX        =   9313
+      _ExtentX        =   9075
       _ExtentY        =   847
       Begin AdioLibrary.AdioTagging AdioTagging 
          Left            =   3375
@@ -47,8 +47,8 @@ Begin VB.Form Form_Main
          _ExtentX        =   847
          _ExtentY        =   847
       End
-      Begin AdioLibrary.AdioPlaylist AdioMidiPlaylist 
-         Left            =   4185
+      Begin AdioLibrary.AdioPlaylist AdioMediaPlaylist 
+         Left            =   4050
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
@@ -77,8 +77,8 @@ Begin VB.Form Form_Main
          _ExtentX        =   847
          _ExtentY        =   847
       End
-      Begin AdioLibrary.AdioPlaylist AdioMediaPlaylist 
-         Left            =   4725
+      Begin AdioLibrary.AdioPlaylist AdioMidiPlaylist 
+         Left            =   4590
          Top             =   0
          _ExtentX        =   847
          _ExtentY        =   847
@@ -4721,41 +4721,6 @@ Public ShowRemainingForMidi As Boolean
 Dim VolumeChannelId As String
 Dim MidiMediaType As enumMidiMediaType
 Dim InitDone As Boolean
-Public Sub SettingsChanged()
-
-End Sub
-Private Sub GetElementsState()
-Dim I, ButtonIndex As Integer
-
-For I = 1 To 6
-    Element(I).Tag = Extensions.INIRead("main", "Element-" & I, ConfigFile, "OFF")
-    
-    If (I - 1) = 0 Then
-        ButtonIndex = 1
-    Else
-        If I = 6 Then
-            ButtonIndex = 5
-        Else
-            ButtonIndex = I
-        End If
-    End If
-    
-    If StrExt.Contains(Element(I).Tag, "OFF") Then
-        Button_Power(ButtonIndex).Active = False
-    Else
-        Button_Power(ButtonIndex).Active = True
-    End If
-Next
-End Sub
-Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, url As String, Optional Name As String = "")
-Form_Streams.Show vbModal, Me
-
-If url <> vbNullString Then
-    Call Extensions.INIWrite("main", "TunerMemory-" & MemorySlot, url & "~" & Name, ConfigFile)
-    
-    Button_TunerMemory(MemorySlot).Tag = url & "~" & Name
-End If
-End Sub
 
 Private Sub AdioAudioPeak_ChannelAudioLevelChange(leftValue As Integer, rightValue As Integer)
 LedBar_DatLeft.Position = leftValue
@@ -4831,12 +4796,6 @@ Private Sub AdioMediaPlayer_StreamTitleChange(Title As String)
 Label_StreamTitle.Caption = Title
 End Sub
 
-Private Sub AdioMediaPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
-AdioMediaPlayer.LoadFile Track.plsLocalFile
-AdioMediaPlayer.StartPlay
-
-CurrentMediaPlayerTrackNr = Track.plsNr
-End Sub
 
 Private Sub AdioMidiPlayer_MidiTrack(Name As String, TrackNr As Integer)
 Debug.Print "Midi track: " & Name
@@ -4862,6 +4821,12 @@ Private Sub AdioMidiPlayer_StartPlay()
 AdioMediaPlayer.StopPlay
 AdioCDPlayer.StopPlay
 End Sub
+Private Sub AdioMediaPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
+AdioMediaPlayer.LoadFile Track.plsLocalFile
+AdioMediaPlayer.StartPlay
+
+CurrentMediaPlayerTrackNr = Track.plsNr
+End Sub
 
 Private Sub AdioMidiPlaylist_TrackChanged(Track As AdioLibrary.mdlAdioPlaylistItem)
 AdioMidiPlayer.StopPlay
@@ -4869,6 +4834,46 @@ AdioMidiPlayer.LoadFile Track.plsLocalFile
 AdioMidiPlayer.StartPlay
 
 CurrentMidiPlayerTrackNr = Track.plsNr
+End Sub
+Public Sub SettingsChanged()
+
+End Sub
+Private Sub GetElementsState()
+Dim I, ButtonIndex As Integer
+
+For I = 1 To 6
+    Element(I).Tag = Extensions.INIRead("main", "Element-" & I, ConfigFile, "OFF")
+    
+    If (I - 1) = 0 Then
+        ButtonIndex = 1
+    Else
+        If I = 6 Then
+            ButtonIndex = 5
+        Else
+            ButtonIndex = I
+        End If
+    End If
+    
+    If StrExt.Contains(Element(I).Tag, "OFF") Then
+        Button_Power(ButtonIndex).Active = False
+    Else
+        Button_Power(ButtonIndex).Active = True
+    End If
+Next
+End Sub
+Private Sub AssignToMemorySlotAndSave(MemorySlot As Integer, url As String, Optional Name As String = "")
+Form_Streams.Show vbModal, Me
+
+If url <> vbNullString Then
+    Call Extensions.INIWrite("main", "TunerMemory-" & MemorySlot, url & "~" & Name, ConfigFile)
+    
+    Button_TunerMemory(MemorySlot).Tag = url & "~" & Name
+End If
+End Sub
+
+
+Private Sub AdioCore1_GetVolume(Value As Integer)
+
 End Sub
 
 Private Sub Button_CDLoop_Click()
