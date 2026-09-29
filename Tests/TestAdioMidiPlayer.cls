@@ -69,7 +69,7 @@ End With
 End Sub
 Private Sub TestMidiPlayerLoadMidiFile()
 With Form_Test.AdioMidiPlayer
-    .LoadFile App.Path & "\test.mid"
+    .LoadFile strTestFilesPath & "\test.mid"
 
     AssertEqual 0, Form_Test.MidiPlayerErrorCount, "Loading of a midi file should succeed"
     AssertEqual [MID - Midi File], .LoadedFileType, "The file type should be midi after it is loaded"
@@ -79,7 +79,7 @@ End With
 End Sub
 Private Sub TestMidiPlayerLoadKarFile()
 With Form_Test.AdioMidiPlayer
-    .LoadFile App.Path & "\test.kar"
+    .LoadFile strTestFilesPath & "\test.kar"
     
     AssertEqual 0, Form_Test.MidiPlayerErrorCount, "Loading of a kar file should succeed"
     AssertEqual [KAR - Karaoke File], .LoadedFileType, "The file type should be kar after it is loaded"

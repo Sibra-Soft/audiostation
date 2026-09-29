@@ -52,7 +52,7 @@ Private Sub ITestCase_RunTest( _
 End Sub
 Private Sub TestMediaPlayerLoadFile()
 With Form_Test.AdioMediaPlayer
-    .LoadFile App.Path & "\test.mp3"
+    .LoadFile strTestFilesPath & "\test.mp3"
     
     AssertEqual 0, Form_Test.MediaPlayerErrorCount, "Loading of a audio file should succeed"
     

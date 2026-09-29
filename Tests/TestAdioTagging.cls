@@ -75,19 +75,19 @@ Private Sub ITestCase_RunTest( _
 End Sub
 Private Sub Setup()
 With Form_Test.AdioTagging
-    strArtist = .ReadTag(App.Path & "\test.mp3", tArtist, v2)
-    strTitle = .ReadTag(App.Path & "\test.mp3", tTitle, v2)
-    strYear = .ReadTag(App.Path & "\test.mp3", tYear, v2)
-    strGenre = .ReadTag(App.Path & "\test.mp3", tGenre, v2)
-    strAlbum = .ReadTag(App.Path & "\test.mp3", tAlbum, v2)
+    strArtist = .ReadTag(strTestFilesPath & "\test.mp3", tArtist, v2)
+    strTitle = .ReadTag(strTestFilesPath & "\test.mp3", tTitle, v2)
+    strYear = .ReadTag(strTestFilesPath & "\test.mp3", tYear, v2)
+    strGenre = .ReadTag(strTestFilesPath & "\test.mp3", tGenre, v2)
+    strAlbum = .ReadTag(strTestFilesPath & "\test.mp3", tAlbum, v2)
     
-    strDurationInSeconds = .ReadProperty(App.Path & "\test.mp3", pDurationInSeconds)
-    strDurationString = .ReadProperty(App.Path & "\test.mp3", pDurationString)
-    strBitrate = .ReadProperty(App.Path & "\test.mp3", pBitrate)
-    strChannels = .ReadProperty(App.Path & "\test.mp3", pChannels)
-    strFileSize = .ReadProperty(App.Path & "\test.mp3", pFileSize)
-    strFrequency = .ReadProperty(App.Path & "\test.mp3", pFrequency)
-    strStereo = .ReadProperty(App.Path & "\test.mp3", pStereo)
+    strDurationInSeconds = .ReadProperty(strTestFilesPath & "\test.mp3", pDurationInSeconds)
+    strDurationString = .ReadProperty(strTestFilesPath & "\test.mp3", pDurationString)
+    strBitrate = .ReadProperty(strTestFilesPath & "\test.mp3", pBitrate)
+    strChannels = .ReadProperty(strTestFilesPath & "\test.mp3", pChannels)
+    strFileSize = .ReadProperty(strTestFilesPath & "\test.mp3", pFileSize)
+    strFrequency = .ReadProperty(strTestFilesPath & "\test.mp3", pFrequency)
+    strStereo = .ReadProperty(strTestFilesPath & "\test.mp3", pStereo)
 End With
 End Sub
 Private Sub TestDurationStringPropertyRead()
@@ -124,11 +124,15 @@ Private Sub TestFrequencyPropertyRead()
 AssertEqual "48000", strFrequency, "Frequency should be 48000"
 End Sub
 Private Sub TestWriteTag()
+Dim strTestTag As String
+
+strTestTag = Time$
+
 With Form_Test.AdioTagging
-    AssertTrue .WriteTag(App.Path & "\test.mp3", "Test Tag", tComposer, v2), "Writing of test tag must succeed"
-    AssertEqual "Test Tag", .ReadTag(App.Path & "\test.mp3", tComposer, v2), "Tag should be `Test Tag` after writing"
+    AssertTrue .WriteTag(strTestFilesPath & "\test.mp3", strTestTag, tComposer, v2), "Writing of test tag must succeed"
+    AssertEqual strTestTag, .ReadTag(strTestFilesPath & "\test.mp3", tComposer, v2), "Tag should be `Test Tag` after writing"
     
-    AssertTrue .WriteTag(App.Path & "\test.mp3", vbNullString, tComposer, v2), "Writing of empty tag must succeed"
-    AssertEqual vbNullString, .ReadTag(App.Path & "\test.mp3", tComposer, v2), "Tag should be empty"
+    AssertTrue .WriteTag(strTestFilesPath & "\test.mp3", vbNullString, tComposer, v2), "Writing of empty tag must succeed"
+    AssertEqual vbNullString, .ReadTag(strTestFilesPath & "\test.mp3", tComposer, v2), "Tag should be empty"
 End With
 End Sub

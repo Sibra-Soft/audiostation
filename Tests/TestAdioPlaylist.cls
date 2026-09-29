@@ -48,10 +48,19 @@ Private Sub ITestCase_RunTest( _
         Case objTestNum.NextNumber: Call TestGetFirstPlaylistTrack
         Case objTestNum.NextNumber: Call TestReadPlaylistItemProperties
         
-        Case objTestNum.NextNumber: Call TestSavePlaylist
-        Case objTestNum.NextNumber: Call TestLoadPlaylistFile
+        Case objTestNum.NextNumber: Call TestSaveAPLPlaylist                ' Audiostatio Playlist
+        Case objTestNum.NextNumber: Call TestLoadAPLPlaylistFile
+        
         Case objTestNum.NextNumber: Call TestPlaylistQuery
         Case objTestNum.NextNumber: Call TestTotalPlaylistDuration
+        
+        'Case objTestNum.NextNumber: Call TestSaveWPLPlaylist                ' Windows Media Player Playlist
+        'Case objTestNum.NextNumber: Call TestSaveM3UPlaylist                ' M3U Playlist
+        'Case objTestNum.NextNumber: Call TestSavePLSPlaylist                ' PLS Playlist
+        
+        'Case objTestNum.NextNumber: Call TestLoadWPLPlaylistFile
+        'Case objTestNum.NextNumber: Call TestLoadM3UPlaylistFile
+        'Case objTestNum.NextNumber: Call TestLoadPLSPlaylistFile
         
         Case Else
             EndOfTests = True
@@ -64,53 +73,107 @@ Form_Test.AdioPlaylist.Clear
 End Sub
 Private Sub TestAddItemToPlaylist()
 AssertEqual Form_Test.AdioPlaylist.ListCount, 0, "Playlist must be empty before adding"
-Form_Test.AdioPlaylist.AddFile App.Path & "\test.mp3"
+Form_Test.AdioPlaylist.AddFile strTestFilesPath & "\test.mp3"
 AssertEqual Form_Test.AdioPlaylist.ListCount, 1, "Playlist must contain 1 item"
 End Sub
 Private Sub TestRemoveItemFromPlaylist()
-Form_Test.AdioPlaylist.AddFile App.Path & "\test.mp3"
+Form_Test.AdioPlaylist.AddFile strTestFilesPath & "\test.mp3"
 AssertEqual Form_Test.AdioPlaylist.ListCount, 1, "Playlist must contain 1 item"
 Form_Test.AdioPlaylist.Remove 1
 AssertEqual Form_Test.AdioPlaylist.ListCount, 0, "Playlist should be empty"
 End Sub
 Private Sub TestGetFirstPlaylistTrack()
-Form_Test.AdioPlaylist.AddFile App.Path & "\test.mp3"
-AssertEqual App.Path & "\test.mp3", Form_Test.AdioPlaylist.GetTrack(PLS_FIRST).LocalFile, "Wrong file for first item in the playlist"
+Form_Test.AdioPlaylist.AddFile strTestFilesPath & "\test.mp3"
+AssertEqual strTestFilesPath & "\test.mp3", Form_Test.AdioPlaylist.GetTrack(PLS_FIRST).plsLocalFile, "Wrong file for first item in the playlist"
 End Sub
 Private Sub TestReadPlaylistItemProperties()
 Dim plsItem As mdlAdioPlaylistItem
 
-Form_Test.AdioPlaylist.AddFile App.Path & "\test.mp3"
+Form_Test.AdioPlaylist.AddFile strTestFilesPath & "\test.mp3"
 
 With Form_Test.AdioPlaylist
     Set plsItem = .GetTrack(PLS_FIRST)
     
-    AssertEqual "mp3", plsItem.FileExtension, "Playlist item extension property should be `mp3`"
-    AssertEqual "test.mp3", plsItem.FileName, "Playlist item filename property should be `test.mp3`"
-    AssertEqual 1, plsItem.nR, "Playlist item Nr property should be 0"
+    AssertEqual "mp3", plsItem.plsFileExtension, "Playlist item extension property should be `mp3`"
+    AssertEqual "test.mp3", plsItem.plsFileName, "Playlist item filename property should be `test.mp3`"
+    AssertEqual 1, plsItem.plsNr, "Playlist item Nr property should be 0"
 End With
 End Sub
-Private Sub TestSavePlaylist()
+Private Sub TestSaveWPLPlaylist()
 With Form_Test.AdioPlaylist
-    .AddFile App.Path & "\test.mp3"
-    .AddFile App.Path & "\test2.mp3"
-    .AddFile App.Path & "\test3.mp3"
+    .AddFile strTestFilesPath & "\test.mp3"
+    .AddFile strTestFilesPath & "\test2.mp3"
+    .AddFile strTestFilesPath & "\test3.mp3"
     
     AssertEqual 3, .ListCount, "Playlist must contain 3 tracks"
 
-    AssertTrue .SavePlaylist(App.Path & "\test.apl", PLAYLIST_APL), "A playlist file should be saved"
+    AssertTrue .SavePlaylist(strTestFilesPath & "\test.wpl", PLAYLIST_WPL), "A playlist file should be saved"
 End With
 End Sub
-Private Sub TestLoadPlaylistFile()
+Private Sub TestSaveAPLPlaylist()
 With Form_Test.AdioPlaylist
-    .LoadPlaylist App.Path & "\test.apl", PLAYLIST_APL
+    .AddFile strTestFilesPath & "\test.mp3"
+    .AddFile strTestFilesPath & "\test2.mp3"
+    .AddFile strTestFilesPath & "\test3.mp3"
     
-    AssertEqual 3, .ListCount, "Playlist should contain 3 tracks"
+    AssertEqual 3, .ListCount, "Playlist must contain 3 tracks"
+
+    AssertTrue .SavePlaylist(strTestFilesPath & "\test.apl", PLAYLIST_APL), "A playlist file should be saved"
+End With
+End Sub
+Private Sub TestSavePLSPlaylist()
+With Form_Test.AdioPlaylist
+    .AddFile strTestFilesPath & "\test.mp3"
+    .AddFile strTestFilesPath & "\test2.mp3"
+    .AddFile strTestFilesPath & "\test3.mp3"
+    
+    AssertEqual 3, .ListCount, "Playlist must contain 3 tracks"
+
+    AssertTrue .SavePlaylist(strTestFilesPath & "\test.pls", PLAYLIST_PLS), "A playlist file should be saved"
+End With
+End Sub
+Private Sub TestSaveM3UPlaylist()
+With Form_Test.AdioPlaylist
+    .AddFile strTestFilesPath & "\test.mp3"
+    .AddFile strTestFilesPath & "\test2.mp3"
+    .AddFile strTestFilesPath & "\test3.mp3"
+    
+    AssertEqual 3, .ListCount, "Playlist must contain 3 tracks"
+
+    AssertTrue .SavePlaylist(strTestFilesPath & "\test.m3u", PLAYLIST_M3U), "A playlist file should be saved"
+End With
+End Sub
+Private Sub TestLoadAPLPlaylistFile()
+With Form_Test.AdioPlaylist
+    .LoadPlaylist strTestFilesPath & "\test.apl", PLAYLIST_APL
+    
+    AssertEqual 3, .ListCount, "APL Playlist should contain 3 tracks"
+End With
+End Sub
+Private Sub TestLoadWPLPlaylistFile()
+With Form_Test.AdioPlaylist
+    .LoadPlaylist strTestFilesPath & "\test.wpl", PLAYLIST_WPL
+    
+    AssertEqual 3, .ListCount, "WPL Playlist should contain 3 tracks"
+End With
+End Sub
+Private Sub TestLoadM3UPlaylistFile()
+With Form_Test.AdioPlaylist
+    .LoadPlaylist strTestFilesPath & "\test.m3u", PLAYLIST_M3U
+    
+    AssertEqual 3, .ListCount, "M3U Playlist should contain 3 tracks"
+End With
+End Sub
+Private Sub TestLoadPLSPlaylistFile()
+With Form_Test.AdioPlaylist
+    .LoadPlaylist strTestFilesPath & "\test.pls", PLAYLIST_PLS
+    
+    AssertEqual 3, .ListCount, "PLS Playlist should contain 3 tracks"
 End With
 End Sub
 Private Sub TestPlaylistQuery()
 With Form_Test.AdioPlaylist
-    .LoadPlaylist App.Path & "\test.apl", PLAYLIST_APL
+    .LoadPlaylist strTestFilesPath & "\test.apl", PLAYLIST_APL
     
     .ClearQuery
     .ExecQuery "extension test 'mp3'"
@@ -132,7 +195,7 @@ End With
 End Sub
 Private Sub TestTotalPlaylistDuration()
 With Form_Test.AdioPlaylist
-    .LoadPlaylist App.Path & "\test.apl", PLAYLIST_APL
+    .LoadPlaylist strTestFilesPath & "\test.apl", PLAYLIST_APL
     
     AssertEqual 512, .GetPlaylistRuntimeInSeconds, "Wrong total length of the playlist found"
     AssertEqual "00:08:32", .GetPlaylistRuntimeString, "Wrong duration string for total length of the playlist"
